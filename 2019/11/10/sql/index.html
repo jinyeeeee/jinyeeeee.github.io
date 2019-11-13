@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    sql |
+    
+    yuchen</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/technology.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-sql" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      sql
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/11/10/sql/" class="article-date">
+  <time datetime="2019-11-10T11:20:40.000Z" itemprop="datePublished">2019-11-10</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <blockquote>
+<p>查询一个表中的<strong>某些列</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT sname,ssex,specialty FROM student</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>查询一个表中的<strong>所有列</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM student</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>DISTINCT 过滤<strong>重复行</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT DISTINCT sname FROM student</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>top n 查询<strong>前n/%行</strong>信息</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT top 5 *FROM student</span><br><span class="line">SELECT top 50 percent sname FROM student</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>查询时<strong>更改列名</strong> AS = </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT sno AS 学号,sname AS 姓名 FROM student</span><br><span class="line">SELECT 学号 = sno,姓名 = sname FROM student</span><br><span class="line">SELECT sno 学号,sname 姓名 FROM student</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>计算列值</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT sno,cno,score150 = score * 1.5 FROM sc</span><br><span class="line">//score150为指定的列名,实际并不存在此列</span><br></pre></td></tr></table></figure>
+<h1 id="选择查询"><a href="#选择查询" class="headerlink" title="选择查询"></a>选择查询</h1><blockquote>
+<p><strong>WHERE</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM sc WHERE score &gt; 60</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>AND/OR</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM student WHERE specialty = &apos;计算机&apos; AND ssex = &apos;男&apos;</span><br><span class="line">SELECT * FROM student WHERE specialty = &apos;计算机&apos; OR ssex = &apos;男&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>BETWEEN AND/NOT - -</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM sc WHERE score BETWEEN 80 AND 90</span><br><span class="line">SELECT * FROM sc WHERE score NOT BETWEEN 80 AND 90</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>IN</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM student WHERE specialty IN (&apos;通信&apos;,&apos;计算机&apos;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>通配符</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">%：匹配零个及多个任意字符； _：与任意单字符匹配； []：匹配一个范围； [^]：排除一个范围 ；-：连字符</span><br><span class="line">Symbol Meaning </span><br><span class="line">like &apos;5[%]&apos; 5% </span><br><span class="line">like &apos;[_]n&apos; _n </span><br><span class="line">like &apos;[a-cdf]&apos; a, b, c, d, or f </span><br><span class="line">like &apos;[-acdf]&apos; -, a, c, d, or f </span><br><span class="line">like &apos;[[]&apos; [ </span><br><span class="line">like &apos;]&apos; ] </span><br><span class="line">like &apos;abc[_]d%&apos; abc_d and abc_de </span><br><span class="line">like &apos;abc[def]&apos; abcd, abce, and abcf </span><br><span class="line">like &apos;[^1-9]&apos; 0 </span><br><span class="line">like &apos;[^1-9b-z]&apos; 0, a</span><br><span class="line"></span><br><span class="line">FOR EXAMPLE</span><br><span class="line">//以张开头的字符串</span><br><span class="line">SELECT * FROM student WHERE sname LIKE &apos;张%&apos;</span><br><span class="line">//除张外任意长度的字符串</span><br><span class="line">SELECT * FROM student WHERE sname LIKE &apos;[^张]%&apos;</span><br><span class="line">//包含2的字符串</span><br><span class="line">SELECT * FROM student WHERE en_time LIKE &apos;%2%&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>NULL</strong> </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM sc WHERE score is NULL</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>复合条件查询</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM student</span><br><span class="line">WHERE ssex = &apos;女&apos; AND</span><br><span class="line">(specialty = &apos;计算机&apos; OR specialty = &apos;通信&apos;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>聚合函数查询sum avg min max count count(*)</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT sum(score) AS 求和 FROM sc</span><br><span class="line">SELECT avg(score) AS 求和 FROM sc</span><br><span class="line">SELECT min(score) AS 求和 FROM sc</span><br><span class="line">SELECT max(score) AS 求和 FROM sc</span><br><span class="line"></span><br><span class="line">SELECT count(DISTINCT specialty) AS 专业种类数 FROM student</span><br><span class="line">SELECT avg(score) FROM sc WHERE sno = &apos;1302001&apos;</span><br></pre></td></tr></table></figure>
+<h1 id="分组和汇总"><a href="#分组和汇总" class="headerlink" title="分组和汇总"></a>分组和汇总</h1><blockquote>
+<p><strong>GROUP BY 分组</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT ssex,count(ssex) AS 人数 FROM student</span><br><span class="line">GROUP BY ssex</span><br><span class="line"></span><br><span class="line">SELECT sno,count(cno) AS 课程数 FROM sc</span><br><span class="line">GROUP BY sno</span><br><span class="line">HAVING count(cno)&gt;2</span><br><span class="line">//HAVING 关键字对查询和统计的结果做进一步的筛选</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>CUBE</strong><br>//1.若有多个分组条件,返回的结果先按分组的第一个条件列排序显示,再按第二个条件列排序显示。2.由于CUBE返回每个可能的组和子组组和,因此无论在列分组时指定使用什么顺序,行数都相同。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT avg(score) AS 平均成绩 , count(sno) AS 选修人数</span><br><span class="line">FROM sc GROUP BY cno</span><br><span class="line">WITH CUBE</span><br><span class="line"></span><br><span class="line">SELECT specialty,ssex,count(*) AS 人数</span><br><span class="line">FROM student</span><br><span class="line">GROUP BY ssex,specialty</span><br><span class="line">WITH CUBE</span><br><span class="line">//先汇总specialty,再汇总ssex</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>ROLLUP</strong><br>//1.组的层次结构取决于列分组时指定使用的顺序,更改列分组的顺序会影响在结果集内生成的行数。2.在使用CUBE或者ROLLUP时,不支持区分性聚合函数,例如AVG(DISTINCT),COUNT(DISTINCT)。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT specialty,ssex,count(*) AS 人数</span><br><span class="line">FROM student</span><br><span class="line">GROUP BY ssex,specialty</span><br><span class="line">WITH ROLLUP</span><br><span class="line">//先对ssex进行汇总,再对specialty进行汇总</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>COMPUTE数据汇总</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT sno,sname,ssex FROM student</span><br><span class="line">WHERE specialty = &apos;计算机&apos; </span><br><span class="line">COMPUTE count(sno)</span><br><span class="line"></span><br><span class="line">SELECT sno,cno,score FROM sc</span><br><span class="line">ORDER BY sno</span><br><span class="line">COMPUTE avg(score) BY sno</span><br></pre></td></tr></table></figure>
+<h1 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h1><blockquote>
+<p><strong>INNER JOIN ON内连接</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//不指定连接方式,默认为内连接</span><br><span class="line">SELECT a.sname,b.cno,b.score </span><br><span class="line">FROM student AS a INNER JOIN sc AS b</span><br><span class="line">ON a.sno = b.sno</span><br><span class="line"></span><br><span class="line">//不用内连接,用WHERE也可以</span><br><span class="line">SELECT a.sname,b.sno,b.score FROM student a,sc b</span><br><span class="line">WHERE a.sno = b.sno</span><br><span class="line"></span><br><span class="line">SELECT cno,avg(score) AS 平均成绩</span><br><span class="line">FROM student a INNER JOIN sc b</span><br><span class="line">ON a.sno = b.sno AND specialty = &apos;计算机&apos;</span><br><span class="line">GROUP BY cno</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>自连接</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//为表指定两个别名,使其在逻辑上成为两张表</span><br><span class="line">SELECT * FROM </span><br><span class="line">student a INNER JOIN student b</span><br><span class="line">ON a.sname = b.sname AND a.sno&lt;&gt;b.sno</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>外连接</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//左外连接:对右边的表加以限制</span><br><span class="line">SELECT student.*,sc.cno,sc.score</span><br><span class="line">FROM student LEFT JOIN sc</span><br><span class="line">ON student.sno = sc.sno</span><br></pre></td></tr></table></figure>
+<blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://jinyeeeee.github.io/2019/11/10/sql/" data-id="ck2xgczod0004a8v04to0bj2s"
+         class="article-share-link">分享</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+    
+      <a href="/2019/11/10/cell/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">干细胞</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/technology.js"></script>
+
+  </div>
+</body>
+</html>
