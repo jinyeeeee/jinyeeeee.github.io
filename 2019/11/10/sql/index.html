@@ -138,13 +138,89 @@
 <blockquote>
 <p><strong>外连接</strong></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//左外连接:对右边的表加以限制</span><br><span class="line">SELECT student.*,sc.cno,sc.score</span><br><span class="line">FROM student LEFT JOIN sc</span><br><span class="line">ON student.sno = sc.sno</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//左外连接:对右边的表加以限制</span><br><span class="line">SELECT student.*,sc.cno,sc.score</span><br><span class="line">FROM student LEFT JOIN sc</span><br><span class="line">ON student.sno = sc.sno</span><br><span class="line">//不加限制:比如此例中若是INNER JOIN,则只能查询到student表sno和sc表中sno相同的数据。</span><br><span class="line">//LEFT JOIN限制右边数据,即左边student表中所有sno都会查询到,而sc表中只有与student表中sno相同的才能查询到。</span><br><span class="line">//FULL JOIN，两边都不限制,即两个表的所有sno都可以查询到。</span><br><span class="line"></span><br><span class="line">//全外连接:对左右的表都不加限制</span><br><span class="line">SELECT course.*,sc.score,student.sname,student.sno</span><br><span class="line">FROM course FULL JOIN sc</span><br><span class="line">ON course.cno = sc.cno</span><br><span class="line">FULL JOIN student ON student.sno = sc.sno</span><br></pre></td></tr></table></figure>
 <blockquote>
+<p><strong>交叉连接</strong><br>//即求两个表的笛卡尔积</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT a.sname,b.score FROM</span><br><span class="line">student AS a CROSS JOIN sc AS b</span><br></pre></td></tr></table></figure>
+<h1 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h1><h3 id="相关子查询和无关子查询的比较"><a href="#相关子查询和无关子查询的比较" class="headerlink" title="相关子查询和无关子查询的比较"></a>相关子查询和无关子查询的比较</h3><h3 id="1-无关子查询只进行一次-相关子查询进行多次"><a href="#1-无关子查询只进行一次-相关子查询进行多次" class="headerlink" title="1.无关子查询只进行一次,相关子查询进行多次"></a>1.无关子查询只进行一次,相关子查询进行多次</h3><h3 id="2-无关子查询在子查询中获取一或多-列-信息，再对获得的信息做处理"><a href="#2-无关子查询在子查询中获取一或多-列-信息，再对获得的信息做处理" class="headerlink" title="2.无关子查询在子查询中获取一或多 列 信息，再对获得的信息做处理"></a>2.无关子查询在子查询中获取一或多 列 信息，再对获得的信息做处理</h3><h3 id="3-相关子查询每次获取一或多-行-信息"><a href="#3-相关子查询每次获取一或多-行-信息" class="headerlink" title="3.相关子查询每次获取一或多 行 信息"></a>3.相关子查询每次获取一或多 行 信息</h3><h3 id="4-相关子查询依赖主查询-意思是每次查询都要从主查询中获取查询判断的条件，若没有条件，则无法继续查询。"><a href="#4-相关子查询依赖主查询-意思是每次查询都要从主查询中获取查询判断的条件，若没有条件，则无法继续查询。" class="headerlink" title="4.相关子查询依赖主查询,意思是每次查询都要从主查询中获取查询判断的条件，若没有条件，则无法继续查询。"></a>4.相关子查询依赖主查询,意思是每次查询都要从主查询中获取查询判断的条件，若没有条件，则无法继续查询。</h3><h2 id="无关子查询"><a href="#无关子查询" class="headerlink" title="无关子查询"></a>无关子查询</h2><blockquote>
+<p><strong>比较子查询</strong></p>
+</blockquote>
+<p>//子查询中不能使用ORDER BY 排序,子查询既可以作为主查询的比较条件,又可以作为主查询的查询对象(可视作单列的表)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">SELECT sno,sname,specialty FROM student</span><br><span class="line">WHERE specialty = (</span><br><span class="line">SELECT specialty FROM student WHERE sname = &apos;沈艳&apos;</span><br><span class="line">)</span><br><span class="line">//用自连接实现</span><br><span class="line">SELECT a.sno,a.sname,a.specialty FROM </span><br><span class="line">student AS a INNER JOIN student AS b</span><br><span class="line">ON a.specialty = b.specialty AND b.sname = &apos;沈艳&apos;</span><br><span class="line"></span><br><span class="line">//多层子查询</span><br><span class="line">SELECT a.sno,sname FROM student AS a</span><br><span class="line">INNER JOIN sc AS b ON a.sno = b.sno</span><br><span class="line">AND cno = &apos;C001&apos; AND score&gt;(</span><br><span class="line">SELECT score FROM sc WHERE sno = (</span><br><span class="line">	SELECT sno FROM student WHERE sname = &apos;郑丽&apos;</span><br><span class="line"> ) AND cno = &apos;C001&apos;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <blockquote>
+<p><strong>SOME,ANY,ALL,和IN子查询</strong></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//&gt;=ALL为求最大值</span><br><span class="line">SELECT sno,sname FROM student WHERE specialty = &apos;计算机&apos; AND sage &gt;= ALL (</span><br><span class="line">	 SELECT sage FROM student WHERE specialty = &apos;计算机&apos;</span><br><span class="line">)</span><br><span class="line">//=ANY为其中任一个,与IN作用相同</span><br><span class="line">SELECT * FROM student WHERE sage = ANY(</span><br><span class="line">	SELECT sage FROM student WHERE specialty = &apos;通信&apos;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>子查询作为主查询的查询对象</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT grade,specialty,count(b.sno) AS 人数 FROM student AS a</span><br><span class="line">INNER JOIN (SELECT sno FROM sc GROUP BY sno HAVING AVG(score)&gt;=80) b</span><br><span class="line">ON a.sno = b.sno</span><br><span class="line">GROUP BY grade,specialty</span><br></pre></td></tr></table></figure>
+<h2 id="相关子查询"><a href="#相关子查询" class="headerlink" title="相关子查询"></a>相关子查询</h2><blockquote>
+<p><strong>比较子查询</strong></p>
+</blockquote>
+<p>//相关子查询依赖于外部查询,类似于一个循环，每次只取出一行数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT sno,cno,score FROM sc a</span><br><span class="line">WHERE score &lt; (</span><br><span class="line">	SELECT avg(score) FROM sc b</span><br><span class="line">	WHERE a.cno = b.cno</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">问题:查询两门以上课程的成绩在80以上的学生的学号,姓名，年纪，专业</span><br><span class="line"></span><br><span class="line">思路//每次取出student表中的一个学生的学号sno,在子查询中统计满足该学生分数&gt;=80的行的数量,在主查询WHERE中判断满足的行数是否&gt;2</span><br><span class="line">SELECT sno,sname,grade,specialty FROM student</span><br><span class="line">WHERE (</span><br><span class="line">	SELECT COUNT(*) FROM sc</span><br><span class="line">	WHERE student.sno = sc.sno AND score&gt;=80</span><br><span class="line">)&gt;=2</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>EXISTS</strong></p>
+<blockquote>
+<p>带有EXISTS为此的子查询不返回任何数据,只产生逻辑真值’true’或逻辑假值’false’</p>
+<blockquote>
+<p>其目标属性列(即SELECT后面跟的查询目标)一般用*表示,因为带EXISTS的子查询只返回真值或假值，给列名无意义</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>//查询选修了C004号课程的学生的姓名，以下三种方式查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//相关子查询</span><br><span class="line">SELECT sname FROM student</span><br><span class="line">WHERE EXISTS</span><br><span class="line">	(</span><br><span class="line">		SELECT * FROM sc</span><br><span class="line">		WHERE sno = student.sno AND cno = &apos;C004&apos;</span><br><span class="line">	)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//无关子查询</span><br><span class="line">SELECT sname FROM student</span><br><span class="line">WHERE student.sno = ANY(</span><br><span class="line">	SELECT sno FROM sc</span><br><span class="line">	WHERE cno = &apos;C004&apos;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//内连接</span><br><span class="line">SELECT sname FROM student</span><br><span class="line">INNER JOIN sc ON student.sno = sc.sno</span><br><span class="line">AND cno = &apos;C004&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//普通查询</span><br><span class="line">SELECT sname FROM student,sc</span><br><span class="line">WHERE student.sno = sc.sno AND cno = &apos;C004&apos;</span><br></pre></td></tr></table></figure>
+<h1 id="集合运算查询"><a href="#集合运算查询" class="headerlink" title="集合运算查询"></a>集合运算查询</h1><blockquote>
+<p><strong>UNION联合查询</strong><br>相当于求<strong>∪</strong><br>//将两个或更多查询的结果组和为单个结果集,应遵循两个基本规则:所有查询中的<strong>列数和列的顺序必须相同</strong>，数据类型必须兼容。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT sname FROM student,sc</span><br><span class="line">WHERE student.sno = sc.sno AND cno = &apos;C001&apos;</span><br><span class="line">UNION</span><br><span class="line">SELECT sname FROM student,sc</span><br><span class="line">WHERE student.sno = sc.sno AND cno = &apos;C004&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>INTERSECT</strong><br>相当于求<strong>∩</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT sname FROM student,sc</span><br><span class="line">WHERE student.sno = sc.sno AND cno = &apos;C001&apos;</span><br><span class="line">INTERSECT</span><br><span class="line">SELECT sname FROM student,sc</span><br><span class="line">WHERE student.sno = sc.sno AND cno = &apos;C004&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>EXCEPT</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT sno FROM student</span><br><span class="line">EXCEPT(</span><br><span class="line">	SELECT sno FROM sc</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h1 id="排序-ORDER-BY"><a href="#排序-ORDER-BY" class="headerlink" title="排序 ORDER BY"></a>排序 ORDER BY</h1><blockquote>
+<p><strong>ASC升序</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT sname,specialty FROM student</span><br><span class="line">WHERE ssex = &apos;女&apos;</span><br><span class="line">ORDER BY sname ASC</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>DESC降序</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT sno,score FROM sc</span><br><span class="line">ORDER BY score DESC</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>指定若第一个排序条件有重复项，则按照第二个排序条件排序</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT sno,score FROM sc</span><br><span class="line">ORDER BY score DESC , sno ASC</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT TOP 2 cname,credit</span><br><span class="line">FROM course ORDER BY credit DESC</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>储存查询结果 <strong>INTO</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//INTO子句可以创建一个新表并将查询结果中的行添加到该表中</span><br><span class="line">SELECT sname,student.sno,cname,score INTO 成绩表</span><br><span class="line">FROM student,sc,course</span><br><span class="line">WHERE student.sno = sc.sno AND sc.cno = course.cno</span><br></pre></td></tr></table></figure>
+<h1 id="在数据操作中使用SELECT子句"><a href="#在数据操作中使用SELECT子句" class="headerlink" title="在数据操作中使用SELECT子句"></a>在数据操作中使用SELECT子句</h1><blockquote>
+<p>在INSERT语句中使用SELECT子句<br>**注意:不要使用VALUES,列名和列数要匹配</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 成绩表</span><br><span class="line">(</span><br><span class="line">	学号 char(7),</span><br><span class="line">	课程号 char(4),</span><br><span class="line">	成绩 int</span><br><span class="line">)</span><br><span class="line">GO</span><br><span class="line">INSERT INTO 成绩表 (学号,课程号,成绩)</span><br><span class="line">SELECT * FROM sc</span><br><span class="line">WHERE score&gt;=80</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在UPDATE语句中使用SELECT子句</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">UPDATE sc SET score = 86 </span><br><span class="line">WHERE sno =&apos;1302001&apos; AND cno = (</span><br><span class="line">	SELECT cno FROM course WHERE cname = &apos;操作系统&apos;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在DELETE语句中使用SELECT子句</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DELETE sc WHERE sno = &apos;1302001&apos; AND cno = (</span><br><span class="line">	SELECT cno FROM course WHERE cname = &apos;操作系统&apos;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h1 id="视图和索引"><a href="#视图和索引" class="headerlink" title="视图和索引"></a>视图和索引</h1><blockquote>
+<p><strong>视图</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//**创建视图 CREATE**</span><br><span class="line">CREATE VIEW s_c_scc</span><br><span class="line">AS </span><br><span class="line"> SELECT student.sno,sname,course.cno,cname,score</span><br><span class="line"> FROM student,sc,course WHERE student.sno = sc.sno</span><br><span class="line"> AND course.cno = sc.cno AND specialty = &apos;计算机&apos;</span><br><span class="line"></span><br><span class="line">//**修改视图 ALTER**</span><br><span class="line">ALTER VIEW s_c_scc</span><br><span class="line">AS</span><br><span class="line"> *****</span><br><span class="line"> 新的查询语句</span><br><span class="line"> *****</span><br><span class="line">//查询</span><br><span class="line">SELECT sumscore = SUM(score),avgscore = AVG(score) FROM s_c_sc</span><br><span class="line">WHERE cname = &apos;C++语言&apos;</span><br><span class="line"></span><br><span class="line">//修改基本表中的数据</span><br><span class="line">INSERT male_view VALUES(&apos;男&apos;,&apos;1501005&apos;,&apos;张三&apos;,19,&apos;2015-09-01&apos;,&apos;电子&apos;,&apos;15级&apos;)</span><br><span class="line"></span><br><span class="line">//删除视图</span><br><span class="line">DROP VIEW s_c_scc</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 </blockquote>
@@ -176,7 +252,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://jinyeeeee.github.io/2019/11/10/sql/" data-id="ck2xgczod0004a8v04to0bj2s"
+      <a data-url="http://jinyeeeee.github.io/2019/11/10/sql/" data-id="ck32vk5ko0001tcv0hknnc67k"
          class="article-share-link">分享</a>
       
     </footer>
