@@ -229,30 +229,103 @@
 <blockquote>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<blockquote>
+<h1 id="T-SQL编程"><a href="#T-SQL编程" class="headerlink" title="T-SQL编程"></a>T-SQL编程</h1><h3 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h3><blockquote>
+<p>必须以大小写a-z,下划线<em>,@,#开头,可由汉字,字母,数字,拉丁字符,下划线</em>,@,#组成</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><blockquote>
+<p>在名称前加 <strong>@@</strong> 表示<strong>全局变量</strong>,加 <strong>@</strong> 表示<strong>局部变量</strong><br>并没有保存到数据库中,每次使用之前必须声明</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DECLARE @CurrentDateTime char(30)</span><br><span class="line">SELECT @CurrentDateTime = GETDATE()</span><br><span class="line">SELECT @CurrentDateTime AS &apos;当前的日期和时间&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p><a href="https://blog.csdn.net/zhanghefu/article/details/1656782" target="_blank" rel="noopener">Numeric数据类型</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NUMERIC 和 DECIMAL 数据类型，以及各种 INTEGER 数据类型，有时被称为精确数值数据类型，与之相对的是近似数值数据类型 FLOAT、DOUBLE 和 REAL。</span><br><span class="line">Numeric(10,2)表示总位数为10，小数点后为2位的数，也就是说这个字段的整数位最大是8位。</span><br></pre></td></tr></table></figure>
+
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><blockquote>
+<p><strong>+ - * / %</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DECLARE @ExpResult numeric</span><br><span class="line">SET @ExpResult = 67%31</span><br><span class="line">SELECT @ExpResult AS &apos;表达式计算结果&apos;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
+<p><strong>位运算符</strong><br><a href="https://blog.csdn.net/Marccco/article/details/88709481" target="_blank" rel="noopener">位运算符</a><br>1.按位与 &amp; 两个为均为1时结果为1，否则为0<br>2.按位或 | 只要一个位为1结果就为1，否则为0<br>3.按位异或 ^ 两个位值不同时结果为1,否则为0</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DECLARE @a1 int ,@a2 int</span><br><span class="line">SET @a1 = 3</span><br><span class="line">SET @a2 = 8</span><br><span class="line">SELECT @a1 &amp; @a2 AS &apos;与&apos;,@a1 | @a2 AS &apos;或&apos;,@a1 ^ @a2 AS &apos; 异或 &apos;</span><br></pre></td></tr></table></figure>
+<h3 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h3><blockquote>
+<p>运算结果为逻辑值,可以为<strong>TRUE,FALSE,UNKNOWN</strong><br>不等于 &lt;&gt;/!=<br>不小于 !&lt;<br>不大于 !&gt;</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DECLARE @Exp1 int,@Exp2 int</span><br><span class="line">SET @Exp1 = 3</span><br><span class="line">SET @Exp2 = 5</span><br><span class="line">IF @Exp1 &lt; @Exp2</span><br><span class="line">SELECT @Exp1 as &apos;较小值&apos;,@Exp2 as &apos;较大值&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><blockquote>
+<p>与比较运算符一样,返回带有TRUE或FALSE值的Boolean数据类型或UNKNOWN值.<br><strong>ALL，AND/&amp;&amp;,ANY/SOME,BETWEEN,EXISTS,IN,LIKE,NOT/!,OR/||</strong></p>
+</blockquote>
+<h3 id="字符串连接运算符"><a href="#字符串连接运算符" class="headerlink" title="字符串连接运算符 +"></a>字符串连接运算符 +</h3><blockquote>
+<p>字符串连接运算的操作数类型有char,varchar,text等</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DECLARE @ExpResult char(30)</span><br><span class="line">SELECT @ExpResult = &apos;hello&apos;+&apos;world&apos;</span><br><span class="line">SELECT @ExpResult</span><br></pre></td></tr></table></figure>
+<h3 id="批处理"><a href="#批处理" class="headerlink" title="批处理"></a>批处理</h3><blockquote>
+<p>包含一个或者多个T-SQL语句的集合,从应用程序一次性的发送到SQL Server 2008进行执行,可以节省系统开销,批处理的结束符为’GO’</p>
+</blockquote>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><blockquote>
+<p>1.单行注释  - -<br>2.多行注释 /* */</p>
+</blockquote>
+<h1 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h1><h3 id="SET语句"><a href="#SET语句" class="headerlink" title="SET语句"></a>SET语句</h3><blockquote>
+<p>除赋值外,SET语句也实现一些设置功能,例如设置日期类型数据的格式,设置数据库的某些属性等.</p>
+</blockquote>
+<h3 id="BEGIN…END语句"><a href="#BEGIN…END语句" class="headerlink" title="BEGIN…END语句"></a>BEGIN…END语句</h3><blockquote>
+<p>将多个T-SQL语句组合成一个语句块</p>
+</blockquote>
+<h3 id="IF…ELSE语句"><a href="#IF…ELSE语句" class="headerlink" title="IF…ELSE语句"></a>IF…ELSE语句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IF (SELECT avg(score) FROM sc WHERE cno = &apos;C001&apos;) &gt; 80</span><br><span class="line">	PRINT &apos;C001号课程的平均成绩还不错&apos;</span><br><span class="line">ELSE</span><br><span class="line">	PRINT &apos;C001号课的平均成绩一般&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">IF EXISTS(SELECT * FROM sc WHERE sno = &apos;1302001&apos;)</span><br><span class="line">	SELECT avg(score) as &apos;学号1302001的平均成绩&apos; FROM sc WHERE sno = &apos;1302001&apos;</span><br><span class="line">ELSE</span><br><span class="line">	IF EXISTS(SELECT * FROM student WHERE sno = &apos;1302001&apos;)</span><br><span class="line">		PRINT &apos;该学生没有选课&apos;</span><br><span class="line">	ELSE</span><br><span class="line">		PRINT &apos;没有该学生&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="CASE语句"><a href="#CASE语句" class="headerlink" title="CASE语句"></a>CASE语句</h3><blockquote>
+<p>若在WHEN中没有匹配到,则返回ELSE选项的值,若未设置ELSE选项,则返回NULL</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SELECT sno,sname,</span><br><span class="line">	CASE specialty</span><br><span class="line">		WHEN &apos;计算机&apos; THEN &apos;Computer&apos;</span><br><span class="line">		WHEN &apos;电子&apos; THEN &apos;Electronic&apos;</span><br><span class="line">		WHEN &apos;网络&apos; THEN &apos;Network&apos;</span><br><span class="line">		ELSE &apos;其他&apos;</span><br><span class="line">	END AS specialty</span><br><span class="line">FROM student</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT sno,cno,</span><br><span class="line">	CASE</span><br><span class="line">		WHEN score &gt;= 90 THEN &apos;A&apos;</span><br><span class="line">		WHEN score &gt;= 80 THEN &apos;B&apos;</span><br><span class="line">		WHEN score &gt;= 70 THEN &apos;C&apos;</span><br><span class="line">		WHEN score &gt;= 60 THEN &apos;D&apos;</span><br><span class="line">		ELSE &apos;不合格&apos;</span><br><span class="line">	END AS &apos;成绩&apos;</span><br><span class="line">FROM sc</span><br></pre></td></tr></table></figure>
+<h3 id="WHILE语句"><a href="#WHILE语句" class="headerlink" title="WHILE语句"></a>WHILE语句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DECLARE @sum int,@i int</span><br><span class="line">SET @sum = 0</span><br><span class="line">SET @i = 1</span><br><span class="line">WHILE @i &lt;= 100</span><br><span class="line">	BEGIN</span><br><span class="line">		SET @sum  =  @sum + @i</span><br><span class="line">		IF @sum &gt; 1000 BREAK</span><br><span class="line">		SET @i = @i + 1</span><br><span class="line">	END</span><br><span class="line">SELECT @sum AS &apos;i以内的累加和&apos;,@i AS i</span><br></pre></td></tr></table></figure>
+<h3 id="GOTO语句"><a href="#GOTO语句" class="headerlink" title="GOTO语句"></a>GOTO语句</h3><blockquote>
+<p>GOTO label:<br>其中label为语句标号,可以用户自定义</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DECLARE @sum int,@i int</span><br><span class="line">SET @sum = 0</span><br><span class="line">SET @i = 1</span><br><span class="line">label:</span><br><span class="line">	SET @sum = @sum + @i</span><br><span class="line">	SET @i = @i + 1</span><br><span class="line">IF @i &lt; = 100 GOTO label</span><br><span class="line">PRINT &apos;100以内的数求和为:&apos; + CAST(@sum AS char(20))</span><br><span class="line">//AS把@sum转换为char类型,若字符串的长度没有指定的长度,则其余的部分由空格填充</span><br><span class="line">CAST的作用是,删除多余的空格</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">DECLARE @avg float</span><br><span class="line">IF (SELECT count(*) FROM sc WHERE sno = &apos;1404001&apos;) = 0</span><br><span class="line">GOTO label</span><br><span class="line">BEGIN</span><br><span class="line">	SELECT @avg = avg(score) FROM sc WHERE sno = &apos;1404001&apos;</span><br><span class="line">	PRINT &apos;1402001号学生的平均成绩:&apos;+CAST(@avg AS char(20))</span><br><span class="line">	RETURN</span><br><span class="line">END</span><br><span class="line">label:print &apos;没有1402001号学生或者1402001好学生没有选课&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="RETURN"><a href="#RETURN" class="headerlink" title="RETURN"></a>RETURN</h3><blockquote>
+<p>使用RETURN语句可以从查询或过程中无条件退出,可在任何时候用于从过程,批处理或语句块中退出,而不执行位于RETURN之后的语句</p>
+</blockquote>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h3 id="标量值函数"><a href="#标量值函数" class="headerlink" title="标量值函数"></a>标量值函数</h3><blockquote>
+<p>标量函数返回一个确定类型的标量值,函数体语句定义在BEGIN…END语句内</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">CREATE FUNCTION average(@cn char(4)) RETURNS float</span><br><span class="line">AS</span><br><span class="line">	BEGIN</span><br><span class="line">		DECLARE @avg float</span><br><span class="line">		SELECT @avg = avg(score) FROM sc WHERE cno = @cn</span><br><span class="line">		RETURN @avg</span><br><span class="line">	END</span><br><span class="line">DECLARE @cn char(4)</span><br><span class="line">SET @cn = &apos;C001&apos;</span><br><span class="line">SELECT dbo.average(@cn) AS &apos;C001号课程的平均成绩&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="内嵌表值函数"><a href="#内嵌表值函数" class="headerlink" title="内嵌表值函数"></a>内嵌表值函数</h3><blockquote>
+<p>内嵌表值函数返回的是一个表,内嵌表值函数的功能相当于一个参数化的视图,无由BEGIN…END包括起来的函数体，<br>内嵌表值函数本质上是从数据库中筛选出的行组成的表,数据存在数据库中,可以通过内嵌表值函数修改数据库中的数据.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CREATE FUNCTION stu_func(@major varchar(20)) RETURNS table</span><br><span class="line">AS RETURN(</span><br><span class="line">		SELECT student.sno,sname,cno,score FROM student,sc</span><br><span class="line">		WHERE specialty = @major AND student.sno = sc.sno</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">DECLARE @major varchar(20)</span><br><span class="line">SET @major = &apos;计算机&apos;</span><br><span class="line">SELECT * FROM dbo.stu_func(@major)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//通过内嵌表值函数修改数据库中的数据</span><br><span class="line">UPDATE dbo.stu_func(&apos;计算机&apos;) SET sname = &apos;张明&apos; WHERE sno = &apos;1302001&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="多语句表值函数"><a href="#多语句表值函数" class="headerlink" title="多语句表值函数"></a>多语句表值函数</h3><blockquote>
+<p>多语句表值函数的返回值是一个表,并且有一个由BEGIN…END语句括起来的函数体<br>区别于内嵌表值函数:多语句表值函数新建一个表用来存储查询到的结果集,查询的字段数量和类型要和新建表的字段相符.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">CREATE FUNCTION stu_score(@sno char(7)) RETURNS @score table(</span><br><span class="line">		学号 char(7),</span><br><span class="line">		姓名 varchar(6),</span><br><span class="line">		课程名 char(10),</span><br><span class="line">		学分 int,</span><br><span class="line">		成绩 int</span><br><span class="line">)</span><br><span class="line">AS </span><br><span class="line">	BEGIN</span><br><span class="line">	INSERT INTO @score</span><br><span class="line">	SELECT s.sno,s.sname,c.cname,c.credit,sc.score</span><br><span class="line">	FROM student s INNER JOIN sc ON s.sno = sc.sno AND @sno = s.sno</span><br><span class="line">	INNER JOIN course c ON c.cno = sc.cno</span><br><span class="line">	</span><br><span class="line">    RETURN</span><br><span class="line">	END</span><br><span class="line">SELECT * FROM dbo.stu_score(&apos;1303005&apos;)</span><br></pre></td></tr></table></figure>
+<h1 id="游标"><a href="#游标" class="headerlink" title="游标"></a>游标</h1><p><a href="https://www.cnblogs.com/knowledgesea/p/3699851.html" target="_blank" rel="noopener">参考资料</a></p>
+<h2 id="SQL-92的游标语法规则"><a href="#SQL-92的游标语法规则" class="headerlink" title="SQL_92的游标语法规则"></a>SQL_92的游标语法规则</h2><blockquote>
+<p>DECLARE cursor_name[INSENSITIVE][SCROLL]CURSOR<br>FOR select_statment<br>[FOR{READ ONLY | UPDATE [OF column_name[,..n]]}]<br><strong>1.INSENSITIVE</strong><br>游标选出的数据会存放在tempdb数据库下的一个临时表中,游标的读取操作都只对临时表操作,游标与基础表中对数据的操作彼此不影响.<br><strong>2.SCROLL</strong><br>表明所有读取操作(FIRST,LAST,PRIOR,NEXT,RELATIVE,ABSOLUTE)都可用.若不使用SCORLL关键字，则默认只能进行NEXT操作<br><strong>3.READ ONLY</strong><br>表明游标内的数据不能修改,只读,默认可修改<br><strong>4.UPDATE</strong><br>指明可修改的字段</p>
+</blockquote>
+<h2 id="SQL-SERVER-提供的扩展游标声明语法"><a href="#SQL-SERVER-提供的扩展游标声明语法" class="headerlink" title="SQL SERVER 提供的扩展游标声明语法"></a>SQL SERVER 提供的扩展游标声明语法</h2><blockquote>
+<p>DECLARE cursor_name CURSOR<br>[LOCAL | GLOBAL]<br>[FORWARD_ONLY | SCROLL]<br>[STATIC | KEYSET | DYNAMIC | FAST_FORWARD]<br>[READ_ONLY | SCROLL_LOCKS | OPTIMISTIC]<br>[TYPE_WARNING]<br>FOR select_statment<br>[FOR{UPDATE [OF column_name[,..n]]}]<br>1.<strong>LOCAL</strong> 默认使用LOCAL<br>定义游标的作用域仅限在其所在的存储过程,触发器,或批处理中.<br><strong>2.GLOBAL</strong><br>游标的作用域是整个会话层,会话层指的是从用户连接到断开这段时间<br><strong>3.FORWARD_ONLY</strong><br>顺序操作,读取操作只能使用FETCH NEXT<br>若使用STATIC KEYSET DYNAMIC,则变成了SCORLL游标,否则默认使用FORWORD_ONLY<br><strong>4.STATIC</strong><br>与INSENSITIVE一样<br><strong>5.KEYSET</strong><br><strong>6.DYNAMIC</strong><br>指明游标中的数据会随着表中数据的变化而变化<br><strong>7.FAST_FORWARD</strong><br>顺序操作且只读</p>
+</blockquote>
 <blockquote>
+<p>1.游标名称不区分大小写<br>2.游标语法基本分为 读/写操作区分 和 操作顺序 两类</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
+<h3 id="声明游标"><a href="#声明游标" class="headerlink" title="声明游标"></a>声明游标</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DECLARE s_cursor CURSOR</span><br><span class="line">FOR SELECT * FROM sc WHERE cno = &apos;C001&apos;</span><br><span class="line">FOR UPDATE OF score</span><br></pre></td></tr></table></figure>
+<h3 id="打开游标"><a href="#打开游标" class="headerlink" title="打开游标"></a>打开游标</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OPEN s_cursor</span><br></pre></td></tr></table></figure>
+<h3 id="读取游标"><a href="#读取游标" class="headerlink" title="读取游标"></a>读取游标</h3><blockquote>
+<p>1.NEXT<br>2.PRIOR<br>3.FIRST<br>4.LAST<br>5.ABSOLUTE +/- n 固定行 -n为倒数第n行<br>6.RELATIVE +/- n 相对当前行上移或下移</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FETCH NEXT FROM s_cursor</span><br></pre></td></tr></table></figure>
+<h3 id="关闭游标"><a href="#关闭游标" class="headerlink" title="关闭游标"></a>关闭游标</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CLOSE s_cursor</span><br></pre></td></tr></table></figure>
+<h3 id="释放游标"><a href="#释放游标" class="headerlink" title="释放游标"></a>释放游标</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DEALLOCATE s_cursor</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM sc WHERE cno = &apos;C001&apos;</span><br><span class="line">DECLARE ss_cursor CURSOR DYNAMIC FOR</span><br><span class="line">SELECT * FROM sc WHERE cno = &apos;C001&apos;</span><br><span class="line">FOR UPDATE OF score</span><br><span class="line">OPEN ss_cursor</span><br><span class="line">FETCH  RELATIVE 2 FROM ss_cursor</span><br><span class="line">UPDATE sc SET score = score*0.8 WHERE CURRENT OF ss_cursor</span><br><span class="line">CLOSE ss_cursor</span><br><span class="line">DEALLOCATE ss_cursor</span><br><span class="line">SELECT * FROM sc WHERE cno = &apos;C001&apos;</span><br></pre></td></tr></table></figure>
 
 
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://jinyeeeee.github.io/2019/11/10/sql/" data-id="ck32vppy70003u8v0g3q6f8tb"
+      <a data-url="http://jinyeeeee.github.io/2019/11/10/sql/" data-id="ck3ija6hl00003sv005aq6qx9"
          class="article-share-link">分享</a>
       
     </footer>
