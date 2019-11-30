@@ -55,9 +55,100 @@
       
 
       
-        <blockquote>
+        <h1 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE STUDENT(</span><br><span class="line">	NAME = &apos;STUDENT_DATA&apos;//指定数据库的逻辑名称</span><br><span class="line">	FILENAME = &apos;F:\DATA\STUDENT_DATA.MDF&apos;,//指定操作系统文件的路径和名称</span><br><span class="line">	SIZE = 5MB,		//指定数据库的初始容量大小</span><br><span class="line">	MAXSIZE = 20MB, //指定操作系统文件可以增长到的最大尺寸</span><br><span class="line">	FILEGROWTH = 20%//指定文件每次增加容量的大小</span><br><span class="line">)</span><br><span class="line">LOG ON //日志文件,若不指定,则默认创建一个容量为所有数据库文件大小的1/4的事务日志文件</span><br><span class="line">(</span><br><span class="line">	NAME = &apos;STUDENT_LOG&apos;,</span><br><span class="line">	FILENAME = &apos;F:\DATA\STUDENT_LOG.LDF&apos;,</span><br><span class="line">	SIZE = 5MB,</span><br><span class="line">	MAXSIZE = 10MB,</span><br><span class="line">	FILEGROWTH = 2MB</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>创建含两个文件组和数据文件的数据库 </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE STUDENT</span><br><span class="line">ON</span><br><span class="line">(</span><br><span class="line">	NAME = &apos;STUDENT_DATA&apos;</span><br><span class="line">	FILENAME = &apos;E:\DATA\STUDENT_DATA.MDF&apos;,</span><br><span class="line">	SIZE = 5MB,</span><br><span class="line">	MAXSIZE = 20MB,</span><br><span class="line">	FILEGROWTH = 20%</span><br><span class="line">)，</span><br><span class="line">FILEGROUP FG1  //用户自定义文件组</span><br><span class="line">(</span><br><span class="line">	NAME = &apos;STUDENT_DATA2&apos;</span><br><span class="line">	FILENAME = &apos;E:\DATA\STUDENT_DATA2.NDF&apos;,</span><br><span class="line">	SIZE = 5MB,</span><br><span class="line">	MAXSIZE = 20MB,</span><br><span class="line">	FILEGROWTH = 20%</span><br><span class="line">)</span><br><span class="line">LOG ON</span><br><span class="line">(</span><br><span class="line">	NAME = &apos;STUDEN_TLOG&apos;,</span><br><span class="line">	FILENAME = &apos;F:\DATA\STUDENT_LOG.LDF&apos;,</span><br><span class="line">	SIZE = 5MB,</span><br><span class="line">	MAXSIZE = 10MB,</span><br><span class="line">	FILEGROWTH = 2MB</span><br><span class="line">),</span><br><span class="line">(</span><br><span class="line">	NAME = &apos;STUDEN_TLOG2&apos;,</span><br><span class="line">	FILENAME = &apos;F:\DATA\STUDENT_LOG2.LDF&apos;,</span><br><span class="line">	SIZE = 5MB,</span><br><span class="line">	MAXSIZE = 10MB,</span><br><span class="line">	FILEGROWTH = 2MB</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="修改数据库"><a href="#修改数据库" class="headerlink" title="修改数据库"></a>修改数据库</h3><blockquote>
+<p>修改数据文件</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ALTER DATABASE STUDENT</span><br><span class="line">MODIFY FILE</span><br><span class="line">(</span><br><span class="line">	NAME = STUDENT_DATA,</span><br><span class="line">	SIZE = 20MB</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>添加数据文件</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ALTER DATABASE STUDENT</span><br><span class="line">ADD FILE</span><br><span class="line">(</span><br><span class="line">	NAME = &apos;STUDENT_DATA2&apos;,</span><br><span class="line">	FILENAME = &apos;E:\DATA\STUDENT_DATA2.MDF&apos;,</span><br><span class="line">	SIZE = 5MB,</span><br><span class="line">	MAXSIZE = 20MB,</span><br><span class="line">	FILEGROWTH = 20%</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>删除数据库文件</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER DATABASE STUDENT</span><br><span class="line">REMOVE FILE 逻辑文件名</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>更改数据库名称</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sp_renamedb &apos;STUDENT&apos;,&apos;STUDENT_BACK&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP DATABASE 数据库名</span><br></pre></td></tr></table></figure>
+<h1 id="数据表操作"><a href="#数据表操作" class="headerlink" title="数据表操作"></a>数据表操作</h1><h3 id="创建数据表"><a href="#创建数据表" class="headerlink" title="创建数据表"></a>创建数据表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE course</span><br><span class="line">(</span><br><span class="line">	cno char(4) PRIMARY KEY,</span><br><span class="line">    cname	nvarchar(20) NOT NULL,</span><br><span class="line">    classhour tinyint,</span><br><span class="line">    credit tinyint</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="修改数据表"><a href="#修改数据表" class="headerlink" title="修改数据表"></a>修改数据表</h3><blockquote>
+<p>修改字段 ALTER ALTER </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE student</span><br><span class="line">ALTER COLUMN sname nvarchar(20) NULL</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>添加字段</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE student</span><br><span class="line">ADD teacher nvarchar(10)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>删除字段</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE student</span><br><span class="line">DROP COLUMN sage</span><br></pre></td></tr></table></figure>
+<h3 id="列约束和表约束"><a href="#列约束和表约束" class="headerlink" title="列约束和表约束"></a>列约束和表约束</h3><blockquote>
+<p><strong>PRIMARY KEY</strong></p>
+<blockquote>
+<p>1.建表时就添加主键约束<br>2.通过ALTER TABLE 添加主键约束</p>
+</blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE sc</span><br><span class="line">(</span><br><span class="line">	sno char(10),</span><br><span class="line">    cno char(4),</span><br><span class="line">    score int</span><br><span class="line">    CONSTRAINT pk_sc PRIMARY KEY(sno,cno)//组合主键</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE sc</span><br><span class="line">ADD CONSTRAINT pk_sc PRIMARY KEY(sno,cno)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>删除主键</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE sc</span><br><span class="line">DROP CONSTRAINT pk_sc</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>UNIQUE KEY</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE student</span><br><span class="line">(</span><br><span class="line">	sno char(10) PRIMARY KEY,</span><br><span class="line">    sname nvarchar(8) NOT NULL,</span><br><span class="line">    id_card char(18) CONSTRAINT uk_id UNIQUE,</span><br><span class="line">    sex nchar(2) 	NOT NULL</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="主键约束和UNIQUE约束的区别"><a href="#主键约束和UNIQUE约束的区别" class="headerlink" title="主键约束和UNIQUE约束的区别"></a>主键约束和UNIQUE约束的区别</h4><ol>
+<li>主键约束和UNIQUE约束都不允许重复值</li>
+<li>主键约束所在的列不允许空值</li>
+<li>UNIQUE约束所在的列允许空值<blockquote>
+<p><strong>FOREIGN KEY</strong></p>
+<blockquote>
+<p><a href="https://blog.csdn.net/metheir/article/details/81877055" target="_blank" rel="noopener">对外键约束的理解</a><br>从表插入数据时需要以主表设置外键的字段为参考插入数据,不能超出主表的数据范围</p>
+</blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE sc</span><br><span class="line">ADD CONSTRAINT fk_st</span><br><span class="line">FOREIGN KEY (sno) REFERENCES student(sno)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>CHECK约束</strong></p>
+<blockquote>
+<p>CHECK约束用来限制用户输入某一个列的数据,即在该列中只能输入指定范围的数据<br>CHECK约束通过指定的逻辑表达式来限制列的取值范围</p>
+</blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE sc</span><br><span class="line">ADD CONSTRAINT ck_score CHECK(score&gt;0 AND score&lt;100)</span><br><span class="line"></span><br><span class="line">ALTER TABLE sc</span><br><span class="line">DROP CONSTRAINT ck_score</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>DEFAULT</strong></p>
+<blockquote>
+<p>DEFAULT约束只能应用于INSERT语句</p>
+</blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//写约束名是为了方便删除DEFAULT,不写也可以</span><br><span class="line">ALTER TABLE student</span><br><span class="line">ADD 入学日期 data NULL</span><br><span class="line">CONSTRAINT df_date</span><br><span class="line">DEFAULT getdate()</span><br></pre></td></tr></table></figure>
+<h3 id="表数据的操作"><a href="#表数据的操作" class="headerlink" title="表数据的操作"></a>表数据的操作</h3><blockquote>
+<p>添加数据</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//指定字段</span><br><span class="line">INSERT student(sno,sname,age) VALUES(&apos;001&apos;,&apos;老王&apos;,&apos;18&apos;)</span><br><span class="line">//不指定字段,需要插入全部字段信息</span><br><span class="line">INSERT student VALUES(&apos;001&apos;,&apos;老王&apos;,&apos;18&apos;,&apos;男&apos;,...)</span><br><span class="line">//插入多条数据</span><br><span class="line">INSERT student VALUES(&apos;001&apos;,&apos;老王&apos;,&apos;18&apos;,&apos;男&apos;,...),</span><br><span class="line">					 (&apos;002&apos;,&apos;老钱&apos;,&apos;19&apos;,&apos;男&apos;,...),</span><br><span class="line">                     (&apos;003&apos;,&apos;老赵&apos;,&apos;20&apos;,&apos;男&apos;,...)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>修改数据</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE student SET sex = &apos;女&apos; WHERE sno = &apos;001&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>删除数据</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE student WHERE sno = &apos;001&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="清空表中数据"><a href="#清空表中数据" class="headerlink" title="清空表中数据"></a>清空表中数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TRUNCATE TABLE 表名</span><br></pre></td></tr></table></figure>
+<h3 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE 表名</span><br></pre></td></tr></table></figure>
+<h1 id="查询语句"><a href="#查询语句" class="headerlink" title="查询语句"></a>查询语句</h1><blockquote>
 <p>查询一个表中的<strong>某些列</strong></p>
 </blockquote>
+</li>
+</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT sname,ssex,specialty FROM student</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>查询一个表中的<strong>所有列</strong></p>
@@ -125,8 +216,12 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT specialty,ssex,count(*) AS 人数</span><br><span class="line">FROM student</span><br><span class="line">GROUP BY ssex,specialty</span><br><span class="line">WITH ROLLUP</span><br><span class="line">//先对ssex进行汇总,再对specialty进行汇总</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><strong>COMPUTE数据汇总</strong></p>
+<blockquote>
+<p>需要配合聚合函数使用,分为使用BY和不使用BY两种<br><strong>sql server2012以后版本不再支持COMPUTE</strong></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT sno,sname,ssex FROM student</span><br><span class="line">WHERE specialty = &apos;计算机&apos; </span><br><span class="line">COMPUTE count(sno)</span><br><span class="line"></span><br><span class="line">SELECT sno,cno,score FROM sc</span><br><span class="line">ORDER BY sno</span><br><span class="line">COMPUTE avg(score) BY sno</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT sno,sname,ssex FROM student</span><br><span class="line">WHERE specialty = &apos;计算机&apos; </span><br><span class="line">COMPUTE count(sno)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//根据学号大小排序,先显示学号较小的各科成绩,在下面单独列出一个包含汇总信息的表,其他依次继续.</span><br><span class="line">SELECT sno,cno,score FROM sc</span><br><span class="line">ORDER BY sno</span><br><span class="line">COMPUTE avg(score) BY sno</span><br></pre></td></tr></table></figure>
 <h1 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h1><blockquote>
 <p><strong>INNER JOIN ON内连接</strong></p>
 </blockquote>
@@ -319,13 +414,48 @@
 <h3 id="关闭游标"><a href="#关闭游标" class="headerlink" title="关闭游标"></a>关闭游标</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CLOSE s_cursor</span><br></pre></td></tr></table></figure>
 <h3 id="释放游标"><a href="#释放游标" class="headerlink" title="释放游标"></a>释放游标</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DEALLOCATE s_cursor</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM sc WHERE cno = &apos;C001&apos;</span><br><span class="line">DECLARE ss_cursor CURSOR DYNAMIC FOR</span><br><span class="line">SELECT * FROM sc WHERE cno = &apos;C001&apos;</span><br><span class="line">FOR UPDATE OF score</span><br><span class="line">OPEN ss_cursor</span><br><span class="line">FETCH  RELATIVE 2 FROM ss_cursor</span><br><span class="line">UPDATE sc SET score = score*0.8 WHERE CURRENT OF ss_cursor</span><br><span class="line">CLOSE ss_cursor</span><br><span class="line">DEALLOCATE ss_cursor</span><br><span class="line">SELECT * FROM sc WHERE cno = &apos;C001&apos;</span><br></pre></td></tr></table></figure>
-
-
+<h1 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h1><h3 id="创建存储过程"><a href="#创建存储过程" class="headerlink" title="创建存储过程"></a>创建存储过程</h3><blockquote>
+<p>无参存储过程</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE PROCEDURE student_avg</span><br><span class="line">AS</span><br><span class="line">SELECT sno,avg(score) AS &apos;avgscore&apos; FROM sc</span><br><span class="line">GROUP BY sno</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>有参存储过程</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE PROCEDURE get_Student @sno char(10)</span><br><span class="line">AS</span><br><span class="line">SELECT s.sno,sname,specialty,cno,score FROM student s,sc</span><br><span class="line">WHERE s.sno = sc.sno AND sc.sno = @sno</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>多参存储过程</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE PROCEDURE updatescore @sno char(10),@cno char(4),@score int</span><br><span class="line">AS</span><br><span class="line">UPDATE sc SET score = @score </span><br><span class="line">WHERE sno = @sno AND @cno = cno</span><br><span class="line">GO</span><br><span class="line"></span><br><span class="line">EXECUTE updatescore &apos;1302001&apos;,&apos;X003&apos;,90</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>存储过程结合流程控制语句</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE PROCEDURE update_price @gno char(3),@s float</span><br><span class="line">AS</span><br><span class="line">IF(SELECT sum(number) FROM invent WHERE gno = @gno)&gt;@s</span><br><span class="line">	UPDATE goods SET price = price*0.9</span><br><span class="line">	WHERE gno = @gno</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>带默认参数的存储过程</p>
+<blockquote>
+<p>若不传递任何参数,则使用默认参数,此处设置默认参数为通配符%，即默认匹配所有学生的信息</p>
+</blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE PROCEDURE student_name @sname varchar(10) = &apos;%&apos;</span><br><span class="line">AS</span><br><span class="line">SELECT * FROM student WHERE sname LIKE @sname</span><br><span class="line">EXECUTE student_name</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>OUTPUT指定存储过程必须返回一个参数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE PROCEDURE avgprice @gn varchar(20),@avgp int OUTPUT</span><br><span class="line">AS</span><br><span class="line">	SELECT @avgp = avg(price) FROM goods WHERE gname = @gn</span><br><span class="line">    </span><br><span class="line">DECLARE @avgp int</span><br><span class="line">EXECUTE avgprice &apos;冰箱&apos;,@avgp OUTPUT</span><br><span class="line">PRINT &apos;冰箱的平均价格:&apos;+str(@avgp)</span><br></pre></td></tr></table></figure>
+<h3 id="查看存储过程"><a href="#查看存储过程" class="headerlink" title="查看存储过程"></a>查看存储过程</h3><blockquote>
+<p>sp_helptext 存储过程名  显示存储过程代码<br>sp_help 存储过程名      查看存储过程的名称,拥有者,类型,创建时间,存储过程中所使用的参数信息</p>
+</blockquote>
+<h3 id="修改存储过程"><a href="#修改存储过程" class="headerlink" title="修改存储过程"></a>修改存储过程</h3><blockquote>
+<p>和修改表类似 相当于重写一遍</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER RPOCEDURE 已存在的存储过程</span><br><span class="line">   	```新的声明语句</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">### 删除存储过程</span><br></pre></td></tr></table></figure>
+<p>DROP RPOCEDURE student_score</p>
+<p>```<br><a href="https://www.cnblogs.com/jacketlin/p/7874009.html" target="_blank" rel="noopener">函数和存储过程的区别</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://jinyeeeee.github.io/2019/11/10/sql/" data-id="ck3ija6hl00003sv005aq6qx9"
+      <a data-url="http://jinyeeeee.github.io/2019/11/10/sql/" data-id="ck3l130yd0000n4v0cvr4dcdd"
          class="article-share-link">分享</a>
       
     </footer>
