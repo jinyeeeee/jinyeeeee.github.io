@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    linux |
+    
+    yuchen</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/technology.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-linux" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      linux
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/12/02/linux/" class="article-date">
+  <time datetime="2019-12-02T05:13:34.000Z" itemprop="datePublished">2019-12-02</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">1.创建文件夹/文件</span><br><span class="line">mkdir -p test/tmp</span><br><span class="line">cd test/tmp</span><br><span class="line">touch abc.txt</span><br><span class="line">3.复制文件</span><br><span class="line">cp 源文件 目标文件</span><br><span class="line">4.复制目录</span><br><span class="line">cp -r 源目录 目标目录</span><br><span class="line">5.修改文件名</span><br><span class="line">mv 源文件 目标文件</span><br><span class="line">7.rpm安装软件</span><br><span class="line">首先挂载光驱</span><br><span class="line">mkdir /mnt/cdrom</span><br><span class="line">mount /dev/sr0 /mnt/cdrom</span><br><span class="line">安装软件包</span><br><span class="line">linux中所有软件包都放在 光驱中,所以挂载光驱的目的就是为了获取软件包</span><br><span class="line">挂载光驱后/mnt/cdrom目录下出现一个Packages目录,就是光驱,里面有所有linux支持的软件包 ls -l 寻找要安装的软件包</span><br><span class="line">rpm -ivh /mnt/cdrom/Packages/软件包名</span><br><span class="line">//查询是否安装了某个软件</span><br><span class="line">rpm -q 软件名</span><br><span class="line">//卸载软件</span><br><span class="line">rpm -e vstfpd</span><br><span class="line">8.挂载光驱,并设置开机自启</span><br><span class="line">vim /etc/fstab</span><br><span class="line">配置信息</span><br><span class="line">/dev/cdrom   /mnt/cdrom   auto   exec  0 0</span><br><span class="line">9.vim /etc/yum.repos.d/local.repo </span><br><span class="line">添加配置信息</span><br><span class="line">[local]</span><br><span class="line">name=local</span><br><span class="line">baseurl=file:///mnt/cdrom</span><br><span class="line">enable=1</span><br><span class="line">gpgcheck=0</span><br><span class="line">10.查询软件版本信息并保存到某文件中</span><br><span class="line">rpm -q vsftpd &gt; test/tmp/abc.txt</span><br><span class="line">cat test/tmp/abc.txt</span><br><span class="line">还可以加管道,从海量配置信息中筛选出想要的信息</span><br><span class="line">rpm -q 软件名 | grep 关键字 &gt; 某文件路径</span><br><span class="line">11.useradd -u 600 abc</span><br><span class="line">passwd abc</span><br><span class="line">12.添加分组</span><br><span class="line">groupadd test</span><br><span class="line">usermod test root</span><br><span class="line">13.设置账户为不可登录</span><br><span class="line">usermod -s  /usr/sbin/nologin  username</span><br><span class="line">usermod -s /bin/false username</span><br><span class="line">14.彻底删除用户</span><br><span class="line">userdel -r username</span><br><span class="line">//然后在删除用户所属组</span><br><span class="line">groupdel groupname</span><br><span class="line">16.fdisk -l //查看分区情况</span><br><span class="line">fdisk /dev/sdc //为磁盘sdc分区</span><br><span class="line">n新建分区,p显示分区,t改变分区类型</span><br><span class="line">17.创建ext4文件系统,并挂载分区,设置为开机自动挂载</span><br><span class="line">mkfs -t ext4 /dev/sdc3</span><br><span class="line">vim /etc/fstab</span><br><span class="line">配置信息</span><br><span class="line">/dev/sdc3   /data   ext4   defaults 0 0</span><br><span class="line">18.mkswap /dev/sdc5</span><br><span class="line">swapon -s</span><br><span class="line">swapon /dev/sdc5</span><br><span class="line">修改/etc/fstab</span><br><span class="line">/dev/sdc5 swap swap defaults 0 0</span><br><span class="line">//会自动读取  /etc/fstab中的配置进行挂载</span><br><span class="line">mount -a</span><br><span class="line">19.</span><br><span class="line">chown yuchen test/tmp/abc //修改目录的用户所有者</span><br><span class="line">chgrp  yuchen test/tmp/abc //修改目录的所属组</span><br><span class="line">20.</span><br><span class="line">修改文件权限</span><br><span class="line">chmod 642 test/tmp/abc     // rwx 421</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://jinyeeeee.github.io/2019/12/02/linux/" data-id="ck3nzbmw00002fwv028mo8zei"
+         class="article-share-link">分享</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+    
+      <a href="/2019/11/10/sql/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">sql</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/technology.js"></script>
+
+  </div>
+</body>
+</html>
