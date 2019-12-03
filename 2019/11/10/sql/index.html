@@ -450,12 +450,13 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER RPOCEDURE 已存在的存储过程</span><br><span class="line">   	```新的声明语句</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">### 删除存储过程</span><br></pre></td></tr></table></figure>
 <p>DROP RPOCEDURE student_score</p>
-<p>```<br><a href="https://www.cnblogs.com/jacketlin/p/7874009.html" target="_blank" rel="noopener">函数和存储过程的区别</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[函数和存储过程的区别](https://www.cnblogs.com/jacketlin/p/7874009.html)</span><br><span class="line"># 触发器</span><br><span class="line">## DML触发器</span><br><span class="line">&gt;DML触发器是当数据库服务器中发生数据库操作语言(DML)事件时会自动执行的存储过程</span><br><span class="line">### AFTER触发器</span><br><span class="line">&gt;在记录已经改变完之后才会被激活执行,主要用于记录变更后的处理或检查,一旦发现错误,也可以用POLLBACK TRANSACTION语句来回滚本次的操作</span><br><span class="line">### INSTEAD OF触发器</span><br><span class="line">&gt;不同于AFTER触发器,一般用来取代原本的操作,在记录变更之前发生的,并不去执行原来的SQL语句里的操作(INSERT,UPDATE,DELETE),而是去执行触发器本身所定义的操作</span><br><span class="line">## DML触发器的作用</span><br><span class="line">1. 强制比CHECK约束更复杂的数据的完整性</span><br><span class="line">2. 使用自定义的错误提示信息</span><br><span class="line">3. 实现数据库中多张表的级联修改</span><br><span class="line">4. 比较数据库修改前后数据的状态</span><br><span class="line">5. 调用存储过程</span><br><span class="line">6. 维护非规范化数据</span><br><span class="line">## DDL触发器</span><br><span class="line">&gt;DDL触发器是响应CREATE,ALTER,DROP,GRANT,DENY,REVOKE和UPDATE STATISTICS等语句而激活的.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<p>CREATE TRIGGER d_tr ON dept<br>FOR INSERT,UPDATE,DELETE<br>AS<br>    SELECT * FROM inserted<br>    SELECT * FROM deleted<br>UPDATE dept SET dname=’大型工程师’WHERE leader = ‘王五’<br>```</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://jinyeeeee.github.io/2019/11/10/sql/" data-id="ck3nzbmwd0004fwv07czh8e0k"
+      <a data-url="http://jinyeeeee.github.io/2019/11/10/sql/" data-id="ck3pwzpbx000334v07akl5j1n"
          class="article-share-link">分享</a>
       
     </footer>
