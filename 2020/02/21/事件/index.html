@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    事件 |
+    
+    yuchen</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/technology.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-事件" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      事件
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/02/21/%E4%BA%8B%E4%BB%B6/" class="article-date">
+  <time datetime="2020-02-21T08:54:12.000Z" itemprop="datePublished">2020-02-21</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><h2 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h2><h4 id="冒泡型事件"><a href="#冒泡型事件" class="headerlink" title="冒泡型事件"></a>冒泡型事件</h4><blockquote>
+<p>冒泡型事件指的是事件按照从最特定的事件目标到最不特定的事件目标的顺序逐一触发<br>在IE浏览器中<html>标记也可以添加onclick函数<br>IE浏览器中,<html>事件在<body>事件之后触发(正常顺序),Firefox上<html>事件在<body>事件之前触发</body></html></body></html></html></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">	&lt;title&gt;冒泡型事件&lt;/title&gt;</span><br><span class="line">	&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">		function add(text)&#123;</span><br><span class="line">			var d = document.getElementById(&quot;content&quot;);</span><br><span class="line">			d.innerHTML += text;</span><br><span class="line">		&#125;</span><br><span class="line">	&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body onclick=&quot;add(&apos;body&lt;br&gt;&apos;)&quot;&gt;</span><br><span class="line">	&lt;div onclick=&quot;add(&apos;div&lt;br&gt;&apos;)&quot;&gt;</span><br><span class="line">		&lt;p onclick=&quot;add(&apos;p&lt;br&gt;&apos;)&quot;&gt;点我&lt;/p&gt;</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">	&lt;div id=&quot;content&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">******************************************print**************************************</span><br><span class="line">p</span><br><span class="line">div</span><br><span class="line">body</span><br><span class="line">html</span><br></pre></td></tr></table></figure>
+<h4 id="捕获型事件"><a href="#捕获型事件" class="headerlink" title="捕获型事件"></a>捕获型事件</h4><blockquote>
+<p>与冒泡型事件相反,从不精确的对象到最精确的对象,也被称为自顶向下事件模型</p>
+</blockquote>
+<h2 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h2><blockquote>
+<p>页面中的事件都需要一个函数来响应,这类函数通常称之为事件处理函数,也可称为事件监听函数</p>
+</blockquote>
+<h4 id="通用监听方法"><a href="#通用监听方法" class="headerlink" title="通用监听方法"></a>通用监听方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">window.onload = function()&#123;</span><br><span class="line">	var p  = document.getElementById(&apos;p&apos;);</span><br><span class="line">	p.onclick = function()&#123;</span><br><span class="line">		alert(&quot;执行成功&quot;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="IE中的监听方法-可以监听多个事件-目前版本的ie和Edge浏览器已不用此方式"><a href="#IE中的监听方法-可以监听多个事件-目前版本的ie和Edge浏览器已不用此方式" class="headerlink" title="IE中的监听方法(可以监听多个事件,目前版本的ie和Edge浏览器已不用此方式)"></a>IE中的监听方法(可以监听多个事件,目前版本的ie和Edge浏览器已不用此方式)</h4><blockquote>
+<p>[object].attachEvent(“onclick/onload/..”,函数名);<br>[object].detachEvent(“onclick/onload/..”,函数名);<br>添加多个事件时,倒序执行，其实是同时执行,只是显示倒叙显示</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">	function addEvent()&#123;</span><br><span class="line">		alert(&quot;执行成功&quot;);</span><br><span class="line">		p.detachEvent(&quot;click&quot;,addEvent);</span><br><span class="line">	&#125;</span><br><span class="line">	var p;</span><br><span class="line">	window.onload = function()&#123;</span><br><span class="line">		p = document.getElementById(&quot;p&quot;);</span><br><span class="line">		p.attachEvent(&quot;click&quot;,addEvent);</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="标准DOM的监听方法"><a href="#标准DOM的监听方法" class="headerlink" title="标准DOM的监听方法"></a>标准DOM的监听方法</h4><blockquote>
+<p>第三个参数为false表示用于冒泡阶段,为true表示用于捕获阶段<br>[object].addEventListener(“click/load/..”,函数名,false);<br>[object].removeEventListener(“click/load/..”,函数名,false);<br>标准DOM的监听方法添加的事件正序执行</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">	function addEvent1()&#123;</span><br><span class="line">		alert(&quot;addEvent1执行了&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	function addEvent2()&#123;</span><br><span class="line">		alert(&quot;addEvent2执行了&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	var oP;</span><br><span class="line">	window.onload = function()&#123;</span><br><span class="line">		oP = document.getElementById(&apos;oP&apos;);</span><br><span class="line">		oP.addEventListener(&quot;click&quot;,addEvent1,false);</span><br><span class="line">		oP.addEventListener(&quot;click&quot;,addEvent2,false);</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h2><blockquote>
+<p>在IE浏览器中事件对象是window对象的一个属性event</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">oP.onclick = function()&#123;</span><br><span class="line">	var oEvent = window.event;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>标准的DOM中规定event对象必须作为唯一的参数传给事件处理函数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">op.onclick = function(oEvent)&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>兼容两种浏览器的方法</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">oP.onclick = function(oEvent)&#123;</span><br><span class="line">	if(window.event)oEvent = window.event</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="用同一个函数处理多种事件"><a href="#用同一个函数处理多种事件" class="headerlink" title="用同一个函数处理多种事件"></a>用同一个函数处理多种事件</h4><blockquote>
+<p>给一个元素绑定多个事件,在被调用的函数中通过event.type来区别多个事件</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">	function handle(oEvent)&#123;</span><br><span class="line">		var text = document.getElementById(&apos;text&apos;);</span><br><span class="line">		if (window.event) &#123;</span><br><span class="line">			oEvent = window.event;</span><br><span class="line">		&#125;</span><br><span class="line">		if (oEvent.type == &quot;mouseover&quot;) &#123;</span><br><span class="line">			text.innerHTML += &quot;你的鼠标移动到了图片上&lt;br&gt;&quot;</span><br><span class="line">		&#125;else if (oEvent.type == &quot;click&quot;) &#123;</span><br><span class="line">			text.innerHTML += &quot;你点击了这张图片&lt;br&gt;&quot;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	window.onload = function()&#123;</span><br><span class="line">		var img = document.getElementsByTagName(&apos;img&apos;)[0];</span><br><span class="line">		img.onclick = handle;</span><br><span class="line">		img.onmouseover = handle;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="获取触发事件的目标元素srcElement-target"><a href="#获取触发事件的目标元素srcElement-target" class="headerlink" title="获取触发事件的目标元素srcElement/target"></a>获取触发事件的目标元素srcElement/target</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">	function handle(oEvent)&#123;</span><br><span class="line">		if (window.event) &#123;</span><br><span class="line">			oEvent = window.event;</span><br><span class="line">		&#125;</span><br><span class="line">		var oTarget;</span><br><span class="line">		if (oEvent.srcElement) &#123;</span><br><span class="line">			oTarget = oEvent.srcElement;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			oTarget = oEvent.target;</span><br><span class="line">		&#125;</span><br><span class="line">		alert(oTarget.tagName);</span><br><span class="line">	&#125;</span><br><span class="line">	window.onload = function()&#123;</span><br><span class="line">		var img = document.getElementsByTagName(&apos;img&apos;)[0];</span><br><span class="line">		img.onclick = handle;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="事件的类型"><a href="#事件的类型" class="headerlink" title="事件的类型"></a>事件的类型</h2><h3 id="鼠标事件"><a href="#鼠标事件" class="headerlink" title="鼠标事件"></a>鼠标事件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">事件名称         说明</span><br><span class="line">click			单击鼠标左键时触发</span><br><span class="line">dbclick			双击鼠标左键时触发</span><br><span class="line">mousedown		单击任意一个鼠标按键时触发</span><br><span class="line">mouseout		鼠标指针在某个元素上,移出该元素边界时触发</span><br><span class="line">mouseover		鼠标指针移到另一个元素上时触发</span><br><span class="line">mouseup			松开鼠标任意一个按键时触发</span><br><span class="line">mousemove		鼠标指针在某个元素上移动时持续触发</span><br></pre></td></tr></table></figure>
+<h4 id="控制鼠标事件"><a href="#控制鼠标事件" class="headerlink" title="控制鼠标事件"></a>控制鼠标事件</h4><blockquote>
+<p>单击鼠标左键会先触发mousedown,然后是mouseup,最后才是常用的click事件<br>双击鼠标左键,标准DOM浏览器会按照mousedown-&gt;mouseup-&gt;click-&gt;mousedown-&gt;mouseup-&gt;dbclick的顺序触发。<br>在IE浏览器中的触发顺序为mousedown-&gt;mouseup-&gt;click-&gt;mouseup-&gt;dbclick</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">	function mouse(oEvent)&#123;</span><br><span class="line">		var display = document.getElementById(&apos;display&apos;);</span><br><span class="line">		if (window.event) &#123;</span><br><span class="line">			oEvent = window.event;</span><br><span class="line">		&#125;</span><br><span class="line">		display.innerHTML+=oEvent.type+&quot;&lt;br&gt;&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	window.onload = function()&#123;</span><br><span class="line">		var oImg = document.getElementsByTagName(&apos;img&apos;)[0];</span><br><span class="line">		oImg.onmousedown = mouse;</span><br><span class="line">		oImg.onmouseup = mouse;</span><br><span class="line">		oImg.onmouseover = mouse;</span><br><span class="line">		oImg.onmouseout = mouse;</span><br><span class="line">		oImg.onclick = mouse;</span><br><span class="line">		oImg.ondbclick = mouse;		</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="鼠标的button属性及其在不同浏览器中的键值"><a href="#鼠标的button属性及其在不同浏览器中的键值" class="headerlink" title="鼠标的button属性及其在不同浏览器中的键值"></a>鼠标的button属性及其在不同浏览器中的键值</h4><blockquote>
+<p>目前所有浏览器的键值都和下表中Firefox浏览器中一样(至少IE,firefox,edge,goole都是这样)原IE键值的标准貌似已淘汰(2020年)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">button的值		IE中的按键		Firefox中的按键</span><br><span class="line"></span><br><span class="line">	0			未按下按键			左键</span><br><span class="line">	1			左键					中键(滑轮)</span><br><span class="line">	2			右键					右键</span><br><span class="line">	3			同时按下左右键		-----</span><br><span class="line">	4			中键(滑轮)			不支持组合键,</span><br><span class="line">	5			同时按下左中键		未按下任何键时button值为</span><br><span class="line">	6			同时按下右中键		undefined</span><br><span class="line">	7			同时按下左中右键		-----</span><br></pre></td></tr></table></figure>
+<h4 id="输出鼠标事件button属性的值"><a href="#输出鼠标事件button属性的值" class="headerlink" title="输出鼠标事件button属性的值"></a>输出鼠标事件button属性的值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">	&lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">	&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">		function TestClick(oEvent)&#123;</span><br><span class="line">			var oDiv = document.getElementById(&apos;display&apos;);</span><br><span class="line">			if (window.event) &#123;</span><br><span class="line">				oEvent = window.event;</span><br><span class="line">			&#125;</span><br><span class="line">			oDiv.innerHTML += oEvent.button;//输出button的值</span><br><span class="line">		&#125;</span><br><span class="line">		document.onmousedown = TestClick;</span><br><span class="line">		window.onload = TestClick; //测试未按下任何按键</span><br><span class="line">	&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  事件								说明</span><br><span class="line">keydown			按下按键上某个按键时触发,一直按住某键则会持续触发</span><br><span class="line">keypress		按下某个按键并产生字符时触发,即忽略shift,alt,ctrl等功能键</span><br><span class="line">keyup						释放某个按键时触发</span><br></pre></td></tr></table></figure>
+<h4 id="控制键盘事件"><a href="#控制键盘事件" class="headerlink" title="控制键盘事件"></a>控制键盘事件</h4><blockquote>
+<p>触发的顺序为keydown-&gt;keypress-&gt;keyup</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">	function handle(oEvent)&#123;</span><br><span class="line">		if (window.event) &#123;</span><br><span class="line">			oEvent = window.event;</span><br><span class="line">		&#125;</span><br><span class="line">		var oDiv = document.getElementById(&apos;display&apos;);</span><br><span class="line">		oDiv.innerHTML += oEvent.type+&quot;&lt;br&gt;&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	window.onload = function()&#123;</span><br><span class="line">		var oTextArea = document.getElementsByTagName(&apos;textarea&apos;)[0];</span><br><span class="line">		oTextArea.onkeydown = handle;</span><br><span class="line">		oTextArea.onkeyup = handle;</span><br><span class="line">		oTextArea.onkeypress = handle;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="键盘事件的相关属性"><a href="#键盘事件的相关属性" class="headerlink" title="键盘事件的相关属性"></a>键盘事件的相关属性</h4><blockquote>
+<p>IE浏览器没有charCode属性,keyCode属性在keydown,keyup事件发生时才与标准DOM的keyCode相同,在keypress事件中等同于charCode<br>keyCode只表示键盘按键,不区分大小写;charCode区分大小写</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">	function handle(oEvent)&#123;</span><br><span class="line">		if (window.event) &#123;</span><br><span class="line">			oEvent = window.event;</span><br><span class="line">			oEvent.charCode = (oEvent.type == &quot;keypress&quot;)?oEvent.keyCode:0;</span><br><span class="line">		&#125;</span><br><span class="line">		var oDiv = document.getElementById(&apos;dispaly&apos;);</span><br><span class="line">		oDiv.innerHTML += oEvent.type+&quot;:keyCode=&quot;+oEvent.keyCode+&quot;:charCode=&quot;+oEvent.charCode+&quot;&lt;br&gt;&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	window.onload = function()&#123;</span><br><span class="line">		var oTextarea = document.getElementsByTagName(&apos;textarea&apos;)[0];</span><br><span class="line">		oTextarea.onkeypress = handle;</span><br><span class="line">		oTextarea.onkeydown = handle;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">*****************************************print****************************************</span><br><span class="line">keydown:keyCode=65:charCode=0</span><br><span class="line">keypress:keyCode=97:charCode=97</span><br><span class="line">keydown:keyCode=16:charCode=0 //shift键</span><br><span class="line">keydown:keyCode=65:charCode=0</span><br><span class="line">keypress:keyCode=65:charCode=65</span><br></pre></td></tr></table></figure>
+<h4 id="HTML事件"><a href="#HTML事件" class="headerlink" title="HTML事件"></a>HTML事件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">事件					说明</span><br><span class="line">load 		页面完全加载后在window对象上触发,图片加载完成后在其上触发</span><br><span class="line">unload		页面完全卸载后在window对象上触发,图片卸载完成后在其上触发</span><br><span class="line">error		脚本出错时在window对象上触发,图像无法载入时在其上触发</span><br><span class="line">select 		选择了文本框的一个或多个字符时触发</span><br><span class="line">change		文本框失去焦点时,并且在它获取焦点后内容发生过改变时触发</span><br><span class="line">submit		单击&quot;提交&quot;按钮时在表单form上触发</span><br><span class="line">focus		任何元素或窗口获取焦点时触发</span><br><span class="line">blur		任何元素或窗口失去焦点时触发</span><br></pre></td></tr></table></figure>
+<h4 id="实例1-屏蔽鼠标右键方法1"><a href="#实例1-屏蔽鼠标右键方法1" class="headerlink" title="实例1:屏蔽鼠标右键方法1"></a>实例1:屏蔽鼠标右键方法1</h4><blockquote>
+<p>在IE和edge浏览器中没有屏蔽掉右键菜单,在firefox浏览器中屏蔽掉了</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">	function handle(oEvent)&#123;</span><br><span class="line">		if (window.event) &#123;</span><br><span class="line">			oEvent = window.event;</span><br><span class="line">		&#125;</span><br><span class="line">		if (oEvent.button == 2) &#123;</span><br><span class="line">			alert(&quot;鼠标右键不可用!&quot;)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	window.onload = function()&#123;</span><br><span class="line">		document.onmousedown = handle;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="屏蔽鼠标右键方法2-好用-推荐"><a href="#屏蔽鼠标右键方法2-好用-推荐" class="headerlink" title="屏蔽鼠标右键方法2(好用,推荐)"></a>屏蔽鼠标右键方法2(好用,推荐)</h4><blockquote>
+<p>鼠标右键会触发右键菜单事件contextmenu,想在IE浏览器中也屏蔽掉右键菜单,可以屏蔽contextmenu事件<br>需要用到IE浏览器的returnValue属性和标准DOM的preventDefault()方法</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">	function block(oEvent)&#123;</span><br><span class="line">		if (window.event) &#123;</span><br><span class="line">			oEvent = window.event;</span><br><span class="line">			oEvent.returnValue = false; //IE中取消默认事件</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			oEvent.preventDefault();  //火狐中取消默认事件</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	document.oncontextmenu = block;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://jinyeeeee.github.io/2020/02/21/%E4%BA%8B%E4%BB%B6/" data-id="ck7bkgns6000gb8v0b0c21jtl"
+         class="article-share-link">分享</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2020/02/21/table-form/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            table-form
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/02/18/DOM/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">DOM</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/technology.js"></script>
+
+  </div>
+</body>
+</html>

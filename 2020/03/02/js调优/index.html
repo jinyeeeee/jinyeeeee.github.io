@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    js调优 |
+    
+    yuchen</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/technology.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-js调优" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      js调优
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/03/02/js%E8%B0%83%E4%BC%98/" class="article-date">
+  <time datetime="2020-03-02T05:56:17.000Z" itemprop="datePublished">2020-03-02</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <h1 id="JS代码调优"><a href="#JS代码调优" class="headerlink" title="JS代码调优"></a>JS代码调优</h1><h3 id="常见的错误和异常"><a href="#常见的错误和异常" class="headerlink" title="常见的错误和异常"></a>常见的错误和异常</h3><ul>
+<li>拼写错误</li>
+<li>访问不存在的变量(js中允许不使用关键字而直接定义变量)</li>
+<li>括号不匹配(误删)</li>
+<li>字符串和变量连接错误(变量间运算加上小括号)</li>
+<li>等号和赋值混淆</li>
+<li>…<h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><h4 id="用alert和document-write-方法监视变量值"><a href="#用alert和document-write-方法监视变量值" class="headerlink" title="用alert和document.write()方法监视变量值"></a>用alert和document.write()方法监视变量值</h4><h4 id="用onerror事件找到错误"><a href="#用onerror事件找到错误" class="headerlink" title="用onerror事件找到错误"></a>用onerror事件找到错误</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">window.onerror = function(sMessage,sUrl,sLine)&#123;</span><br><span class="line">	alert(&quot;出错啦:\n&quot;+sMessage+&quot;\nUrl:&quot;+&quot;\n行号:&quot;+sLine);</span><br><span class="line">	return true; //自定义onerror事件,屏蔽系统事件</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="用try…catch语句找到错误"><a href="#用try…catch语句找到错误" class="headerlink" title="用try…catch语句找到错误"></a>用try…catch语句找到错误</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">	try&#123;</span><br><span class="line">		alert(ass);</span><br><span class="line">	&#125;catch(exception)&#123;</span><br><span class="line">		var str = &quot;&quot;;</span><br><span class="line">		for (var i in exception) &#123;</span><br><span class="line">			str += i+&quot;:&quot;+exception[i]+&quot;\n&quot;;</span><br><span class="line">		&#125;</span><br><span class="line">		alert(str);</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="JS优化"><a href="#JS优化" class="headerlink" title="JS优化"></a>JS优化</h3><blockquote>
+<p>Javascript是一门解释性的语言，它不像C、Java等程序设计语言，由编译器先进行编译再运行，而是直接下载到用户的客户端进行执行。因此代码本身的优劣直接决定了代码下载的速度以及执行的效率。本节主要介绍Javascript的优化问题，包括代码下载的时间、优化的相关原则等。</p>
+</blockquote>
+<h4 id="减缓代码的下载时间"><a href="#减缓代码的下载时间" class="headerlink" title="减缓代码的下载时间"></a>减缓代码的下载时间</h4><blockquote>
+<p>Web浏览器下载的是 Javascript的源码，其中包含的长变量名、注释、空格和换行等多余字符大大减缓了代码下载的时间。这些字符对于团队编写代码时十分有效，但在最后工程完成上传到服务器时，应当将它们全部删除。例如：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function showMeThemoney(money)</span><br><span class="line">&#123;</span><br><span class="line">	if(!money)&#123;</span><br><span class="line">		return false;</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">可以优化成：</span><br><span class="line">function showmeThemoney(money)&#123;if(!money)&#123;return false;&#125;else&#123;...&#125;&#125;</span><br><span class="line">这样，优化后节约了25个字节，倘若是一个大的 Javascript工程，将节省出非常大的空间，不但提高了用户下载的速度，也减轻了服务器的压力。</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>另外，对于布尔型的值true和 false，true都可以用1来替换，而 false可以用0来替换。对于true节省了3个字节，而 false则节省了4个字节.<br>替换了布尔值之后,代码执行的效率,结果都相同,但节省了7个字节<br>同样判断某个变量是否为”undefined”,”null”,”false”时,!=(不等于)可以替换为!(非)<br>定义数组时new Array()可用[]代替,定义对象时new Object()用{}代替<br>较长的函数和参数名称可以改为较短的字符如 function A(a,b,c){}</p>
+</blockquote>
+<h4 id="合理声明变量"><a href="#合理声明变量" class="headerlink" title="合理声明变量"></a>合理声明变量</h4><blockquote>
+<p>全局变量，直到页面关闭时才会被销毁,浪费了不必要的资源,尽量声明局部变量</p>
+</blockquote>
+<h4 id><a href="#" class="headerlink" title></a></h4></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://jinyeeeee.github.io/2020/03/02/js%E8%B0%83%E4%BC%98/" data-id="ck7bkgnrq000ab8v0gte9am9f"
+         class="article-share-link">分享</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/03/02/java/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">java</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/technology.js"></script>
+
+  </div>
+</body>
+</html>
