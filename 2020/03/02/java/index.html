@@ -199,13 +199,177 @@
 <p>=：大于等于</p>
 </blockquote>
 </li>
-<li>&lt;=：小于等于<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Java 转换成二进制进行计算</span><br><span class="line"></span><br><span class="line">double d1=1.0d;</span><br><span class="line">float d2=1.0f;</span><br><span class="line">System.out.println(&quot;d1==d2 &quot;+(d1==d2));</span><br><span class="line">System.out.println(&quot;d1!=d2 &quot;+(d1!=d2));</span><br><span class="line">System.out.println(&quot;d1&gt;d2 &quot;+(d1&gt;d2));</span><br><span class="line">System.out.println(&quot;d1&lt;d2 &quot;+(d1&lt;d2));</span><br><span class="line"></span><br><span class="line">tfff</span><br><span class="line"></span><br><span class="line">double d3=0.3d;</span><br><span class="line">float d4=0.3f;</span><br><span class="line">System.out.println(&quot;d3==d4 &quot;+(d3==d4));</span><br><span class="line">System.out.println(&quot;d3!=d4 &quot;+(d3!=d4));</span><br><span class="line">System.out.println(&quot;d3&gt;d4 &quot;+(d3&gt;d4));</span><br><span class="line">System.out.println(&quot;d3&lt;d4 &quot;+(d3&lt;d4));</span><br><span class="line"></span><br><span class="line">ftft</span><br></pre></td></tr></table></figure></li>
+<li>&lt;=：小于等于<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Java 转换成二进制进行计算</span><br><span class="line"></span><br><span class="line">double d1=1.0d;</span><br><span class="line">float d2=1.0f;</span><br><span class="line">System.out.println(&quot;d1==d2 &quot;+(d1==d2));</span><br><span class="line">System.out.println(&quot;d1!=d2 &quot;+(d1!=d2));</span><br><span class="line">System.out.println(&quot;d1&gt;d2 &quot;+(d1&gt;d2));</span><br><span class="line">System.out.println(&quot;d1&lt;d2 &quot;+(d1&lt;d2));</span><br><span class="line"></span><br><span class="line">tfff</span><br><span class="line"></span><br><span class="line">double d3=0.3d;</span><br><span class="line">float d4=0.3f;</span><br><span class="line">System.out.println(&quot;d3==d4 &quot;+(d3==d4));</span><br><span class="line">System.out.println(&quot;d3!=d4 &quot;+(d3!=d4));</span><br><span class="line">System.out.println(&quot;d3&gt;d4 &quot;+(d3&gt;d4));</span><br><span class="line">System.out.println(&quot;d3&lt;d4 &quot;+(d3&lt;d4));</span><br><span class="line"></span><br><span class="line">ftft</span><br></pre></td></tr></table></figure>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3></li>
 </ul>
+<ol>
+<li>单行注释    //注释内容</li>
+<li>多行注释  /* 注释内容    */</li>
+<li>文档注释    /**    文档注释内容        */<h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3>在Java语言中,除了8种基本数据类型,其他类型都是引用类型；<br><img src="/2020/03/02/java/8.png" alt><br>引用类型使用=赋值；<br>除了String、包装器类（共8个）外，都需要使用new 关键字；</li>
+</ol>
+<p><strong>引用类型可以使用==、！=进行比较，比较的是引用类型的地址，不是内容</strong>;引用类型不能使用&gt;、&gt;=、&lt;=、&lt;进行比较；<br>当只声明了一个引用类型变量，却没有为其赋值，则此时该变量为null；引用类型的默认值是null 表示空 什么都没有指向</p>
+<h5 id="一个字符串是null，与一个字符串是””是否一样，有什么区别？"><a href="#一个字符串是null，与一个字符串是””是否一样，有什么区别？" class="headerlink" title="一个字符串是null，与一个字符串是””是否一样，有什么区别？"></a>一个字符串是null，与一个字符串是””是否一样，有什么区别？</h5><p>完全不同。Null指的是根本没有分配堆内存，””是分配了堆内存，存储了一个””字符串，不过这个字符串是空的。</p>
+<h4 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h4><p>在JDK1.5之后，Java中多了一个新的类型-枚举；枚举也是一种引用类型<br><img src="/2020/03/02/java/9.png" alt><br>枚举编译后也生成.class文件，也是一种引用类型</p>
+<h4 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h4><p>在JDK1.5之后，Java中增加了注解（Annotation）；<br>注解也称为元数据，是和类、接口、枚举，并列的一种引用类型；<br><img src="/2020/03/02/java/10.png" alt><br>除了直接使用API中的注解外，还可以自定义注解类型；</p>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><h3 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h3><p>算术运算符用来对操作数进行数学运算；+比较特殊，除了能做加运算外，还能对两个字符串进行连接；<br><img src="/2020/03/02/java/11.png" alt></p>
+<p><strong>a++与++a的意思都是让a自增一个;a–与–a的意思都是让a自减一个</strong><br>a++与++a的区别是,a++先参与其他运算,再进行自加运算,可以把a++作为一个整体来看;++a的值和a的值是相同的</p>
+<h3 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h3><p><img src="/2020/03/02/java/12.png" alt></p>
+<p>==以及！=也可以对引用类型进行运算，比较是否是同一个对象；</p>
+<h3 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h3><p><img src="/2020/03/02/java/13.png" alt><br>1：真  0：假</p>
+<p>&amp;：1111与0110 —-》0110 全真为真 有一个假结果就是假</p>
+<p>|：1111与0110 —-》1111      全假为假，只要有一个真 结果就是真</p>
+<p>异或-^：1111与0110 —-》1001两个操作数不同返回true，两个操作数相同返回false；</p>
+<p>~求反：0110—-》   高位为1 表示是一个负数 转化成32位 原码+1 高位进行补位  </p>
+<p>非-！：true变false，false变true</p>
+<p>&lt;&lt;:   2&lt;&lt;2    0010—-&gt;数向左移动两位  1000     8    2&lt;&lt;3  0001 0000  16</p>
+<p>右移位&gt;&gt;:   8&gt;&gt;2    1000—-》0010        2       </p>
+<p>无符号右移位&gt;&gt;&gt;:  -8&gt;&gt;&gt;2  正数与&gt;&gt;一样    </p>
+<p>负数：0010 0000 00 0000000000000000  0000 10<br>面试题：<br>1、如何快速的求2*8  2&lt;&lt;3<br>2、Int a=9 ;int b=6;如何不使用第三个变量，让这两个数进行交换<br>(1)a=a+b;  b=a-b; a=a-b;<br>(2)a=a^b; b=a^b;  a=a^b;  二进制运算 优于  直接+-</p>
+<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><p><img src="/2020/03/02/java/14.png" alt></p>
+<p><strong>上图有误</strong> 异或-^：两个操作数不同返回true，两个操作数相同返回false；</p>
+<h4 id="短路问题"><a href="#短路问题" class="headerlink" title="短路问题"></a>短路问题</h4><blockquote>
+<p>&amp;和|称为非短路逻辑运算；&amp;&amp;和||称为短路逻辑运算；<br>&amp;&amp;（短路与）与&amp;（非短路与)</p>
+</blockquote>
+<p>区别:如果运算符前面的条件为真，没有区别。如果运算符前面的条件为假，&amp;&amp;(短路与)，不去判断第二个条件，直接输出结果了假。</p>
+<p>||（短路或） |（非短路或</p>
+<p>区别：如果运算符前面的条件为假，没有区别。如果运算符前面的条件为真，&amp;&amp;(短路与)，不去判断第二个条件，直接输出结果了真</p>
+<p>如果存在T1&amp;T2，当T1为false时，返回值已经确定为false，但是依然还会运算T2表达式；所以称为非短路；</p>
+<p>如果存在T1&amp;&amp;T2，当T1为false时，返回值已经确定为false，就不会运算T2表达式；所以称为短路；</p>
+<p>|与||也存在类似逻辑，当第一个表达式为true时，因为已经确定了返回值肯定是true ,所以||就不再运算第二个表达式；</p>
+<h3 id="条件表达式"><a href="#条件表达式" class="headerlink" title="条件表达式"></a>条件表达式</h3><blockquote>
+<p><strong>表达式1?表达式2:表达式3</strong></p>
+</blockquote>
+<h3 id="复合赋值运算符"><a href="#复合赋值运算符" class="headerlink" title="复合赋值运算符"></a>复合赋值运算符</h3><p><img src="/2020/03/02/java/15.png" alt></p>
+<h3 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h3><blockquote>
+<p>表达式是由操作数和运算符按一定的语法形式组成的符号序列;一个常量或一个变量名字是最简单的表达式，其值即该常量或变量的值;表达式的值还可以用作其他运算的操作数，形成更复杂的表达式。</p>
+</blockquote>
+<ul>
+<li>num1+num2</li>
+<li>a*(b+c)+d</li>
+<li>3.14    </li>
+<li>x&lt;=(y+z)  </li>
+<li>x&amp;&amp;y||z<h3 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h3><blockquote>
+<p>一个由分号（;）结尾的单一命令是一条语句（Statement），一条语句一般是一行代码，但也可以占多行代码。</p>
+</blockquote>
+<h3 id="代码段"><a href="#代码段" class="headerlink" title="代码段"></a>代码段</h3><blockquote>
+<p>用大括号（{…… }）围起来的多条语句构成一个代码段（Codeblock）；同时代码段也包括大括号前的一些修饰性描述</p>
+</blockquote>
+<h3 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h3></li>
+</ul>
+<p><strong>程序员对程序中的各个元素加以命名时使用的命名记号称为标识符（identifier）包括：类名、变量名、常量名、方法名、…。</strong><br>Java语言中，标识符是以<strong>字母，下划线（_）,美元符($)开始</strong>的一个字符序列，<strong>后面可以跟字母，下划线，美元符，数字。</strong></p>
+<ul>
+<li><p>合法的标识符：<br>identifier        userName    User_Name       _sys_value  $change </p>
+</li>
+<li><p>非法的标识符：<br>2mail      room#        class</p>
+</li>
+<li><p>类名：使用驼峰命名法<br>一个单词首字母大写   Student Person Animal 多个单词每个单词首字母都大写    StudentManager    UserName</p>
+</li>
+<li><p>变量(方法)：<br>一个单词直接小写     account 多个单词，首个单词字母小写，其他单词字母大写 userName    </p>
+</li>
+<li><p>常量：一般单词字母都是大写</p>
+</li>
+<li><p>包名：全都是小写</p>
+<h3 id="保留字-都是小写"><a href="#保留字-都是小写" class="headerlink" title="保留字(都是小写)"></a>保留字(都是小写)</h3><blockquote>
+<p>具有专门的意义和用途，不能当作一般的标识符使用，这些标识符称为保留字(reserved word)：</p>
+</blockquote>
+</li>
+</ul>
+<p>abstract    break   byte    boolean  catch   case   class   char   continue  default   double   do  else   extends  false   final   float  for   finally    if   import   implements   int   interface   instanceof   long  length  native  new  null  package  private  protected  public  final  return  switch  synchronized  short  static  super  try  true  this  throw  throws  transient   void  while</p>
+<h3 id="变量-1"><a href="#变量-1" class="headerlink" title="变量"></a>变量</h3><ul>
+<li>全局变量（Global variables）：变量可以在整个类中被访问；</li>
+<li>局部变量（ Local variables ）：变量只能在定义其的代码段中被访问。<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><blockquote>
+<p>常量就是特殊的变量，不能修改值的变量<br>常量只能在定义时赋值</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">final double PI=3.14159</span><br></pre></td></tr></table></figure>
+<h2 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h2><h3 id="if-else"><a href="#if-else" class="headerlink" title="if-else"></a>if-else</h3><h3 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">switch(表达式) &#123;//**注意(switch的条件是一个表达式,那就意味着有很多可发挥空间)**表达式结果是一个常量</span><br><span class="line">          case 常量表达式1：</span><br><span class="line">         语句1;break;</span><br><span class="line">         case常量表达式2：</span><br><span class="line">          语句2;break;</span><br><span class="line">          ......</span><br><span class="line">         case常量表达式n ：</span><br><span class="line">         语句n;break;</span><br><span class="line">        default：    </span><br><span class="line">        语句n+1;break;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>switch/case中的表达式只能使用规定的基本数据类型</p>
+<ul>
+<li><p>JDK1.5前可以使用：<br>基本数据类型byte<br>基本数据类型short<br>基本数据类型int<br>字符型char</p>
+</li>
+<li><p>JDK5之后，switch表达式类型新增加支持：枚举（enum）</p>
+</li>
+<li><p>JDK7之后，switch表达式类型新增加支持：String</p>
+</li>
+<li><p>不能使用：基本数据类型float、double、long、boolean</p>
+<h3 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h3><p>Java语言中的有三种循环语句，分别是for、while、do while;</p>
+<h4 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h4><blockquote>
+<p>for(;;){}是可编译的死循环</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="类访问控制符"><a href="#类访问控制符" class="headerlink" title="类访问控制符"></a>类访问控制符</h3><ul>
+<li>默认的（不提供访问控制符）：仅可被同包的其他代码访问</li>
+<li>public： 可以被任何代码访问<h3 id="成员的访问控制"><a href="#成员的访问控制" class="headerlink" title="成员的访问控制"></a>成员的访问控制</h3></li>
+<li>private    私有的</li>
+<li>default(不使用default关键字，和类的default类似，不提供修饰符即为默认权限)</li>
+<li>protected        受保护的</li>
+<li>public       公开的</li>
+</ul>
+<p><img src="/2020/03/02/java/30.png" alt></p>
+<h3 id="Object类"><a href="#Object类" class="headerlink" title="Object类"></a>Object类</h3><p>Object类是Java语言中所有类的根，所有的类都直接或间接的继承了Object类；<strong>数组也继承了Object类</strong>；Object类中定义了,Object类中定义了<strong>11个方法</strong>。</p>
+<h4 id="equals"><a href="#equals" class="headerlink" title="equals"></a>equals</h4><p>Object类中的equals方法的作用，与==相同，都是比较两个对象的虚地址；</p>
+<p><img src="/2020/03/02/java/31.png" alt></p>
+<h4 id="Hashcode"><a href="#Hashcode" class="headerlink" title="Hashcode"></a>Hashcode</h4><p>用来返回对象的哈希码；hashCode方法主要为了配合基于哈希的集合类一起工作，例如HashSet、HashMap等</p>
+<p>当两个引用的虚地址相同时，hashCode返回相同的值，否则返回不同的值；</p>
+<h4 id="Finalize"><a href="#Finalize" class="headerlink" title="Finalize"></a>Finalize</h4><p>Object中包含了一个叫做finalize()的方法，提供在对象被回收时调用以释放资源，默认情况下其不执行任何动作。</p>
+<p><strong>每个对象只能被GC自动调用finalize( )方法一次。</strong>如果在finalize( )方法执行时产生异（exception），则该对象仍可以被垃圾收集器收集。</p>
+<p>Java语言允许程序员为任何方法添加finalize( )方法，该方法会在垃圾收集器交换回收对象之前被调用。但不要过分依赖该方法对系统资源进行回收和再利用，因为<strong>该方法调用后的执行结果是不可预知的</strong>当finalize( )方法尚未被调用时，System. runFinalization( )方法可以用来调用finalize( )方法，并实现相同的效果，对无用对象进行垃圾收集</p>
+<p>如果必须要重写finalize()方法，请记住使用super.finalize()调用父类的清除方法，否则对象清理的过程可能不完整</p>
+<h4 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString()"></a>toString()</h4><p>默认的：类的全名(包名+类名)+@+哈希码转换成十六进制,在打印引用类型变量的时候，默认调用toString</p>
+<h2 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h2><p>Abstract 可以修饰类也可以修饰方法</p>
+<p>public  abstract  class 类名{            //抽象类</p>
+<p>}</p>
+<p>访问控制符  修饰符 返回值类型 方法名(){}</p>
+<p>抽象方法只有方法声明，没有方法实现没有{}</p>
+<p>public abstract void method()；</p>
+<ol>
+<li>如果某个类中包含有抽象方法，那么该类就必须定义成抽象类</li>
+<li>抽象类中也可以包含有非抽象的方法甚至抽象类中可以没有抽象方法</li>
+<li>抽象类不可以直接实例化</li>
+<li>如果抽象类的派生子类没有实现其中的所有抽象方法，那么该派生子类仍然是抽象类，只能用于继承，而不能实例化，但可以有构造函数<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2>面向接口编程和面向对象编程并不是平级的，而是附属于面向对象思想体系，属于其一部分。</li>
+</ol>
+<p>面向接口编程的意思是指<strong>在面向对象的系统中所有的类或者模块之间的交互是由接口完成的</strong></p>
+<p><img src="/2020/03/02/java/32.png" alt></p>
+<h4 id="Java接口继承接口的原则："><a href="#Java接口继承接口的原则：" class="headerlink" title="Java接口继承接口的原则："></a>Java接口继承接口的原则：</h4><p>Java接口可以继承多个接口,接口继承接口依然使用关键字extends，不要错用成implements</p>
+<p>因此，在声明接口之间的继承关系时，extends关键字后面可以是一个列表</p>
+<p>Java接口继承接口的形式</p>
+<p>Interface3 extends Interface0, Interface1, interface……｛</p>
+<p>｝</p>
+<h4 id="类实现接口"><a href="#类实现接口" class="headerlink" title="类实现接口"></a>类实现接口</h4><p>一个类可以同时继承自一个父类并实现若干接口,类实现接口的一般语法如下：</p>
+<p>[修饰符] class &lt;类名&gt; [extends 父类名] [implements 接口列表]{</p>
+<p>}</p>
+<h4 id="接口的优点-弱耦合"><a href="#接口的优点-弱耦合" class="headerlink" title="接口的优点 弱耦合"></a>接口的优点 弱耦合</h4><p>只需要架构师先设计好接口C的功能,再由A去调用接口,B去实现接口的功能,就可以避免A等待B实现接口的时间的浪费</p>
+<p><img src="/2020/03/02/java/33.png" alt></p>
+<h4 id="接口的回调"><a href="#接口的回调" class="headerlink" title="接口的回调"></a>接口的回调</h4><p>以前是我们调用系统中已经定义好的类中的方法进行结果实现,有了接口之后，让系统中已经存在的类，调用我们写的功能进行实现<br><img src="/2020/03/02/java/34.png" alt></p>
+<p>举个例子:Java中已经定义好的类型Arrays.调用了sort方法，这个方法是用来进行排序，那么现在我们用它进行对象student排序，但是，现在我们没有说明如何进行排序，所以报错，如果你要进行排序规则的设定，那么必须要实现Comparable比较器这个接口，遵循接口中的比较方法继续说明。</p>
+<h4 id="默认方法"><a href="#默认方法" class="headerlink" title="默认方法"></a>默认方法</h4><p>默认方法理论上抹杀了Java接口与抽象类的本质区别-前者是行为契约的集合，后者是接口与实现的结合体。当然,语法上两者的差别和以前一样。</p>
+<p><a href="https://www.cnblogs.com/sum-41/p/10878807.html" target="_blank" rel="noopener">https://www.cnblogs.com/sum-41/p/10878807.html</a></p>
+<h2 id="Final"><a href="#Final" class="headerlink" title="Final"></a>Final</h2><ul>
+<li><p>如果将某个变量修饰为final，那么该变量就成为常量,常量在声明时必须初始化，声明之后不能对其进行二次赋值，其后任何试图对常量进行赋值的语句都将报错,成员final属性，可以用过构造方法进行初始化。</p>
+</li>
+<li><p>如果将某个成员方法修饰为final，则意味着该方法不能被子类覆盖，这就和抽象方法必须由子类实现的规定互相矛盾，因此，final和abstract不能同时修饰一个方法。</p>
+</li>
+</ul>
+<ul>
+<li>如果将某个类修饰为final，则说明该类无法被继承，一般语法：[访问权限] final class 类名 {成员列表}</li>
+</ul>
+<h2 id="Static"><a href="#Static" class="headerlink" title="Static"></a>Static</h2><ul>
+<li><p>如果将某个变量修饰为final，那么该变量就成为常量,常量在声明时必须初始化，声明之后不能对其进行二次赋值，其后任何试图对常量进行赋值的语句都将报错,成员final属性，可以用过构造方法进行初始化。</p>
+</li>
+<li><p>如果将某个成员方法修饰为final，则意味着该方法不能被子类覆盖，这就和抽象方法必须由子类实现的规定互相矛盾，因此，final和abstract不能同时修饰一个方法。</p>
+</li>
+</ul>
+<ul>
+<li>如果将某个类修饰为final，则说明该类无法被继承，一般语法：[访问权限] final class 类名 {成员列表}</li>
+</ul>
+<p>如果将某个变量修饰为final，那么该变量就成为常量,常量在声明时必须初始化，声明之后不能对其进行二次赋值，其后任何试图对常量进行赋值的语句都将报错,成员final属性，可以用过构造方法进行初始化。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://jinyeeeee.github.io/2020/03/02/java/" data-id="ck7bkgnqo0002b8v08xqudab6"
+      <a data-url="http://jinyeeeee.github.io/2020/03/02/java/" data-id="ck7rdt5o400012wv064zo7dei"
          class="article-share-link">分享</a>
       
     </footer>

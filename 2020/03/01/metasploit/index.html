@@ -287,13 +287,24 @@
 <li>Traceroute、Tracert<h3 id="网站与服务器信息-二级域名"><a href="#网站与服务器信息-二级域名" class="headerlink" title="网站与服务器信息(二级域名)"></a>网站与服务器信息(二级域名)</h3><blockquote>
 <p>二级域名是指顶级域名之下的域名,在国际顶级域名下,它是指域名注册人的网上名称;在国家顶级域名下,它是表示注册企业类别的符号。我国在国际互联网络信息中心( Inter NIC)正式注册并运行的顶级域名是cN,这也是我国的一级域名。在顶级域名之下,我国的二级域名又分为类别域名和行政区域名两类。类别域名共7个,包括用于科研机构的ac;国际通用域名com、top; 用于教育机构的edu;用于政府部门的gov:用于互联网络信息中心和坛行中心的net;用于非盈利组织的org。而行政区域名有34个,分别对应于我国各省、自治区和直辖市。</p>
 </blockquote>
-</li>
+<h4 id="DNS域传送漏洞"><a href="#DNS域传送漏洞" class="headerlink" title="DNS域传送漏洞"></a>DNS域传送漏洞</h4><blockquote>
+<p>区域传送操作指的是一台后备服务器使用来自主服务器的数据刷新自己的zone数据库。一般来说，DNS区域传送操作只在网络里真的有后备域名DNS服务器时才有必要执行，但许多DNS服务器却被错误地配置成只要有人发出请求，就会向对方提供一个zone数据库的拷贝。当一个单位没有使用公用/私用DNS机制来分割外部公用DNS信息和内部私用DNS信息的时候，此时内部主机名和IP地址都暴露给了攻击者。就像是把一个单位的内部网络完整蓝图或导航图奉送给了别人</p>
+</blockquote>
+<h4 id="nmap检测域传送漏洞"><a href="#nmap检测域传送漏洞" class="headerlink" title="nmap检测域传送漏洞"></a>nmap检测域传送漏洞</h4><blockquote>
+<p>nmap –script dns-zone-transfer –scnpt-args dns-zone-transfer.domain=nwpu.edu.cn -p 53 -Pn dns.nwpu.edu.cn</p>
+</blockquote>
+<h4 id="域名爆破"><a href="#域名爆破" class="headerlink" title="域名爆破"></a>域名爆破</h4></li>
+<li>fierce -dns <a href="http://test.com" target="_blank" rel="noopener">http://test.com</a></li>
+<li>python subDomainsBrute.py <a href="http://test.com" target="_blank" rel="noopener">http://test.com</a> //可以递归爆破三级,四级域名</li>
+<li>layer<h3 id="搜索引擎"><a href="#搜索引擎" class="headerlink" title="搜索引擎"></a>搜索引擎</h3></li>
+<li>普通类搜索引擎(Google,Baidu)</li>
+<li>黑客类搜索引擎(shodan,zoomeye(钟馗之眼))</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://jinyeeeee.github.io/2020/03/01/metasploit/" data-id="ck7bkgns1000eb8v08wnwgv7f"
+      <a data-url="http://jinyeeeee.github.io/2020/03/01/metasploit/" data-id="ck7rdt5oz000a2wv0dcb0513f"
          class="article-share-link">分享</a>
       
     </footer>
