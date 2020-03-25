@@ -77,7 +77,7 @@
 <li>@FunctionalInterface</li>
 </ul>
 <p>上面5个基本注解中的@SafeVarargs是Java 7新增的、Functionalntrface是Java 8新增的。这5<br>个基本的注解都定义在java.lang包下，读者可以通过查阅它们的API文档来了解关于它们的更多细节。</p>
-<h2 id="Annotation架构"><a href="#Annotation架构" class="headerlink" title="Annotation架构"></a>Annotation架构</h2><p><img src="/2020/03/22/java2/126.jpg" alt></p>
+<h2 id="Annotation架构"><a href="#Annotation架构" class="headerlink" title="Annotation架构"></a>Annotation架构</h2><p><img src="/2020/03/22/java2/174.jpg" alt></p>
 <p>从中，我们可以看出：</p>
 <p><strong>(01) 1 个 Annotation 和 1 个 RetentionPolicy 关联。</strong><br>可以理解为：每1个Annotation对象，都会有唯一的RetentionPolicy属性。</p>
 <p><strong>(02) 1 个 Annotation 和 1~n 个 ElementType 关联。</strong><br>可以理解为：对于每 1 个 Annotation 对象，可以有若干个 ElementType 属性。</p>
@@ -183,13 +183,13 @@
 
 <h3 id="3-根据-Annotation-生成帮助文档"><a href="#3-根据-Annotation-生成帮助文档" class="headerlink" title="3.根据 Annotation 生成帮助文档"></a>3.根据 Annotation 生成帮助文档</h3><p>通过给 Annotation 注解加上 @Documented 标签，能使该 Annotation 标签出现在 javadoc 中。</p>
 <h3 id="4-能够帮忙查看查看代码"><a href="#4-能够帮忙查看查看代码" class="headerlink" title="4.能够帮忙查看查看代码"></a>4.能够帮忙查看查看代码</h3><p>通过 @Override, @Deprecated 等，我们能很方便的了解程序的大致结构。<br>另外，我们也可以通过自定义 Annotation 来实现一些功能。</p>
-<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><p><img src="/2020/03/22/java2/image127.png" alt></p>
+<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><p><img src="/2020/03/22/java2/image174.png" alt></p>
 <h2 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h2><ul>
 <li>Collection接口是最基本的集合接口，它不提供直接的实现，JavaSDK提供的类都是继承自Collection的“子接口”如List和Set。Collection所代表的是一种规则，它所包含的元素都必须遵循一条或者多条规则。如有些允许重复而有些则不能重复、有些必须要按照顺序插入而有些则是散列，有些支持排序但是有些则不支持</li>
 <li>在Java中所有实现了Collection接口的类都应该提供两套标准的构造函数，一个是无参，用于创建一个空的Collection，一个是带有Collection参数的有参构造函数，用于创建一个新的Collection，这个新的Collection与传入进来的Collection具备相同的元素</li>
 <li>Collection接口为集合提供一些统一的访问接口（泛型接口），覆盖了向集合中添加元素、删除元素、以及协助对集合进行遍历访问的相关方法：</li>
 </ul>
-<p><img src="/2020/03/22/java2/image128.png" alt><br><img src="/2020/03/22/java2/image129.png" alt></p>
+<p><img src="/2020/03/22/java2/image175.png" alt><br><img src="/2020/03/22/java2/image176.png" alt></p>
 <p>集合的通用遍历方法有以下几种： </p>
 <ol>
 <li>使用增强型for(<strong>forEach循环</strong>)遍历 </li>
@@ -199,9 +199,9 @@
 <p><strong>for(元素类型 循环变量名:Collection对象)｛<br>对循环变量进行处理；<br>}</strong></p>
 <h2 id="Map接口"><a href="#Map接口" class="headerlink" title="Map接口"></a>Map接口</h2><ul>
 <li>Map是由一系列键值对组成的集合，提供了key到Value的映射。同时它也<strong>没有继承Collection</strong>。在Map中它保证了key与value之间的一一对应关系。也就是说一个key对应一个value，所以它<strong>不能存在相同的key值</strong>，当然value值可以相同 </li>
-<li>Map 接口提供三种collection 视图，允许以键集、值集或键-值映射关系集的形式查看某个映射的内容。映射顺序定义为迭代器在映射的 collection 视图上返回其元素的顺序。某些映射实现可明确保证其顺序，如 TreeMap 类；另一些映射实现则不保证顺序，如 HashMap 类<br><img src="/2020/03/22/java2/image130.png" alt><h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2>List接口为Collection子接口。List所代表的是<strong>有序的Collection</strong><br>它<strong>用某种特定的插入顺序来维护元素顺序</strong>。用户可以对列表中每个元素的插入位置进行精确地控制，同时可以根据<strong>元素的整数索引</strong>（在列表中的位置，和数组相似，从0开始，到元素个数-1）访问元素，并检索列表中的元素，由于这些特性，List在Collection的基础上扩展了一些重要方法：</li>
+<li>Map 接口提供三种collection 视图，允许以键集、值集或键-值映射关系集的形式查看某个映射的内容。映射顺序定义为迭代器在映射的 collection 视图上返回其元素的顺序。某些映射实现可明确保证其顺序，如 TreeMap 类；另一些映射实现则不保证顺序，如 HashMap 类<br><img src="/2020/03/22/java2/image177.png" alt><h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2>List接口为Collection子接口。List所代表的是<strong>有序的Collection</strong><br>它<strong>用某种特定的插入顺序来维护元素顺序</strong>。用户可以对列表中每个元素的插入位置进行精确地控制，同时可以根据<strong>元素的整数索引</strong>（在列表中的位置，和数组相似，从0开始，到元素个数-1）访问元素，并检索列表中的元素，由于这些特性，List在Collection的基础上扩展了一些重要方法：</li>
 </ul>
-<p><img src="/2020/03/22/java2/image131.png" alt></p>
+<p><img src="/2020/03/22/java2/image178.png" alt></p>
 <p>由于列表有序并存在索引，因此除了增强for循环进行遍历外，还可以使用普通的for循环进行遍历： </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for(int i=0;i&lt;list.size();i++)｛ </span><br><span class="line">	元素类型 e = list.get(i);</span><br><span class="line">	//对e进行处理 </span><br><span class="line">｝</span><br></pre></td></tr></table></figure>
 
@@ -216,7 +216,7 @@
 <h2 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h2><p>同样实现List接口的LinkedList与ArrayList不同，LinkedList是一个双向链表。所以它除了有ArrayList的基本操作方法外还额外提供了get，remove，insert方法在LinkedList的首部或尾部</p>
 <p>由于实现的方式不同，LinkedList不能随机访问，它所有的操作都是要按照双重链表的需要执行。在列表中索引的操作将从开头或结尾遍历列表（从靠近指定索引的一端）。这样做的好处就是可以通过较低的代价在List中进行插入和删除操作 </p>
 <p>与ArrayList一样，LinkedList也是非同步的。如果多个线程同时访问一个List，则必须自己实现访问同步 </p>
-<p><img src="/2020/03/22/java2/image132.png" alt></p>
+<p><img src="/2020/03/22/java2/image179.png" alt></p>
 <h2 id="其他List实现类"><a href="#其他List实现类" class="headerlink" title="其他List实现类"></a>其他List实现类</h2><p>在JDK1.2之前是没有完整的集合框架的。只有一些简单的可以自扩展的容器类，比如Vector，Stack，Hashtable等。这些容器类在使用的过程中由于效率问题饱受诟病，因此在Java 2中，Java设计者们进行了大刀阔斧的整改，重新设计，于是就有了现在的集合框架。需要注意的是，之前的那些容器类库并没有被弃用而是进行了保留，主要是为了向下兼容的目的，但我们在平时使用中还是应该尽量少用</p>
 <p>Vector与ArrayList相似，但是Vector是同步的。所以说<strong>Vector是使用数组实现的线程安全的列表</strong>。它的操作与ArrayList几乎一样 </p>
 <p>Vector在进行默认规则扩容时，<strong>新数组的长度=原始数组长度*2</strong> </p>
@@ -228,16 +228,16 @@
 <li>HashSet<br>HashSet堪称查询速度最快的集合，因为其<strong>内部是以HashCode来实现的</strong>。它内部元素的顺序是由哈希码来决定的，所以它不保证set的迭代顺序；特别是它不保证该顺序恒久不变 </li>
 <li>TreeSet<br>基于TreeMap，生成一个<strong>总是处于排序状态的set</strong>，内部以TreeMap来实现。它是<strong>使用元素的自然顺序对元素进行排序，或者根据创建Set 时提供的 Comparator 进行排序</strong>，具体取决于使用的构造方法</li>
 </ul>
-<p><img src="/2020/03/22/java2/image133.png" alt></p>
-<p><img src="/2020/03/22/java2/image134.png" alt></p>
+<p><img src="/2020/03/22/java2/image180.png" alt></p>
+<p><img src="/2020/03/22/java2/image181.png" alt></p>
 <p>集合元素的hashCode方法返回的哈希值对HashSet而言非常重要，因为HashSet会优先使用这个哈希值来判定两个元素是否相同并确定元素的位置</p>
 <p>如果我们在自定义元素类型时hashCode方法定义不够先进，就会出现逻辑和语义上的问题，甚至会造成内存泄露 </p>
 <p>有可能造成内存泄露的原因是HashSet的remove方法也依赖于哈希值进行待删除节点定位，如果由于集合元素内容被修改而导致hashCode方法的返回值发生变更，那么，remove方法就无法定位到原来的对象，导致删除不成功，从而导致内存泄露</p>
-<p><img src="/2020/03/22/java2/image135.png" alt></p>
-<p><img src="/2020/03/22/java2/image136.png" alt><br>TreeSet扩展自AbstractSet，并实现了NavigableSet，AbstractSet扩展自AbstractCollection， TreeSet是一个有序的Set，其底层是一颗树，这样就能从Set里面提取一个有序序列了。为了实现排序的功能，TreeSet中存放的对象需要实现Comparable。在实例化TreeSet时，我们也可以给TreeSet指定一个比较器Comparator来指定树形集中的元素顺序。树形集中提供了很多便捷的方法</p>
+<p><img src="/2020/03/22/java2/image182.png" alt></p>
+<p><img src="/2020/03/22/java2/image183.png" alt><br>TreeSet扩展自AbstractSet，并实现了NavigableSet，AbstractSet扩展自AbstractCollection， TreeSet是一个有序的Set，其底层是一颗树，这样就能从Set里面提取一个有序序列了。为了实现排序的功能，TreeSet中存放的对象需要实现Comparable。在实例化TreeSet时，我们也可以给TreeSet指定一个比较器Comparator来指定树形集中的元素顺序。树形集中提供了很多便捷的方法</p>
 <h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><p>HashMap是基于哈希表的Map接口的非同步实现，继承自AbstractMap，AbstractMap是部分实现Map接口的抽象类 </p>
 <p>在之前的版本中，HashMap采用数组+链表实现，即使用链表处理冲突，同一hash值的链表都存储在一个链表里（和我们在之前自行实现的哈希表相同）。但是当链表中的元素较多，即hash值相等的元素较多时，通过key值依次查找的效率较低。而JDK1.8中，HashMap采用数组+链表+红黑树（一种平衡搜索二叉树）实现，当链表长度超过阈值（8）时，将链表转换为红黑树，这样大大减少了查找时间 </p>
-<p><img src="/2020/03/22/java2/image137.png" alt></p>
+<p><img src="/2020/03/22/java2/image184.png" alt></p>
 <h2 id="map其他实现类"><a href="#map其他实现类" class="headerlink" title="map其他实现类"></a>map其他实现类</h2><p>和Vector类似，Map体系也有一个自JDK1.2之前遗留的集合工具：Hashtable，它的操作接口和HashMap相同，和HashMap的区别在于：<strong>Hashtable是线程安全的，而HashMap是非线程安全的</strong></p>
 <p>LinkedHashMap继承自HashMap，它主要是用链表实现来扩展HashMap类，HashMap中条目是没有顺序的，但是在LinkedHashMap中元素既可以按照它们插入的顺序排序，也可以按它们最后一次被访问的顺序排序</p>
 <p>TreeMap基于红黑树数据结构的实现，键值可以使用Comparable或Comparator接口来排序。TreeMap继承自AbstractMap，同时实现了接口NavigableMap，而接口NavigableMap则继承自SortedMap。SortedMap是Map的子接口，使用它可以确保图中的条目是排好序的</p>
@@ -250,42 +250,42 @@
 <li>getProperty(key)：通过key值获得对应的value值 </li>
 <li>setProperty(String key,String value)给properties文件中写值</li>
 </ul>
-<p><img src="/2020/03/22/java2/image138.png" alt><br><img src="/2020/03/22/java2/image139.png" alt><br><img src="/2020/03/22/java2/image140.png" alt></p>
+<p><img src="/2020/03/22/java2/image185.png" alt><br><img src="/2020/03/22/java2/image186.png" alt><br><img src="/2020/03/22/java2/image187.png" alt></p>
 <p>总结<br>•Vector、ArrayList、LinkedList有什么区别？<br>•HashSet在什么情况下可能导致内存泄露？<br>•Map有什么特点？<br>•ArrayList 和Vector是采用数组方式存储数据，此数组元素数大于实际存储的数据以便增加和插入元素，都允许直接序号索引元素，但是插入数据要设计到数组元素移动等内存操作，所以索引数据快插入数据慢，Vector由于使用了synchronized方法（线程安全）所以性能上比ArrayList要差，LinkedList使用双向链表实现存储，按序号索引数据需要进行向前或向后遍历，但是插入数据时只需要记录本项的前后项即可，所以插入数度较快<br>•有可能造成内存泄露的原因是HashSet的remove方法也依赖于哈希值进行待删除节点定位，如果由于集合元素内容被修改而导致hashCode方法的返回值发生变更，那么，remove方法就无法定位到原来的对象，导致删除不成功，从而导致内存泄露<br>•Map是由一系列键值对组成的集合，提供了key到Value的映射。同时它也没有继承Collection。在Map中它保证了key与value之间的一一对应关系。也就是说一个key对应一个value，所以它不能存在相同的key值，当然value值可以相同 </p>
 <h2 id="Comparable内部比较"><a href="#Comparable内部比较" class="headerlink" title="Comparable内部比较"></a>Comparable内部比较</h2><p>一个类如果想【支持排序】，那么就必须实现接口Comparable<T>，该接口被称为对象的内部比较器；</T></p>
 <p>该接口中只有一个方法； </p>
-<p><img src="/2020/03/22/java2/image141.png" alt></p>
+<p><img src="/2020/03/22/java2/image188.png" alt></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class Product implements Comparable&lt;Product&gt;&#123;</span><br><span class="line">……</span><br><span class="line">@Override</span><br><span class="line">public int compareTo(Product o) &#123;</span><br><span class="line">//根据商品价格升序排序</span><br><span class="line">if(this.price&gt;o.price)&#123;</span><br><span class="line">	return 1;</span><br><span class="line">&#125;else if(this.price&lt;o.price)&#123;</span><br><span class="line">	return -1;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2020/03/22/java2/image142.png" alt><br><img src="/2020/03/22/java2/image143.png" alt></p>
-<h2 id="外部比较器"><a href="#外部比较器" class="headerlink" title="外部比较器"></a>外部比较器</h2><p>一个类实现Comparable这个内部比较器后，该类支持排序，然而只能有一种排序逻辑，比较受限制；<br>可以使用外部比较器Comparator，灵活为类定义多种比较器，此时类本身不需要实现Comparable接口；<br>Comparator接口中有两个方法：<br><img src="/2020/03/22/java2/image144.png" alt></p>
-<p><img src="/2020/03/22/java2/image145.png" alt><br><img src="/2020/03/22/java2/image146.png" alt><br>修改成枚举属性  增强数据安全性</p>
-<p><img src="/2020/03/22/java2/image147.png" alt><br><img src="/2020/03/22/java2/image148.png" alt><br><img src="/2020/03/22/java2/image149.png" alt></p>
+<p><img src="/2020/03/22/java2/image189.png" alt><br><img src="/2020/03/22/java2/image190.png" alt></p>
+<h2 id="外部比较器"><a href="#外部比较器" class="headerlink" title="外部比较器"></a>外部比较器</h2><p>一个类实现Comparable这个内部比较器后，该类支持排序，然而只能有一种排序逻辑，比较受限制；<br>可以使用外部比较器Comparator，灵活为类定义多种比较器，此时类本身不需要实现Comparable接口；<br>Comparator接口中有两个方法：<br><img src="/2020/03/22/java2/image191.png" alt></p>
+<p><img src="/2020/03/22/java2/image192.png" alt><br><img src="/2020/03/22/java2/image193.png" alt><br>修改成枚举属性  增强数据安全性</p>
+<p><img src="/2020/03/22/java2/image194.png" alt><br><img src="/2020/03/22/java2/image195.png" alt><br><img src="/2020/03/22/java2/image196.png" alt></p>
 <h2 id="Arrays工具类型"><a href="#Arrays工具类型" class="headerlink" title="Arrays工具类型"></a>Arrays工具类型</h2><p>java.util.Arrays类是一个针对数组进行操作的工具类，其中提供了对对象数组进行排序的方法；<br>两个常用的对象数组排序方法如下： </p>
-<p><img src="/2020/03/22/java2/image150.png" alt></p>
+<p><img src="/2020/03/22/java2/image197.png" alt></p>
 <h2 id="内部比较器的问题"><a href="#内部比较器的问题" class="headerlink" title="内部比较器的问题"></a>内部比较器的问题</h2><p>为什么Student类如果不实现Comparable接口，就会抛出ClassCastException异常？<br>Arrays.sort  要求  后面数据中的元素 要去实现这个接口，之后将当前类比较的方法compareTo获取，清楚比较规则，再去进行排序</p>
 <h2 id="Collections"><a href="#Collections" class="headerlink" title="Collections"></a>Collections</h2><p>和Arrays.sort()方法一样，Collections类也提供了sort()方法对集合内部中的元素按照元素的自然排序方式进行排序： </p>
-<p><img src="/2020/03/22/java2/image151.png" alt><br><img src="/2020/03/22/java2/image152.png" alt></p>
+<p><img src="/2020/03/22/java2/image198.png" alt><br><img src="/2020/03/22/java2/image199.png" alt></p>
 <h2 id="新工具生成线程安全集合"><a href="#新工具生成线程安全集合" class="headerlink" title="新工具生成线程安全集合"></a>新工具生成线程安全集合</h2><p>集合框架中的新工具大多是非同步的，如果在并发环境中直接访问可能会导致各种问题，而Vector、Hashtable等老旧工具还继续保留的主要原因是维持向下兼容，因此我们希望能够获取新的集合工具的线程安全版本，而Collections工具类则为我们提供了这方面的支持</p>
-<p><img src="/2020/03/22/java2/image153.png" alt><br>小结</p>
+<p><img src="/2020/03/22/java2/image200.png" alt><br>小结</p>
 <ul>
 <li>Collection和Collections有什么区别，Array和Arrays有什么区别？ </li>
 <li>java.util.Collection 是一个集合接口。它提供了对集合对象进行基本操作的通用接口方法。Collection接口在Java 类库中有很多具体的实现Collection接口的意义是为各种具体的集合提供了最大化的统一操作方式。Collections是针对集合类的一个帮助类，他提供一系列静态方法实现对各种集合的搜索、排序、线程安全化等操作</li>
 <li>Array类提供了动态创建和访问 Java 数组的方法</li>
 <li>Arrays包含用来操作数组（比如排序和搜索）的各种方法。此类还包含一个允许将数组作为列表来查看的静态工厂 </li>
 </ul>
-<h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><p><img src="/2020/03/22/java2/image154.png" alt><br>以上代码会出现异常<br><strong>java.util.ConcurrentModificationException</strong></p>
-<p><img src="/2020/03/22/java2/image155.png" alt><br>如果是为了删除元素，可以利用break终止循环</p>
-<p><img src="/2020/03/22/java2/image156.png" alt></p>
+<h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><p><img src="/2020/03/22/java2/image201.png" alt><br>以上代码会出现异常<br><strong>java.util.ConcurrentModificationException</strong></p>
+<p><img src="/2020/03/22/java2/image202.png" alt><br>如果是为了删除元素，可以利用break终止循环</p>
+<p><img src="/2020/03/22/java2/image203.png" alt></p>
 <h3 id="利用迭代器"><a href="#利用迭代器" class="headerlink" title="利用迭代器"></a>利用迭代器</h3><p>获取迭代器，在Collection接口中定义了一个iterator();  方法用于返回迭代器</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Iterator&lt;Student&gt; it = stuList.iterator();  </span><br><span class="line">//迭代器方法介绍</span><br><span class="line">hasNext();判断是否还有下一个元素</span><br><span class="line">next();获取当前元素切换到下一个元素</span><br><span class="line">remove();移除元素</span><br></pre></td></tr></table></figure>
-<p><img src="/2020/03/22/java2/image157.png" alt><br><img src="/2020/03/22/java2/image158.png" alt></p>
+<p><img src="/2020/03/22/java2/image204.png" alt><br><img src="/2020/03/22/java2/image205.png" alt></p>
 <h1 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h1><p>掌握Java中的垃圾回收机制和垃圾回收时机<br>掌握Java中的不同引用类型<br>了解Java的引用队列<br>了解Java中可能存在的内存泄露情况<br>了解finalize方法的作用与隐患<br>在JVM架构中，堆内存和垃圾回收器这两个部分和垃圾回收相关。堆内存是运行时用来存储实例对象的数据空间，垃圾回收器运行在堆内存上</p>
-<p><img src="/2020/03/22/java2/image159.png" alt></p>
+<p><img src="/2020/03/22/java2/image206.png" alt></p>
 <h2 id="垃圾回收机制的概念"><a href="#垃圾回收机制的概念" class="headerlink" title="垃圾回收机制的概念"></a>垃圾回收机制的概念</h2><p>小李子用他神出鬼没波澜起伏的颜值变化告诉我们：多少没有演技的小鲜肉被无情的拍死在了沙滩上，因此：存活年代越久的老戏骨，生存欲望及能力越强<br>Java对象对小李子表示认同<br>在Java的内存模型中，最重要的是要了解堆内存的概念。运行时的Java实例对象(new Student())存储在堆内存空间中。当一个对象不再被引用了，它变成可被从堆内存中回收空间。在垃圾回收的过程中，这些对象将被从堆内存中清除，同时它们的空间也就被回收了。<br>就像小李子的演艺经历给我们揭示的道理一样，堆内存的空间根据对象的存活时限主要分成了三部分：年轻代、老年代、永久代</p>
-<p><img src="/2020/03/22/java2/image160.png" alt><br>java堆内存中的对象分代存储（依据对象本身的存活时限）：<br><img src="/2020/03/22/java2/image161.png" alt><br>年轻代<br>a-Eden区(所有实例在运行时最初都分配到eden区中)<br>b-S0 Survivor Space(老一些的对象被从eden区移动到S0区，其实是eden区中的对象经过一次对eden区的Young GC还存活的对象被移动到S0)<br>c,-S1 Survivor Space(再老一些的对象被从S0区移动到S1区，其实是在Young GC过程中S0区已满，则会将eden区中还存活的对象和S0区中的存活对象移动到S1区中)<br>老年代<br>经过S0，S1中几轮迭代后还存活的对象被提升到老年代<br>永久代<br>包含一些元数据像类、方法等等<br>永久代空间在JDK8特性中已经被移除</p>
+<p><img src="/2020/03/22/java2/image207.png" alt><br>java堆内存中的对象分代存储（依据对象本身的存活时限）：<br><img src="/2020/03/22/java2/image208.png" alt><br>年轻代<br>a-Eden区(所有实例在运行时最初都分配到eden区中)<br>b-S0 Survivor Space(老一些的对象被从eden区移动到S0区，其实是eden区中的对象经过一次对eden区的Young GC还存活的对象被移动到S0)<br>c,-S1 Survivor Space(再老一些的对象被从S0区移动到S1区，其实是在Young GC过程中S0区已满，则会将eden区中还存活的对象和S0区中的存活对象移动到S1区中)<br>老年代<br>经过S0，S1中几轮迭代后还存活的对象被提升到老年代<br>永久代<br>包含一些元数据像类、方法等等<br>永久代空间在JDK8特性中已经被移除</p>
 <p>Java垃圾回收是一个自动运行的管理程序运行时使用的内存的进程。通过GC的自动执行JVM将程序员从申请和释放内存的繁重操作中解放出来<br>主动调用<br>作为一个自动执行的进程，程序员不需要在代码中主动初始化GC。Java提供了System.gc()和Runtime.gc()这两个hook来请求JVM调用GC进程<br>尽管要求系统机制给程序员提供调用GC的机会，但是实际上这是由JVM负责决定的。<strong>JVM可以选择拒绝启动GC的请求</strong>，因此并不保证这些请求会真的调用垃圾回收。这是JVM基于内存堆空间的Eden区（年轻代）的使用情况做出的决定。<br>JVM规范将这个选择权利留给了各个JVM的具体实现，因此实际上JVM是如何选择的视不同JVM的实现而定(但应该始终记住的是，不能依赖于这两个方法的调用，<strong>它们是不被保证执行的</strong>)</p>
-<p><img src="/2020/03/22/java2/image162.png" alt><br>Eden Space:当一个实例被创建的时候，它最初被存放在堆内存空间的年轻代的Eden区中<br>Survivor Space(S0 和S1):作为minor回收周期的一部分，还活着的对象(还有引用指向它)被从eden区中移动到survivor空间S0。同样的，垃圾回收器扫描S0并将活着的实例移动到S1<br>无用的对象被标记并回收。垃圾回收器决定这些被标记的实例是在扫描的过程中移出内存还是在另外独立的迁移进程中执行<br>Old Generation:老年代或者永久代是堆内存的第二个逻辑部分。当垃圾回收器在做minor GC周期中，S1 survivor区中还活着的实例会被提升到老年代中。S1区中不再被引用的对象被标记并清除<br>Major GC:在Java垃圾回收过程中实例生命周期的最后一个阶段。Major GC在垃圾回收过程中扫描属于Old Generation部分的堆内存。如果实例没有被任何引用关联，它们将被标记、清除;如果它们还被引用关联着，则将继续存留在old generation。<br>从上述过程可以看出：生存时限越长的对象，其被垃圾回收处理机制扫描的频率就越低<br>Fragmentation:<br>一旦实例从堆内存中删除了，它们原来的位置将空出来给以后分配实例使用。<strong>显然这些空闲空间很容易在内存空间中产生碎片。为了能够更快地分配实例地址，需要对内存做去碎片化操作。</strong>根据不同垃圾回收器的策略，被回收的内存将在回收的过程同时或者在GC另外独立的过程中压缩整合</p>
+<p><img src="/2020/03/22/java2/image209.png" alt><br>Eden Space:当一个实例被创建的时候，它最初被存放在堆内存空间的年轻代的Eden区中<br>Survivor Space(S0 和S1):作为minor回收周期的一部分，还活着的对象(还有引用指向它)被从eden区中移动到survivor空间S0。同样的，垃圾回收器扫描S0并将活着的实例移动到S1<br>无用的对象被标记并回收。垃圾回收器决定这些被标记的实例是在扫描的过程中移出内存还是在另外独立的迁移进程中执行<br>Old Generation:老年代或者永久代是堆内存的第二个逻辑部分。当垃圾回收器在做minor GC周期中，S1 survivor区中还活着的实例会被提升到老年代中。S1区中不再被引用的对象被标记并清除<br>Major GC:在Java垃圾回收过程中实例生命周期的最后一个阶段。Major GC在垃圾回收过程中扫描属于Old Generation部分的堆内存。如果实例没有被任何引用关联，它们将被标记、清除;如果它们还被引用关联着，则将继续存留在old generation。<br>从上述过程可以看出：生存时限越长的对象，其被垃圾回收处理机制扫描的频率就越低<br>Fragmentation:<br>一旦实例从堆内存中删除了，它们原来的位置将空出来给以后分配实例使用。<strong>显然这些空闲空间很容易在内存空间中产生碎片。为了能够更快地分配实例地址，需要对内存做去碎片化操作。</strong>根据不同垃圾回收器的策略，被回收的内存将在回收的过程同时或者在GC另外独立的过程中压缩整合</p>
 <h2 id="垃圾回收器"><a href="#垃圾回收器" class="headerlink" title="垃圾回收器"></a>垃圾回收器</h2><p>Java中存在四种类型的垃圾回收器：</p>
 <ul>
 <li>Serial Garbage Collector</li>
@@ -293,33 +293,33 @@
 <li>CMS Garbage Collector</li>
 <li>G1 Garbage Collector</li>
 </ul>
-<p><img src="/2020/03/22/java2/image163.png" alt><br>不管那种回收器都会阻断应用线程面导致应用阻断，因此切忌慎用GC！</p>
+<p><img src="/2020/03/22/java2/image210.png" alt><br>不管那种回收器都会阻断应用线程面导致应用阻断，因此切忌慎用GC！</p>
 <p>这四种类型的垃圾回收器都有各自的优点和缺点。最重要的是我们可以选择JVM使用哪种类型的垃圾回收器。我们可以通过传递不同的JVM参数来设置使用哪一个。各个垃圾回收器在不同应用场景下的效率会有很大的差异。因此了解各种不同类型的垃圾回收器以及它们的应用场景是非常重要的<br>在什么时候使用哪一个取决于应用场景，硬件配置和吞吐量要求</p>
 <p><strong>Serial Garbage Collector：</strong><br>串行垃圾回收器控制所有的应用线程。它是为单线程场景设计的，只使用一个线程来执行垃圾回收工作。它暂停所有应用线程来执行垃圾回收工作的方式不适用于服务器的应用环境。它最适用的是简单的命令行程序<br>使用-XX:+UseSerialGC JVM参数来开启使用串行垃圾回收器</p>
 <p><strong>Parallel Garbage Collector：</strong><br>并行垃圾回收器也称作基于吞吐量的回收器。它是JVM的默认垃圾回收器。与Serial不同的是，它使用多个线程来执行垃圾回收工作。和Serial回收器一样，它在执行垃圾回收工作是也需要暂停所有应用线程</p>
 <p><strong>CMS Garbage Collector</strong>：<br>并发标记清除(Concurrent Mark Sweep,CMS)垃圾回收器，使用多个线程来扫描堆内存并标记可被清除的对象，然后清除标记的对象。CMS垃圾回收器只在下面这两种情形下暂停工作线程：<br>在老年代中标记引用对象的时候<br>在做垃圾回收的过程中堆内存中有变化发生<br>对比与并行垃圾回收器，CMS回收器使用更多的CPU来保证更高的吞吐量。如果我们可以有更多的CPU用来提升性能，那么CMS垃圾回收器是比并行回收器更好的选择<br>使用-XX:+UseParNewGC JVM参数来开启使用CMS垃圾回收器。</p>
 <p><strong>G1 Garbage Collector：</strong><br>G1垃圾回收器应用于大的堆内存空间。它将堆内存空间划分为不同的区域，对各个区域并行地做回收工作。G1在回收内存空间后还立即对堆空闲空间做整合工作以减少碎片。CMS却是在全部停止(stop the world,STW)时执行内存整合工作。对于不同的区域G1根据垃圾的数量决定优先级<br>使用-XX:UseG1GC JVM参数来开启使用G1垃圾回收器<br>在使用G1垃圾回收器时，开启使用-XX:+UseStringDeduplacaton JVM参数。它会通过把重复的String值移动到同一个char[]数组来优化堆内存占用。这是Java 8 u 20引入的选项</p>
-<p><img src="/2020/03/22/java2/image164.png" alt><br><img src="/2020/03/22/java2/image165.png" alt><br>java -Xmx12m -Xms3m -Xmn1m -XX:PermSize=20m -XX:MaxPermSize=20m -XX:+UseSerialGC -jar java-application.jar</p>
+<p><img src="/2020/03/22/java2/image211.png" alt><br><img src="/2020/03/22/java2/image212.png" alt><br>java -Xmx12m -Xms3m -Xmn1m -XX:PermSize=20m -XX:MaxPermSize=20m -XX:+UseSerialGC -jar java-application.jar</p>
 <h2 id="垃圾回收的判断"><a href="#垃圾回收的判断" class="headerlink" title="垃圾回收的判断"></a>垃圾回收的判断</h2><p>我们知道，GC主要处理的是对象的回收操作，那么什么时候会触发一个对象的回收的呢：<br><strong>对象没有引用</strong><br><strong>作用域发生未捕获异常</strong><br><strong>程序在作用域正常执行完毕</strong><br><strong>程序执行了System.exit()</strong><br><strong>程序发生意外终止（被杀进程等）</strong><br>在JDK1.2之前，使用的是引用计数器算法，即当类被加载到内存以后，就会产生方法区，堆栈、程序计数器等一系列信息，当创建对象的时候，为这个对象在堆栈空间中分配对象，同时会产生一个引用计数器，同时引用计数器+1，当有新的引用的时候，引用计数器继续+1，而当其中一个引用销毁的时候，引用计数器-1，当引用计数器被减为零的时候，标志着这个对象已经没有引用了，可以回收了</p>
 <p>引用计数算法在JDK1.2之前的版本被广泛使用，但是随着业务的发展，很快出现了一个问题：<br>当我们的代码出现下面的情形时，该算法将无法适应<br> objA.obj = objB<br> objB.obj = objA</p>
-<p><img src="/2020/03/22/java2/image166.png" alt><br>这样的代码会产生如下引用情形 objA指向objB，而objB又指向objA，这样当其他所有的引用都消失了之后，objA和objB还有一个相互的引用，也就是说两个对象的引用计数器各为1，而实际上这两个对象都已经没有额外的引用，已经是垃圾了<br>根搜索算法是从离散数学中的图论引入的，程序把所有的引用关系看作一张有向图，从一个节点GC ROOT开始，寻找对应的引用节点，找到这个节点以后，继续寻找这个节点的引用节点，当所有的引用节点寻找完毕之后，剩余的节点则被认为是没有被引用到的节点，即无用的节点<br>目前java中可作为GC Root的对象有<br>虚拟机栈中引用的对象（本地变量表）<br>方法区中静态属性引用的对象<br>方法区中常量引用的对象<br>本地方法栈中引用的对象（Native对象）</p>
-<h2 id="Java内存泄漏"><a href="#Java内存泄漏" class="headerlink" title="Java内存泄漏"></a>Java内存泄漏</h2><p><img src="/2020/03/22/java2/image167.png" alt><br>Java语言的一个关键的优势就是它的内存管理机制。你只管创建对象，Java的垃圾回收器帮你分配以及回收内存。然而，实际的情况并没有那么简单，因为内存泄漏在Java应用程序中还是时有发生的<br>事实上，在讲解Java中垃圾判定时，我们就看到了在JDK1.2之前，Java中的内存泄露甚至是一个比较常见的现象<br><strong>内存泄漏的定义：对象已经没有被应用程序使用，但是垃圾回收器没办法移除它们，因为还在被引用着</strong></p>
-<p><img src="/2020/03/22/java2/image168.png" alt><br>从刚才的图里面可以看出，里面有被引用对象和未被引用对象。未被引用对象会被垃圾回收器回收，而被引用的对象却不会。<br>未被引用的对象当然是不再被使用的对象，因为没有对象再引用它。然而无用对象却不全是未被引用对象。其中还有被引用的。就是这种情况导致了内存泄漏</p>
-<p><img src="/2020/03/22/java2/image169.png" alt></p>
-<h2 id="内存泄漏说明"><a href="#内存泄漏说明" class="headerlink" title="内存泄漏说明"></a>内存泄漏说明</h2><p><img src="/2020/03/22/java2/image170.png" alt><br>上例中，A对象引用B对象，A对象的生命周期（t1-t4）比B对象的生命周期（t2-t3）长的多。当B对象没有被应用程序使用之后，A对象仍然在引用着B对象。这样，垃圾回收器就没办法将B对象从内存中移除，从而导致内存问题，因为如果A引用更多这样的对象，那将有更多的未被引用对象存在，并消耗内存空间<br>B对象也可能会持有许多其他的对象，那这些对象同样也不会被垃圾回收器回收。所有这些没在使用的对象将持续的消耗之前分配的内存空间</p>
+<p><img src="/2020/03/22/java2/image213.png" alt><br>这样的代码会产生如下引用情形 objA指向objB，而objB又指向objA，这样当其他所有的引用都消失了之后，objA和objB还有一个相互的引用，也就是说两个对象的引用计数器各为1，而实际上这两个对象都已经没有额外的引用，已经是垃圾了<br>根搜索算法是从离散数学中的图论引入的，程序把所有的引用关系看作一张有向图，从一个节点GC ROOT开始，寻找对应的引用节点，找到这个节点以后，继续寻找这个节点的引用节点，当所有的引用节点寻找完毕之后，剩余的节点则被认为是没有被引用到的节点，即无用的节点<br>目前java中可作为GC Root的对象有<br>虚拟机栈中引用的对象（本地变量表）<br>方法区中静态属性引用的对象<br>方法区中常量引用的对象<br>本地方法栈中引用的对象（Native对象）</p>
+<h2 id="Java内存泄漏"><a href="#Java内存泄漏" class="headerlink" title="Java内存泄漏"></a>Java内存泄漏</h2><p><img src="/2020/03/22/java2/image214.png" alt><br>Java语言的一个关键的优势就是它的内存管理机制。你只管创建对象，Java的垃圾回收器帮你分配以及回收内存。然而，实际的情况并没有那么简单，因为内存泄漏在Java应用程序中还是时有发生的<br>事实上，在讲解Java中垃圾判定时，我们就看到了在JDK1.2之前，Java中的内存泄露甚至是一个比较常见的现象<br><strong>内存泄漏的定义：对象已经没有被应用程序使用，但是垃圾回收器没办法移除它们，因为还在被引用着</strong></p>
+<p><img src="/2020/03/22/java2/image215.png" alt><br>从刚才的图里面可以看出，里面有被引用对象和未被引用对象。未被引用对象会被垃圾回收器回收，而被引用的对象却不会。<br>未被引用的对象当然是不再被使用的对象，因为没有对象再引用它。然而无用对象却不全是未被引用对象。其中还有被引用的。就是这种情况导致了内存泄漏</p>
+<p><img src="/2020/03/22/java2/image216.png" alt></p>
+<h2 id="内存泄漏说明"><a href="#内存泄漏说明" class="headerlink" title="内存泄漏说明"></a>内存泄漏说明</h2><p><img src="/2020/03/22/java2/image217.png" alt><br>上例中，A对象引用B对象，A对象的生命周期（t1-t4）比B对象的生命周期（t2-t3）长的多。当B对象没有被应用程序使用之后，A对象仍然在引用着B对象。这样，垃圾回收器就没办法将B对象从内存中移除，从而导致内存问题，因为如果A引用更多这样的对象，那将有更多的未被引用对象存在，并消耗内存空间<br>B对象也可能会持有许多其他的对象，那这些对象同样也不会被垃圾回收器回收。所有这些没在使用的对象将持续的消耗之前分配的内存空间</p>
 <p>下面是几条容易上手的建议，来帮助开发人员防止内存泄漏的发生：<br>不再使用的对象将指向其的引用置空指向null<br>特别注意一些像HashMap、ArrayList的集合对象，它们经常会引发内存泄漏。当它们被声明为static时，它们的生命周期就会和应用程序一样长<br>同样是集合，当原有对象的属性发生改变(hashCode变化)，remove()方法可能会失效，导致内存泄露（后续详细讲解）<br>特别注意系统中各种事件监听和回调。当一个监听器在使用的时候被注册，但不再使用之后却未被反注册<br>“如果一个类自己管理内存，那开发人员就得小心内存泄漏问题了。” 通常一些成员变量引用其他对象，初始化的时候需要置空<br>事实上，对于一些常用API的使用如果不了解其实现方式的话也很容易引起内存泄露</p>
 <p>例如，String类常用的截取字串的方法substring()在JDK1.6中如果滥用就会导致比较严重的内存泄露</p>
-<p><img src="/2020/03/22/java2/image171.png" alt><br><img src="/2020/03/22/java2/image172.png" alt><br>如果研究过Java的源代码，就会发现，Java中的字符串由char[]作为数据结构支持，String类中包含了3个成员：char[] value，int offset，int count,它们分别用于存放实际的字符序列，本字符串对象的第一个字符在字符数组中的位置以及字符串对象包含多少个字符<br>在JDK6中，substring()方法创建了一个新的String对象，但是新的String对象中的value成员指向了和源字符串相同的字符数组，只不过offset和count的取值发生了改变<br>这种情况下，如果你有一个非常长的字符串，但是只使用了substring()方法截取了很短的一部分字串来使用，根据JDK6的实现方式，虽然只是用了很短的字串，但是仍然保留了整个长字符串的所有字符，会引发大量的内存浪费并影响性能<br>因此，在JDK6中，如果需要使用substring()方法，建议使用如下的方式，它将明确构建一个新的字符串（包括用于支持内容的字符数组）：<br>x = x.substring(m, n) + “”；//生成一个新的字符串</p>
+<p><img src="/2020/03/22/java2/image218.png" alt><br><img src="/2020/03/22/java2/image219.png" alt><br>如果研究过Java的源代码，就会发现，Java中的字符串由char[]作为数据结构支持，String类中包含了3个成员：char[] value，int offset，int count,它们分别用于存放实际的字符序列，本字符串对象的第一个字符在字符数组中的位置以及字符串对象包含多少个字符<br>在JDK6中，substring()方法创建了一个新的String对象，但是新的String对象中的value成员指向了和源字符串相同的字符数组，只不过offset和count的取值发生了改变<br>这种情况下，如果你有一个非常长的字符串，但是只使用了substring()方法截取了很短的一部分字串来使用，根据JDK6的实现方式，虽然只是用了很短的字串，但是仍然保留了整个长字符串的所有字符，会引发大量的内存浪费并影响性能<br>因此，在JDK6中，如果需要使用substring()方法，建议使用如下的方式，它将明确构建一个新的字符串（包括用于支持内容的字符数组）：<br>x = x.substring(m, n) + “”；//生成一个新的字符串</p>
 <p>在JDK7中，substring()方法已经做出了改进，会在对内存中为新的字符串对象创建一个新的字符数组：</p>
-<p><img src="/2020/03/22/java2/image173.png" alt><br>1、hashSet内存泄漏        修改对象再删除 hashcode发生了变化无法删除<br>2、对象之间相互引用内存泄漏        1.2jdk对象之间相互引用  改进之后也ok了<br>3、Jdk1.6字符串substring内存泄漏  jdk1.7以后创建新字符串</p>
+<p><img src="/2020/03/22/java2/image220.png" alt><br>1、hashSet内存泄漏        修改对象再删除 hashcode发生了变化无法删除<br>2、对象之间相互引用内存泄漏        1.2jdk对象之间相互引用  改进之后也ok了<br>3、Jdk1.6字符串substring内存泄漏  jdk1.7以后创建新字符串</p>
 <h2 id="Finalize"><a href="#Finalize" class="headerlink" title="Finalize"></a>Finalize</h2><p>Java和C++不同，没有提供析构方法<br><strong>Object中包含了一个叫做finalize()的方法，提供在对象被回收时调用以释放资源，默认情况下其不执行任何动作</strong><br>由于Object是Java继承体系的根，因此事实上所有的<strong>Java类都具备finalize方法</strong><br>当垃圾回收器确定了一个对象没有任何引用时，其会调用finalize()方法。但是，<strong>finalize方法并不保证调用时机，因此也不建议重写finalize()方法</strong><br><strong>如果必须要重写finalize()方法，请记住使用super.finalize()调用父类的清除方法，否则对象清理的过程可能不完整</strong><br>每个对象只能被GC自动调用finalize( )方法一次。如果在finalize( )方法执行时产生异常（exception），则该对象仍可以被垃圾收集器收集<br>Java语言允许程序员为任何方法添加finalize( )方法，该方法会在垃圾收集器交换回收对象之前被调用。但不要过分依赖该方法对系统资源进行回收和再利用，因为该方法调用后的执行结果是不可预知的<br>当finalize( )方法尚未被调用时，<strong>System.runFinalization()方法可以用来调用finalize( )方法</strong>，并实现相同的效果，对无用对象进行垃圾收集<br>面试题 final  finalize finally的区别？</p>
-<p><img src="/2020/03/22/java2/image174.png" alt><br><img src="/2020/03/22/java2/image175.png" alt></p>
+<p><img src="/2020/03/22/java2/image221.png" alt><br><img src="/2020/03/22/java2/image222.png" alt></p>
 <h2 id="强引用、软引用、弱引用及虚引用"><a href="#强引用、软引用、弱引用及虚引用" class="headerlink" title="强引用、软引用、弱引用及虚引用"></a>强引用、软引用、弱引用及虚引用</h2><p>在JDK1.2以前的版本中，<strong>当一个对象不被任何变量引用，那么程序就无法再使用这个对象。也就是说，只有对象处于可触及状态，程序才能使用它</strong><br>这就像在日常生活中，从商店购买了某样物品后，如果有用，就一直保留它，否则就把它扔到垃圾箱，由清洁工人收走。一般说来，如果物品已经被扔到垃圾箱，想再 把它捡回来使用就不可能了<br>但有时候情况并不这么简单，你可能会遇到类似鸡肋一样的物品，食之无味，弃之可惜。这种物品现在已经无用了，保留它会占空间，但是立刻扔掉它也不划算，因为也许将来还会派用场。对于这样的可有可无的物品，一种折衷的处理办法是：如果家里空间足够，就先把它保留在家里，如果家里空间不够，即使把家里所有的垃圾清除，还是无法容纳那些必不可少的生活用品，那么再扔掉这些可有可无的物品</p>
 <p>从JDK1.2版本开始，为了解决上述问题，把对象的引用分为四种级别，从而使程序能更加灵活的控制对象的生命周期。这四种级别由高到低依次为：<br>强引用<br>软引用<br>弱引用<br>虚引用</p>
-<p><img src="/2020/03/22/java2/image176.png" alt><br><img src="/2020/03/22/java2/image177.png" alt><br><img src="/2020/03/22/java2/image178.png" alt></p>
+<p><img src="/2020/03/22/java2/image223.png" alt><br><img src="/2020/03/22/java2/image224.png" alt><br><img src="/2020/03/22/java2/image225.png" alt></p>
 <h2 id="强引用："><a href="#强引用：" class="headerlink" title="强引用："></a>强引用：</h2><p>以前我们使用的大部分引用实际上都是强引用，这是使用最普遍的引用:</p>
 <pre><code>ClassName object = new ClassName();</code></pre><p>如果一个对象具有强引用，那就类似于必不可少的生活用品，垃圾回收器绝不会回收它。当内存空间不足，Java虚拟机宁愿抛出OutOfMemoryError错误，使程序异常终止，也不会靠随意回收具有强引用的对象来解决内存不足问题</p>
-<p><img src="/2020/03/22/java2/image179.png" alt></p>
+<p><img src="/2020/03/22/java2/image226.png" alt></p>
 <h2 id="软引用："><a href="#软引用：" class="headerlink" title="软引用："></a>软引用：</h2><p>如果一个对象只具有软引用，那就类似于可有可物的生活用品。<strong>如果内存空间足够，垃圾回收器就不会回收它，如果内存空间不足了，就会回收这些对象的内存</strong>。只要垃圾回收器没有回收它，该对象就可以被程序使用。<strong>软引用可用来实现内存敏感的高速缓存</strong></p>
 <pre><code>String str=new String(&quot;abc&quot;);
 SoftReference&lt;String&gt; softRef=new SoftReference&lt;String&gt;(str);</code></pre><h2 id="弱引用："><a href="#弱引用：" class="headerlink" title="弱引用："></a>弱引用：</h2><p>如果一个对象只具有弱引用，那就类似于可有可物的生活用品。弱引用与软引用的区别在于：只具有弱引用的对象拥有更短暂的生命周期。在垃圾回收器线程扫描它所管辖的内存区域的过程中，<strong>一旦发现了只具有弱引用的对象</strong>，不管当前内存空间足够与否，都会回收它的内存。不过，由于<strong>垃圾回收器是一个优先级很低的线程</strong>， 因此不一定会很快发现那些只具有弱引用的对象</p>
@@ -328,69 +328,69 @@ SoftReference&lt;String&gt; softRef=new SoftReference&lt;String&gt;(str);</code>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str = new String(&quot;abc&quot;);</span><br><span class="line">ReferenceQueue&lt;String&gt; queue = new ReferenceQueue&lt;String&gt;();</span><br><span class="line">PhantomReference&lt;String&gt; phantomRef = new PhantomReference&lt;String&gt;(str, queue);</span><br></pre></td></tr></table></figure>
 <p>由于虚引用的特点，绑定应用队列后是finalize()方法的理想替代品，一<strong>旦虚引用被加入引用队列，就没有任何办法获取虚引用指向的对象</strong>，因此不存在对象复活的隐患</p>
 <h2 id="引用队列"><a href="#引用队列" class="headerlink" title="引用队列"></a>引用队列</h2><p>正如之前说的，软引用、弱引用、虚引用均可以和一个引用队列绑定使用<br>ReferenceQueue是作为 JVM GC与上层Reference对象管理之间的一个消息传递方式，它使得我们可以对所监听的对象引用可达发生变化时做一些处理<br>我们希望当一个对象被gc掉的时候通知用户线程，进行额外的处理时，就需要使用引用队列了。ReferenceQueue即这样的一个对象，当一个obj被gc掉之后，其相应的引用对象（软引用、弱引用、虚引用），即ref对象会被放入queue中。我们可以从queue中获取到相应的对象信息，同时进行额外的处理。比如反向操作，数据清理<br>实现了一个队列的入队(enqueue)和出队(poll还有remove)操作，内部元素就是泛型的Reference，并且Queue的实现，是由Reference自身的链表结构所实现的<br><strong>引用队列的入队操作是由垃圾回收器完成的，当其发现回收的对象具备软引用、弱引用或虚引用时，会自动将对象的引用对象入队</strong><br>我们只需要在必要时执行出队操作即可监控到有哪些对象被回收并执行相关的资源操作</p>
-<p><img src="/2020/03/22/java2/image180.png" alt></p>
+<p><img src="/2020/03/22/java2/image227.png" alt></p>
 <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>掌握Java中为字符串提供的常量池，以及由常量池带来的字符串操作特性<br>掌握字符串的subString\equals\toCharArray\startsWith\endsWith\compareTo\equalsIgnoreCase\getBytes等常用方法的使用及参数特征，熟练掌握字符串的不同构造方法的功能</p>
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>Java语言使用Unicode字符集，默认使用UTF-8格式；因此Java的字符串也使用UTF-8编码；<br>UTF-8是一种针对Unicode的可变长度字符编码，用1到4个字节编码Unicode字符；<br>Java语言中的字符串实际上是使用字符型数组char[]存储;<br>String str = “abc”;<br>等同于：<br> char data[] = {‘a’, ‘b’, ‘c’};<br> String str = new String(data);</p>
 <h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><p>字符串可以用两种方式赋值，且有一个非常重要的特征，即不可变性（immutable）;<br><strong>不可变的意思是：一旦一个字符串被创建后，它的值就不能被修改；</strong><br>String s1=”Hello”;<br>s1=”World”;</p>
-<p><img src="/2020/03/22/java2/image181.png" alt><br>并不是把Hello改为了World，而是重新分配空间存储World;<br>s1的值发生了改变，指向了新的空间；</p>
-<p><img src="/2020/03/22/java2/image182.png" alt><br><img src="/2020/03/22/java2/image183.png" alt><br><img src="/2020/03/22/java2/image184.png" alt><br><img src="/2020/03/22/java2/image185.png" alt><br>为了能够重用这些不变的字符串，Java使用了字符串常量池；<br><strong>凡是用=直接赋值的方式得到的字符串，都存储在常量池中；相同的共用一个具体字符串；使用new创建的字符串不适用常量池，每次都分配新的内存空间；</strong></p>
+<p><img src="/2020/03/22/java2/image228.png" alt><br>并不是把Hello改为了World，而是重新分配空间存储World;<br>s1的值发生了改变，指向了新的空间；</p>
+<p><img src="/2020/03/22/java2/image229.png" alt><br><img src="/2020/03/22/java2/image230.png" alt><br><img src="/2020/03/22/java2/image231.png" alt><br><img src="/2020/03/22/java2/image232.png" alt><br>为了能够重用这些不变的字符串，Java使用了字符串常量池；<br><strong>凡是用=直接赋值的方式得到的字符串，都存储在常量池中；相同的共用一个具体字符串；使用new创建的字符串不适用常量池，每次都分配新的内存空间；</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String s2=&quot;Hello&quot;;</span><br><span class="line">String s3=&quot;Hello&quot;;</span><br><span class="line">String s4=new String(&quot;Hello&quot;);</span><br><span class="line">String s5=new String(&quot;Hello&quot;);</span><br></pre></td></tr></table></figure>
 <p>s2与s3使用=赋值，所以使用到常量池，指向同一个Hello；<br>s4与s5使用new创建，没有用常量池，每次都分配新的空间，指向一个新的Hello;</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">String s2=&quot;Hello&quot;;</span><br><span class="line">String s3=&quot;Hello&quot;;</span><br><span class="line">String s4=new String(&quot;Hello&quot;);</span><br><span class="line">String s5=new String(&quot;Hello&quot;);</span><br><span class="line"></span><br><span class="line">System.out.println(&quot;s2==s3&quot;+(s2==s3));</span><br><span class="line">System.out.println(&quot;s4==s5&quot;+(s4==s5));</span><br><span class="line">System.out.println(&quot;s2==s4&quot;+(s2==s4));</span><br><span class="line">结果显示如下：</span><br><span class="line">s2==s3 true</span><br><span class="line">s4==s5 false</span><br><span class="line">s2==s4 false</span><br></pre></td></tr></table></figure>
-<p><img src="/2020/03/22/java2/image186.png" alt><br><img src="/2020/03/22/java2/image187.png" alt></p>
+<p><img src="/2020/03/22/java2/image233.png" alt><br><img src="/2020/03/22/java2/image234.png" alt></p>
 <h2 id="字符串方法介绍"><a href="#字符串方法介绍" class="headerlink" title="字符串方法介绍"></a>字符串方法介绍</h2><p>String类中定义了一系列字符串相关方法，可以根据API文档进行学习，练习；<br>子串截取相关方法：</p>
-<p><img src="/2020/03/22/java2/image188.png" alt><br>String类中定义了一系列字符串相关方法，可以根据API文档进行学习，练习；<br>检索相关方法：</p>
-<p><img src="/2020/03/22/java2/image189.png" alt><br><img src="/2020/03/22/java2/image190.png" alt><br>String类中定义了一系列字符串相关方法，可以根据API文档进行学习，练习；<br>检索相关方法代码演示：<br>public static void main(String[] args) {<br>String s=”beijingETC”;<br>//返回字符串s中第一次出现i的位置索引，为2<br>System.out.println(s.indexOf(‘i’));<br>//返回字符串s中最后一次出现i的位置索引，为4<br>System.out.println(s.lastIndexOf(‘i’));<br>//返回字符串s中第3个字符以后，第一次出现字符i的位置索引，为4<br>System.out.println(s.indexOf(‘i’,3));<br>//返回字符串中第一次出现jing的索引位置，为3<br>System.out.println(s.indexOf(“jing”));<br>//返回字符串中，第4个字符后，第一次出现jing的位置索引，由于没有，所以返回-1<br>System.out.println(s.indexOf(“jing”,4));<br>//返回字符串中的第二个字符，为i，注意索引从0开始<br>System.out.println(s.charAt(2));<br>}</p>
+<p><img src="/2020/03/22/java2/image235.png" alt><br>String类中定义了一系列字符串相关方法，可以根据API文档进行学习，练习；<br>检索相关方法：</p>
+<p><img src="/2020/03/22/java2/image236.png" alt><br><img src="/2020/03/22/java2/image237.png" alt><br>String类中定义了一系列字符串相关方法，可以根据API文档进行学习，练习；<br>检索相关方法代码演示：<br>public static void main(String[] args) {<br>String s=”beijingETC”;<br>//返回字符串s中第一次出现i的位置索引，为2<br>System.out.println(s.indexOf(‘i’));<br>//返回字符串s中最后一次出现i的位置索引，为4<br>System.out.println(s.lastIndexOf(‘i’));<br>//返回字符串s中第3个字符以后，第一次出现字符i的位置索引，为4<br>System.out.println(s.indexOf(‘i’,3));<br>//返回字符串中第一次出现jing的索引位置，为3<br>System.out.println(s.indexOf(“jing”));<br>//返回字符串中，第4个字符后，第一次出现jing的位置索引，由于没有，所以返回-1<br>System.out.println(s.indexOf(“jing”,4));<br>//返回字符串中的第二个字符，为i，注意索引从0开始<br>System.out.println(s.charAt(2));<br>}</p>
 <h2 id="转化成字符串的方法"><a href="#转化成字符串的方法" class="headerlink" title="转化成字符串的方法"></a>转化成字符串的方法</h2><p>String类中定义了一系列字符串相关方法，可以根据API文档进行学习，练习；<br>类型转换相关方法：</p>
-<p><img src="/2020/03/22/java2/image191.png" alt><br>String类中定义了一系列字符串相关方法，可以根据API文档进行学习，练习；<br>类型转换代码演示：</p>
+<p><img src="/2020/03/22/java2/image238.png" alt><br>String类中定义了一系列字符串相关方法，可以根据API文档进行学习，练习；<br>类型转换代码演示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">int i=10;</span><br><span class="line">//将i转换为String类型</span><br><span class="line">String si=String.valueOf(i);</span><br><span class="line"></span><br><span class="line">char[] c1=&#123;&apos;h&apos;,&apos;e&apos;,&apos;l&apos;,&apos;l&apos;,&apos;o&apos;&#125;;</span><br><span class="line">//将char数组转换为String类型</span><br><span class="line">String sc1=String.valueOf(c1);</span><br><span class="line"></span><br><span class="line">// 将char数组中的第1到第4个字符转换为String类型</span><br><span class="line">String sc2=String.valueOf(c1,1,4);</span><br><span class="line"></span><br><span class="line">//分别输出hello及ello</span><br><span class="line">System.out.println(sc1);</span><br><span class="line">System.out.println(sc2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/2020/03/22/java2/image192.png" alt><br>其他方法<br>String类中定义了一系列字符串相关方法，可以根据API文档进行学习、练习；<br>其他方法：<br><img src="/2020/03/22/java2/image193.png" alt></p>
+<p><img src="/2020/03/22/java2/image239.png" alt><br>其他方法<br>String类中定义了一系列字符串相关方法，可以根据API文档进行学习、练习；<br>其他方法：<br><img src="/2020/03/22/java2/image240.png" alt></p>
 <h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p>1、掌握Java中正则表达式的基本格式、转义字符、数量词、匹配规则等<br>2、能够利用正则表达式进行字符串格式验证或子串检索<br>在编写程序的时候，往往对某些字符串的规则有特定的逻辑要求；<br>例如，邮件地址，手机号码，身份证号码，都可能使用字符串表示，而这些字符串都有着自己的逻辑要求；<br>1、手机号码11位<br>2、前三位固定格式+后8位任意数<br>3、前三位格式有：<br>（1）13+任意数<br> （2） 15+除4的任意数<br> （3） 18+除1和4的任意数<br> （4） 17+除9的任意数<br>正则表达式（regular expression）就是<strong>用来描述字符串逻辑规则的工具</strong>；<br>用分支语句写代码进行判断，可想而知多么复杂。尤其如果改了规则，就要重新编写代码；太复杂！<br>可以用正则表达式，把规则描述出来，每次看一下是否匹配就OK啦，如果规则改变，只要把正则表达式修改就行了！</p>
 <h2 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h2><p><strong>正则表达式本身也是个字符串</strong>，不过这些字符串是使用系列“元字符”组成；<br>所谓“元字符”就是预先定义的，有特殊意义的字符；例如\d用来匹配一个数字； \w用来匹配字母或数字或下划线或汉字等；<br>很多语言多对正则表达式提供了支持，例如JavaScript、Java等；<br>不同语言中使用正则表达式时，正则表达式的具体编写规则会有些小的差别，但是大体相同；<br>要使用正则表达式，首先要学会根据规则编写正则表达式；<br>正则表达式由“元字符”组成，掌握了元字符的含义，就可以开始编写正则表达式；<br>常用元字符：</p>
-<p><img src="/2020/03/22/java2/image194.png" alt><br><img src="/2020/03/22/java2/image195.png" alt><br><img src="/2020/03/22/java2/image196.png" alt><br>[abc]:只是匹配单个单词<br>[abc]*:表示a、b、c出现0或者多次</p>
-<p><img src="/2020/03/22/java2/image197.png" alt><br>正则表达式中往往需要对一些字符出现的次数进行规定，则需要量词；<br>量词有不同的策略，Java中有三种策略，此处列出的是Greedy策略；<br>常用量词：</p>
-<p><img src="/2020/03/22/java2/image198.png" alt></p>
+<p><img src="/2020/03/22/java2/image241.png" alt><br><img src="/2020/03/22/java2/image242.png" alt><br><img src="/2020/03/22/java2/image243.png" alt><br>[abc]:只是匹配单个单词<br>[abc]*:表示a、b、c出现0或者多次</p>
+<p><img src="/2020/03/22/java2/image244.png" alt><br>正则表达式中往往需要对一些字符出现的次数进行规定，则需要量词；<br>量词有不同的策略，Java中有三种策略，此处列出的是Greedy策略；<br>常用量词：</p>
+<p><img src="/2020/03/22/java2/image245.png" alt></p>
 <h2 id="Java如何进行表达式验证"><a href="#Java如何进行表达式验证" class="headerlink" title="Java如何进行表达式验证"></a>Java如何进行表达式验证</h2><p>Java语言中有一个包java.util.regex，提供了对正则表达式进行匹配的相关类，<br>该包里主要有两个类：</p>
-<p><img src="/2020/03/22/java2/image199.png" alt><br><img src="/2020/03/22/java2/image200.png" alt><br><img src="/2020/03/22/java2/image201.png" alt><br><img src="/2020/03/22/java2/image202.png" alt></p>
+<p><img src="/2020/03/22/java2/image246.png" alt><br><img src="/2020/03/22/java2/image247.png" alt><br><img src="/2020/03/22/java2/image248.png" alt><br><img src="/2020/03/22/java2/image249.png" alt></p>
 <h2 id="String中正则表达式"><a href="#String中正则表达式" class="headerlink" title="String中正则表达式"></a>String中正则表达式</h2><p>String类中也有与正则表达式有关的方法，上页提到的matches就是其中一个，用来对字符串进行匹配使用；其实这些方法也都是调用了Pattern和Matcher类的相关方法；<br>String类中与正则表达式有关的方法：</p>
-<p><img src="/2020/03/22/java2/image203.png" alt><br><img src="/2020/03/22/java2/image204.png" alt></p>
+<p><img src="/2020/03/22/java2/image250.png" alt><br><img src="/2020/03/22/java2/image251.png" alt></p>
 <h2 id="字符串缓冲"><a href="#字符串缓冲" class="headerlink" title="字符串缓冲"></a>字符串缓冲</h2><p>熟练掌握String、StringBuffer、StringBuilder之间的差异与适用场景<br>Java语言中的有一个StringBuffer类，称为字符串缓冲区；所表示的也是一个字符序列；<br>这个类型必须用new创建对象，和String相反，它是可变的类；<br>StringBuffer sbf1=new StringBuffer (“Etc”);<br>StringBuffer sbf2=new StringBuffer (“ Java”);<br>sbf1.append(sbf2);//用于字符串拼接<br>System.out.println(sbf1);<br>输出结果为：Etc Java<br>证明：<strong>StringBuffer是一个可变的字符串类</strong><br>Java语言中的还有一个StringBuilder类，与StringBuffer兼容，但是不保证线程同步；</p>
 <h2 id="三个类的区别"><a href="#三个类的区别" class="headerlink" title="三个类的区别"></a>三个类的区别</h2><p><strong>String类是不可变的</strong>，对象一旦被创建，就不能被修改；可以使用=直接赋值，此时使用常量池；也可以使用new创建，不使用常量池；<br><strong>StringBuffer是可变的</strong>，对象创建后，可以修改；必须使用new关键字；<br><strong>StringBuilder是不同步的</strong>，在单线程情况下使用比StringBuffer高效；必须使用new关键字；</p>
 <h2 id="数学API"><a href="#数学API" class="headerlink" title="数学API"></a>数学API</h2><p>熟练使用Math类提供的各类数学方法<br>能够使用BigDecimal、BigInteger工具进行超出Java基本数据类型范围的数字之间的数学运算、比较运算、位运算<br>了解大整数工具的基本实现原理<br>Math类位于java.lang包中，是一个final类，不能被继承；<br>Math类中所有方法都是static方法，可以直接使用类名Math调用；<br>Math中定义了大量与数学运算有关的方法，包括求绝对值、三角函数、平方根等；<br>部分方法如下：</p>
-<p><img src="/2020/03/22/java2/image205.png" alt></p>
+<p><img src="/2020/03/22/java2/image252.png" alt></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">//	使用字符串表示超出范围的大整数</span><br><span class="line">	String s1=&quot;29219291291919391912919283232323&quot;;</span><br><span class="line">	String s2=&quot;2007594379874134134134127943&quot;;</span><br><span class="line"></span><br><span class="line">//	将字符串作为参数，创建大整数BigInteger对象	</span><br><span class="line">	BigInteger bi1=new BigInteger(s1);</span><br><span class="line">	BigInteger bi2=new BigInteger(s2);</span><br><span class="line"></span><br><span class="line">//	调用BigInteger类中的方法进行运算,下面是加法和出发	</span><br><span class="line">	System.out.println(bi1.add(bi2));</span><br><span class="line">	System.out.println(bi1.divide(bi2));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>java.math包中还有一个类叫BigDecimal，虽然和整数无关，我们也在此一起学习；<br>BigDecimal是用来针对浮点型进行精确运算的;</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//使用double类型进行运算</span><br><span class="line">	double d1=4.3;</span><br><span class="line">	double d2=5.8;</span><br><span class="line">	System.out.println(d1+d2);</span><br><span class="line">10.1</span><br><span class="line"></span><br><span class="line">//	使用BigDecimal类型进行运算</span><br><span class="line">	BigDecimal bd1=new BigDecimal(d1);</span><br><span class="line">	BigDecimal bd2=new BigDecimal(d2);</span><br><span class="line">	System.out.println(bd1.add(bd2));</span><br><span class="line">结果：10.09999999999999964472863211994990706443786621093750</span><br></pre></td></tr></table></figure>
-<p><img src="/2020/03/22/java2/image206.png" alt></p>
+<p><img src="/2020/03/22/java2/image253.png" alt></p>
 <h2 id="随机API"><a href="#随机API" class="headerlink" title="随机API"></a>随机API</h2><p>熟练使用Math.random以及Random类的相关方法获取符合要求的随机数值<br>熟悉UUID的定义及功能<br>熟练使用UUID工具</p>
 <p>Math类中的random方法可以产生随机数，上节演示过。然而，该方法只能生成[0.0,1.0)范围的double值；很多时候，可能需要生成不同类型不同范围的随机值；<br>java.util包中的Random类可以用来生成不同类型的随机值，功能更为强大；<br>Random类创建对象两种方式:</p>
-<p><img src="/2020/03/22/java2/image207.png" alt><br>java.util包中的Random类有多个生成随机数的相关方法：</p>
-<p><img src="/2020/03/22/java2/image208.png" alt><br><img src="/2020/03/22/java2/image209.png" alt></p>
+<p><img src="/2020/03/22/java2/image254.png" alt><br>java.util包中的Random类有多个生成随机数的相关方法：</p>
+<p><img src="/2020/03/22/java2/image255.png" alt><br><img src="/2020/03/22/java2/image256.png" alt></p>
 <h2 id="UUID"><a href="#UUID" class="headerlink" title="UUID"></a>UUID</h2><p>UUID是<strong>通用唯一识别码</strong> (Universally Unique Identifier)的缩写，是<strong>唯一的机器生成的标识符</strong>；<br>UUID都<strong>不能是人工生成</strong>的，这样风险太高；<br>UUID是<strong>16字节128位长的数字</strong>，通常以36字节的字符串表示，示例如下：3F2504E0-4F89-11D3-9A0C-0305E82C3301<br>通常在<strong>分布式系统中用来生成唯一ID</strong></p>
 <p>UUID具有多个版本，每个版本的算法不同；<br>UUID Version 1：基于时间的UUID<br>通过计算当前时间戳、随机数和机器MAC地址得到。<br>UUID Version 2：DCE安全的UUID<br>和基于时间的UUID算法相同，但会把时间戳的前4位置换为POSIX的UID或GID。这个版本的UUID在实际中较少用到。<br>UUID Version 3：基于名字的UUID（MD5）<br>通过计算名字和名字空间的MD5散列值得到。<br>UUID Version 4：随机UUID<br>根据随机数，或者伪随机数生成UUID。<br>UUID Version 5：基于名字的UUID（SHA1）<br>和版本3的UUID算法类似，只是散列值计算使用SHA1（Secure Hash Algorithm 1）算法。<br>Java中对UUID的生成提供了支持，java.util.UUID 类定义了生成UUID的方法</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">        for(int i=0;i&lt;10;i++)&#123;</span><br><span class="line">	UUID uuid=UUID.randomUUID();</span><br><span class="line">	System.out.println(uuid);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/2020/03/22/java2/image210.png" alt></p>
+<p><img src="/2020/03/22/java2/image257.png" alt></p>
 <h2 id="JAVA日期与时间相关API"><a href="#JAVA日期与时间相关API" class="headerlink" title="JAVA日期与时间相关API"></a>JAVA日期与时间相关API</h2><p>了解Java中时间的表达方式<br><strong>掌握Date对象及Calendar对象的创建方法以及设置、获取时间的API调用</strong><br><strong>掌握日期与时间数据的格式化方法</strong></p>
-<p><img src="/2020/03/22/java2/image211.png" alt></p>
+<p><img src="/2020/03/22/java2/image258.png" alt></p>
 <h2 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h2><p>java.util.Date类表示时间，<strong>不过由于对国际化支持有限</strong>，所以JDK1.1之后推荐使用java.util.Calendar类；<br>java.util.Date类中很多构造方法和方法已经过时（Deprecated），不推荐使用，此处只学习两个没过时的构造方法；</p>
-<p><img src="/2020/03/22/java2/image212.png" alt><br><img src="/2020/03/22/java2/image213.png" alt></p>
+<p><img src="/2020/03/22/java2/image259.png" alt><br><img src="/2020/03/22/java2/image260.png" alt></p>
 <h2 id="Calendar"><a href="#Calendar" class="headerlink" title="Calendar"></a>Calendar</h2><p>JDK1.1版本开始，增加Calendar类，建议使用Calendar类代替Date类；<br>Calendar是抽象类，不能直接使用new创建对象；<br>Calendar类中定义了获得实例的方法：</p>
-<p><img src="/2020/03/22/java2/image214.png" alt><br>//使用默认时区和语言环境获得日历对象</p>
+<p><img src="/2020/03/22/java2/image261.png" alt><br>//使用默认时区和语言环境获得日历对象</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Calendar calendar1=Calendar.getInstance();</span><br></pre></td></tr></table></figure>
 <p>//使用指定时区和语言环境获得日历对象</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Calendar calendar2=Calendar.getInstance(TimeZone.getTimeZone(&quot;America/Los_Angeles&quot;),Locale.CHINA);</span><br></pre></td></tr></table></figure>
-<p>获得日历对象后，可以为该对象的年、月、日、时、分、秒等进行赋值：<br><img src="/2020/03/22/java2/image215.png" alt><br>对Calendar的字段赋值后，可以根据实际需要返回相应字段值；<br><img src="/2020/03/22/java2/image216.png" alt><br>对Calendar的字段赋值后，可以对其值进行修改；</p>
-<p><img src="/2020/03/22/java2/image217.png" alt><br>//修改Calendar的字段值,将年份加1<br>calendar2.add(Calendar.YEAR , 1);</p>
+<p>获得日历对象后，可以为该对象的年、月、日、时、分、秒等进行赋值：<br><img src="/2020/03/22/java2/image262.png" alt><br>对Calendar的字段赋值后，可以根据实际需要返回相应字段值；<br><img src="/2020/03/22/java2/image263.png" alt><br>对Calendar的字段赋值后，可以对其值进行修改；</p>
+<p><img src="/2020/03/22/java2/image264.png" alt><br>//修改Calendar的字段值,将年份加1<br>calendar2.add(Calendar.YEAR , 1);</p>
 <h2 id="SimpleDateFormat"><a href="#SimpleDateFormat" class="headerlink" title="SimpleDateFormat"></a>SimpleDateFormat</h2><p>实际编程中，往往需要对时间用不同的格式进行展示；<br>SimpleDateFormat中定义了<strong>对时间进行格式化的方法</strong>；该类继承了抽象父类DateFormat，某些方法在父类中定义，查阅API文档时注意；<br>可以自定义一个<strong>模式字符串来构建SimpleDateFormat对象</strong>：</p>
-<p><img src="/2020/03/22/java2/image218.png" alt></p>
-<p>通常使用format方法进行格式化；<br><img src="/2020/03/22/java2/image219.png" alt><br>SimpleDateFormat类的API文档中，对pattern中出现的字符含义有详细描述：<br><img src="/2020/03/22/java2/image220.png" alt><br>在实际编程中，往往一些时间内容都是通过用户输入获得，得到的是字符串，需要解析成日期时间类型进行处理；<br>SimpleDateFormat类不仅能够格式化时间，还能解析时间字符串；<br><img src="/2020/03/22/java2/image221.png" alt></p>
+<p><img src="/2020/03/22/java2/image265.png" alt></p>
+<p>通常使用format方法进行格式化；<br><img src="/2020/03/22/java2/image266.png" alt><br>SimpleDateFormat类的API文档中，对pattern中出现的字符含义有详细描述：<br><img src="/2020/03/22/java2/image267.png" alt><br>在实际编程中，往往一些时间内容都是通过用户输入获得，得到的是字符串，需要解析成日期时间类型进行处理；<br>SimpleDateFormat类不仅能够格式化时间，还能解析时间字符串；<br><img src="/2020/03/22/java2/image268.png" alt></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">SimpleDateFormat sdf1=new SimpleDateFormat(&quot;yyyy年MM月dd日hh时mm分ss秒&quot;);</span><br><span class="line">//字符串str1表示时间信息</span><br><span class="line">String str1=&quot;2002年5月1日8时12分9秒&quot;;</span><br><span class="line">try &#123;</span><br><span class="line">//使用SimpleDateFormat类的parse方法，把字符串转换成Date类型对象</span><br><span class="line">Date date2=sdf1.parse(str1);</span><br><span class="line">System.out.println(date2);</span><br><span class="line">&#125; catch (ParseException e) &#123;</span><br><span class="line">e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/2020/03/22/java2/image222.png" alt></p>
+<p><img src="/2020/03/22/java2/image269.png" alt></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://jinyeeeee.github.io/2020/03/22/java2/" data-id="ck86v94gj000h9cv0d5ir8i3b"
+      <a data-url="http://jinyeeeee.github.io/2020/03/22/java2/" data-id="ck86wn7y1000hg0v08t6r905l"
          class="article-share-link">分享</a>
       
     </footer>
