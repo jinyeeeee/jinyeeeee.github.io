@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    mysql |
+    
+    yuchen</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/technology.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-mysql" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      mysql
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/04/19/mysql/" class="article-date">
+  <time datetime="2020-04-19T08:29:13.000Z" itemprop="datePublished">2020-04-19</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <h1 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h1><p>数据库分类<br>数据库通常分为<strong>层次式数据库、网络式数据库和关系式数据库</strong>三种。而不同的数据库是按不同的数据结构来联系和组织的。而在当今的互联网中，<strong>最常见的</strong>数据库模型主要是两种，即<strong>关系型数据库和非关系型数据库</strong>。<br><strong>关系型数据库：Oracle和MySQL</strong><br><strong>非关系型数据库</strong><br><strong>键值存储数据库（key-value）：Redis</strong><br>列存储（Column-oriented）数据库：HBase<br>面向文档（Document-Oriented）数据库：MongoDB<br>图形数据库：Neo4J</p>
+<h2 id="MySQL发展历程"><a href="#MySQL发展历程" class="headerlink" title="MySQL发展历程"></a>MySQL发展历程</h2><p>1996年：MySQL 1.0版本正式发布；<br>1999-2000年：Monty团队成立MySQL AB公司，并将MySQL支持事务处理；<br>2001年：InnoDB存储引擎集成到MySQL中；<br>2004年：MySQL发布4.1版本，新增子查询；<br>2005年：MySQL发布5.0版本，增加存储过程、触发器、视图等功能；<br>2008年：1月份被Sun公司收购；<br>2009年：Oracle公司收购了Sun公司，MySQL转入Oracle旗下；<br>2010年：MySQL5.5版本发布；<br>2015年：MySQL5.7 GA版本发布；<br>2018年：MySQL8.0 GA版本发布；</p>
+<h2 id="MySQL不同版本的重要改进"><a href="#MySQL不同版本的重要改进" class="headerlink" title="MySQL不同版本的重要改进"></a>MySQL不同版本的重要改进</h2><p>4.1：增加子查询的支持；字符集中增加了对UTF-8的支持；<br>5.0：增加了视图、过程、触发器的支持，增加了information_schema系统数据库；<br>5.1：增加了表分区的支持；支持基于行的复制（row-based-replication）；<br>5.5：InnoDB成为默认存储引擎；支持半同步复制；引入performance_schema动态性能视图；<br>5.6：支持部分Online DDL操作；支持ICP/BKA/MRR等优化器改进；引入GTID；支持多库并行复制；<br>5.7：密码安全性提高；支持多线程并行复制、多源复制；支持JSON；引入sys系统库；引入MGR；<br>8.0：在线持久化全局参数；大幅提高数据字典性能；引入窗口函数、ROLE、直方图、降序索引、不可见索引；修复自增列重启BUG。</p>
+<h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p>Windows平台提供了两种类型的安装包：<br>noinstall压缩包：安装简单，解压即可使用；灵活性差，无法自主选择组件<br>MySQL Installer：安装简单，用向导式一步步提示安装，可以灵活选择安装、删除、更改MySQL提供的所有组件<br>MySQL Installer为官方推荐安装方式，分为两种类型：<br>mysql-installer-web-community：安装包很小，安装时需要连接互联网，组件需要在线下载最新版本；<br>mysql-installer-community：安装时不需要连网，安装包中包含了完整的组件，安装包较大，下载过程慢，但安装过程很快。<br>下载地址：<a href="https://dev.mysql.com/downloads/installer/" target="_blank" rel="noopener">https://dev.mysql.com/downloads/installer/</a></p>
+<p>在Liunx平台下，mysql.com官方也提供了多种安装方式。不同的安装方式需要下载的安装包也不同，具体如下所示：<br>Yum/APT/SUSE Repository：安装仓库包极小，版本安装简单灵活，升级方便；<br>RPM包：安装简单；灵活性差，无法灵活选择版本、升级；<br>通用二进制包：安装较为复杂，灵活性高，平台通用性好；<br>源码包：安装最复杂，时间长，参数设置灵活，性能好。<br>下载地址：<a href="https://dev.mysql.com/downloads/shell/" target="_blank" rel="noopener">https://dev.mysql.com/downloads/shell/</a></p>
+<h2 id="Mysql启动和关闭"><a href="#Mysql启动和关闭" class="headerlink" title="Mysql启动和关闭"></a>Mysql启动和关闭</h2><p>方法一：<br>Windows的“开始”菜单（单击“开始” —-&gt; “控制面板” —-&gt; “管理工具” —-&gt; “服务”菜单 ）中找到MySQL80服务，可以右键单击“启动”或“停止”按钮来启动和关闭MySQL服务。<br>方法二：<br>运行 —-&gt;  services.msc指令 找到MySQL80服务，可以右键单击“启动”或“停止”按钮来启动和关闭MySQL服务。<br>方法三：<br>运行 —-&gt; cmd —-&gt; net start mysql80 启动服务<br>net stop mysql80 停止服务</p>
+<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><p>查看MySQL的服务状态：# netstat -nlp<br>服务的方式：<br>启动服务 #service mysqld start 如果在启动状态，需要重新启动服务  #service mysqld restart<br>关闭服务 #service mysqld stop<br>命令行方式：<br>启动服务 # cd /usr/bin # ./mysqld_safe &amp;<br>关闭服务 # mysqladmin -uroot shutdown</p>
+<h2 id="SQL简介"><a href="#SQL简介" class="headerlink" title="SQL简介"></a>SQL简介</h2><p>什么是SQL？<br><strong>SQL指结构化查询语言（Structured Query Language）</strong><br><strong>SQL使我们有能力访问数据库</strong><br><strong>SQL是一种 ANSI的标准计算机语言</strong><br>SQL能做什么？<br>SQL面向数据库执行查询<br>SQL可在数据库中插入新的记录<br>SQL可更新数据库中的数据<br>SQL可从数据库删除记录<br>SQL可创建新数据库<br>SQL可在数据库中创建新表<br>SQL可在数据库中创建存储过程<br>SQL可在数据库中创建视图<br>SQL可以设置表、存储过程和视图的权限</p>
+<p>SQL是一种标准，但是：<br>SQL是一门ANSI的标准计算机语言，用来访问和操作数据库系统。SQL语句用于查询和更新数据库中的数据。SQL可与数据库程序协同工作，比如MS-Access、DB2、MS SQL Server、Oracle、MySQL以及其他数据库系统。<br>不幸地是，存在着很多不同版本的SQL语言，但是为了与ANSI标准相兼容，它们必须以相似的方式共同地来支持一些主要的关键词（比如SELECT、UPDATE、INSERT、DELETE、WHERE等）。<br>注释：除了SQL标准以外，大部分SQL数据库程序都拥有它们自己<strong>私有的扩展</strong>。</p>
+<h2 id="SQL入门"><a href="#SQL入门" class="headerlink" title="SQL入门"></a>SQL入门</h2><p>SQL语句主要可以划分为以下3个类别：</p>
+<ul>
+<li><p>DDL（Data Definition Language）语句：数据定义语言，这些语句定义了不同的数据段、数据库、表、列、索引等数据库对象。常用的语句关键字主要包括create、drop、alter等。</p>
+</li>
+<li><p>DML（Data Manipulation Language）语句：数据操纵语句，用于添加、删除、更新和查询数据库记录，并检查数据完整性。常用的语句关键字主要包括insert、delete、update和select等。</p>
+</li>
+<li><p>DCL（Data Control Language）语句：数据控制语句，用于控制不同数据段直接的许可和访问级别的语句。这些语句定义了数据库、表、字段、用户的访问权限和安全级别。常用的语句关键字主要包括grant、revoke等。</p>
+</li>
+</ul>
+<p>简单来说，DDL就是对数据库内部的对象进行创建、删除、修改等操作的语言。它和DML语句的最大区别是：DML只是操作表内部的数据，而不涉及表的定义、结构的修改，更不会涉及到其他对象。<br>DDL语句更多地是由数据库管理员（DBA）使用，开发人员一般很少使用。</p>
+<h3 id="数据库信息介绍"><a href="#数据库信息介绍" class="headerlink" title="数据库信息介绍"></a>数据库信息介绍</h3><p>启动MySQL服务后，打开MySQL 8.0 Command Line Client菜单，输入密码，正确输入后如下图所示：<br><img src="/2020/04/19/mysql/image373.png" alt></p>
+<p>Commands end with ; or \g.         命令的结束符，用“；“或者“\g”结束<br>Your MySQL connection id is 9      客户端的连接ID，这个数字记录了MySQL服务到目前为止的次数；每个新的连接都会自动加1，本例中是9<br>Server version: 8.0.18 MySQL Community Server - GPL    MySQL服务器的版本和类型，本例中是“8.0.18 MySQL Community Server - GPL”，说明是8.0.18社区发行版<br>Type ‘help;’ or ‘\h’ for help. Type ‘\c’ to clear the current input statement   通过“help;”或者“\h”命令来显示帮助内容，通过“\c”命令来清除命令行buffer</p>
+<h2 id="DDL数据定义语言"><a href="#DDL数据定义语言" class="headerlink" title="DDL数据定义语言"></a>DDL数据定义语言</h2><h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><pre><code>CREATE DATABASE IF NOT EXISTS imooc DEFAULT CHARACTER SET &apos;UTF8&apos;;</code></pre><h3 id="查看所有数据库-show-databases"><a href="#查看所有数据库-show-databases" class="headerlink" title="查看所有数据库 show databases"></a>查看所有数据库 show databases</h3><pre><code>&apos;information_schema&apos;
+&apos;mysql&apos;
+&apos;performance_schema&apos;
+&apos;sys&apos;</code></pre><ul>
+<li>information_schema：主要存储系统中的一些数据库对象信息，比如用户表信息、列信息、权限信息、字符集信息、分区信息等。每个用户都可以查看这个数据库，但根据权限的不同看到的内容不同。</li>
+<li>performance_schema：MySQL5.5引入的系统库，用于存储系统性能相关的动态参数表。</li>
+<li>sys：MySQL5.7引入的系统库，本身不记录系统数据，基于information_schema和performance_schema之上，封装了一层更加易于调优和诊断的系统视图。</li>
+<li>mysql：存储系统的用户权限信息。</li>
+</ul>
+<h3 id="选择数据库"><a href="#选择数据库" class="headerlink" title="选择数据库"></a>选择数据库</h3><pre><code>use dbname;</code></pre><h3 id="查看某个数据库下所有数据表"><a href="#查看某个数据库下所有数据表" class="headerlink" title="查看某个数据库下所有数据表"></a>查看某个数据库下所有数据表</h3><pre><code>show tables;</code></pre><h3 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h3><pre><code>drop database dbname;</code></pre><h2 id="表操作"><a href="#表操作" class="headerlink" title="表操作"></a>表操作</h2><h3 id="查看表"><a href="#查看表" class="headerlink" title="查看表"></a>查看表</h3><h4 id="查看表基本信息"><a href="#查看表基本信息" class="headerlink" title="查看表基本信息"></a>查看表基本信息</h4><pre><code>desc tablename;</code></pre><p><img src="/2020/04/19/mysql/image374.png" alt></p>
+<h4 id="查看建表语句"><a href="#查看建表语句" class="headerlink" title="查看建表语句"></a>查看建表语句</h4><pre><code>show create table tablename;</code></pre><p><img src="/2020/04/19/mysql/image375.png" alt></p>
+<h4 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h4><pre><code>drop table tablename;</code></pre><h3 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h3><ul>
+<li>基本语法（修改表类型）：ALTER TABLE tablename MODIFY [COLUMN] column_definition [FIRST | AFTER col_name];</li>
+<li>基本语法（增加表字段）：ALTER TABLE tablename ADD [COLUMN] column_definition [FIRST | AFTER col_name];</li>
+<li>基本语法（删除表字段）：ALTER TABLE tablename DROP [COLUMN] col_name;</li>
+<li>基本语法（字段改名）：ALTER TABLE tablename CHANGE [COLUMN] old_col_name column_definition [FIRST | AFTER col_name];</li>
+<li>基本语法（修改字段排列顺序）：ALTER TABLE tablename  [ADD|MODIFY] col_name column_definition [FIRST | AFTER col_name]</li>
+<li>基本语法（更改表名）：ALTER TABLE tablename RENAME [TO] new_tablename</li>
+</ul>
+<h4 id="添加字段"><a href="#添加字段" class="headerlink" title="添加字段"></a>添加字段</h4><pre><code>CREATE TABLE IF NOT EXISTS user1(
+    id INT UNSIGNED KEY AUTO_INCREMENT,
+    username VARCHAR(20) NOT NULL
+);
+
+ALTER TABLE user1
+ADD email VARCHAR(50) NOT NULL;
+
+ALTER TABLE user1
+ADD addr VARCHAR(50) NOT NULL DEFAULT &apos;中国&apos; UNIQUE KEY;
+
+ALTER TABLE user1
+ADD tel CHAR(11) NOT NULL;
+
+ALTER TABLE user1
+ADD card CHAR(30) NOT NULL;</code></pre><h4 id="删除字段"><a href="#删除字段" class="headerlink" title="删除字段"></a>删除字段</h4><pre><code>ALTER TABLE user1
+DROP card;</code></pre><h4 id="修改字段"><a href="#修改字段" class="headerlink" title="修改字段"></a>修改字段</h4><pre><code>CREATE TABLE IF NOT EXISTS user2(
+    id INT UNSIGNED KEY AUTO_INCREMENT,
+    username VARCHAR(20) NOT NULL,
+    email VARCHAR(50) NOT NULL
+);
+
+ALTER TABLE user2
+ALTER email SET DEFAULT &apos;1612820633@qq.com&apos;;</code></pre><h4 id="重定义字段"><a href="#重定义字段" class="headerlink" title="重定义字段"></a>重定义字段</h4><pre><code>CREATE TABLE IF NOT EXISTS user3(
+    id INT UNSIGNED KEY AUTO_INCREMENT,
+    username VARCHAR(20) NOT NULL,
+    email VARCHAR(50) NOT NULL
+);
+
+ALTER TABLE user3
+MODIFY username VARCHAR(30) NOT NULL;
+
+ALTER TABLE user3
+CHANGE username name VARCHAR(25) NOT NULL UNIQUE KEY;</code></pre><h4 id="添加键和索引"><a href="#添加键和索引" class="headerlink" title="添加键和索引"></a>添加键和索引</h4><pre><code>CREATE TABLE IF NOT EXISTS user4(
+    id INT UNSIGNED,
+    username VARCHAR(20) NOT NULL,
+    email VARCHAR(50) NOT NULL
+);
+
+ALTER TABLE user4
+ADD PRIMARY KEY(id);
+
+ALTER TABLE user4
+DROP PRIMARY KEY;
+
+ALTER TABLE user4
+ADD UNIQUE KEY(email);
+
+ALTER TABLE user4
+DROP INDEX email;
+
+ALTER TABLE user4
+ADD UNIQUE INDEX uni_email(email);
+
+ALTER TABLE user4
+DROP INDEX email;</code></pre><h4 id="添加外键"><a href="#添加外键" class="headerlink" title="添加外键"></a>添加外键</h4><pre><code>--添加外键
+ALTER TABLE news
+ADD FOREIGN KEY(cateId) REFERENCES news_cate(id);
+
+--如果创建外键时不命名,删除时还要查询外键的名字.
+ALTER TABLE news
+DROP FOREIGN KEY news_ibfk_1;
+
+--创建外键时命名
+ALTER TABLE news
+ADD CONSTRAINT cateId_fk_newsCate FOREIGN KEY(cateId) REFERENCES news_cate(id);
+
+--指定级联操作
+ALTER TABLE news
+ADD FOREIGN KEY(cateId) REFERENCES news_cate(id)
+ON DELETE CASCADE ON UPDATE CASCADE;</code></pre><h2 id="DML数据操纵语句"><a href="#DML数据操纵语句" class="headerlink" title="DML数据操纵语句"></a>DML数据操纵语句</h2><h3 id="插入语句"><a href="#插入语句" class="headerlink" title="插入语句"></a>插入语句</h3><p>基本语法：<br>1、可以不用指定列名，但是values后面的顺序应该和字段的排列顺序一致；<br>INSERT INTO tablename(field1,field2,…fieldn) VALUES(value1,value2,…,valuen);<br>2、含可空的字段、非空但含有默认值的字段以及自增字段，可以不在insert后的字段列表里面出现，values后面对应字段名称的值；<br>· INSERT INTO tablename(field1,field2,…fieldn) VALUES<br>(record1_value1,record1_value2,…,record1_valuen)，(record2_value1,record2_value2,…,record2_valuen)，<br>…<br>(recordn_value1,recordn_value2,…,recordn_valuen);</p>
+<h4 id="单行插入和多行插入"><a href="#单行插入和多行插入" class="headerlink" title="单行插入和多行插入"></a>单行插入和多行插入</h4><pre><code>CREATE TABLE IF NOT EXISTS user(
+    id INT UNSIGNED AUTO_INCREMENT KEY COMMENT &apos;编号&apos;,
+    username VARCHAR(20) NOT NULL UNIQUE COMMENT &apos;用户名&apos;,
+    age TINYINT UNSIGNED NOT NULL DEFAULT 18 COMMENT &apos;年龄&apos;,
+    email VARCHAR(50) NOT NULL DEFAULT &apos;imooc.@qq.com&apos; COMMENT &apos;邮箱&apos;
+)ENGINE=INNODB CHARSET=UTF8;
+
+--不指定字段名称
+INSERT user VALUES(1,&apos;TOM&apos;,14,&apos;tom@qq.com&apos;);
+--此处因为有AUTO_INCREMENT,否则设置为主键的字段给NULL会报错,但是什么也不写也报错.
+INSERT user VALUES(NULL,&apos;JACK&apos;,15,&apos;JACK@qq.com&apos;);
+INSERT user VALUES(DEFAULT,&apos;LUCY&apos;,16,&apos;LUCY@qq.com&apos;);
+
+--列出指定字段的形式
+INSERT user (id,username)VALUES(10,&apos;奥特&apos;);
+
+INSERT user (username,id)VALUES(&apos;曼&apos;,15);
+
+--一次插入3条记录
+INSERT user VALUES(DEFAULT,&apos;A&apos;,DEFAULT,DEFAULT),
+(DEFAULT,&apos;B&apos;,DEFAULT,DEFAULT),(DEFAULT,&apos;C&apos;,DEFAULT,DEFAULT);
+
+--INSERT ... SET 的形式
+INSERT user SET username=&apos;D&apos;,age=&apos;16&apos;,email=&apos;123qq.com&apos;;</code></pre><h4 id="用其他表的数据插入指定表中"><a href="#用其他表的数据插入指定表中" class="headerlink" title="用其他表的数据插入指定表中"></a>用其他表的数据插入指定表中</h4><pre><code>--创建一个数据表user3
+CREATE TABLE IF NOT EXISTS user3(
+    id INT UNSIGNED AUTO_INCREMENT KEY COMMENT &apos;编号&apos;,
+    username VARCHAR(20) NOT NULL UNIQUE COMMENT &apos;用户名&apos;,
+    age TINYINT UNSIGNED NOT NULL DEFAULT 18 COMMENT &apos;年龄&apos;,
+    email VARCHAR(50) NOT NULL DEFAULT &apos;imooc.@qq.com&apos; COMMENT &apos;邮箱&apos;
+)ENGINE=INNODB CHARSET=UTF8;
+
+--快速的把表user中的数据导入到user3中
+
+INSERT user3(id,username,age,email) SELECT id,username,age,email FROM user;</code></pre><h3 id="更新语句"><a href="#更新语句" class="headerlink" title="更新语句"></a>更新语句</h3><p>基本语法：<br>UPDATE tablename SET field1=value1,field2=value2,…fieldn=valuen [WHERE CONDITION];<br>同时更新多个表中数据<br>UPDATE t1,t2,…tn set t1.field1=expr1,tn.fieldn=exprn  [WHERE CONDITION]<br>注意：多表更新的语法更多地用于根据一个表的字段来动态地更新另一个表的字段。</p>
+<h4 id="单表更新"><a href="#单表更新" class="headerlink" title="单表更新"></a>单表更新</h4><pre><code>--测试更新语句
+--只有设置为主键或者唯一索引的字段可以作为修改的条件
+UPDATE user SET age=30 WHERE id=1;
+
+UPDATE user SET username=&apos;李富贵&apos; WHERE username=&apos;A&apos;;
+
+--UPDATE user SET username=&apos;哈士奇&apos; WHERE age=16;错误
+
+--一次修改多个字段,用逗号间隔就可以
+UPDATE user SET username=&apos;哈士奇&apos;,age=2,email=&apos;二哈@qq.com&apos; WHERE id=19;
+
+--其他自定义设置
+
+UPDATE user SET age=age+10;
+
+UPDATE user SET age=age-20,email=DEFAULT WHERE id&lt;=5;</code></pre><h3 id="删除语句"><a href="#删除语句" class="headerlink" title="删除语句"></a>删除语句</h3><pre><code>--测试删除语句
+
+DELETE FROM user2 WHERE name=&apos;AA&apos;;
+
+--删除操作并不需要删除条件为设置为逐渐或者唯一索引的字段
+--若有多个age=28的数据,则全部删除
+DELETE FROM user3 WHERE age=28;
+
+--删除整个数据表所有数据
+DELETE FROM user3;
+
+--清空整个数据表之后,AUTO_INCREMENT仍为最后一个数据的值加一，并非从1开始
+
+--将AUTO_INCREMENT的值重置为1
+ALTER TABLE user3 AUTO_INCREMENT=1;</code></pre><h4 id="清空数据表"><a href="#清空数据表" class="headerlink" title="清空数据表"></a>清空数据表</h4><pre><code>--清空数据表并将AUTO_INCREMENT的值重置为1
+TRUNCATE user3;</code></pre><h3 id="查询语句"><a href="#查询语句" class="headerlink" title="查询语句"></a>查询语句</h3><pre><code>--查询表中所有记录
+SELECT * FROM user;
+
+--查询部分信息
+SELECT id,username,age FROM user;
+
+--查询practise数据库下user表中的所有记录
+SELECT * FROM practise.user;
+
+--AS关键字可以给字段取别名,显示以字段的别名显示
+SELECT id AS &apos;编号&apos;,username AS &apos;用户名&apos;,email AS &apos;邮箱&apos; FROM user;
+
+--给表取别名
+SELECT id,username FROM user AS u;
+
+--测试表名,字段名
+SELECT user1.id,user1.username FROM user1;</code></pre><h4 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h4><p>=、&gt;、&lt;、&lt;=、&gt;=、!= and、or in</p>
+<pre><code>--测试WHERE 条件的比较运算符
+--查询user表中id=16的数据
+SELECT id,username,age,email FROM user
+WHERE id=16;
+
+--插入一个新的字段sex
+ALTER TABLE user
+ADD sex ENUM(&apos;男&apos;,&apos;女&apos;,&apos;保密&apos;) DEFAULT &apos;保密&apos;;
+
+UPDATE user SET sex=&apos;男&apos;
+WHERE id IN(1,2,3,10,12,15,14,16);
+
+UPDATE user SET sex=&apos;女&apos;
+WHERE id&gt;=20;
+
+--插入一个新的字段salary
+ALTER TABLE user
+ADD salary INT NOT NULL;
+
+UPDATE user SET salary=1000
+WHERE id&lt;=10;
+
+--无效  &gt;id&gt;
+--UPDATE user SET salary=2000
+--WHERE 20&gt;id&gt;=11;
+--正确写法
+UPDATE user SET salary=2000
+WHERE id&gt;=11 AND id&lt;20;</code></pre><h4 id="lt-gt-NULL-IS-NULL"><a href="#lt-gt-NULL-IS-NULL" class="headerlink" title="&lt;=&gt;NULL/IS NULL"></a>&lt;=&gt;NULL/IS NULL</h4><pre><code>UPDATE user SET salary=3000
+WHERE id&gt;=20;
+--要用&lt;=&gt;
+--SELECT id,username,age,email,userdesc FROM user
+--WHERE userdesc=NULL;
+
+SELECT id,username,age,email,userdesc FROM user
+WHERE userdesc&lt;=&gt;NULL;
+--效果同上
+SELECT id,username,age,userdesc FROM user
+WHERE userdesc IS NULL;
+
+SELECT id,username,age,userdesc FROM user
+WHERE userdesc IS NOT NULL;</code></pre><h4 id="BETWEEN-AND"><a href="#BETWEEN-AND" class="headerlink" title="BETWEEN AND"></a>BETWEEN AND</h4><pre><code>--测试范围BETWEEN AND
+--查询年龄在10~20之间的用户
+SELECT id,username,age FROM user
+WHERE age BETWEEN 10 AND 20;</code></pre><h4 id="IN"><a href="#IN" class="headerlink" title="IN"></a>IN</h4><pre><code>--测试指定集合 IN  集合中的数据不必全为表中数据,查询时只显示表中有的id
+SELECT id,username,age FROM user
+WHERE id IN(1,2,3,100,101);</code></pre><h4 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h4><pre><code>--模糊查询
+--以李开头的
+SELECT id,username,age,sex,salary FROM user
+WHERE username LIKE &apos;李%&apos;;
+
+--包含李的
+SELECT id,username,age,sex,salary FROM user
+WHERE username LIKE &apos;%李%&apos;;
+
+--以李结尾的
+SELECT id,username,age,sex,salary FROM user
+WHERE username LIKE &apos;%李&apos;;
+
+--三个字符长度
+SELECT id,username,age,sex,salary FROM user
+WHERE username LIKE &apos;___&apos;;
+
+SELECT id,username,age,sex,salary FROM user
+WHERE username LIKE &apos;李__&apos;;
+
+SELECT id,username,age,sex,salary FROM user
+WHERE username LIKE &apos;李_%&apos;;</code></pre><h3 id="GROUP-BY-分组"><a href="#GROUP-BY-分组" class="headerlink" title="GROUP BY 分组"></a>GROUP BY 分组</h3><p>基本语法：</p>
+<pre><code>SELECT [field1,field2,...,fieldn] fun_name from tablename
+[WHERE where_contition]
+[GROUP BY field1,field2,...,fieldn [WITH ROLLUP]]
+[HAVING where_contition]</code></pre><p>fun_name：表示要做的聚合操作，也就是聚合函数，常用的有sum（求和）、count(<em>)（记录数）、avg（平均值）、max（最大值）、min（最小值）<br>GROUP BY：关键字表示要进行分类聚合的字段，比如要按照部门分类统计员工数据，部门就应该写在GROUP BY后面<br>WITH ROLLUP：是可选参数，表明是否对分类聚合后的结果进行再汇总<br>HAVING：关键字表示对分类后的结果再进行条件的过滤<br>注意：<br>HAVING和WHERE的区别在于，*</em>HAVING是对聚合后的结果进行条件的过滤，而WHERE是在聚合前就对记录进行过滤**。如果逻辑允许，我们尽可能用WHERE先过滤记录，因为这样的结果集减小，聚合的效率将大大提高，最后再根据逻辑看是否用HAVING进行再过滤。</p>
+<pre><code>--测试分组
+SELECT id,username,age,sex FROM user
+GROUP BY sex;
+
+SELECT GROUP_CONCAT(age),GROUP_CONCAT(username),GROUP_CONCAT(id),sex AS group_age FROM user
+GROUP BY sex;
+
+SELECT GROUP_CONCAT(id) FROM user
+GROUP BY sex;
+
+--COUNT()统计数量
+SELECT COUNT(*) FROM user;
+
+SELECT COUNT(id) FROM user;
+
+--练习,根据性别分组,得到用户名详情和各组中的人数
+SELECT GROUP_CONCAT(username) AS username,COUNT(*) AS usercount,sex FROM user GROUP BY sex;</code></pre><h4 id="WITH-ROLLUP"><a href="#WITH-ROLLUP" class="headerlink" title="WITH ROLLUP"></a>WITH ROLLUP</h4><pre><code>SELECT GROUP_CONCAT(username) AS username,COUNT(*) AS usercount,
+SUM(age) AS sum_age,
+MAX(age) AS max_age,
+MIN(age) AS min_age,
+AVG(age) AS avg_age,sex FROM user
+GROUP BY sex WITH ROLLUP;
+--WITH ROLLUP 显示表中所有数据
+
+--数字3表示上面SELECT列表中第3个
+SELECT GROUP_CONCAT(username) AS username,COUNT(*),sex FROM user
+GROUP BY 3;</code></pre><h4 id="HAVING"><a href="#HAVING" class="headerlink" title="HAVING"></a>HAVING</h4><pre><code>--HAVING()对于分组结果进行二次筛选,条件是组中元素&gt;=3
+--写法一
+SELECT GROUP_CONCAT(username) AS usersDetail,COUNT(*),sex FROM user
+WHERE age&gt;=20
+GROUP BY sex
+HAVING COUNT(*)&gt;=3;
+
+--写法二
+SELECT GROUP_CONCAT(username) AS usersDetail,COUNT(*) AS count,sex FROM user
+WHERE age&gt;=20
+GROUP BY sex
+HAVING count&lt;=3;</code></pre><h3 id="ORDER-BY-排序"><a href="#ORDER-BY-排序" class="headerlink" title="ORDER BY 排序"></a>ORDER BY 排序</h3><p>排序和限制<br>基本语法：</p>
+<pre><code>SELECT * FROM tablename [WHERE CONDITION] [ORDER BY field1 [DESC|ASC] , field2 [DESC|ASC] , ... fieldn [DESC|ASC]];</code></pre><p>DESC：降序排列<br>ASC：升序排列，默认方式<br>对于排序后的记录，如果希望只显示一部分，而不是全部，则可以使用LIMIT关键字来实现：</p>
+<pre><code>SELECT ... ... [LIMIT offset_start,row_count];</code></pre><p>offset_start：表示记录的起始偏移量<br>row_count：表示显示的行数<br>注意：<br>LIMIT经常和order by一起配合使用来进行记录的分页显示；<br>LIMIT属于在MySQL扩展SQL92后的语法，在其他数据库上不能使用。</p>
+<pre><code>--测试排序
+--按照id降序排序
+SELECT id,username,age FROM user
+ORDER BY id DESC;
+
+--默认是升序排序
+SELECT id,username,age FROM user
+ORDER BY id;
+--按照多个字段排序 主要对第一个字段age进行排序,id起辅助作用,对age值相同的数据,再根据
+--id的值为依据来排序
+SELECT id,username,age FROM user
+ORDER BY age ASC , id DESC;
+
+SELECT id,username,age FROM user
+WHERE id&gt;=20
+ORDER BY id DESC;
+
+--随即记录
+SELECT id,username,age FROM user
+ORDER BY RAND();</code></pre><h3 id="LIMIT"><a href="#LIMIT" class="headerlink" title="LIMIT"></a>LIMIT</h3><pre><code>--实现LIMIT语句
+--显示结果集的前5条记录
+SELECT id,username,age,sex FROM user
+LIMIT 5;
+
+--[0,5)左闭右开区间
+SELECT id,username,age,sex FROM user
+LIMIT 0,5;</code></pre><h2 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h2><h3 id="笛卡尔积的形式"><a href="#笛卡尔积的形式" class="headerlink" title="笛卡尔积的形式"></a>笛卡尔积的形式</h3><p>查询员工信息以及所在的部门<br>(1)Select * from 表1,表2【 where 条件】<br>(2)如果没有条件查出表1的每条数据都要与表2的每条数据对应查出一条数据进行输出<br>(3)如果有查询条件，根据条件进行筛选<br>(4)select e.ename,d.dname from dept d,emp e where d.deptno=e.deptno</p>
+<pre><code>CREATE TABLE IF NOT EXISTS emp(
+    id INT UNSIGNED KEY AUTO_INCREMENT,
+    username VARCHAR(20) NOT NULL UNIQUE COMMENT &apos;姓名&apos;,
+    age TINYINT UNSIGNED NOT NULL DEFAULT 18 COMMENT &apos;年龄&apos;,
+    sex ENUM(&apos;男&apos;,&apos;女&apos;,&apos;保密&apos;) NOT NULL DEFAULT &apos;保密&apos; COMMENT &apos;性别&apos;,
+    addr VARCHAR(20) NOT NULL DEFAULT &apos;北京&apos; COMMENT &apos;住址&apos;,
+    depId TINYINT UNSIGNED NOT NULL COMMENT &apos;部门对应的编号&apos;
+)ENGINE=INNODB CHARSET=UTF8;
+CREATE TABLE dep(
+    id TINYINT UNSIGNED AUTO_INCREMENT KEY,
+    depName VARCHAR(50) NOT NULL UNIQUE,
+    depDesc VARCHAR(100) NOT NULL DEFAULT &apos;&apos;
+)ENGINE=INNODB CHARSET=UTF8;
+
+--查询emp id username age 部门名称 dep depName
+--此处记录条数为笛卡尔积的形式,表emp和dep的记录的积
+SELECT emp.id,emp.username,emp.sex,depName FROM emp,dep;</code></pre><h3 id="表连接"><a href="#表连接" class="headerlink" title="表连接"></a>表连接</h3><p>当需要同时显示多个表中的字段，可以用表连接来实现。从大类上分，表连接分为内连接和外连接，它们之间最大的区别是，内连接仅选出两张表中互相匹配的记录，而外连接会选出其他不匹配的记录。<br>外连接划分：  emp作为左表    dept 作为右表</p>
+<ul>
+<li>左连接left join：包含所有的左边表中的记录甚至是右边表中没有和它匹配的记录。</li>
+<li>右连接right join：包含所有的右边表中的记录甚至是左边表中没有和它匹配的记录。</li>
+</ul>
+<h4 id="内连接JOIN-INNER-JOIN"><a href="#内连接JOIN-INNER-JOIN" class="headerlink" title="内连接JOIN/INNER JOIN"></a>内连接JOIN/INNER JOIN</h4><pre><code>--内连接 的方式查询多表信息 
+--****注意, 用AS取别名后,SELECT列表中的字段要用别名,否则报错
+SELECT e.id,e.username,e.age,e.sex,d.depName FROM emp AS e
+INNER JOIN dep AS d
+ON e.depId=d.id;
+
+SELECT e.id,e.username,e.age,e.sex,d.depName
+FROM emp AS e
+JOIN dep AS d
+ON e.depId=d.id;</code></pre><h4 id="左外连接LEFT-JOIN"><a href="#左外连接LEFT-JOIN" class="headerlink" title="左外连接LEFT JOIN"></a>左外连接LEFT JOIN</h4><pre><code>--测试左外连接
+SELECT e.id,e.username,e.sex,e.age,d.depName,d.depDesc
+FROM emp AS e
+LEFT OUTER JOIN dep AS d
+ON e.depId=d.id;</code></pre><h4 id="右外连接RIGHT-JOIN"><a href="#右外连接RIGHT-JOIN" class="headerlink" title="右外连接RIGHT JOIN"></a>右外连接RIGHT JOIN</h4><pre><code>--测试右外连接
+SELECT e.id,e.username,e.sex,e.age,d.depName,d.depDesc
+FROM emp AS e
+RIGHT JOIN dep AS d
+ON e.depId=d.id;</code></pre><h3 id="多表连接"><a href="#多表连接" class="headerlink" title="多表连接"></a>多表连接</h3><pre><code>--多表连接
+SELECT p.id,p.productName,p.price,c.cateName,a.username AS adminname,
+a.email AS adminemail
+FROM practise_cate AS p
+INNER JOIN catetype AS c
+ON p.cateid=c.id
+INNER JOIN practise_admin AS a
+ON p.adminId=a.id
+WHERE p.price&lt;=1000
+ORDER BY p.price DESC
+LIMIT 0,2;</code></pre><h3 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h3><p><strong>在某些情况下，当进行查询的时候，需要的条件是另外一个select语句的结果，这个时候，就要用到子查询</strong>。用于子查询的关键字主要包括in、not in、=、!=、exists、not exists等。</p>
+<h4 id="exists、not-exists"><a href="#exists、not-exists" class="headerlink" title="exists、not exists"></a>exists、not exists</h4><p>Exists：<strong>判断子句是否会返回一行数据，返回true 或者false</strong><br><strong>如果是true  执行外层语句</strong><br><strong>如果是false  没有结果返回</strong><br>not exists与它相反</p>
+<pre><code>select * from emp el where exists (select * from emp e2 where e2.empno=7369)</code></pre><h4 id="UNION-UNION-ALL"><a href="#UNION-UNION-ALL" class="headerlink" title="UNION | UNION ALL"></a>UNION | UNION ALL</h4><p>我们经常会碰到这样的应用，将两个表的数据按照一定的查询条件查询出来后，将结果合并到一起显示出来，这个时候，就需要用union和union all关键字来实现这样的功能，具体语法如下：<br>SELECT * FROM t1 UNION|UNION ALL SELECT * FROM t2 ……<br><strong>union和union all的主要区别是union all是把结果集直接合并在一起，而union是将union all后的结果进行一次DISTINCT，去除重复记录后的结果。</strong></p>
+<pre><code>select * from emp where sal&gt;2400 union | select * from emp where deptno=20</code></pre><h2 id="DCL-数据控制语句"><a href="#DCL-数据控制语句" class="headerlink" title="DCL 数据控制语句"></a>DCL 数据控制语句</h2><p>利用数据定义语言定义新用户</p>
+<ul>
+<li>Create user ‘用户名称’@’localhost’ identified by ‘密码’</li>
+<li>Grant 权限名称/all privileges  on 数据库 (数据库.表) to 用户名</li>
+<li>Revoke 权限名称/all privileges  on 数据库 (数据库.表) from 用户名</li>
+</ul>
+<h3 id="用户权限操作"><a href="#用户权限操作" class="headerlink" title="用户权限操作"></a>用户权限操作</h3><pre><code>//用户授于所有权限
+grant all privileges on empmanager.emp to &apos;tivon&apos;@&apos;localhost&apos;
+//解除所有权限
+revoke all privileges on empmanager.emp from &apos;tivon&apos;@&apos;localhost&apos;
+//创建用户并授权
+//创建一个数据库用户z1，具有对sakila数据库中所有表的SELECT/INSERT权限：
+grant select,insert sakila.* to &apos;z1&apos;@&apos;localhost&apos; identified by &apos;123&apos;;
+//解除某些权限
+revoke insert on sakila.* from &apos;z1&apos;@&apos;localhost&apos;;</code></pre><h3 id="帮助命令使用"><a href="#帮助命令使用" class="headerlink" title="帮助命令使用"></a>帮助命令使用</h3><h4 id="contents"><a href="#contents" class="headerlink" title="? contents"></a>? contents</h4><p>用“ ? contents”命令来显示的有可供分类</p>
+<p><img src="/2020/04/19/mysql/image376.png" alt><br>对于列出的分类，可以使用“? 类别名称”的方式针对用户感兴趣的内容做进一步的查看<br><img src="/2020/04/19/mysql/image377.png" alt><br>在实际应用当中，如果需要快速查阅某项语法时，可以使用关键字进行快速查询。<br>例如，想知道show命令都能看到些什么，可以用以下的命令：<br><img src="/2020/04/19/mysql/image378.png" alt></p>
+<h3 id="查询元数据"><a href="#查询元数据" class="headerlink" title="查询元数据"></a>查询元数据</h3><p>在日常工作中，可能经常会遇到类似下面的应用场景：<br>删除数据库test1下所有前缀为tmp的表；<br>将数据库test1下所有存储引擎为myisam的表改为innodb;<br>对于这类需求，在MySQL5.0之前只能通过show table、show create table或者show table status等命令来得到指定数据库下的表名和存储引擎，但通过这些命令显示的内容有限且不适合进行字符串的批量编辑。如果表很多，则操作起来非常低效。<br>MySQL5.0之后提供了一个新的数据库information_schema，用来记录MySQL中的元数据信息。<br>元数据指的是数据的数据，比如表名、列名、列类型、索引名等表的各种属性名称。<br>可以简单地通过两个命令得到需要的SQL语句：</p>
+<pre><code>select concat(&apos;drop table test1.&apos;,table_name,&apos;;&apos;) from tables where table_schema=&apos;test1&apos; and table_name like &apos;tmp%&apos;;
+select concat(&apos;alter table test1.&apos;,table_name,&apos; engine=innodb;&apos;) from tables where table_schema=&apos;test1&apos; and engine=&apos;MyISAM&apos;;</code></pre><p>查询test1这个数据库下面表名以”tmp”为开头的表 返回表名<br><img src="/2020/04/19/mysql/image379.png" alt></p>
+<h4 id="比较常用的视图："><a href="#比较常用的视图：" class="headerlink" title="比较常用的视图："></a>比较常用的视图：</h4><ul>
+<li><strong>SCHEMATA</strong>：该表提供了当前MySQL实例中所有<strong>数据库的信息</strong>，<strong>show databases的结果取之此表</strong>。</li>
+<li><strong>TABLES</strong>：该表提供了关于数据库中的<strong>表的信息</strong>（包括视图），详细表述了某个表属于哪个schema、表类型、表引擎、创建时间等信息。show tables from schemaname的结果取之此表。</li>
+<li><strong>COLUMNS</strong>：该表提供了表中的<strong>列信息</strong>，详细表述了某张表的所有列以及每个列的信息，show columns from schemaname.tablename的结果取之此表。</li>
+<li><strong>STATISTICS</strong>：该表提供了关于表<strong>索引的信息</strong>。show index from schemaname.tablename的结果取之此表。</li>
+</ul>
+<p><img src="/2020/04/19/mysql/image380.png" alt></p>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>MySQL提供了多种数据类型，主要包括：</p>
+<ul>
+<li><strong>数值型</strong></li>
+<li><strong>字符串类型</strong></li>
+<li><strong>日期和时间类型</strong></li>
+</ul>
+<h3 id="数值类型"><a href="#数值类型" class="headerlink" title="数值类型"></a>数值类型</h3><p>标准SQL中的数值类型：<br>严格数值类型：INTEGER、SMALLINT、DECIMAL和NUMERIC<br>近似数值类型：FLOAT、REAL、DOUBLE和PRECISIO<br>扩展后增加的类型：<br>TINYINT、MEDIUMINT、BIGINT、BIT<br>注意：INT是INTEGER的同名词，DEC是DECIMAL的同名词。</p>
+<p><img src="/2020/04/19/mysql/image381.png" alt></p>
+<h3 id="日期时间类型"><a href="#日期时间类型" class="headerlink" title="日期时间类型"></a>日期时间类型</h3><p><img src="/2020/04/19/mysql/image382.png" alt></p>
+<p>如果要用来表示年月日，通常用DATE来表示；<br>如果要用来表示年月日时分秒，通常用DATETIME或者TIMESTAMP表示；<br>如果只用来表示时分秒，通常用TIME来表示；<br>如果只是表示年份， 可以用YEAR来表示，它比DATE占用更少的空间。YEAR有2位或4位格式的年。默认是4位格式中，允许的值是1901<del>2155和0000。在2位格式中，允许的值是70</del>69，表示从1970~2069年。MySQL以YYYY格式显示YEAR值（从5.5.27开始，2位格式的year已经不被支持）。<br>注意：每种日期时间类型都有一个有效值范围，如果超出这个范围，在默认的SQLMode下，系统会进行错误提示.<br>datetime与timestamp的区别是什么？<br>字节数、最大值、最小值 格式</p>
+<pre><code>//Sysdate()获取当前时间 oracle  dual表示一个空表
+select SYSDATE() from dual</code></pre><h3 id="字符类型"><a href="#字符类型" class="headerlink" title="字符类型"></a>字符类型</h3><p>MySQL提供了多种对字符数据的存储类型，不同的版本可能有所差异，以5.7版本为例，MySQL包括了CHAR、VARCHAR、BINARY、VARBINARY、BLOB、TEXT、ENUM和SET等多种字符串类型，如下表所示：<br><img src="/2020/04/19/mysql/image383.png" alt></p>
+<h4 id="CHAR和VARCHAR类型"><a href="#CHAR和VARCHAR类型" class="headerlink" title="CHAR和VARCHAR类型"></a>CHAR和VARCHAR类型</h4><p>两者的主要区别在于<strong>存储方式不同</strong>：<br><strong>CHAR</strong>列的长度固定为创建表时<strong>声明的长度</strong>，而<strong>VARCHAR</strong>列中的值为<strong>可变长字符串</strong>；<br>在检查的时候，<strong>CHAR列删除尾部的空格</strong>，而<strong>VARCHAR则保留这些空格</strong><br>课堂案例：<br>创建测试表vc，并定义两个字段“v VARCHAR(4)”和“c CHAR(4)”；<br>v列和c列中同时插入字符串“ab  “；<br>显示查询结果并分析上述区别；</p>
+<h4 id="BINARY和VARBINARY类型："><a href="#BINARY和VARBINARY类型：" class="headerlink" title="BINARY和VARBINARY类型："></a>BINARY和VARBINARY类型：</h4><p>BINARYT和VARBINARY类似于CHAR和VARCHAR，不同的是它们<strong>包含二进制字符串</strong>而不包含非二进制字符串。<br>课堂案例（研究一下这个字符到底是如何存储的）：<br>创建测试表t，字段为c BINARY（3）；<br>插入字符”a“；<br>分别用以下几种来查看c列的内容；<br>select *,hex(c),c=’a’,c=’a\0’,c=’a\0\0’ from t；可以发现，当保存BINARY值时，在值的最后通过填充”0X00“（零字节）以达到指定的字段定义长度。</p>
+<h4 id="ENUM类型："><a href="#ENUM类型：" class="headerlink" title="ENUM类型："></a>ENUM类型：</h4><p>ENUM中文名称叫<strong>枚举类型</strong>，<strong>它的值范围需要在创建表时通过枚举方式显示指定</strong>，对1<del>255个成同的枚举需要1个字节存储，对于255</del>65535个成员，需要2个字节来存储。最多允许65535个成员。<br>课堂案例：<br>创建测试表t，定义gender字段为枚举类型，成员为”M“和”F“；<br>插入4条不同的记录（’M’,’1’,’f’,NULL）；<br>注意：<br>忽略大小写<br>插入不在ENUM范围内的值时，插入的是第一个值（高版本会检测）<br>只允许从值集合中选取单个值，不能一次取多个值</p>
+<h4 id="SET类型："><a href="#SET类型：" class="headerlink" title="SET类型："></a>SET类型：</h4><p>SET和ENUM类型非常类似，也是一个<strong>字符串对象</strong>，里面<strong>可以包含0~64个成员</strong>。<strong>根据成员的不同，存储上也有所不同。</strong><br>1<del>8成员的集合，占1个字节<br>9</del>16成员的集合，占2个字节<br>17<del>24成员的集合，占3个字节<br>25</del>32成员的集合，占4个字节<br>33~64成员的集合，占8个字节<br>注意：<br><strong>SET和ENUM除了存储以外，最主要的区别在于SET类型一次可以选取多个成员，而ENUM则只能选一个。</strong><br><strong>SET中重复值只取一次</strong><br><strong>超出范围的内值不允许插入操作</strong><br><img src="/2020/04/19/mysql/image384.png" alt><br><img src="/2020/04/19/mysql/image385.png" alt></p>
+<p><strong>CHAR和VARCHAR两者之间的区别是什么？</strong><br><strong>SET和ENUM的区别是什么？</strong></p>
+<h4 id="JSON类型"><a href="#JSON类型" class="headerlink" title="JSON类型"></a>JSON类型</h4><p>JSON是JavaScript Object Notation的缩写，它是一种数据交换格式。<br>JSON类型比字符类型有如下优点：<br>JSON数据类型会自动校验数据是否为JSON格式，如果不是JSON格式数据，则会报错；<br>MySQL提供了一组操作JSON数据的内置函数，可以方便地提取各类数据，可以修改特定的键值；<br>优化的存储格式，存储在JSON列中的JSON数据被转换成内部的存储格式，允许快速读取；<br>简单地说，<strong>JSON实际就是Javascript的一个子集，支持的数据类型包括NUMBER、STRING、BOOLEAN、NULL、ARRAY、OBJECT共6种，一个JSON中的元素可以是这6种类型元素的任意组合</strong>；</p>
+<ul>
+<li>BOOLEAN：true/false</li>
+<li>NULL：null</li>
+<li>字符串和日期类型：用双引号引起来</li>
+<li>ARRAY：括号引起来</li>
+<li>OBJECT：KV，要用大括号引起来</li>
+</ul>
+<p>注意：JSON，数据类型对于大小写是敏感的，常见的null、true、false必须是小写才合适。</p>
+<h2 id="MySQL支持的运算符"><a href="#MySQL支持的运算符" class="headerlink" title="MySQL支持的运算符"></a>MySQL支持的运算符</h2><h3 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h3><p>+：加法<br>-：减法<br>*：乘法<br>/、DIV：除法，返回商<br>%、MOD：除法，返回余数<br>描述：<br>+：运算符用于获得一个或多个值的和；<br>-：运算符用于从一个值中减去另一个值；<br>*：运算符使数字相乘，得到两个或多个值的乘积；<br>/：运算符用一个值除以另一个值得到商；<br>%：运算符用一个值除以另外一个值得到余数；<br>注意：在除法运算和模运算中，如果除数为0，将是非法除数，返回结果为NULL。</p>
+<h3 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h3><p>“=”运算符：用于比较运算符两侧的操作数是否相等，如果两侧操作数相等，则返回值为1，否则为0。注意NULL不能用于“=”比较。<br>“&lt;&gt;”运算符：和“=”相反，如果两侧操作数不等，则值为1，否则为0。NULL不能用于“&lt;&gt;”比较。<br>“&lt;=&gt;”运算符：和”=“类似，在操作数相等时值为1，不同之处在于即使操作的值为NULL也可以正确比较。<br>”&lt;”运算符：当左侧操作数小于右侧操作数时，其返回值为1，否则其值为0。<br>“&lt;=”运算符：当左侧操作数小于等于右侧操作数时，其返回值为1，否则返回值为0。<br>“&gt;”运算符：当左侧操作数大于右侧操作数时，其返回值为1，否则返回值为0。<br>”&gt;=”运算符：当左侧操作大于等于右侧操作数时，其返回值为1，否则返回值为0。<br>”BETWEEN“运算符的使用格式为“a BETWEEN min AND max”，当a大于等于min并且小于等于max，则返回值为1，否则返回0。<br>”IN“运算符使用的格式为”a IN(value1,value2…)“，当a的值存在于列表中时，则整个比较表达式返回的值为1，否则返回0。<br>”IS NULL“运算符的使用格式为”a IS NULL“，当a的值为NULL，则返回值为1，否则返回值为0。<br>”IS  NOT NULL“运算符的使用格式为”a IS NOT NULL“，当a的值为不为NULL，则返回值为1，否则返回值为0。<br>”LIKE“运算符的使用格式为”a LIKE %123%“，当a中含有字符串”123“时，则返回值为1，否则返回值0。  模糊搜索  %：0~n个字符    _：表示一个字符<br>”REGEXP“运算符的使用格式为”str REGEXP str_pat“，当字符串中含有str_pat相匹配的字符串，则返回值为1，否则返回0。</p>
+<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><p>“NOT” 或 “!” 表示逻辑非。<br>“AND” 或 “&amp;&amp;” 表示逻辑与运算。<br>“OR” 或 “||” 表示逻辑或运算。<br>“XOR” 表示逻辑异或。</p>
+<h3 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h3><p>“&amp;” 位与：对多个操作数的二进制位做逻辑与操作。<br>“|” 位或：对多个操作数的二进制位做逻辑或操作。<br>“^” 位异或：对操作数的二进制位做异或操作 。<br>“~” 位取反：对操作数的二进制位做NOT操作。<br>“&gt;&gt;” 位右移：对左操作数向右移动右操作数指定的位数。<br>“&lt;&lt;” 位左移：对左操作数向左移动右操作烽指定的位数。</p>
+<h4 id="运算符的优先级"><a href="#运算符的优先级" class="headerlink" title="运算符的优先级"></a>运算符的优先级</h4><p><img src="/2020/04/19/mysql/image386.png" alt></p>
+<h2 id="MySQL支持的函数"><a href="#MySQL支持的函数" class="headerlink" title="MySQL支持的函数"></a>MySQL支持的函数</h2><h3 id="MySQL支持的字符串函数"><a href="#MySQL支持的字符串函数" class="headerlink" title="MySQL支持的字符串函数"></a>MySQL支持的字符串函数</h3><p><img src="/2020/04/19/mysql/image387.png" alt></p>
+<h3 id="MySQL支持的数值函数"><a href="#MySQL支持的数值函数" class="headerlink" title="MySQL支持的数值函数"></a>MySQL支持的数值函数</h3><p><img src="/2020/04/19/mysql/image388.png" alt></p>
+<h3 id="MySQL支持的日期和时间函数"><a href="#MySQL支持的日期和时间函数" class="headerlink" title="MySQL支持的日期和时间函数"></a>MySQL支持的日期和时间函数</h3><p><img src="/2020/04/19/mysql/image389.png" alt></p>
+<h3 id="MySQL支持的日期和时间格式"><a href="#MySQL支持的日期和时间格式" class="headerlink" title="MySQL支持的日期和时间格式"></a>MySQL支持的日期和时间格式</h3><p><img src="/2020/04/19/mysql/image390.png" alt><br><img src="/2020/04/19/mysql/image391.png" alt></p>
+<h3 id="MySQL支持的日期间隔类型"><a href="#MySQL支持的日期间隔类型" class="headerlink" title="MySQL支持的日期间隔类型"></a>MySQL支持的日期间隔类型</h3><p><img src="/2020/04/19/mysql/image392.png" alt></p>
+<h3 id="流程函数"><a href="#流程函数" class="headerlink" title="流程函数"></a>流程函数</h3><p><img src="/2020/04/19/mysql/image393.png" alt></p>
+<h4 id="if"><a href="#if" class="headerlink" title="if"></a>if</h4><pre><code>select if(4&gt;5, &apos;4大于五&apos;, &apos;4小于5&apos;) from dual</code></pre><h4 id="ifnull"><a href="#ifnull" class="headerlink" title="ifnull"></a>ifnull</h4><pre><code>select ename, job, sal, ifnull (comm,0) from emp</code></pre><h4 id="case-when…-then…-else…-end"><a href="#case-when…-then…-else…-end" class="headerlink" title="case when… then… else… end"></a>case when… then… else… end</h4><pre><code>select case when 4&gt;5 then &apos;4大于5&apos; else &apos;4小于5&apos; end from dual</code></pre><h4 id="case…-when…-then…-else…-end"><a href="#case…-when…-then…-else…-end" class="headerlink" title="case… when… then… else… end"></a>case… when… then… else… end</h4><pre><code>select case 10&lt;20 when 4&gt;5 then &apos;两个表达式结果一样&apos; else &apos;不一-样&apos; end from dual</code></pre><h3 id="JSON函数"><a href="#JSON函数" class="headerlink" title="JSON函数"></a>JSON函数</h3><p><img src="/2020/04/19/mysql/image394.png" alt><br><img src="/2020/04/19/mysql/image395.png" alt><br><img src="/2020/04/19/mysql/image396.png" alt></p>
+<h4 id="JSON查询函数"><a href="#JSON查询函数" class="headerlink" title="JSON查询函数"></a>JSON查询函数</h4><p><img src="/2020/04/19/mysql/image397.png" alt><br><img src="/2020/04/19/mysql/image398.png" alt></p>
+<h4 id="修改JSON函数"><a href="#修改JSON函数" class="headerlink" title="修改JSON函数"></a>修改JSON函数</h4><p><img src="/2020/04/19/mysql/image399.png" alt></p>
+<h4 id="查询JSON元数据的函数"><a href="#查询JSON元数据的函数" class="headerlink" title="查询JSON元数据的函数"></a>查询JSON元数据的函数</h4><p><img src="/2020/04/19/mysql/image400.png" alt><br><img src="/2020/04/19/mysql/image401.png" alt><br><img src="/2020/04/19/mysql/image402.png" alt></p>
+<h3 id="ROW-NUMBER"><a href="#ROW-NUMBER" class="headerlink" title="ROW_NUMBER()"></a>ROW_NUMBER()</h3><p>row_number()后面的over是关键字，用来指定函数执行的窗口范围，如果后面什么都不写，则意味着窗口包含所有行，窗口：函数在所有行上进行计算；如果不为空，则支持以下4种语法：<br>window_name：给窗口指定一个别名，如果SQL中涉及的窗口较多，采用别名则更清晰易读；<br>partition子句：窗口按照哪些字段进行分组，窗口函数在不同的分组上分别执行；<br>order by子句：按照哪些字段进行排序，窗口函数将按照排序后的记录顺序进行编号，既可以和partition子句配合使用，也可以单独使用；<br>frame子句：frame是当前分区的一个子集，子句用来定义子集的规则，通常用来作为滑动窗口使用。<br>基于行<br>基于范围<br>没有窗口函数得时候，自定义变量 计数<br>Set @n=0<br>select deptno,sum(sal),<br>@n:=@n+1<br> from emp group by deptno order by sum(sal) desc</p>
+<p><img src="/2020/04/19/mysql/image403.png" alt></p>
+<h3 id="RANK-DENSE-RANK"><a href="#RANK-DENSE-RANK" class="headerlink" title="RANK()/DENSE_RANK()"></a>RANK()/DENSE_RANK()</h3><p>rank()/dense_rank()这两个函数与row_number()非常类似，只是在出现重复值时处理逻辑有所不同。<br><img src="/2020/04/19/mysql/image404.png" alt></p>
+<h3 id="PERCENT-RANK-CUME-DIST"><a href="#PERCENT-RANK-CUME-DIST" class="headerlink" title="PERCENT_RANK()/CUME_DIST()"></a>PERCENT_RANK()/CUME_DIST()</h3><p>percent_rank()和cume_dist()这两个函数都是计算数据分布的函数，percent_rank()和之前的rank()函数相关，每行按照以下公式进行计算：<br>（rank-1)/(rows-1)，其中，rank为rank()函数产生的序号，rows为当前窗口的记录总行数。<br>相比percent_rank()，cume_dist()函数的应用场景更多，它的作用是分组内小于等于rank值的行数/分组内的总行数（统计大于等于当前订单金额的订单数，占总订单数的比例）。<br><img src="/2020/04/19/mysql/image405.png" alt></p>
+<h3 id="NTILE-N"><a href="#NTILE-N" class="headerlink" title="NTILE(N)"></a>NTILE(N)</h3><p>ntile()函数的功能是对一个数据分区中的有序结果集进行划分，将其分为N个组，并为每个小组分配一个唯一的组编号。<br>此函数在数据分析中应用较多，比如由于数据最大，需要将数据分配到N个并行的进程分别计算，此时就可以用NTILE(N)对数据进行分组，由于记录数不一定被N整除，所以每组记录数不一定完全一致，然后将不同组号的数据再分配。<br><img src="/2020/04/19/mysql/image406.png" alt></p>
+<h3 id="NTH-VALUE-expr-N"><a href="#NTH-VALUE-expr-N" class="headerlink" title="NTH_VALUE(expr,N)"></a>NTH_VALUE(expr,N)</h3><p>NTH_VALUE(expr,N)函数可以返回窗口中第N个expr的值，expr既可以是表达式，也可以是列名。<br><img src="/2020/04/19/mysql/image407.png" alt></p>
+<h3 id="LAG-expr-N-LEAD-expr-N"><a href="#LAG-expr-N-LEAD-expr-N" class="headerlink" title="LAG(expr,N)/LEAD(expr,N)"></a>LAG(expr,N)/LEAD(expr,N)</h3><p>LAG(expr,N)和LEAD(expr,N)这两个函数的功能是获取当前数据行按照某种排序规则上的N行（LAG）/下N行（LEAD）数据的某个字段。<br><img src="/2020/04/19/mysql/image408.png" alt><br><img src="/2020/04/19/mysql/image409.png" alt></p>
+<h3 id="FIRST-VALUE-expr-LAST-VALUE-expr"><a href="#FIRST-VALUE-expr-LAST-VALUE-expr" class="headerlink" title="FIRST_VALUE(expr)/LAST_VALUE(expr)"></a>FIRST_VALUE(expr)/LAST_VALUE(expr)</h3><p>FIRST_VALUE(expr)和LAST_VALUE(expr)这两个函数的功能分别是获得滑动窗口范围内参数字段中第一个和最后一个的值。<br><img src="/2020/04/19/mysql/image410.png" alt></p>
+<h3 id="聚合函数作为窗口函数："><a href="#聚合函数作为窗口函数：" class="headerlink" title="聚合函数作为窗口函数："></a>聚合函数作为窗口函数：</h3><p>使用各种聚合函数（sum、avg、max、min、count）作为窗口函数来使用。</p>
+<h3 id="其他函数"><a href="#其他函数" class="headerlink" title="其他函数"></a>其他函数</h3><p><img src="/2020/04/19/mysql/image411.png" alt></p>
+<h2 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h2><p>MySQL5.7支持的存储引擎包括：<br>InnoDB<br>MyISAM<br>MEMORY<br>CSV<br>BLACKHOLE<br>ARCHIVE<br>MERGE<br>FEDERATED<br>EXAMPLE<br>NDE<br>其中InnoDB和NDB提供事务安全表，其他存储引擎都是非事务安全表。<br>MySQL5.5之前默认存储引擎是MyISAM，5.5版本之后改为InnoDB。<br>修改默认存储引擎，在参数文件中设置default_storage_engine。<br>查看当前的默认引擎<br>show variables like ‘default_storage_engine’<br>查询当前数据库支持的存储引擎<br>show engines \G<br>其中Support不同值的含义分别为：<br>DEFAULT：支持并启用，并且为默认引擎<br>YES：支持并启用<br>NO：不支持<br>DISABLED：支持，但是数据库启动的时候被禁用<br>在创建新表的时候，可以通过增加engine关键字设置新建表的存储引擎。<br>可以使用alter table语句，将一个已经存在的表修改成其他的存储引擎。<br>注意：修改表的存储引擎需要锁表并复制数据，对于线上环境的表进行这个操作非常危险，除非你非常了解可能造成的影响，否则在线上环境请使用其他方式（借助OSC工具）。</p>
+<h3 id="存储引擎特性"><a href="#存储引擎特性" class="headerlink" title="存储引擎特性"></a>存储引擎特性</h3><p>常用存储引擎对比<br><img src="/2020/04/19/mysql/image412.png" alt></p>
+<h4 id="MyISAM："><a href="#MyISAM：" class="headerlink" title="MyISAM："></a>MyISAM：</h4><p>MyISAM既不支持事务，也不支持外键，对事务完整性没有要求或者以SELECT、INSERT为主的应用可以使用这个引擎来创建表。</p>
+<h4 id="InnoDB："><a href="#InnoDB：" class="headerlink" title="InnoDB："></a>InnoDB：</h4><p>InnoDB提供了具有提交、回滚和崩溃恢复能力的事务安全保障，同时提供了更小粒度和更强的并发能力，拥有自己独立的缓存和日志。<br>对比MyISAM存储引擎，InnoDB会占用更多的磁盘空间以保留数据和索引。<br>不同于使用其他存储引擎的表的特点：<br>自动增长列<br>外键约束<br>主键和索引<br>满足唯一和非空约束；<br>优先考虑使用最经常被当作查询条件的字段或者自增字段<br>字段值基本不会被修改<br>使用尽可能短的字段<br>存储方式<br>共享表空间存储<br>多有空间存储</p>
+<h4 id="MEMORY："><a href="#MEMORY：" class="headerlink" title="MEMORY："></a>MEMORY：</h4><p>MEMORY存储引擎使用存在于内存中的内容来创建表。每个MEMORY表只实际对应一个磁盘文件，格式是.frm。MEMORY类型的表访问非常地快，因为它的数据是放在内存中的，并且默认使用HASH索引，但是一旦服务关闭，表中的数据就会丢失掉。</p>
+<h4 id="MERGE："><a href="#MERGE：" class="headerlink" title="MERGE："></a>MERGE：</h4><p>MERGE存储引擎也被称为MRG_MyISAM，是一组MyISAM表的组合。这些MyISAM表必须结构完全相同，MERGE表本身并没有数据，对MERGE类型的表可以进行查询、更新、删除操作，这些操作实际上是对内部的MyISAM表进行的。<br>对于MERGE类型表的插入操作，是通过INSERT_METHOD子句定义插入的表<br>对于MERGE类型表进行DROP操作，只是删除MERGE的定义，对内部的表没有任何影响。</p>
+<h4 id="TokuDB："><a href="#TokuDB：" class="headerlink" title="TokuDB："></a>TokuDB：</h4><p>TokuDB是一个高性能、支持事务处理的存储引擎，具有高扩展性、高压缩率、高效的写入性能，支持大多数在线DDL操作。<br>使用Fractal树索引保证高效的插入性能；<br>优秀的压缩特性，比InnoDB高近10倍；<br>Hot Schema Changes特性支持在线创建索引和添加、删除属性列等DDL操作；<br>使用Bulk Loader达到快速加载大量数据；<br>提供了主从延迟消除技术；<br>支持ACID和MVCC。原子性(atomicity)、一致性(consistency)、隔离性(isolation)、持久性(durability)。<br>　MVCC(多版本并发控制)，是一种不利用锁机制实现的隔离级别，主要实现了在保证数据的一致性的前提下，实现了读写的并行</p>
+<h3 id="如何选择合适的存储引擎"><a href="#如何选择合适的存储引擎" class="headerlink" title="如何选择合适的存储引擎"></a>如何选择合适的存储引擎</h3><h4 id="MyISAM：-1"><a href="#MyISAM：-1" class="headerlink" title="MyISAM："></a>MyISAM：</h4><p>MySQL5.5之前版本默认的存储引擎。如果应用是<strong>以读操作和插入操作为主，只有极少的更新和删除操作，并且对事务的完整性没有要求、没有并发写操作，那么选择这个存储引擎是适合的</strong>。OLTP环境一般建议不要再使用MyISAM。</p>
+<h4 id="InnoDB：-1"><a href="#InnoDB：-1" class="headerlink" title="InnoDB："></a>InnoDB：</h4><p>MySQL5.5之后版本默认的存储引擎，<strong>用于事务处理应用程序，支持外键，对于大多数的应用系统，InnoDB都是合适的选择。</strong>如果应用对事务的完整性有比较高的要求，在并发条件下要求数据的一致性。数据操作除了插入和查询以外，还包括很多的更新、删除操作，那么应该优先选择InnoDB存储引擎。InnoDB存储引擎除了<strong>有效地降低由于删除和更新导致的锁定，还可以确保事务的完整提交（Commit）和回滚（Rollback）</strong></p>
+<h4 id="MEMORY：-1"><a href="#MEMORY：-1" class="headerlink" title="MEMORY："></a>MEMORY：</h4><p>将所有数据保存在RAM中，<strong>在需要快速定位记录和其他类似数据的环境下，可提供极快的访问速度。</strong>MEMORY的缺陷是<strong>对表的大小有限制</strong>，太大的表无法缓存在内存中，其次是确保表的数据可以恢复，数据库异常终止后表中的数据是可以恢复的。MEMORY<strong>表通常用于更新不太频繁的小表，用以快速得到访问结果</strong>。</p>
+<h4 id="MERGE：-1"><a href="#MERGE：-1" class="headerlink" title="MERGE："></a>MERGE：</h4><p>用于将一系列等同的MyISAM表以逻辑方式组合在一起，并作为一个对象引用它们。MERGE表的优点在于可能突破对单个MyISAM表大小的限制，<strong>并且通过将不同的表分布在多个磁盘上，可以有效地改善MERGE表的访问效率</strong>。这对于诸如数据仓储等VLDB环境十分适合。</p>
+<h3 id="CHAR和VARCHAR"><a href="#CHAR和VARCHAR" class="headerlink" title="CHAR和VARCHAR"></a>CHAR和VARCHAR</h3><p>固定长度与可变长度的字符类型，下表以CHAR(4)和VARCHAR(4)类型对字符串值保存的差异：</p>
+<p><img src="/2020/04/19/mysql/image413.png" alt><br>注意：<strong>最后一行的值只适用MySQL运行在非“严格模式”时，如果MySQL运行在严格模式，超过列长度的值将不会保存，并且会出现错误提示。</strong></p>
+<p>在MySQL中，不同的存储引擎对CHAR和VARCHAR的使用原则有所不同，概括如下：<br>MyISAM存储引擎：建议使用固定数据列代替可变长度的数据列。<br>MEMORY存储引擎：目前都使用固定长度的数据行存储，因此无论使用CHAR或VARCHAR列都没有关系，两者都是作为CHAR类型处理。<br>InnoDB存储引擎：<strong>建议使用VARCHAR类型。</strong>对于InnoDB数据表，内部的行存储格式没有区分固定长度和可变长度列（所有数据行都使用指向数据列值的头指针），因此在本质上，使用固定长度的CHAR列不一定比使用可变长度VARCHAR列性能要好。因而，主要的性能因素是数据行存储总量。<strong>由于CHAR平均占用的空间多于VARCHAR，因此使用VARCHAR来最小化需要处理的数据行的存储总量和磁盘I/O是比较好的。</strong></p>
+<h3 id="TEXT与BLOB"><a href="#TEXT与BLOB" class="headerlink" title="TEXT与BLOB"></a>TEXT与BLOB</h3><p>保存较大文本时，通常会选择使用TEXT或BLOB。二者之间的差异在于：<br>BLOB能用来保存二进制数据（照片）；<br>TEXT只能保存字符数据（文章或日记）；<br>BLOB与TEXT存在的一些常见问题：<br>BLOB和TEXT值会引起一些性能问题，特别是在执行大量的删除操作时；<br>可以使用合成的索引来提高大文本字段的查询性能；<br>在不必要的时候避免检索大型的BLOB或TEXT值；<br>把BLOB或TEXT列分离到单独的表中；<br>注意：尽可能在OLTP环境避免使用BLOB或TEXT类型，<strong>优先使用VARCHAR</strong>。VARCHAR类型最长可以支持65533字节的长度，已经可以满足绝大多数的需求。</p>
+<h3 id="浮点数与定点数"><a href="#浮点数与定点数" class="headerlink" title="浮点数与定点数"></a>浮点数与定点数</h3><ul>
+<li>浮点数：</li>
+</ul>
+<p><strong>一般用于表示含有小数部分的数值；如果插入数据的精度超过该列定义的实际精度，则插入值会被四舍五入到实际定义的精度值，然后插入，四舍五入的过程不会报错。</strong></p>
+<ul>
+<li>定点数：</li>
+</ul>
+<p><strong>以字符串形式存放，可以更精确地保存数据；如果实际插入的数值精度大于实际定义的精度，则MySQL会进行警告（默认的SQLMode下），但是数据按照实际精度四舍五入插入；如果SQLMode是在TRADITIONAL（传统模式）下，则系统会报错，导致数据无法插入。</strong></p>
+<p>关于浮点数和定点数的应用中，用户要考虑到以下几个原则：<br>浮点数存在误差问题；<br>对货币等对精度敏感的数据，应该用定点数表示或存储；<br>在编程中，如果用到浮点数，要特别注意误差问题，并尽量避免做浮点数比较；<br>要注意浮点数中一些特殊值的处理。</p>
+<h3 id="日期类型选择"><a href="#日期类型选择" class="headerlink" title="日期类型选择"></a>日期类型选择</h3><p>MySQL提供的常用日期类型有<strong>DATE、TIME、DATETIME和TIMESTAMP</strong>，选择日期类型的原则：<br>根据实际需要选择能够满足应用的最小存储的日期类型。如果应用只需要记录“年份”，那么用1个字节来存储的YEAR类型完全可以满足，而不需要用4个字节来存储的DATE类型，这样不仅仅能节约存储，更能够提高表的操作效率。<br>如果要记录年月日时分秒，并且记录的年份比较久远，那么最好使用DATETIME，而不要使用TIMESTAMP，因为TIMESTAMP表示的日期范围比DATETIME要短得多。<br>如果记录的日期需要让不同时区的用户使用，那么最好使用TIMESTAMP，因为日期类型中只有它能够和实际时区相对应。</p>
+<h2 id="字符集概述"><a href="#字符集概述" class="headerlink" title="字符集概述"></a>字符集概述</h2><p>字符集就是<strong>一套文字符号及其编码、比较规则的集合</strong>。<br>20世纪60年代初：ASCII<br>ISO-8859系列<br>GB2312-80<br>GBK<br>BIG 5等</p>
+<h3 id="Unicode简述"><a href="#Unicode简述" class="headerlink" title="Unicode简述"></a>Unicode简述</h3><p>国际标准化组织（International Organization for Standardization，ISO）<br>1984 UCS 标准编号：ISO-10646 采用4字节32位编码，简称为UCS-4<br>1991 Unicode1.0 16位编码<br>UTF（UCS/Unicode Transformation Format）<br>Properties  ：写中文</p>
+<h3 id="汉字及一些常见的字符集"><a href="#汉字及一些常见的字符集" class="headerlink" title="汉字及一些常见的字符集"></a>汉字及一些常见的字符集</h3><p><img src="/2020/04/19/mysql/image414.png" alt><br>汉字字符集编码标准<br>GB 2312-80：全称《信息交换用汉字编码字符集 基本集》，收录了6763个常用汉字和682个非汉字图形符号；<br>GB 13000：全称《信息技术 通用多八位编码字符集（UCS）第一部分：体系结构与基本多文种平面》，收录27484个汉字以及一些偏旁部首等；<br>GBK：全称《汉字内码扩展规范》1.0版<br>GB 18030：全称《信息技术信息交换用汉字编码字符集、基本集的扩充》27484</p>
+<h3 id="怎样选择合适的字符集"><a href="#怎样选择合适的字符集" class="headerlink" title="怎样选择合适的字符集"></a>怎样选择合适的字符集</h3><p>对数据库来说，字符集更加重要，因为数据库存储的数据大部分都是各种文字，字符集对数据库的存储、处理性能，以及日后系统的移植、推广都会有影响，综上所述，选择合适字符集，主要考虑以下几个因素：<br>满足应用支持语言的需求，如果应用要处理各种各样的文字，或者将发布到使用不同语言的国家或地区，就应该选择Unicode字符集；<br>如果应用中涉及已有数据的导入，就要充分考虑数据库字符集对已有数据的兼容性；<br>如果数据库只需要支持一般中文，数据量很大，性能要求也很高，那就应该选择双字节定长编码的中文字符集，比如GBK；<br>如果数据库需要做大量的字符运算，如比较、排序等，那么选择定长字符集可能更好，因为定长字符集的处理速度要比变长字符集处理速度快；<br>如果所有客户端程序都支持相同的字符集，则应该优先选择该字符集作为数据库字符集。这样可以避免因字符集转换带来的性能开销和数据损失。</p>
+<h3 id="MySQL支持的字符集简介"><a href="#MySQL支持的字符集简介" class="headerlink" title="MySQL支持的字符集简介"></a>MySQL支持的字符集简介</h3><p><img src="/2020/04/19/mysql/image415.png" alt></p>
+<p>MySQL服务器可以支持多种字符集，在同一台服务器、同一个数据库甚至同一个表的不同字段都可以指定使用不同的字符集。<br>查看所有可用的字符集命令<br>show character set<br>查看information_schema.character_set，可以显示所有的字符集和该字符集默认的排序规则<br>MySQL的字符集包括字符集和排序规则两个概念，字符集和排序规则是一对多的关系<br>每个字符集至少对应一个排序规则。可以用”show collation like ‘***’;”<br>排序规则命名约定：它们以其相关的字符集名开始，通常包括一个语言名，并且以_ci（大小写不敏感）、_cs（大小写敏感）或_bin（二元，即比较是基于字符编码的值而以language无关）结束。</p>
+<h3 id="服务器字符集和排序规则"><a href="#服务器字符集和排序规则" class="headerlink" title="服务器字符集和排序规则"></a>服务器字符集和排序规则</h3><p>MySQL的字符集和排序规则有4个级别的默认设置：<strong>服务器级、数据库级、表级和字段级</strong>。</p>
+<p>服务器字符集和排序规则，可以在MySQL服务启动的时候确定：<br>可以在my.ini中设置<br>character-set-server=utf-8<br>在启动项中指定<br>mysqld –character-set-server=utf-8<br>在编译时指定<br>shell &gt; cmake . -DDEFAULT_CHARSET=utf-8<br>注意：在最新的 MySQL8.0中，默认字符集已经变为utf8mb4。</p>
+<h3 id="数据库字符集和排序规则"><a href="#数据库字符集和排序规则" class="headerlink" title="数据库字符集和排序规则"></a>数据库字符集和排序规则</h3><p>数据库的字符集和排序规则既可以在创建数据库的时候指定，也可以在创建完数据库后通过”alter database“命令进行修改。需要注意的是，<strong>如果数据库里已经存在数据，因为修改字符集并不能将已有的数据按照新的字符集进行存放，所以不能通过修改数据库的字符集直接修改数据的内容</strong>。<br>设置数据库字符集的规则如下：</p>
+<ul>
+<li><strong>如果指定了字符集和排序规则，则使用指定的字符集和排序规则；</strong></li>
+<li><strong>如果指定了字符集没有指定排序规则，则使用指定字符集默认排序规则</strong>；</li>
+<li><strong>如果指定了排序规则但未指定字符集，则字符集使用与该排序规则关联的字符集</strong>；</li>
+<li><strong>如果没有指定字符集和排序规则，则使用服务器字符集和排序规则作为数据库的字符集和排序规则</strong>。</li>
+</ul>
+<p>要显示当前数据库的字符集和排序规则，可以使用以下的指令：<br>show variables like ‘character_set_database’<br>show variables like ‘collation_database’</p>
+<h3 id="表字符集和排序规则"><a href="#表字符集和排序规则" class="headerlink" title="表字符集和排序规则"></a>表字符集和排序规则</h3><p>表的字符集和排序规则在创建表的时候指定，可以通过alter table命令进行修改，同样，如果表中已有记录，修改字符集对原有的记录并没有影响，不会按照新的字符集进行存放。表的字段仍然使用原来的字符集。<br>设置表字符集的规则如下：</p>
+<ul>
+<li><strong>如果指定了字符集和排序规则，则使用指定的字符集和排序规则</strong>；</li>
+<li><strong>如果指定了字符集没有指定排序规则，则使用指定字符集默认排序规则；</strong></li>
+<li><strong>如果指定了排序规则但未指定字符集，则字符集使用与该排序规则关联的字符集</strong>；</li>
+<li><strong>如果没有指定字符集和排序规则，则使用数据库字符集和排序规则作为表的字符集和排序规则。</strong></li>
+</ul>
+<p>要显示当前表的字符集和排序规则，可以使用以下的指令：<br>show create table table_name \G</p>
+<h3 id="列字符集和排序规则"><a href="#列字符集和排序规则" class="headerlink" title="列字符集和排序规则"></a>列字符集和排序规则</h3><p>MySQL可以定义列级别的字符集和排序规则，主要是针对相同的表不同字段需要使用不同的字符集的情况。<br>列字符集和排序规则的定义可以创建表时指定，或者在修改表时调整。如果在创建表的时候没有特别指定字符集和排序规则，则默认使用表的字符集和排序规则。</p>
+<h3 id="连接字符集和排序规则"><a href="#连接字符集和排序规则" class="headerlink" title="连接字符集和排序规则"></a>连接字符集和排序规则</h3><p>对于客户端和服务器的交互操作，MySQL提供了3个不同的参数<br>character_set_client（客户端）<br>character_set_connection（连接）<br>character_set_results（返回结果的字符集）</p>
+<h3 id="字符集的修改步骤"><a href="#字符集的修改步骤" class="headerlink" title="字符集的修改步骤"></a>字符集的修改步骤</h3><p>已有记录的字符集调整，需要先将数据导出，经过适当的调整重新导入后才可完成。<br>–导出表结构<br>–手工修改test1.sql中表结构定义中的字符集为新的字符集<br>–确保记录不再更新，导出所有记录<br>–打开data.sql，将set names utf8修改成SET NAMES gbk<br>–使用新的字符集创建新的数据库<br>–创建表，执行createtab.sql<br>–导入数据，执行data.sql<br>注意：选择目标字符集的时候，要注意最好是源字符集的超集，或者确定比源字符集的字库更大，否则如果目标字符集的字库小于源字符集的字库，那么目标字符集中不支持的字符导入后会变成乱码，丢失一部分数据。</p>
+<h2 id="索引概述"><a href="#索引概述" class="headerlink" title="索引概述"></a>索引概述</h2><p><strong>索引是对数据库表中一列或多列的值进行排序的一种结构，使用索引可快速访问数据库表中的特定信息。如果想按特定职员的姓来查找他或她，则与在表中搜索所有的行相比，索引有助于更快地获取信息。索引的一个主要目的就是加快检索表中数据的方法，亦即能协助信息搜索者尽快的找到符合限制条件的记录ID的辅助数据结构。</strong><br>索引在创建表的时候可以同时创建，也可以随时增加新的索引。<br>第一种方式：创建表的时候创建索引<br><img src="/2020/04/19/mysql/image416.png" alt><br>第二种方式：使用CREATE INDEX创建索引<br><img src="/2020/04/19/mysql/image417.png" alt></p>
+<p>第三种方式：使用ALTER TABLE创建索引</p>
+<p><img src="/2020/04/19/mysql/image418.png" alt><br><img src="/2020/04/19/mysql/image419.png" alt></p>
+<h3 id="设计索引的原则"><a href="#设计索引的原则" class="headerlink" title="设计索引的原则"></a>设计索引的原则</h3><p>索引的设计可以遵循一些已有的原则，创建索引的时候请尽量考虑符合这些原则，便于提升索引的使用效率，更高效地使用索引。<br>要在条件列上创建索引，而不是查询列；<br>尽量使用唯一索引；<br>使用短索引；<br>利用最左前缀；<br>对于InnoDB存储引擎的表，尽量手工指定主键。</p>
+<h3 id="索引设计的误区"><a href="#索引设计的误区" class="headerlink" title="索引设计的误区"></a>索引设计的误区</h3><p>设计索引时，有一些常见的误区，总结如下：<br>不是所有的表都需要创建索引；<br>不要过度索引；<br>谨慎创建低选择度索引。</p>
+<h3 id="索引设计的一般步骤"><a href="#索引设计的一般步骤" class="headerlink" title="索引设计的一般步骤"></a>索引设计的一般步骤</h3><p>设计索引时，一般可以采用下面的步骤：<br>整理表上的所有SQL，重点包括select、update、delete操作的where条件所用到的列的组合、关联查询的关联条件等；<br>整理所有查询SQL的预期执行频率；<br>整理所有涉及的列的选择度，列的不同值相比总非空行数的比例较大，选择度越好，比如全部都是唯一值的主键列选择度最高；<br>遵照之前提到的设计原则，给表选择合适的主键；<br>优先给那些执行频率最高的SQL创建索引，执行频率很高的SQL，使用到的索引的效率对整体性能影响也会很大，选择其中选择度最高的列创建索引，如果选择度都不够好，那么应该考虑是否可以使用其他选择度更好的条件，或者选择创建联合索引；<br>按执行频率排序，依次检查是否需要为每个SQL创建索引；<br>索引合并，利用复合索引来降低索引的总数，充分利用最左前缀的原则；<br>上线之后，通过慢查询分析、执行计划分析、索引使用统计，来确定索引的实际使用情况。</p>
+<h3 id="BTREE与HASH索引"><a href="#BTREE与HASH索引" class="headerlink" title="BTREE与HASH索引"></a>BTREE与HASH索引</h3><p>MEMORY存储引擎的表可以选择使用BTREE索引或HASH索引，两种不同类型的索引各有其不同的适用范围。HASH索引有一些重要的特征在使用时需特别注意：<br>只用于使用=或&lt;=&gt;操作符的等式比较；<br>优化器不能使用HASH索引来加速ORDER BY操作；<br>MySQL不能确定在两个值之间大约有多少行。如果将一个MyISAM表改为HASH索引的MEMORY表，会影响一些查询的执行效率；<br>只能使用整个关键字来搜索一行。<br>而对于BTREE索引，当使用&gt;、&lt;、&gt;=、&lt;=、BETWEEN、!=或者&lt;&gt;，或者LIKE ‘pattern’（其中’pattern’不以通配符开始）操作符时，都可以使用相关列上的索引。<br>下列范围查询适应于BTREE索引和HASH索引：</p>
+<pre><code>select * from t1 where key_col = 1 or key_col in(15,18,20);</code></pre><p>下列范围只适用于BTREE索引：</p>
+<pre><code>select * from t1 where key_col &gt; 1 and key_col &lt; 10;
+select * from t1 where key_col like &apos;ab%&apos; or key_col between &apos;lisa&apos; and &apos;simon&apos;;</code></pre><p>当对索引字段进行范围查询的时候，只有BTREE索引可以通过索引访问，而HASH索引实际上是全表扫描的。</p>
+<h3 id="索引在MySQL8-0中的改进"><a href="#索引在MySQL8-0中的改进" class="headerlink" title="索引在MySQL8.0中的改进"></a>索引在MySQL8.0中的改进</h3><p>所谓不可见，指的对于查询优化器不可见，SQL在执行时自然也就不会选择，但在查看表结构时候索引仍然能看到，也可以通过information_schema.statistics或者show index来查看索引是否可见的状态。<br>索引默认是可见的，可以通过以下方式来创建不可见索引：<br>在创建索引时指定invisble关键字来创建不可见索引<br>通过命令单独添加不可见索引<br>通过alter table命令来修改索引是否可见<br>引用不可见索引的目的：主要是为了减小对于表上的索引进行调整时潜在风险。</p>
+<p>MySQL8.0中，正式增加了对于<strong>倒序索引</strong>（descending index）的支持。<br>注意：<br>由于倒序索引的引入，MySQL8.0取消了对于group by操作的隐式排序，如果业务中有依赖于此特性的，在升级数据库版本的时候要谨慎。</p>
+<h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>视图（View）是一种虚拟存在的表，对于使用视图的用户来说基本上是透明的。<br>视图并不在数据库中实际存在，行和列数据来自定义视图的查询中使用的表，并且是在使用视图时动态生成的。<br>视图的优势主要包括：</p>
+<ul>
+<li>简单</li>
+<li>安全</li>
+<li>数据独立</li>
+</ul>
+<p>视图的操作主要包括：</p>
+<ul>
+<li>创建视图</li>
+<li>修改视图</li>
+<li>删除视图</li>
+<li>查看视图定义</li>
+</ul>
+<p>视图创建前提条件是：需要有CREATE VIEW权限，并且对于查询涉及的列有SELECT权限。如果使用CREATE OR REPLACE 或者ALTER修改视图，那么还需要该视图的DROP权限。<br>创建视图语法：</p>
+<pre><code>CREATE [ALGORITHM]={UNDEFINED|MERGE|TEMPTABLE}]
+    VIEW 视图名 [(属性清单)]
+           AS SELECT 语句
+           [WITH [CASCADED|LOCAL] CHECK OPTION];</code></pre><p>修改视图语法（ALTER 或者 CREATE OR REPLACE）：</p>
+<pre><code>    ALTER|CREATE OR REPLACE [ALGORITHM]={UNDEFINED|MERGE|TEMPTABLE}]
+VIEW 视图名 [(属性清单)]
+       AS SELECT 语句
+       [WITH [CASCADED|LOCAL] CHECK OPTION];</code></pre><p><img src="/2020/04/19/mysql/image420.png" alt><br><img src="/2020/04/19/mysql/image421.png" alt><br>[WITH [CASCADED|LOCAL] CHECK OPTION] 决定了是否允许更新数据使记录不再满足视图的条件。<br>LOCAL只要满足本视图的条件就可以更新；<br>CASCADED则必须满足所有针对该视图的所有视图的条件才可以更新。<br>注意：如果没有明确LOCAL还是CASCADED，则默认是CASCADED。</p>
+<p>用户可以一次删除一个或者多个视图，前提是必须有该视图的DROP权限。</p>
+<pre><code>DROP VIEW [IF EXISTS] view_name [,view_name];</code></pre><p>可以通过下面的命令显示视图的信息：</p>
+<pre><code>SHOW TABLE STATUS [FROM db_name] [LIKE &apos;pattern&apos;];</code></pre><p>可以通过下面的命令查看视图的定义：</p>
+<pre><code>SHOW CREATE VIEW view_name；</code></pre><h2 id="什么是存储过程和函数"><a href="#什么是存储过程和函数" class="headerlink" title="什么是存储过程和函数"></a>什么是存储过程和函数</h2><p><strong>存储过程和函数是事先经过编译并存储在数据库中的一段SQL语句的集合。</strong><br>优势：<br><strong>简化应用开发人员的工作;</strong><br><strong>减少数据在数据库和应用服务器之间的传输；</strong><br><strong>提高数据处理的效率</strong><br>存储过程和函数的区别在于函数必须有返回值，而存储过程没有，存储过程的参数可能使用IN、OUT、INOUT类型，而函数的参数只能是IN类型。<br>如果有函数从其他类型的数据库迁移到MySQL，那么就可能因此需要将函数改造成存储过程。</p>
+<h3 id="存储过程和函数的相关操作"><a href="#存储过程和函数的相关操作" class="headerlink" title="存储过程和函数的相关操作"></a>存储过程和函数的相关操作</h3><p>对存储过程和函数的相关操作时，需要首先确认用户是否具有相应的权限。<br>创建存储过程或函数：需要CREATE ROUTINE权限；<br>修改或者删除存储过程或函数：需要ALTER ROUTINE权限；<br>执行存储过程或函数：需要EXECUTE权限</p>
+<h3 id="创建、修改存储过程或者函数"><a href="#创建、修改存储过程或者函数" class="headerlink" title="创建、修改存储过程或者函数"></a>创建、修改存储过程或者函数</h3><p>创建、修改存储过程或者函数语法：</p>
+<p><img src="/2020/04/19/mysql/image422.png" alt></p>
+<p>调用过程的语法：CALL sp_name([parameter[,…]])<br>MySQL的存储过程和函数中允许包含DDL语句，也允许在存储过程中执行或回滚，但存储过程和函数中不允许执行LOAD DATA INFILE语句。此外，存储过程和函数中可以调用其他的过程或者函数。<br>通常我们在执行创建过程和函数之前，都会通过”DELIMITER $$”命令将语句的结束符从”;“修改成其他符号，这里使用的是”$$”，这样在过程和函数中的”;”就不会被MySQL解释成语句的结束而提示错误。存储过程或函数创建完毕，通过”DELIMITER ;”命令再将结束符修改回成“;”。<br>和视图创建语法稍有不同，存储过程和函数的CREATE语法不支持使用CREATE OR REPLACE对存储过程或函数进行修改，如果需要对已有的存储过程或函数进行修改，需要执行ALTER语法。</p>
+<p>characteristic特征值的部分说明如下：<br>LANGUAGE SQL：说明下面过程的BODY是使用SQL编写，系统默认；<br>[NOT] DETERMINISTIC：DETERMINISTIC确定的，即每次输入一样输出也一样的程序；NOT DETERMINISTIC非确定的，默认是非确定的；<br>{CONTAINS SQL | NO SQL | READS SQL DATA | MODIFIES SQL DATA}：如果没有明确特征，默认使用的值是CONTAINS SQL。<br>CONTAINS SQL：子程序不包含读或写数据的语句<br>NO SQL：子程序不包含SQL语句<br>READS SQL DATA：子程序包含读数据的语句，但不包含写数据语句<br>MODIFIES SQL DATA：子程序包含写数据的语句<br>SQL SECURITY {DEFINER | INVOKER}：可以用来指定子程序该用创建子程序者的许可来执行，还是使用调用者的许可来执行，默认值是：DEFINER 。<br>COMMIT ‘string’：存储过程或者函数的注释信息。</p>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>一次只能删除一个存储过程或者函数，前提是必须有该存储过程或函数的ALTER ROUTINE权限。</p>
+<pre><code>DROP {PROCEDURE | FUNCTION} [IF EXISTS] sp_name;</code></pre><p>设置结束符<br>delimiter //<br><strong>创建存储过程</strong></p>
+<pre><code>create procedure p_emp()
+begin 
+    select * from emp;
+end </code></pre><p><strong>显示存储过程结果</strong><br>call   p_emp()<br><strong>删除存储过程</strong></p>
+<pre><code>drop PROCEDURE p_emp</code></pre><p>//函数过程跟存储过程一样 把procedure改成function 就可以，显示使用select 函数名()<br>查看存储过程或者函数<br>查看存储过程或者函数的状态：</p>
+<pre><code>SHOW {PROCEDURE | FUNCTION} STATUS [LIKE &apos;pattern&apos;];</code></pre><p>查看存储过程或者函数的定义：</p>
+<pre><code>SHOW CREATE {PROCEDURE | FUNCTION} sp_name;</code></pre><p>通过查看information_schema.Routines了解存储过程和函数的信息</p>
+<p>变量的定义：</p>
+<pre><code>DECLARE var_name[,...] type [DEFAULT value];
+declare num1,num2,num3 int</code></pre><p>变量的赋值：</p>
+<pre><code>SET var_name = expr [,var_name=expr]...;</code></pre><p>可以通过查询将结果赋值给变量，这要求查询返回的结果必须只有一行。</p>
+<pre><code>Set num1=10,num2=20</code></pre><p><img src="/2020/04/19/mysql/image423.png" alt><br><img src="/2020/04/19/mysql/image424.png" alt><br><img src="/2020/04/19/mysql/image425.png" alt><br><img src="/2020/04/19/mysql/image426.png" alt><br>条件的定义：<br><img src="/2020/04/19/mysql/image427.png" alt></p>
+<p>条件的处理：<br><img src="/2020/04/19/mysql/image428.png" alt><br>handler_type只支持CONTINUE和EXIT两种，前者表示继续执行语句，后者则表示终止执行。<br><img src="/2020/04/19/mysql/image429.png" alt><br><img src="/2020/04/19/mysql/image430.png" alt><br><img src="/2020/04/19/mysql/image431.png" alt></p>
+<h2 id="光标"><a href="#光标" class="headerlink" title="光标"></a>光标</h2><p><strong>声明光标：</strong></p>
+<pre><code>DECLARE cursor_name CURSOR FOR select_statement;</code></pre><p><strong>OPEN光标：</strong></p>
+<pre><code>OPEN cursor_name;</code></pre><p><strong>FETCH光标：</strong></p>
+<pre><code>FETCH [[NEXT] FROM] cursor_name INTO var_name[,var_name]...</code></pre><p><strong>CLOSE光标：</strong></p>
+<pre><code>CLOSE cursor_name;</code></pre><p>注意：变量、条件、处理程序、光标都是通过DECLARE定义的，它们之间是有先后顺序要求的。变量和条件必须在最前面声明、然后才能是光标的声明，最后才可以是处理程序的声明。<br><img src="/2020/04/19/mysql/image432.png" alt></p>
+<h2 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h2><p><strong>IF语句：</strong></p>
+<pre><code>IF search_condition THEN statement_list
+    [ELSEIF search_condition THEN statement_list]...
+    [ELSE statement_list]
+END IF</code></pre><p><img src="/2020/04/19/mysql/image433.png" alt><br><img src="/2020/04/19/mysql/image434.png" alt></p>
+<p><strong>CASE语句：</strong></p>
+<pre><code>CASE 
+    WHEN search_condition THEN statement_list
+    [WHEN search_condition THEN statement_list]...
+    [ELSE statement_list]
+END CASE</code></pre><p><img src="/2020/04/19/mysql/image435.png" alt><br><img src="/2020/04/19/mysql/image436.png" alt></p>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><p><strong>LOOP语句:</strong></p>
+<pre><code>[begin_label:] LOOP
+    statement_list
+END LOOP [end_label]</code></pre><p><strong>LEAVE语句：</strong><br>LEAVE语句用来从标注的流程构造中退出，通常和BEGIN…END或者循环一起使用。<br><img src="/2020/04/19/mysql/image437.png" alt><br><strong>ITERATE语句：</strong><br>ITERATE语句必须用在循环中，作用是路过当前循环的剩下的语句，直接进入下一轮循环。<br><img src="/2020/04/19/mysql/image438.png" alt><br><strong>REPEAT语句：</strong><br>有条件的循环控制语句，当满足条件的时候退出循环。</p>
+<pre><code>[begin_label:]  REPEAT statement_list  search_condition END REPEAT [end_label]</code></pre><p><img src="/2020/04/19/mysql/image439.png" alt><br><img src="/2020/04/19/mysql/image440.png" alt><br><strong>REPEAT语句：</strong><br>有条件的循环控制语句，当满足条件的时候退出循环。</p>
+<pre><code>[begin_label:]  REPEAT 
+    statement_list  
+UNTIL search_condition 
+END REPEAT [end_label]</code></pre><p><strong>WHILE语句：</strong><br>有条件的循环控制语句，当满足条件的时候执行循环内容。</p>
+<pre><code>[begin_label:]  WHILE
+    search_condition DO
+    statement_list  
+END WHILE[end_label]</code></pre><p><img src="/2020/04/19/mysql/image441.png" alt><br><img src="/2020/04/19/mysql/image442.png" alt><br>可以将数据库按自定义的时间周期触发某种操作，也可以理解为时间触发器。<br>案例分析：<br>创建测试表<br>创建事件调度器，每隔5秒向测试表插入一条记录<br>查看调度器状态<br>隔几秒后，查看测试表，发现并没有数据插入<br>查看事件调度器状态，发现默认是关闭的<br>通过命令打开调试器，同时show processlist发现新产生一个后台进程<br>隔几秒的，再次查看测试表，发现有数据的插入<br>为了防止表变得很大，创建一个新的调度器，每隔一秒清空一次测试表<br>可以禁止或者删除调度器</p>
+<h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><p>是与表有关的数据库对象，在满足定义条件时触发，并执行触发器中定义的语句集合。<br>语法：<br><img src="/2020/04/19/mysql/image443.png" alt><br>注意：触发器只能创建在永久表上，不能对临时表创建触发器。<br>trigger_time：触发时间，可以是BEFORE或者AFTER<br>trigger_event：触发事件，可以是INSERT、UPATE、DELETE。<br>一次可以删除一个触发程序，如果没有指定schema_name，默认为当前数据库，具体语法如下：<br>DROP TIGGER [schema_name.]trigger_name；<br>当我们向emp表插入数据的时候将插入的姓名添加到copytable表中进行登记<br><img src="/2020/04/19/mysql/image444.png" alt><br>查看触发器的状态、语法等信息：<br>SHOW TRIGGERS  \G;<br>通过查看information_schema.triggers了解触发器的信息</p>
+<p>触发器执行的语句有以下两个限制：<br>触发程序既不能调用将数据返回客户端的存储程序，也不能使用CALL语句的动态SQL语句，但是允许存储程序通过参数将数据返回触发程序。也就是存储过程或者函数通过OUT或者INOUT类型的参数将数据返回触发器是可以的，但是不能调用直接返回数据的过程;<br>不能在触发器中使用以显式或隐式方式开始或结束事务语句，如START TRANS-ACTION、COMMIT或ROLLBACK。<br>MySQL的触发器是按照BEFORE触发器、行操作、AFTER触发器的顺序执行的，其中任何一步操作发生错误都不会继续执行剩下的操作。如果是对事务表进行的操作，那么会整个作为一个事务被回滚（Rollback）,但是如果是对非事务表进行的操作，那么已经更新的记录将无法回滚，这也是设计触发器的时候需要注意的问题。</p>
+<h3 id="事务控制"><a href="#事务控制" class="headerlink" title="事务控制"></a>事务控制</h3><p>MySQL通过SET AUTOCOMMIT、START TRANSACTION、COMMIT、ROLLBACK等语句支持本地事务，具体语法如下：</p>
+<pre><code>START TRANSACTION | BEGIN [WORK]
+COMMIT [WORK] [AND [NO] CHAIN] [[NO] RELEASE]
+ROLLBACK [WORK] [AND [NO] CHAIN] [[NO] RELEASE]
+SET AUTOCOMMIT = {0|1}</code></pre><p>START TRANSACTION或BEGIN语句可以开始一项新的事务；<br>COMMIT和ROLLBACK用来提交或者回滚事务；<br>CHAIN和RELEASE子句分别用于定义在事务提交或者回滚之后的操作，CHAIN会立即启动一个新事务，并且和刚才的事务具有相同的隔离级别，RELEASE则会断开和客户端的连接；<br>SET AUTOCOMMIT可以修改当前连接的提交方式，如果设置了SET AUTOCOMMIT=0，则设置之后的所有事务都需要通过明确的命令进行提交或者回滚。<br><strong>设置事物提交为手动提交</strong><br><img src="/2020/04/19/mysql/image445.png" alt><br>插入数据<br><img src="/2020/04/19/mysql/image446.png" alt><br>刷新数据没有刚才添加的数据<br><img src="/2020/04/19/mysql/image447.png" alt><br>事物提交<br><img src="/2020/04/19/mysql/image448.png" alt><br>事物提交之后刷新数据显示11<br><img src="/2020/04/19/mysql/image449.png" alt><br>Commit：事物提交<br>Rollback：事物回滚 将之前sql语句不去执行</p>
+<h3 id="分布式原理"><a href="#分布式原理" class="headerlink" title="分布式原理"></a>分布式原理</h3><p>MySQL从5.0.3版本起开始支持分布式事务，当前分布式事务只支持InnoDB存储引擎。一个分布式事务会涉及多个行动，这些行动本身是事务性的。所有行动都必须一起成功完成，或者一起回滚。<br>在MySQL中，使用分布式事务的应用程序涉及一个或多个资源管理器和一个事务管理器。<br><strong>资源管理器（RM）</strong>用于提供通向事务资源的途径，数据库服务器是一种资源管理器。该管理器必须可以提交或回滚由RM管理的事务。<br><strong>事务管理器（TM）</strong>用于协调作为一个分布式事务一部分的事务。TM与管理每个事务的RM进行通信。在一个分布式事务中，各个单个事务均是分布式事务的”分支事务“。分布式事务和各分支通过一种命名方法进行标识。<br>要执行一个分布式事务，必须知道这个分布式事务涉及哪些资源管理器，并且把每个资源管理器的事务执行到事务可以被提交或回滚时。<br>用于执行分布式事务的过程使用两阶段提交，发生时间在由分布式事务的各个分支需要进行的行动已经被执行之后。<br><strong>在第一阶段中，所有的分支被预备好。即它们被TM告知要准备提交。通常，这意味着用于管理分支的每个RM会记录对于被稳定保存的分支的行动。分支指示是否它们可以这么做。这些结果被用于第二阶段</strong>。<br><strong>在第二阶段中，TM告知RM是否要提交或回滚。如果在预备分支时，所有的分支指示它们将能够提交，则所有的分支被告知要提交。如果在预备时，有任何分支指示它将不能提交，则所有分支被告知回滚</strong>。<br>在有些情况下，一个分布式事务可能会使用一阶段提交。<br>分布式事务（XA 事务）的SQL语法如下：<br>XA {START | BEGIN} xid [JOIN|RESUME]<br>xid值包含1~3个部分：xid: gtrid [,bqual [,formatID ]]<br><strong>gtrid：是一个分布式事务标识符</strong>，相同的分布式事务应该使用相同的gtrid，这样可以明确知识XA事务属于哪个分布式事务。<br><strong>bqual：是一个分支限定符</strong>，默认值是空串。对于一个分布式事务中的每个分支事务，bqual值必须是唯一的。<br><strong>formatID：是一个数字</strong>，用于标识由gtrid和bqual值使用的格式，默认值是1。<br>分布式的关键在于如何确保分布式事务的完整性，以及在某个分支出现问题时的故障解决。</p>
+<h3 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a>存在的问题</h3><p>MySQL的分布式事务还存在一些问题，在数据库或者应用异常的情况下，可能会导致分布式事务的完整性或者需要人工介入处理。如果需要使用分布式事务，建议尽量采用MySQL5.7或者更新的版本。</p>
+<h3 id="LOCK-TABLES和UNLOCK-TABLES"><a href="#LOCK-TABLES和UNLOCK-TABLES" class="headerlink" title="LOCK TABLES和UNLOCK TABLES"></a>LOCK TABLES和UNLOCK TABLES</h3><p>LOCK TABLES可以锁定用于当前线程的表。如果表被其他线程锁定，则当前线程会等待，直到可以获取所有锁定为止。<br>UNLOCK TABLES可以释放当前线程获得的任何锁定。当前线程执行另一个LOCK TABLES时，或当服务器的连接被关闭时，所有由当前线程锁定的表被隐含地解锁，具体语法如下：</p>
+<pre><code>LOCK TABLES
+table_name [AS alias] {READ [LOCK] | [LOW_PRIORITY] WRITE}
+[,table_name [AS alias] {READ [LOCK] | [LOW_PRIORITY] WRITE}]..
+UNLOCK TABLES</code></pre><p>注意：LOCK TABLES和UNLOCK TABLES有时也写为LOCK TABLE和UNLOCK TABLE，两种写法含义一样。<br>Java在一个方法里<br>Lock对象   调用方法.lock()   下面代码就会锁住</p>
+<p>调用.unlock()  到此解锁<br>在mysql<br>Lock table emp write   锁住emp表进行读取 其他线程无法访问只能等待<br>Select * from emp;<br>Unlock table    接触对emp表进行读取的锁定</p>
+<h2 id="SQL注入简介"><a href="#SQL注入简介" class="headerlink" title="SQL注入简介"></a>SQL注入简介</h2><p>结构化查询语言（SQL）是一种用来和数据库交互的文本语言。<br>SQL注入就是利用某些数据库的外部接口将用户数据插入到实际的数据库操作语言当中，从而达到入侵数据库乃至操作系统的目的。它的产生主要是由于程序对用户输入的数据没有进行严格的过滤，导致非法数据库查询语句的执行。<br>SQL注入攻击的危害：<br><strong>读取、修改或删除数据库数据</strong><br><strong>获取数据库中的敏感数据</strong><br><strong>获取数据库管理员的权限</strong><br>select * from info where word like ‘%?%’  会技术的话<br>估计给？赋值sql语句<br>‘ or 1=1 –<br>‘ or 1=1 /*<br>‘ or 1=1 #<br>因为在SQL语句中，–、/*、#都可以将后面的语句注释掉，在1=1恒成立的情况下，不用考虑用户名和密码是否正确。</p>
+<p>Xxx’ or 1=1 ‘  union  求并集   加管理员查询</p>
+<h2 id="应用开发中的应对措施"><a href="#应用开发中的应对措施" class="headerlink" title="应用开发中的应对措施"></a>应用开发中的应对措施</h2><p><strong>MySQL服务器并不存在共享池概念，所以在MySQL上使用绑定变量最大的好处主要是为了避免SQL注入，增加安全性。</strong><br>Java驱动采用PrepareStatement语句方式，不用将输入参数单独解析，避免SQL注入的风险。<br>需要注意，PrepareStatement语句是由JDBC的驱动来支持的，在使用PrepareStatement语句的时候，仅仅做了简单的替换和转义，并不是MySQL提供了PrepareStatement的特性。<br>很多应用程序接口都提供了以特殊字符进行转换的函数。恰当地使用这些函数，可以防止应用程序用户输入使用应用程序生成不期望的语句。<br>MySQL C API：使用mysql_real_escape_string()API调用<br>MySQL++：使用escape和quote修饰符<br>PHP：使用mysql_real_escape_string()函数（适用于PHP4.3.0版本），从PHP5开始可以使用扩展的MySQLI，这是对MySQL新特性的一个扩展支持，其中一个优点就是支持PrepareStatement。<br>Perl DBI：使用placeholders或者quote()方法。<br>Ruby DBI：使用placeholders或者quote()方法。<br>如果现有的转换函数仍然不能满足要求，则需要自己编写函数进行输入校验。输入验证是一个很复杂的问题。输入验证的途径可以分为以下几种：<br><strong>整理数据使之变得有效</strong>；<br><strong>拒绝已知的非法输入</strong>；<br><strong>只接受已知的合法输入</strong>。<br>已知非法符号有：’、;、=、(、)、/<em>、%、+、”、&gt;、&lt;、–、[和]，由此，可以构造如下的正则表达式：<br>(|&#39;(%27)|;|(%3b)|=|(%3d)|(|(%28)|)|(%29)|(/</em>)|(%2f%2a)|(*/)|(%2a%2f)|+|(%2b)|\5&lt;|(%3c)|&gt;|(%3e)|(–))|[|%5b|]|%5d)<br>根据上述正则表达式，可以提供一个函数，可以防范大多数的SQL注入。</p>
+<h2 id="优化SQL语句的一般步骤"><a href="#优化SQL语句的一般步骤" class="headerlink" title="优化SQL语句的一般步骤"></a>优化SQL语句的一般步骤</h2><h3 id="知识点1：通过show-status命令了解各种SQL的执行频率"><a href="#知识点1：通过show-status命令了解各种SQL的执行频率" class="headerlink" title="知识点1：通过show status命令了解各种SQL的执行频率"></a>知识点1：通过show status命令了解各种SQL的执行频率</h3><p>MySQL客户端连接成功后，通过show [session|global] status命令可以提供服务器状态信息，也可以在操作系统上使用mysqladmin extended-status命令获得这些消息。<br>下面的命令显示了当前session中部分统计参数的值：<br>show status like ‘Com_%’;<br>Com_xxx表示每个xxx语句执行的次数，通常比较关心的是以下几个统计参数：<br>Com_select：执行select操作的次数，一次查询只累加1。<br>Com_insert：执行insert操作的次数，对于批量插入的insert操作，只累加一次。<br>Com_update：执行update操作的次数。<br>Com_delete：执行delete操作的次数。<br>上面这些参数对于所有存储引擎的表操作都会进行累计。下面的这几个参数只是针对InnoDB存储引擎的：<br>Innodb_rows_read：select查询返回的行数。<br>Innodb_rows_inserted：执行insert操作插入的行数。<br>Innodb_rows_updated：执行update操作更新的行数。<br>Innodb_rows_deleted：执行delete操作删除的行数。<br>对于事务型的应用，通过Com_commit和Com_rollback可以了解事务提交和回滚的情况，对于回滚操作非常频繁的数据库，可能意味着应用编写存在问题：<br>Connections：试图连接MySQL服务器的次数。<br>Uptime：服务器工作时间。<br>Slow_queries：慢查询的次数。</p>
+<h3 id="知识点2：定位执行效率较低的SQL语句"><a href="#知识点2：定位执行效率较低的SQL语句" class="headerlink" title="知识点2：定位执行效率较低的SQL语句"></a>知识点2：定位执行效率较低的SQL语句</h3><p>可以通过以下两种方式定位执行效率较低的SQL语句。<br>通过慢查询日志定位那些执行效率较低的SQL语句，将slow-query-log参数设置为1之后，MySQL会将所有执行时间超过long_query_time参数所设定的阈值的SQL，写入slow_query_log_file参数所指定的文件中。<br>慢查询日志在查询结束以后才记录，所有在应用反映执行效率出现问题的时候查询慢查询日志并不能定位问题，可以使得show processlist命令查看当前MySQL在进行的线程，包括线程的状态、是否锁表等，可以实时地查看SQL的执行情况，同时对一些锁表操作进行优化。</p>
+<h3 id="知识点3：通过EXPLAIN分析低效SQL的执行计划"><a href="#知识点3：通过EXPLAIN分析低效SQL的执行计划" class="headerlink" title="知识点3：通过EXPLAIN分析低效SQL的执行计划"></a>知识点3：通过EXPLAIN分析低效SQL的执行计划</h3><p>通过以上步骤查询到效率低的SQL语句后，可以通过EXPLAIN或者DESC命令获取MySQL如何执行SELECT语句的信息，包括在SELECT语句执行过程中表如何连接和连接的顺序。<br>explain select sum(amount) from customer a,payment b where 1=1 and a.customer_id = b.customer_id and email = ‘zr@chinasofti.com’ \G<br>执行结果分析：<br>select_type：表示select的类型，常见的取值有simple（简单表，即不使用表连接或者子查询），primary（主查询，即外层的查询），union（union中的第二个或者后面的查询语句），subquery（子查询中的第一个select）。<br>table：输出结果集的表。<br>type：表示MySQL在表呀到所需行的方式，或者叫访问类型，常见的如下所示：<br>all、index、range、ref、eq_ref、const,system、null（从左到右，性能由最差到最好）<br>type=ALL，全表扫描，MySQL遍历全表来找到匹配的行；<br>type=index，索引全扫描，MySQL遍历整个索引来查询匹配的行；<br>type=range，索引范围扫描，常见于&lt;、&lt;=、&gt;、&gt;=、between等操作符；<br>type=ref，使用非唯一索引扫描或唯一索引的前缀扫描，返回匹配某个单独值的记录行；<br>type=eq_rf，类似ref，区别就在使用的索引是唯一索引，对于每个索引键值，表中只有一条记录匹配；<br>type=const/system，单表中最多有一个匹配行，查询起来非常迅速；<br>type=NULL，MySQL不用访问表或者索引，直接就能够得到结果。</p>
+<h3 id="知识点4：通过show-profile分析SQL"><a href="#知识点4：通过show-profile分析SQL" class="headerlink" title="知识点4：通过show profile分析SQL"></a>知识点4：通过show profile分析SQL</h3><p>查看当前MySQL是否支持profile<br>select @@have_profiling;<br>默认是关闭的，通过SET语句在Session级别开启profiling<br>SET profiling=1;</p>
+<h3 id="知识点5：通过trace分析器如何选择执行计划"><a href="#知识点5：通过trace分析器如何选择执行计划" class="headerlink" title="知识点5：通过trace分析器如何选择执行计划"></a>知识点5：通过trace分析器如何选择执行计划</h3><p>MySQL从5.6版本开始提供了对SQL的跟踪trace，通过trace文件能够进一步了解为什么优化器选择A执行计划而不选择B执行计划，帮助我们更好地理解优化器的行为。<br>使用方式：<br>打开trace<br>设置格式为JSON<br>设置trace最大能够使用的内存大小<br>执行想做trace的SQL语句<br>检查INFORMATION_SCHEMA.OPTIMIZER_TRACE，查看MySQL是如何执行SQL语句的</p>
+<h3 id="知识点6：确定问题并采用相应的优化措施"><a href="#知识点6：确定问题并采用相应的优化措施" class="headerlink" title="知识点6：确定问题并采用相应的优化措施"></a>知识点6：确定问题并采用相应的优化措施</h3><p>经过以上步骤，基本就可以确认问题出现的原因，此时用户可以根据情况采取相应的措施（索引等），进行优化以提高执行的效率。</p>
+<h2 id="索引的问题"><a href="#索引的问题" class="headerlink" title="索引的问题"></a>索引的问题</h2><h3 id="知识点1：索引的存储分类"><a href="#知识点1：索引的存储分类" class="headerlink" title="知识点1：索引的存储分类"></a>知识点1：索引的存储分类</h3><p>索引是在MySQL的存储引擎层中实现的，而不是在服务器层实现的。所以每种存储引擎的索引都不一定完全相同，也不是所有的存储引擎都支持所有的索引类型。MySQL目前提供了以下4种索引：<br><strong>B-Tree索引</strong>：最常见的索引类型，大部分引擎都支持该索引；<br><strong>HASH索引</strong>：只有Memory/NDB引擎支持，使用场景简单；<br><strong>R-Tree索引（空间索引）</strong>：空间索引是MyISAM的一个特殊索引类型，主要用于地理空间数据类型，通常使用较少；<br><strong>Full-text（全文索引）</strong>：全文索引也是MyISAM的一个特殊索引类型，主要用于全文索引，InnoDB从MySQL5.6版本开始提供对全文索引的支持。</p>
+<h3 id="知识点2：MySQL如何使用索引"><a href="#知识点2：MySQL如何使用索引" class="headerlink" title="知识点2：MySQL如何使用索引"></a>知识点2：MySQL如何使用索引</h3><p>B-Tree索引是最常见的索引，构造类似于二叉树，能根据键值提供一行或者一个行集的快速访问，通过只需要很少的读操作就可以找到正确的行。不过，需要注意B-Tree索引中的B不代表二叉树，而是代表平衡树。B-Tree索引并不是一棵二叉树。</p>
+<h4 id="MySQL中能够使用索引的典型场景"><a href="#MySQL中能够使用索引的典型场景" class="headerlink" title="MySQL中能够使用索引的典型场景"></a>MySQL中能够使用索引的典型场景</h4><p>匹配全值，对索引中所有列都指定具体值，即是对索引中的所有列都有等值匹配的条件；<br>匹配值的范围查询，对索引的值能够进行范围查找；<br>匹配最左前缀，仅仅使用索引中的最左边列进行查找；<br>仅仅对索引进行查询，当查询的列都在索引的字段中时，查询的效率更高；<br>匹配列前缀，仅仅使用索引中的第一列，并且只包含索引第一列的开头一部分进行查找；<br>能够实现索引匹配部分精确而其他部分进行范围匹配；</p>
+<h4 id="存在索引但不能使用索引的典型场景"><a href="#存在索引但不能使用索引的典型场景" class="headerlink" title="存在索引但不能使用索引的典型场景"></a>存在索引但不能使用索引的典型场景</h4><p>以%开头的LIKE查询不能够利用B-Tree索引；<br>数据类型出现隐式转换的时候也不会使用索引，特别是当列类型是字符串，那么一定记得在where条件中把字符常量值用引号引起来，否则即便这个列上有索引，MySQL也不会用到，因为MySQL默认把输入的常量值进行转换以后才进行检索；<br>复合索引的情况下，假如查询条件不包含索引列最左边部分，即不满足最左原则，是不会使用复合索引；<br>如果MySQL估计使用索引比表扫描更慢，则不使用索引；<br>用or分割开的条件，如果or前的条件中的列有索引，而后面的列中没有索引，那么涉及的索引都不会被用到。</p>
+<h3 id="知识点3：查看索引使用情况"><a href="#知识点3：查看索引使用情况" class="headerlink" title="知识点3：查看索引使用情况"></a>知识点3：查看索引使用情况</h3><p>如果索引正在工作，Handler_read_key的值将很高，这个值代表了一个行被索引值读的次数，很低的值表明增加索引得到的性能改善不高，因为索引并不经常使用。<br>show status like ‘Handler_read%’;</p>
+<h2 id="两个简单实用的优化方法"><a href="#两个简单实用的优化方法" class="headerlink" title="两个简单实用的优化方法"></a>两个简单实用的优化方法</h2><h3 id="知识点1：定期分析表和检查表"><a href="#知识点1：定期分析表和检查表" class="headerlink" title="知识点1：定期分析表和检查表"></a>知识点1：定期分析表和检查表</h3><p>对于大多数开发人员来说，可能只希望掌握一些简单实用的优化方法；对于更多、更复杂的优化，更倾向于交给专业DBA来做。<br>分析表的语法如下：<br>ANALYZE [LOCAL | NO_WRITE_TO_BINLOG] TABLE tbl_name [,tbl_name] …<br>本语句用于分析和存储表的关键字分布，分析的结果将可以使得系统得到准确的统计信息，使得SQL能够生成正确的执行计划。<br>检查表的语法如下：<br>CHECK TABLE tbl_name [,tbl_name] … [option] … option = {QUICK | FAST | MEDIUM | EXTENDED | CHANGED}<br>检查表的作用是检查一个或多个表是否有错误。</p>
+<h3 id="知识点2：定期优化表"><a href="#知识点2：定期优化表" class="headerlink" title="知识点2：定期优化表"></a>知识点2：定期优化表</h3><p>优化表的语法如下：<br>OPTIMIZE [LOCAL | NO_WRITE_TO_BINLOG] TABLE tbl_name [,tbl_name]…<br>如果已经删除了表的一大部分，或者如果已经对含有可变长度行的表进行了很多的更改，则应该使用OPTIMIZE TABLE 命令来进行表优化。<br>注意：<br>ANALYZE、CHECK、OPTIMIZE 、ALTER TABLE执行期间将对表进行锁定，因此一定注意要在数据库不繁忙的时候执行相关的操作。<br><img src="/2020/04/19/mysql/image450.png" alt></p>
+<h2 id="常用的sql优化"><a href="#常用的sql优化" class="headerlink" title="常用的sql优化"></a>常用的sql优化</h2><h3 id="知识点1：大批量插入数据"><a href="#知识点1：大批量插入数据" class="headerlink" title="知识点1：大批量插入数据"></a>知识点1：大批量插入数据</h3><p>针对InnoDB引擎类型的表，可以有以下几种方式提高InnoDB表的导入效率：<br>因为InnoDB类型的表是按照主键的顺序保存的，所以将导入的数据按照主键的顺序排列，可以有效地提高导入数据的效率；<br>load data infile ‘…….’ into table tbl_name<br>在导入数据前执行SET UNIQUE_CHECKS = 0，关闭唯一性校验；在导入结束后执行SET UNIQUE_CHECKS = 1，恢复唯一性校验，可以提高导入的效率；<br>如果应用使用自动提交的方式，建议在导入前执行SET AUTOCOMMIT = 0，关闭自动提交，导入结束后再执行SET AUTOCOMMIT = 1，打开自动提交，也可以提高导入的效率；</p>
+<h3 id="知识点2：优化INSERT语句"><a href="#知识点2：优化INSERT语句" class="headerlink" title="知识点2：优化INSERT语句"></a>知识点2：优化INSERT语句</h3><p>当进行数据INSERT的时候，可以考虑采用以下几种优化方式：<br>如果同时从同一个客户插入很多行，应尽量使用多个值表的INSERT语句，这种方式将大大缩减客户端与数据库之间的连接、关闭等消耗，使得效率比分开执行的单个INSERT语句快。<br>insert into test values(1,2),(1,3),(1,4)…<br>如果从不同客户插入很多行，可以通过使用INSERT DELAYED语句得到更高的速度。DELAYED的含义是让INSERT语句马上执行，其实数据都被放在内存的队列中，并没有真正写入磁盘，这比每条语句分别插入要快得多；LOW_PRIORITY刚好相反，在所有其他用户对表的读写完成后才进行插入。<br>将索引文件和数据文件分在不同磁盘的存放。<br>如果进行批量插入，可以通过增加bulk_insert_buffer_size变更值的方法来提高速度，但是，这只能对MyISAM表使用。<br>当从一个文本文件装载一个表时，使用LOAD DATA INFILE。这通常比使用很多INSERT语句快20倍。</p>
+<h3 id="知识点3：优化ORDER-BY语句"><a href="#知识点3：优化ORDER-BY语句" class="headerlink" title="知识点3：优化ORDER BY语句"></a>知识点3：优化ORDER BY语句</h3><p>MySQL中有两种排序方式：<br>通过有序索引顺序扫描直接返回有序数据。<br>通过对返回数据进行排序，也就是通常说的Filesort排序，所有不是通过索引直接返回结果的排序都叫Filesort排序。<br>了解了MySQL排序的方式，优化目标就清晰了：尽量减少额外的排序，通过索引直接返回有序数据。WHERE条件和ORDER BY使用相同索引，并且ORDER BY的顺序和索引顺序相同，并且ORDER BY的字段都是升序或者都是降序，否则肯定需要额外的排序操作，这样就会出现Filesort。<br>Filesort有两种排序算法：<br>两次扫描算法<br>一次扫描算法<br>通过比较系统变量max_length_for_sort_data的大小和Query语句取出的字段总大小来判断使用哪种排序算法，如果max_length_for_sort_data更大，使用一次扫描算法，否则使用两次扫描算法。</p>
+<h3 id="知识点4：优化GROUP-BY语句"><a href="#知识点4：优化GROUP-BY语句" class="headerlink" title="知识点4：优化GROUP BY语句"></a>知识点4：优化GROUP BY语句</h3><p>如果查询包括GROUP BY，但用户想要避免排序结果的消耗，则可以指定ORDER BY NULL禁止排序。</p>
+<h3 id="知识点5：优化JOIN操作"><a href="#知识点5：优化JOIN操作" class="headerlink" title="知识点5：优化JOIN操作"></a>知识点5：优化JOIN操作</h3><p>MySQL对于多表JOIN在目前只支持一种算法-Nested-Loop Join(NLJ)。NLJ的原理非常简单，就是内外两层循环，对于外循环中的每条记录，都要在内循环中做一个检索。<br>在以下两种情况下，NLJ的性能会有比较明显地下降：<br>外循环结果集大，导致访问内循环表的io次数非常多；<br>内循环的关联字段并不是唯一索引，而是变通的辅助索引。如果访问的数据列不在辅助索引上，此时通常需要再次回表。通过辅助索引的主键找到聚集索引的实际数据，而回表会导致大量的随机io产生，导致性能下降明显。<br>优化上述问题，MySQL提供BNL和BKA两种算法<br>BNL性能虽然有大幅提高，但使用条件较为苛刻，只有当join类型是all/index/range时才可以。<br>BKA在很多情况下可以提高连接的效率，但对JOIN也有一定的条件限制，一个条件是连接的列要求是唯一索引或普通索引，但不能是主键；另一个是要有对非主键列的查询操作，否则优化器就可以覆盖索引等方式直接得到需要的数据，不需要回表。</p>
+<h3 id="知识点6：优化嵌套查询"><a href="#知识点6：优化嵌套查询" class="headerlink" title="知识点6：优化嵌套查询"></a>知识点6：优化嵌套查询</h3><p>使用子查询可以一次性地完成很多逻辑上需要多个步骤才能完成的SQL操作，同时也可以避免事务或者表锁死，并且写起来也容易，但是，有些情况下，子查询可以被更有效率的连接替代。</p>
+<h3 id="知识点7：MySQL如何优化OR条件"><a href="#知识点7：MySQL如何优化OR条件" class="headerlink" title="知识点7：MySQL如何优化OR条件"></a>知识点7：MySQL如何优化OR条件</h3><p>对于含有OR的查询子句，如果要利用索引，则OR之间的每个条件列都必须用到索引；如果没有索引，则应该考虑增加索引。</p>
+<h3 id="知识点8：优化分页查询"><a href="#知识点8：优化分页查询" class="headerlink" title="知识点8：优化分页查询"></a>知识点8：优化分页查询</h3><p>在索引上完成排序分页操作，最后根据主键关联回原表需要的其他列内容（让MySQL扫描尽可能少的页面来提高分页效率。<br>把LIMIT查询转换成某个位置的查询。</p>
+<h3 id="知识点9：使用SQL提示"><a href="#知识点9：使用SQL提示" class="headerlink" title="知识点9：使用SQL提示"></a>知识点9：使用SQL提示</h3><p>USE INDEX：希望MySQL去参考的索引列表，不用再考虑其他可用的索引。<br>select count(<em>) from table_name use index(index_name);<br>IGNORE INDEX：忽略一个或者多个索引<br>select count(</em>) from table_name ignore index(index_name);<br>FORCE INDEX：强制MySQL使用一个特定的索引<br>select * from table_name force index(index_name);</p>
+<h2 id="直方图"><a href="#直方图" class="headerlink" title="直方图"></a>直方图</h2><h3 id="知识点1：什么是直方图"><a href="#知识点1：什么是直方图" class="headerlink" title="知识点1：什么是直方图"></a>知识点1：什么是直方图</h3><p>在数据库中，查询优化器负责将SQL转换成最有效的执行计划。但有时，由于一些字段的数据分布不均衡，导致优化器针对某些值不会选择最优的执行计划，从而使得执行效率降低。为了能做出更准确的选择，优化器需要了解条件列中具体的数据分布情况，而直方图的引入就是为了统计这些信息。<br>直方图的主要操作命令有以下两个：<br>生成直方图<br>ANALYZE TABLE tbL_name UPDATE HISTOGRAM ON col_name[,col_name] WITH N BUCKETS;<br>删除直方图<br>ANALYZE TABLE tbL_name DROP HISTOGRAM  ON col_name[,col_name] ;</p>
+<h3 id="知识点2：直方图的分类"><a href="#知识点2：直方图的分类" class="headerlink" title="知识点2：直方图的分类"></a>知识点2：直方图的分类</h3><p>等宽直方图<br>等高直方图<br>两才异同点：都将数据分到一系列的buckets中；区别在于如果列中不同值的个数小于等于buckets数，则为等宽直方图；反之为等高直方图。</p>
+<h3 id="知识点3：直方图实例应用"><a href="#知识点3：直方图实例应用" class="headerlink" title="知识点3：直方图实例应用"></a>知识点3：直方图实例应用</h3><p><img src="/2020/04/19/mysql/image451.png" alt></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://jinyeeeee.github.io/2020/04/19/mysql/" data-id="ck98ac8lw000kvsv08emi3o0q"
+         class="article-share-link">分享</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/04/15/java3/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">java3</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/technology.js"></script>
+
+  </div>
+</body>
+</html>
