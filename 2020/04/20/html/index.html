@@ -254,11 +254,70 @@ Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"></p>
         &lt;/div&gt;    
     &lt;/fieldset&gt;
         其他信息
-&lt;/form&gt;</code></pre>
+&lt;/form&gt;</code></pre><h3 id="3-6-7iframe框架"><a href="#3-6-7iframe框架" class="headerlink" title="3.6.7iframe框架"></a>3.6.7iframe框架</h3><p>在当前网页中引入其他的网页显示<br>Src:引入的文件的路径<br>Width:宽度<br>Height:高度<br>Scrolling:是否出现滚动条，yes，no，auto<br>Frameborder:框架的边框0,1 0表示没有，1表示有<br>Align:和img的align相同,既表示垂直对齐，也表示float。</p>
+<pre><code>&lt;span&gt;span&lt;/span&gt;
+&lt;iframe src=&quot;06-fieldset.html&quot; scrolling=&quot;yes&quot; align=&quot;bottom&quot; frameborder=&quot;1&quot;&gt;&lt;/iframe&gt;
+&lt;div&gt;div&lt;/div&gt;</code></pre><p><img src="/2020/04/20/html/image479.jpg" alt></p>
+<h3 id="3-6-8-表格标签"><a href="#3-6-8-表格标签" class="headerlink" title="3.6.8 表格标签"></a>3.6.8 表格标签</h3><p>Table:<br>属性：border,边框<br>Width:宽度<br>Height：高度<br>Align:表格相对它父元素的水平对齐方式，left center right<br>Cellspacing:单元格之间的距离<br>Cellpadding:单元格内容与其边框之间的距离<br>Bgcolor:设置背景颜色<br>Background:背景图片，背景图片的优先级高于背景颜色<br>子标签：<br>tr:行，放在table内<br>Width:宽度<br>Height:高度<br>Bgcolor:背景颜色<br>Align:内容的水平对齐方式<br>Valign:内容的垂直对齐方式<br>Td:代表列，放在tr内<br>Width:宽度<br>Height:高度<br>Bgcolor:背景颜色<br>Background:背景图片<br>Align:水平对齐<br>Valign:垂直对齐方式<br>Colspan:合并列，写在被合并的td的最左边的一个<br>Rowspan：合并行，写在被合并的td的最上面的一个<br>Caption:为表格设置标题，直接写在table内<br>thead:表头，写在table内，里面tr,td<br>Tbody:表格的主体，写在table内，里面tr,td<br>Tfoot:表格的尾部，写在table内，里面tr,td<br>Th:列标题</p>
+<pre><code>&lt;table border=&quot;1&quot; align=&quot;center&quot; width=&quot;500px&quot; height=&quot;200px&quot; 
+cellspacing=&quot;0&quot; cellpadding=&quot;10px&quot; bgcolor=&quot;aquamarine&quot; valign=&quot;bottom&quot;&gt;
+    &lt;tr height=&quot;200px&quot; bgcolor=&quot;antiquewhite&quot; align=&quot;right&quot; valign=&quot;bottom&quot;&gt;
+        &lt;td width=&quot;100px&quot; height=&quot;50px&quot; bgcolor=&quot;beige&quot; background=&quot;img/dog.jpg&quot; 
+         align=&quot;center&quot; valign=&quot;top&quot;&gt;1-1&lt;/td&gt;
+        &lt;td&gt;1-2&lt;/td&gt;
+        &lt;td&gt;1-3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;2-1&lt;/td&gt;
+        &lt;td&gt;2-2&lt;/td&gt;
+        &lt;td&gt;2-3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;3-1&lt;/td&gt;
+        &lt;td&gt;3-2&lt;/td&gt;
+        &lt;td&gt;3-3&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;table border=&quot;1&quot; align=&quot;center&quot; width=&quot;300px&quot; height=&quot;100px&quot;&gt;
+    &lt;caption&gt;成绩统计表&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th colspan=&quot;3&quot;&gt;学习成绩&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td rowspan=&quot;2&quot;&gt;张三&lt;/td&gt;
+            &lt;td&gt;语文&lt;/td&gt;
+            &lt;td&gt;98&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;数学&lt;/td&gt;
+            &lt;td&gt;89&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td rowspan=&quot;2&quot;&gt;李四&lt;/td&gt;
+            &lt;td&gt;语文&lt;/td&gt;
+            &lt;td&gt;78&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;数学&lt;/td&gt;
+            &lt;td&gt;87&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;&lt;th colspan=&quot;3&quot;&gt;总结&lt;/th&gt;&lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre><p><img src="/2020/04/20/html/image480.jpg" alt></p>
+<h3 id="3-6-9-HTML的语义化"><a href="#3-6-9-HTML的语义化" class="headerlink" title="3.6.9 HTML的语义化"></a>3.6.9 HTML的语义化</h3><h4 id="什么是语义化？"><a href="#什么是语义化？" class="headerlink" title="什么是语义化？"></a>什么是语义化？</h4><p>根据内容的结构化（内容语义化），选择合适的标签（代码语义化）便于开发者阅读和写出更优雅的代码的同时让浏览器的爬虫和机器很好地解析。<br>为什么要语义化(优点)<br>为了在没有CSS的情况下，页面也能呈现出很好地内容结构、代码结构:为了裸奔时好看；<br>用户体验：例如title、alt用于解释名词或解释图片信息、label标签的活用；<br>有利于SEO：和搜索引擎建立良好沟通，有助于爬虫抓取更多的有效信息：爬虫依赖于标签来确定上下文和各个关键字的权重；<br>方便其他设备解析 （如屏幕阅读器、盲人阅读器、移动设备）以意义的方式来渲染网页；<br>便于团队开发和维护，语义化更具可读性，是下一步吧网页的重要动向，遵循W3C标准的团队都遵循这个标准，可以减少差异化。</p>
+<h4 id="HTML语义化的注意事项："><a href="#HTML语义化的注意事项：" class="headerlink" title="HTML语义化的注意事项："></a>HTML语义化的注意事项：</h4><p>尽可能少的使用无语义的标签div和span；<br>在语义不明显时，既可以使用div或者p时，尽量用p, 因为p在默认情况下有上下间距，对兼容特殊终端有利；<br>不要使用纯样式标签，如：b、font、u等，改用css设置。<br>需要强调的文本，可以包含在strong或者em标签中（浏览器预设样式，能用CSS指定就不用他们），strong默认样式是加粗（不要用b），em是斜体（不用i）；<br>使用表格时，标题要用caption，表头用thead，主体部分用tbody包围，尾部用tfoot包围。表头和一般单元格要区分开，表头用th，单元格用td；<br>表单域要用fieldset标签包起来，并用legend标签说明表单的用途；<br>每个input标签对应的说明文本都需要使用label标签，并且通过为input设置id属性，在lable标签中设置for=someld来让说明文本和相对应的input关联起来。</p>
+<h4 id="XHTML-CSS编写建议："><a href="#XHTML-CSS编写建议：" class="headerlink" title="XHTML-CSS编写建议："></a>XHTML-CSS编写建议：</h4><p>所有的html代码小写；<br>属性的值一定要用双引号(“”)括起来，且一定要有值；<br>每个标签都要有开始和结束，且要有正确的层次；<br>空元素要有结束的tag或于开始的tag后加上“/”;<br>表现与结构完全分离，代码中不涉及任何的表现。<br>给重要的区块加上注释；<br>给图片加上alt属性；</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://jinyeeeee.github.io/2020/04/20/html/" data-id="ck99i0d000005ngv0gsichx4q"
+      <a data-url="http://jinyeeeee.github.io/2020/04/20/html/" data-id="ck9bi7h9600031gv06c5t0shp"
          class="article-share-link">分享</a>
       
     </footer>
