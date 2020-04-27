@@ -242,7 +242,32 @@ context.moveTo(100,100);
 context.lineTo(200,200);
 context.strokeStyle=&quot;blue&quot;;
 context.stroke();</code></pre><p>beginPath();开始直线的绘图；<br>moveTo(x,y);将绘图的位置移动到坐标所在位置。<br>lineTo(x,y);设定直线的结束位置坐标。<br>strokeStyle:设定直线或边线的样式（此处为颜色）。<br>stroke():运行环境开始填充边线。</p>
-<h3 id="4-1-1绘制直线"><a href="#4-1-1绘制直线" class="headerlink" title="4.1.1绘制直线"></a>4.1.1绘制直线</h3><p>绘制直线的主要API介绍：<br>beginPath() ：开始一个画布中的一条新路径。<br>moveTo(x,y) ：设定起始路径。<br>lineTo(x,y):以直线的方式绘制到指定坐标点，需要调用stroke才能显示。<br>stroke() : 使用线段的方式绘制路径。<br>lineWidth属性：设定线条宽度。<br>strokeStyle：指定路径的颜色、模式和渐变。<br>lineCap：指定线条的末端如何绘制。合法的值是 “butt”、”round” 和 “square”。默认值是 “butt”。<br>lineJoin：设定直线的连接点。取值范围是round/bevel/miter<br>绘制直线：<br>    <body><br>        <canvas id="canvas" width="500px" height="300px"></canvas><br>    </body><br>    <style><br>        #canvas{<br>            border: 1px solid #000;<br>        }<br>    </style><br>    <script><br>        //获取canvas对象<br>        var c = document.getElementById("canvas");<br>        //获取去上下文对象<br>        var context = c.getContext("2d");<br>        //开始<br>        context.beginPath();<br>        //给个起点<br>        context.moveTo(100,50);<br>        //给个终点<br>        context.lineTo(400,200);<br>        context.lineWidth = "5";<br>        //设置颜色<br>        context.strokeStyle="#00f";<br>        //结束<br>        context.stroke();<br>    </script><br><a href="./H5/20200423/03-canvas.html">查看效果</a></p>
+<h3 id="4-1-1绘制直线"><a href="#4-1-1绘制直线" class="headerlink" title="4.1.1绘制直线"></a>4.1.1绘制直线</h3><p>绘制直线的主要API介绍：<br>beginPath() ：开始一个画布中的一条新路径。<br>moveTo(x,y) ：设定起始路径。<br>lineTo(x,y):以直线的方式绘制到指定坐标点，需要调用stroke才能显示。<br>stroke() : 使用线段的方式绘制路径。<br>lineWidth属性：设定线条宽度。<br>strokeStyle：指定路径的颜色、模式和渐变。<br>lineCap：指定线条的末端如何绘制。合法的值是 “butt”、”round” 和 “square”。默认值是 “butt”。<br>lineJoin：设定直线的连接点。取值范围是round/bevel/miter<br>绘制直线：</p>
+<pre><code>&lt;body&gt;
+    &lt;canvas id=&quot;canvas&quot; width=&quot;500px&quot; height=&quot;300px&quot;&gt;&lt;/canvas&gt;
+&lt;/body&gt;
+&lt;style&gt;
+    #canvas{
+        border: 1px solid #000;
+    }
+&lt;/style&gt;
+&lt;script&gt;
+    //获取canvas对象
+    var c = document.getElementById(&quot;canvas&quot;);
+    //获取去上下文对象
+    var context = c.getContext(&quot;2d&quot;);
+    //开始
+    context.beginPath();
+    //给个起点
+    context.moveTo(100,50);
+    //给个终点
+    context.lineTo(400,200);
+    context.lineWidth = &quot;5&quot;;
+    //设置颜色
+    context.strokeStyle=&quot;#00f&quot;;
+    //结束
+    context.stroke();
+&lt;/script&gt;</code></pre><p><a href="./H5/20200423/03-canvas.html">查看效果</a></p>
 <h3 id="4-1-2绘制矩形"><a href="#4-1-2绘制矩形" class="headerlink" title="4.1.2绘制矩形"></a>4.1.2绘制矩形</h3><pre><code>var canvas = document. getElementById(&quot;canvas&quot;) ;
 var context = canvas . getContext (&quot;2d&quot;) ;
 context . beginPath() ;
@@ -487,7 +512,7 @@ xhr.onerror = function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://jinyeeeee.github.io/2020/04/24/H5/" data-id="ck9i6u3h80008g8v0a6ssarnr"
+      <a data-url="http://jinyeeeee.github.io/2020/04/24/H5/" data-id="ck9i9o8qx000074v04h62fwsm"
          class="article-share-link">分享</a>
       
     </footer>
