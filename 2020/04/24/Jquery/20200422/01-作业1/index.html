@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    Jquery/20200422/01-作业1 |
+    
+    yuchen</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/technology.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-Jquery/20200422/01-作业1" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Jquery/20200422/01-作业1
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/04/24/Jquery/20200422/01-%E4%BD%9C%E4%B8%9A1/" class="article-date">
+  <time datetime="2020-04-24T14:26:15.148Z" itemprop="datePublished">2020-04-24</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<form action="server.html" method="post" id="form">
+		<table>
+			<tr>
+				<td>username</td>
+				<td><input type="text" name="username" id="username" class="username"></td>
+			</tr>
+			<tr>
+				<td>password</td>
+				<td><input type="password" name="password" id="password" class="password"></td>
+			</tr>
+			<tr>
+				<td>confirmPassword</td>
+				<td><input type="password" name="confirmPassword" id="confirmPassword" class="confirmPassword"></td>
+			</tr>
+			<tr>
+				<td>AGE</td>
+				<td><input type="text" name="age" id="age" class="age"></td>
+			</tr>
+			<tr>
+				<td>email</td>
+				<td><input type="text" name="email" id="email" class="email"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value="register" id="register"></td>
+			</tr>
+			<tr>
+				<td colspan="2" class="info" id="info" style="color:red;"></td>
+			</tr>
+		</table>
+		</form>
+	</body>
+	<script>
+		//当我们点击提交按钮的时候，就会触发表单的提交事件
+		document.getElementById("form").onsubmit = function(){
+			//获取的输入的数据
+			//获取用户名
+			var username = document.getElementById("username").value.trim();
+			var password = document.getElementById("password").value.trim();
+			var confirmPassword = document.getElementById("confirmPassword").value.trim();
+			var age = document.getElementById("age").value.trim();
+			var email = document.getElementById("email").value.trim();
+			var flag = false;//不阻止表单提交
+			//检验是否符合规范
+			var username_reg = /^[a-zA-Z_]\w{4,49}$/;//第一个不能是数字，5-50
+			if(!username_reg.test(username)){//不符合标准
+				//document.getElementById("info").innerHTML = "<div>用户名不合法</div>";
+				//创建一个错误提示的元素
+			    var div = document.createElement("div");
+				div.innerText= "用户名不合法";
+				document.getElementById("info").appendChild(div);
+				flag = true;
+			}
+			//判断密码
+			var password_reg = /^\w{8,}$/;
+			if(!password_reg.test(password)){
+				//创建一个错误提示的元素
+				var div = document.createElement("div");
+				div.innerText= "密码不合法";
+				document.getElementById("info").appendChild(div);
+				flag = true;
+			}
+			if(!(password==confirmPassword && password!="")){
+				//创建一个错误提示的元素
+				var div = document.createElement("div");
+				div.innerText= "两次密码不一致";
+				document.getElementById("info").appendChild(div);
+				flag = true;
+			}
+			if(flag){
+				//阻止表单提交
+				return false;
+			}
+		}
+	</script>
+</html>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://jinyeeeee.github.io/2020/04/24/Jquery/20200422/01-%E4%BD%9C%E4%B8%9A1/" data-id="ck9i6u525001zg8v02zvl2usq"
+         class="article-share-link">分享</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2020/04/24/Jquery/20200422/02-jquery%E5%B1%9E%E6%80%A7%E9%80%89%E6%8B%A9%E5%99%A8/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Jquery/20200422/02-jquery属性选择器
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/04/24/JS/20200421/js/jquery-1.9.1.min/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">JS/20200421/js/jquery-1.9.1.min</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/technology.js"></script>
+
+  </div>
+</body>
+</html>

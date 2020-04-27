@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    Jquery/20200422/19-mousemove |
+    
+    yuchen</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/technology.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-Jquery/20200422/19-mousemove" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Jquery/20200422/19-mousemove
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/04/24/Jquery/20200422/19-mousemove/" class="article-date">
+  <time datetime="2020-04-24T14:26:15.739Z" itemprop="datePublished">2020-04-24</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			div{
+				width: 300px;
+				height: 150px;
+				border: 1px solid #000;
+			}
+		</style>
+		<script src="js/jquery-1.9.1.min.js"></script>
+		<script>
+			$(function(){
+				$("div").mousemove(function(){
+					//函数内自动封装了事件对象
+					var x = event.pageX;//获取当前事件距离文档左边界的位置
+					var y = event.pageY;//获取当前事件距离文档上边界的位置
+					$("span").text("x:"+x+",y:"+y);
+				});
+				$("div").mouseout(function(){
+					//移出，将span内容清空
+				 	$("span").text("");
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div>
+			
+		</div>
+		<span></span>
+	</body>
+</html>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://jinyeeeee.github.io/2020/04/24/Jquery/20200422/19-mousemove/" data-id="ck9i6u534002eg8v05yif5lic"
+         class="article-share-link">分享</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2020/04/24/Jquery/20200422/20-%E5%85%83%E7%B4%A0%E9%81%8D%E5%8E%86/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Jquery/20200422/20-元素遍历
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/04/24/Jquery/20200422/18-hover/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Jquery/20200422/18-hover</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/technology.js"></script>
+
+  </div>
+</body>
+</html>

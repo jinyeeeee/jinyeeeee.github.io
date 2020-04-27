@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    sql |
+    
+    yuchen</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/technology.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-sql" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      sql
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/11/10/sql/" class="article-date">
+  <time datetime="2019-11-10T11:20:40.000Z" itemprop="datePublished">2019-11-10</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <h1 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE STUDENT(</span><br><span class="line">	NAME = &apos;STUDENT_DATA&apos;//指定数据库的逻辑名称</span><br><span class="line">	FILENAME = &apos;F:\DATA\STUDENT_DATA.MDF&apos;,//指定操作系统文件的路径和名称</span><br><span class="line">	SIZE = 5MB,		//指定数据库的初始容量大小</span><br><span class="line">	MAXSIZE = 20MB, //指定操作系统文件可以增长到的最大尺寸</span><br><span class="line">	FILEGROWTH = 20%//指定文件每次增加容量的大小</span><br><span class="line">)</span><br><span class="line">LOG ON //日志文件,若不指定,则默认创建一个容量为所有数据库文件大小的1/4的事务日志文件</span><br><span class="line">(</span><br><span class="line">	NAME = &apos;STUDENT_LOG&apos;,</span><br><span class="line">	FILENAME = &apos;F:\DATA\STUDENT_LOG.LDF&apos;,</span><br><span class="line">	SIZE = 5MB,</span><br><span class="line">	MAXSIZE = 10MB,</span><br><span class="line">	FILEGROWTH = 2MB</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>创建含两个文件组和数据文件的数据库<br>一个数据库可包含多个文件组,一个文件组可包含多个数据文件,一个文件组只能存在于一个数据库中,数据文件同样<br>默认文件组为主文件组,可更改默认设置</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE STUDENT</span><br><span class="line">ON</span><br><span class="line">(</span><br><span class="line">	NAME = &apos;STUDENT_DATA&apos;</span><br><span class="line">	FILENAME = &apos;E:\DATA\STUDENT_DATA.MDF&apos;,</span><br><span class="line">	SIZE = 5MB,</span><br><span class="line">	MAXSIZE = 20MB,</span><br><span class="line">	FILEGROWTH = 20%</span><br><span class="line">),</span><br><span class="line">FILEGROUP FG1  //用户自定义文件组</span><br><span class="line">(</span><br><span class="line">	NAME = &apos;STUDENT_DATA2&apos;</span><br><span class="line">	FILENAME = &apos;E:\DATA\STUDENT_DATA2.NDF&apos;,</span><br><span class="line">	SIZE = 5MB,</span><br><span class="line">	MAXSIZE = 20MB,</span><br><span class="line">	FILEGROWTH = 20%</span><br><span class="line">)</span><br><span class="line">LOG ON</span><br><span class="line">(</span><br><span class="line">	NAME = &apos;STUDEN_TLOG&apos;,</span><br><span class="line">	FILENAME = &apos;F:\DATA\STUDENT_LOG.LDF&apos;,</span><br><span class="line">	SIZE = 5MB,</span><br><span class="line">	MAXSIZE = 10MB,</span><br><span class="line">	FILEGROWTH = 2MB</span><br><span class="line">),</span><br><span class="line">(</span><br><span class="line">	NAME = &apos;STUDEN_TLOG2&apos;,</span><br><span class="line">	FILENAME = &apos;F:\DATA\STUDENT_LOG2.LDF&apos;,</span><br><span class="line">	SIZE = 5MB,</span><br><span class="line">	MAXSIZE = 10MB,</span><br><span class="line">	FILEGROWTH = 2MB</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="修改数据库"><a href="#修改数据库" class="headerlink" title="修改数据库"></a>修改数据库</h3><blockquote>
+<p>修改数据文件</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ALTER DATABASE STUDENT</span><br><span class="line">MODIFY FILE</span><br><span class="line">(</span><br><span class="line">	NAME = STUDENT_DATA,</span><br><span class="line">	SIZE = 20MB</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>添加数据文件</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ALTER DATABASE STUDENT</span><br><span class="line">ADD FILE</span><br><span class="line">(</span><br><span class="line">	NAME = &apos;STUDENT_DATA2&apos;,</span><br><span class="line">	FILENAME = &apos;E:\DATA\STUDENT_DATA2.MDF&apos;,</span><br><span class="line">	SIZE = 5MB,</span><br><span class="line">	MAXSIZE = 20MB,</span><br><span class="line">	FILEGROWTH = 20%</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>删除数据库文件</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER DATABASE STUDENT</span><br><span class="line">REMOVE FILE 逻辑文件名</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>更改数据库名称</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sp_renamedb &apos;STUDENT&apos;,&apos;STUDENT_BACK&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP DATABASE 数据库名</span><br></pre></td></tr></table></figure>
+<h1 id="数据表操作"><a href="#数据表操作" class="headerlink" title="数据表操作"></a>数据表操作</h1><h3 id="创建数据表"><a href="#创建数据表" class="headerlink" title="创建数据表"></a>创建数据表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE course</span><br><span class="line">(</span><br><span class="line">	cno char(4) PRIMARY KEY,</span><br><span class="line">    cname	nvarchar(20) NOT NULL,</span><br><span class="line">    classhour tinyint,</span><br><span class="line">    credit tinyint</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="修改数据表"><a href="#修改数据表" class="headerlink" title="修改数据表"></a>修改数据表</h3><blockquote>
+<p>修改字段 ALTER ALTER </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE student</span><br><span class="line">ALTER COLUMN sname nvarchar(20) NULL</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>添加字段</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE student</span><br><span class="line">ADD teacher nvarchar(10)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>删除字段</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE student</span><br><span class="line">DROP COLUMN sage</span><br></pre></td></tr></table></figure>
+<h3 id="列约束和表约束"><a href="#列约束和表约束" class="headerlink" title="列约束和表约束"></a>列约束和表约束</h3><blockquote>
+<p><strong>PRIMARY KEY</strong></p>
+<blockquote>
+<p>1.建表时就添加主键约束<br>2.通过ALTER TABLE 添加主键约束</p>
+</blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE sc</span><br><span class="line">(</span><br><span class="line">	sno char(10),</span><br><span class="line">    cno char(4),</span><br><span class="line">    score int</span><br><span class="line">    CONSTRAINT pk_sc PRIMARY KEY(sno,cno)//组合主键</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE sc</span><br><span class="line">ADD CONSTRAINT pk_sc PRIMARY KEY(sno,cno)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>删除主键</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE sc</span><br><span class="line">DROP CONSTRAINT pk_sc</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>UNIQUE KEY</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE student</span><br><span class="line">(</span><br><span class="line">	sno char(10) PRIMARY KEY,</span><br><span class="line">    sname nvarchar(8) NOT NULL,</span><br><span class="line">    id_card char(18) CONSTRAINT uk_id UNIQUE,</span><br><span class="line">    sex nchar(2) 	NOT NULL</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="主键约束和UNIQUE约束的区别"><a href="#主键约束和UNIQUE约束的区别" class="headerlink" title="主键约束和UNIQUE约束的区别"></a>主键约束和UNIQUE约束的区别</h4><ol>
+<li>主键约束和UNIQUE约束都不允许重复值</li>
+<li>主键约束所在的列不允许空值</li>
+<li>UNIQUE约束所在的列允许空值<blockquote>
+<p><strong>FOREIGN KEY</strong></p>
+<blockquote>
+<p><a href="https://blog.csdn.net/metheir/article/details/81877055" target="_blank" rel="noopener">对外键约束的理解</a><br>从表插入数据时需要以主表设置外键的字段为参考插入数据,不能超出主表的数据范围</p>
+</blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE sc</span><br><span class="line">ADD CONSTRAINT fk_st</span><br><span class="line">FOREIGN KEY (sno) REFERENCES student(sno)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>CHECK约束</strong></p>
+<blockquote>
+<p>CHECK约束用来限制用户输入某一个列的数据,即在该列中只能输入指定范围的数据<br>CHECK约束通过指定的逻辑表达式来限制列的取值范围</p>
+</blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE sc</span><br><span class="line">ADD CONSTRAINT ck_score CHECK(score&gt;0 AND score&lt;100)</span><br><span class="line"></span><br><span class="line">ALTER TABLE sc</span><br><span class="line">DROP CONSTRAINT ck_score</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>DEFAULT</strong></p>
+<blockquote>
+<p>DEFAULT约束只能应用于INSERT语句</p>
+</blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//写约束名是为了方便删除DEFAULT,不写也可以</span><br><span class="line">ALTER TABLE student</span><br><span class="line">ADD 入学日期 data NULL</span><br><span class="line">CONSTRAINT df_date</span><br><span class="line">DEFAULT getdate()</span><br></pre></td></tr></table></figure>
+<h3 id="表数据的操作"><a href="#表数据的操作" class="headerlink" title="表数据的操作"></a>表数据的操作</h3><blockquote>
+<p>添加数据</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//指定字段</span><br><span class="line">INSERT student(sno,sname,age) VALUES(&apos;001&apos;,&apos;老王&apos;,&apos;18&apos;)</span><br><span class="line">//不指定字段,需要插入全部字段信息</span><br><span class="line">INSERT student VALUES(&apos;001&apos;,&apos;老王&apos;,&apos;18&apos;,&apos;男&apos;,...)</span><br><span class="line">//插入多条数据</span><br><span class="line">INSERT student VALUES(&apos;001&apos;,&apos;老王&apos;,&apos;18&apos;,&apos;男&apos;,...),</span><br><span class="line">					 (&apos;002&apos;,&apos;老钱&apos;,&apos;19&apos;,&apos;男&apos;,...),</span><br><span class="line">                     (&apos;003&apos;,&apos;老赵&apos;,&apos;20&apos;,&apos;男&apos;,...)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>修改数据</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE student SET sex = &apos;女&apos; WHERE sno = &apos;001&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>删除数据</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE student WHERE sno = &apos;001&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="清空表中数据"><a href="#清空表中数据" class="headerlink" title="清空表中数据"></a>清空表中数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TRUNCATE TABLE 表名</span><br></pre></td></tr></table></figure>
+<h3 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE 表名</span><br></pre></td></tr></table></figure>
+<h1 id="查询语句"><a href="#查询语句" class="headerlink" title="查询语句"></a>查询语句</h1><blockquote>
+<p>查询一个表中的<strong>某些列</strong></p>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT sname,ssex,specialty FROM student</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>查询一个表中的<strong>所有列</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM student</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>DISTINCT 过滤<strong>重复行</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT DISTINCT sname FROM student</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>top n 查询<strong>前n/%行</strong>信息</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT top 5 *FROM student</span><br><span class="line">SELECT top 50 percent sname FROM student</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>查询时<strong>更改列名</strong> AS = </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT sno AS 学号,sname AS 姓名 FROM student</span><br><span class="line">SELECT 学号 = sno,姓名 = sname FROM student</span><br><span class="line">SELECT sno 学号,sname 姓名 FROM student</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>计算列值</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT sno,cno,score150 = score * 1.5 FROM sc</span><br><span class="line">//score150为指定的列名,实际并不存在此列</span><br></pre></td></tr></table></figure>
+<h1 id="选择查询"><a href="#选择查询" class="headerlink" title="选择查询"></a>选择查询</h1><blockquote>
+<p><strong>WHERE</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM sc WHERE score &gt; 60</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>AND/OR</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM student WHERE specialty = &apos;计算机&apos; AND ssex = &apos;男&apos;</span><br><span class="line">SELECT * FROM student WHERE specialty = &apos;计算机&apos; OR ssex = &apos;男&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>BETWEEN AND/NOT - -</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM sc WHERE score BETWEEN 80 AND 90</span><br><span class="line">SELECT * FROM sc WHERE score NOT BETWEEN 80 AND 90</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>IN</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM student WHERE specialty IN (&apos;通信&apos;,&apos;计算机&apos;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>通配符</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">%:匹配零个及多个任意字符; _:与任意单字符匹配; []:匹配一个范围; [^]:排除一个范围 ;-:连字符</span><br><span class="line">Symbol Meaning </span><br><span class="line">like &apos;5[%]&apos; 5% </span><br><span class="line">like &apos;[_]n&apos; _n </span><br><span class="line">like &apos;[a-cdf]&apos; a, b, c, d, or f </span><br><span class="line">like &apos;[-acdf]&apos; -, a, c, d, or f </span><br><span class="line">like &apos;[[]&apos; [ </span><br><span class="line">like &apos;]&apos; ] </span><br><span class="line">like &apos;abc[_]d%&apos; abc_d and abc_de </span><br><span class="line">like &apos;abc[def]&apos; abcd, abce, and abcf </span><br><span class="line">like &apos;[^1-9]&apos; 0 </span><br><span class="line">like &apos;[^1-9b-z]&apos; 0, a</span><br><span class="line"></span><br><span class="line">FOR EXAMPLE</span><br><span class="line">//以张开头的字符串</span><br><span class="line">SELECT * FROM student WHERE sname LIKE &apos;张%&apos;</span><br><span class="line">//除张外任意长度的字符串</span><br><span class="line">SELECT * FROM student WHERE sname LIKE &apos;[^张]%&apos;</span><br><span class="line">//包含2的字符串</span><br><span class="line">SELECT * FROM student WHERE en_time LIKE &apos;%2%&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>NULL</strong> </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM sc WHERE score is NULL</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>复合条件查询</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM student</span><br><span class="line">WHERE ssex = &apos;女&apos; AND</span><br><span class="line">(specialty = &apos;计算机&apos; OR specialty = &apos;通信&apos;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>聚合函数查询sum avg min max count count(*)</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT sum(score) AS 求和 FROM sc</span><br><span class="line">SELECT avg(score) AS 求和 FROM sc</span><br><span class="line">SELECT min(score) AS 求和 FROM sc</span><br><span class="line">SELECT max(score) AS 求和 FROM sc</span><br><span class="line"></span><br><span class="line">SELECT count(DISTINCT specialty) AS 专业种类数 FROM student</span><br><span class="line">SELECT avg(score) FROM sc WHERE sno = &apos;1302001&apos;</span><br></pre></td></tr></table></figure>
+<h1 id="分组和汇总"><a href="#分组和汇总" class="headerlink" title="分组和汇总"></a>分组和汇总</h1><blockquote>
+<p><strong>GROUP BY 分组</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT ssex,count(ssex) AS 人数 FROM student</span><br><span class="line">GROUP BY ssex</span><br><span class="line"></span><br><span class="line">SELECT sno,count(cno) AS 课程数 FROM sc</span><br><span class="line">GROUP BY sno</span><br><span class="line">HAVING count(cno)&gt;2</span><br><span class="line">//HAVING 关键字对查询和统计的结果做进一步的筛选</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>CUBE</strong><br>//1.若有多个分组条件,返回的结果先按分组的第一个条件列排序显示,再按第二个条件列排序显示。2.由于CUBE返回每个可能的组和子组组和,因此无论在列分组时指定使用什么顺序,行数都相同。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT avg(score) AS 平均成绩 , count(sno) AS 选修人数</span><br><span class="line">FROM sc GROUP BY cno</span><br><span class="line">WITH CUBE</span><br><span class="line"></span><br><span class="line">SELECT specialty,ssex,count(*) AS 人数</span><br><span class="line">FROM student</span><br><span class="line">GROUP BY ssex,specialty</span><br><span class="line">WITH CUBE</span><br><span class="line">//先汇总specialty,再汇总ssex</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>ROLLUP</strong><br>//1.组的层次结构取决于列分组时指定使用的顺序,更改列分组的顺序会影响在结果集内生成的行数。2.在使用CUBE或者ROLLUP时,不支持区分性聚合函数,例如AVG(DISTINCT),COUNT(DISTINCT)。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT specialty,ssex,count(*) AS 人数</span><br><span class="line">FROM student</span><br><span class="line">GROUP BY ssex,specialty</span><br><span class="line">WITH ROLLUP</span><br><span class="line">//先对ssex进行汇总,再对specialty进行汇总</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>COMPUTE数据汇总</strong></p>
+<blockquote>
+<p>需要配合聚合函数使用,分为使用BY和不使用BY两种<br><strong>sql server2012以后版本不再支持COMPUTE</strong></p>
+</blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT sno,sname,ssex FROM student</span><br><span class="line">WHERE specialty = &apos;计算机&apos; </span><br><span class="line">COMPUTE count(sno)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//根据学号大小排序,先显示学号较小的各科成绩,在下面单独列出一个包含汇总信息的表,其他依次继续.</span><br><span class="line">SELECT sno,cno,score FROM sc</span><br><span class="line">ORDER BY sno</span><br><span class="line">COMPUTE avg(score) BY sno</span><br></pre></td></tr></table></figure>
+<h1 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h1><blockquote>
+<p><strong>INNER JOIN ON内连接</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//不指定连接方式,默认为内连接</span><br><span class="line">SELECT a.sname,b.cno,b.score </span><br><span class="line">FROM student AS a INNER JOIN sc AS b</span><br><span class="line">ON a.sno = b.sno</span><br><span class="line"></span><br><span class="line">//不用内连接,用WHERE也可以</span><br><span class="line">SELECT a.sname,b.sno,b.score FROM student a,sc b</span><br><span class="line">WHERE a.sno = b.sno</span><br><span class="line"></span><br><span class="line">SELECT cno,avg(score) AS 平均成绩</span><br><span class="line">FROM student a INNER JOIN sc b</span><br><span class="line">ON a.sno = b.sno AND specialty = &apos;计算机&apos;</span><br><span class="line">GROUP BY cno</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>自连接</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//为表指定两个别名,使其在逻辑上成为两张表</span><br><span class="line">SELECT * FROM </span><br><span class="line">student a INNER JOIN student b</span><br><span class="line">ON a.sname = b.sname AND a.sno&lt;&gt;b.sno</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>外连接</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//左外连接:对右边的表加以限制</span><br><span class="line">SELECT student.*,sc.cno,sc.score</span><br><span class="line">FROM student LEFT JOIN sc</span><br><span class="line">ON student.sno = sc.sno</span><br><span class="line">//不加限制:比如此例中若是INNER JOIN,则只能查询到student表sno和sc表中sno相同的数据。</span><br><span class="line">//LEFT JOIN限制右边数据,即左边student表中所有sno都会查询到,而sc表中只有与student表中sno相同的才能查询到。</span><br><span class="line">//FULL JOIN,两边都不限制,即两个表的所有sno都可以查询到。</span><br><span class="line"></span><br><span class="line">//全外连接:对左右的表都不加限制</span><br><span class="line">SELECT course.*,sc.score,student.sname,student.sno</span><br><span class="line">FROM course FULL JOIN sc</span><br><span class="line">ON course.cno = sc.cno</span><br><span class="line">FULL JOIN student ON student.sno = sc.sno</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>交叉连接</strong><br>//即求两个表的笛卡尔积</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT a.sname,b.score FROM</span><br><span class="line">student AS a CROSS JOIN sc AS b</span><br></pre></td></tr></table></figure>
+<h1 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h1><h3 id="相关子查询和无关子查询的比较"><a href="#相关子查询和无关子查询的比较" class="headerlink" title="相关子查询和无关子查询的比较"></a>相关子查询和无关子查询的比较</h3><h3 id="1-无关子查询只进行一次-相关子查询进行多次"><a href="#1-无关子查询只进行一次-相关子查询进行多次" class="headerlink" title="1.无关子查询只进行一次,相关子查询进行多次"></a>1.无关子查询只进行一次,相关子查询进行多次</h3><h3 id="2-无关子查询在子查询中获取一或多-列-信息-再对获得的信息做处理"><a href="#2-无关子查询在子查询中获取一或多-列-信息-再对获得的信息做处理" class="headerlink" title="2.无关子查询在子查询中获取一或多 列 信息,再对获得的信息做处理"></a>2.无关子查询在子查询中获取一或多 列 信息,再对获得的信息做处理</h3><h3 id="3-相关子查询每次获取一或多-行-信息"><a href="#3-相关子查询每次获取一或多-行-信息" class="headerlink" title="3.相关子查询每次获取一或多 行 信息"></a>3.相关子查询每次获取一或多 行 信息</h3><h3 id="4-相关子查询依赖主查询-意思是每次查询都要从主查询中获取查询判断的条件-若没有条件-则无法继续查询。"><a href="#4-相关子查询依赖主查询-意思是每次查询都要从主查询中获取查询判断的条件-若没有条件-则无法继续查询。" class="headerlink" title="4.相关子查询依赖主查询,意思是每次查询都要从主查询中获取查询判断的条件,若没有条件,则无法继续查询。"></a>4.相关子查询依赖主查询,意思是每次查询都要从主查询中获取查询判断的条件,若没有条件,则无法继续查询。</h3><h2 id="无关子查询"><a href="#无关子查询" class="headerlink" title="无关子查询"></a>无关子查询</h2><blockquote>
+<p><strong>比较子查询</strong></p>
+</blockquote>
+<p>//子查询中不能使用ORDER BY 排序,子查询既可以作为主查询的比较条件,又可以作为主查询的查询对象(可视作单列的表)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">SELECT sno,sname,specialty FROM student</span><br><span class="line">WHERE specialty = (</span><br><span class="line">SELECT specialty FROM student WHERE sname = &apos;沈艳&apos;</span><br><span class="line">)</span><br><span class="line">//用自连接实现</span><br><span class="line">SELECT a.sno,a.sname,a.specialty FROM </span><br><span class="line">student AS a INNER JOIN student AS b</span><br><span class="line">ON a.specialty = b.specialty AND b.sname = &apos;沈艳&apos;</span><br><span class="line"></span><br><span class="line">//多层子查询</span><br><span class="line">SELECT a.sno,sname FROM student AS a</span><br><span class="line">INNER JOIN sc AS b ON a.sno = b.sno</span><br><span class="line">AND cno = &apos;C001&apos; AND score&gt;(</span><br><span class="line">SELECT score FROM sc WHERE sno = (</span><br><span class="line">	SELECT sno FROM student WHERE sname = &apos;郑丽&apos;</span><br><span class="line"> ) AND cno = &apos;C001&apos;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>SOME,ANY,ALL,和IN子查询</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//&gt;=ALL为求最大值</span><br><span class="line">SELECT sno,sname FROM student WHERE specialty = &apos;计算机&apos; AND sage &gt;= ALL (</span><br><span class="line">	 SELECT sage FROM student WHERE specialty = &apos;计算机&apos;</span><br><span class="line">)</span><br><span class="line">//=ANY为其中任一个,与IN作用相同</span><br><span class="line">SELECT * FROM student WHERE sage = ANY(</span><br><span class="line">	SELECT sage FROM student WHERE specialty = &apos;通信&apos;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>子查询作为主查询的查询对象</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT grade,specialty,count(b.sno) AS 人数 FROM student AS a</span><br><span class="line">INNER JOIN (SELECT sno FROM sc GROUP BY sno HAVING AVG(score)&gt;=80) b</span><br><span class="line">ON a.sno = b.sno</span><br><span class="line">GROUP BY grade,specialty</span><br></pre></td></tr></table></figure>
+<h2 id="相关子查询"><a href="#相关子查询" class="headerlink" title="相关子查询"></a>相关子查询</h2><blockquote>
+<p><strong>比较子查询</strong></p>
+</blockquote>
+<p>//相关子查询依赖于外部查询,类似于一个循环,每次只取出一行数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT sno,cno,score FROM sc a</span><br><span class="line">WHERE score &lt; (</span><br><span class="line">	SELECT avg(score) FROM sc b</span><br><span class="line">	WHERE a.cno = b.cno</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">问题:查询两门以上课程的成绩在80以上的学生的学号,姓名,年纪,专业</span><br><span class="line"></span><br><span class="line">思路//每次取出student表中的一个学生的学号sno,在子查询中统计满足该学生分数&gt;=80的行的数量,在主查询WHERE中判断满足的行数是否&gt;2</span><br><span class="line">SELECT sno,sname,grade,specialty FROM student</span><br><span class="line">WHERE (</span><br><span class="line">	SELECT COUNT(*) FROM sc</span><br><span class="line">	WHERE student.sno = sc.sno AND score&gt;=80</span><br><span class="line">)&gt;=2</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>EXISTS</strong></p>
+<blockquote>
+<p>带有EXISTS为此的子查询不返回任何数据,只产生逻辑真值’true’或逻辑假值’false’</p>
+<blockquote>
+<p>其目标属性列(即SELECT后面跟的查询目标)一般用*表示,因为带EXISTS的子查询只返回真值或假值,给列名无意义</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>//查询选修了C004号课程的学生的姓名,以下三种方式查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//相关子查询</span><br><span class="line">SELECT sname FROM student</span><br><span class="line">WHERE EXISTS</span><br><span class="line">	(</span><br><span class="line">		SELECT * FROM sc</span><br><span class="line">		WHERE sno = student.sno AND cno = &apos;C004&apos;</span><br><span class="line">	)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//无关子查询</span><br><span class="line">SELECT sname FROM student</span><br><span class="line">WHERE student.sno = ANY(</span><br><span class="line">	SELECT sno FROM sc</span><br><span class="line">	WHERE cno = &apos;C004&apos;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//内连接</span><br><span class="line">SELECT sname FROM student</span><br><span class="line">INNER JOIN sc ON student.sno = sc.sno</span><br><span class="line">AND cno = &apos;C004&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//普通查询</span><br><span class="line">SELECT sname FROM student,sc</span><br><span class="line">WHERE student.sno = sc.sno AND cno = &apos;C004&apos;</span><br></pre></td></tr></table></figure>
+<h1 id="集合运算查询"><a href="#集合运算查询" class="headerlink" title="集合运算查询"></a>集合运算查询</h1><blockquote>
+<p><strong>UNION联合查询</strong><br>相当于求<strong>∪</strong><br>//将两个或更多查询的结果组和为单个结果集,应遵循两个基本规则:所有查询中的<strong>列数和列的顺序必须相同</strong>,数据类型必须兼容。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT sname FROM student,sc</span><br><span class="line">WHERE student.sno = sc.sno AND cno = &apos;C001&apos;</span><br><span class="line">UNION</span><br><span class="line">SELECT sname FROM student,sc</span><br><span class="line">WHERE student.sno = sc.sno AND cno = &apos;C004&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>INTERSECT</strong><br>相当于求<strong>∩</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT sname FROM student,sc</span><br><span class="line">WHERE student.sno = sc.sno AND cno = &apos;C001&apos;</span><br><span class="line">INTERSECT</span><br><span class="line">SELECT sname FROM student,sc</span><br><span class="line">WHERE student.sno = sc.sno AND cno = &apos;C004&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>EXCEPT</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT sno FROM student</span><br><span class="line">EXCEPT(</span><br><span class="line">	SELECT sno FROM sc</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h1 id="排序-ORDER-BY"><a href="#排序-ORDER-BY" class="headerlink" title="排序 ORDER BY"></a>排序 ORDER BY</h1><blockquote>
+<p><strong>ASC升序</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT sname,specialty FROM student</span><br><span class="line">WHERE ssex = &apos;女&apos;</span><br><span class="line">ORDER BY sname ASC</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>DESC降序</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT sno,score FROM sc</span><br><span class="line">ORDER BY score DESC</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>指定若第一个排序条件有重复项,则按照第二个排序条件排序</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT sno,score FROM sc</span><br><span class="line">ORDER BY score DESC , sno ASC</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT TOP 2 cname,credit</span><br><span class="line">FROM course ORDER BY credit DESC</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>储存查询结果 <strong>INTO</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//INTO子句可以创建一个新表并将查询结果中的行添加到该表中</span><br><span class="line">SELECT sname,student.sno,cname,score INTO 成绩表</span><br><span class="line">FROM student,sc,course</span><br><span class="line">WHERE student.sno = sc.sno AND sc.cno = course.cno</span><br></pre></td></tr></table></figure>
+<h1 id="在数据操作中使用SELECT子句"><a href="#在数据操作中使用SELECT子句" class="headerlink" title="在数据操作中使用SELECT子句"></a>在数据操作中使用SELECT子句</h1><blockquote>
+<p>在INSERT语句中使用SELECT子句<br>**注意:不要使用VALUES,列名和列数要匹配</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 成绩表</span><br><span class="line">(</span><br><span class="line">	学号 char(7),</span><br><span class="line">	课程号 char(4),</span><br><span class="line">	成绩 int</span><br><span class="line">)</span><br><span class="line">GO</span><br><span class="line">INSERT INTO 成绩表 (学号,课程号,成绩)</span><br><span class="line">SELECT * FROM sc</span><br><span class="line">WHERE score&gt;=80</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在UPDATE语句中使用SELECT子句</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">UPDATE sc SET score = 86 </span><br><span class="line">WHERE sno =&apos;1302001&apos; AND cno = (</span><br><span class="line">	SELECT cno FROM course WHERE cname = &apos;操作系统&apos;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在DELETE语句中使用SELECT子句</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DELETE sc WHERE sno = &apos;1302001&apos; AND cno = (</span><br><span class="line">	SELECT cno FROM course WHERE cname = &apos;操作系统&apos;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h1 id="视图和索引"><a href="#视图和索引" class="headerlink" title="视图和索引"></a>视图和索引</h1><blockquote>
+<p><strong>视图</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//**创建视图 CREATE**</span><br><span class="line">CREATE VIEW s_c_scc</span><br><span class="line">AS </span><br><span class="line"> SELECT student.sno,sname,course.cno,cname,score</span><br><span class="line"> FROM student,sc,course WHERE student.sno = sc.sno</span><br><span class="line"> AND course.cno = sc.cno AND specialty = &apos;计算机&apos;</span><br><span class="line"></span><br><span class="line">//**修改视图 ALTER**</span><br><span class="line">ALTER VIEW s_c_scc</span><br><span class="line">AS</span><br><span class="line"> *****</span><br><span class="line"> 新的查询语句</span><br><span class="line"> *****</span><br><span class="line">//查询</span><br><span class="line">SELECT sumscore = SUM(score),avgscore = AVG(score) FROM s_c_sc</span><br><span class="line">WHERE cname = &apos;C++语言&apos;</span><br><span class="line"></span><br><span class="line">//修改基本表中的数据</span><br><span class="line">INSERT male_view VALUES(&apos;男&apos;,&apos;1501005&apos;,&apos;张三&apos;,19,&apos;2015-09-01&apos;,&apos;电子&apos;,&apos;15级&apos;)</span><br><span class="line"></span><br><span class="line">//删除视图</span><br><span class="line">DROP VIEW s_c_scc</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="T-SQL编程"><a href="#T-SQL编程" class="headerlink" title="T-SQL编程"></a>T-SQL编程</h1><h3 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h3><blockquote>
+<p>必须以大小写a-z,下划线<em>,@,#开头,可由汉字,字母,数字,拉丁字符,下划线</em>,@,#组成</p>
+</blockquote>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><blockquote>
+<p>在名称前加 <strong>@@</strong> 表示<strong>全局变量</strong>,加 <strong>@</strong> 表示<strong>局部变量</strong><br>并没有保存到数据库中,每次使用之前必须声明</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DECLARE @CurrentDateTime char(30)</span><br><span class="line">SELECT @CurrentDateTime = GETDATE()</span><br><span class="line">SELECT @CurrentDateTime AS &apos;当前的日期和时间&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p><a href="https://blog.csdn.net/zhanghefu/article/details/1656782" target="_blank" rel="noopener">Numeric数据类型</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NUMERIC 和 DECIMAL 数据类型,以及各种 INTEGER 数据类型,有时被称为精确数值数据类型,与之相对的是近似数值数据类型 FLOAT、DOUBLE 和 REAL。</span><br><span class="line">Numeric(10,2)表示总位数为10,小数点后为2位的数,也就是说这个字段的整数位最大是8位。</span><br></pre></td></tr></table></figure>
+
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><blockquote>
+<p><strong>+ - * / %</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DECLARE @ExpResult numeric</span><br><span class="line">SET @ExpResult = 67%31</span><br><span class="line">SELECT @ExpResult AS &apos;表达式计算结果&apos;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>位运算符</strong><br><a href="https://blog.csdn.net/Marccco/article/details/88709481" target="_blank" rel="noopener">位运算符</a><br>1.按位与 &amp; 两个为均为1时结果为1,否则为0<br>2.按位或 | 只要一个位为1结果就为1,否则为0<br>3.按位异或 ^ 两个位值不同时结果为1,否则为0</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DECLARE @a1 int ,@a2 int</span><br><span class="line">SET @a1 = 3</span><br><span class="line">SET @a2 = 8</span><br><span class="line">SELECT @a1 &amp; @a2 AS &apos;与&apos;,@a1 | @a2 AS &apos;或&apos;,@a1 ^ @a2 AS &apos; 异或 &apos;</span><br></pre></td></tr></table></figure>
+<h3 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h3><blockquote>
+<p>运算结果为逻辑值,可以为<strong>TRUE,FALSE,UNKNOWN</strong><br>不等于 &lt;&gt;/!=<br>不小于 !&lt;<br>不大于 !&gt;</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DECLARE @Exp1 int,@Exp2 int</span><br><span class="line">SET @Exp1 = 3</span><br><span class="line">SET @Exp2 = 5</span><br><span class="line">IF @Exp1 &lt; @Exp2</span><br><span class="line">SELECT @Exp1 as &apos;较小值&apos;,@Exp2 as &apos;较大值&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><blockquote>
+<p>与比较运算符一样,返回带有TRUE或FALSE值的Boolean数据类型或UNKNOWN值.<br><strong>ALL,AND/&amp;&amp;,ANY/SOME,BETWEEN,EXISTS,IN,LIKE,NOT/!,OR/||</strong></p>
+</blockquote>
+<h3 id="字符串连接运算符"><a href="#字符串连接运算符" class="headerlink" title="字符串连接运算符 +"></a>字符串连接运算符 +</h3><blockquote>
+<p>字符串连接运算的操作数类型有char,varchar,text等</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DECLARE @ExpResult char(30)</span><br><span class="line">SELECT @ExpResult = &apos;hello&apos;+&apos;world&apos;</span><br><span class="line">SELECT @ExpResult</span><br></pre></td></tr></table></figure>
+<h3 id="批处理"><a href="#批处理" class="headerlink" title="批处理"></a>批处理</h3><blockquote>
+<p>包含一个或者多个T-SQL语句的集合,从应用程序一次性的发送到SQL Server 2008进行执行,可以节省系统开销,批处理的结束符为’GO’</p>
+</blockquote>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><blockquote>
+<p>1.单行注释  - -<br>2.多行注释 /* */</p>
+</blockquote>
+<h1 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h1><h3 id="SET语句"><a href="#SET语句" class="headerlink" title="SET语句"></a>SET语句</h3><blockquote>
+<p>除赋值外,SET语句也实现一些设置功能,例如设置日期类型数据的格式,设置数据库的某些属性等.</p>
+</blockquote>
+<h3 id="BEGIN…END语句"><a href="#BEGIN…END语句" class="headerlink" title="BEGIN…END语句"></a>BEGIN…END语句</h3><blockquote>
+<p>将多个T-SQL语句组合成一个语句块</p>
+</blockquote>
+<h3 id="IF…ELSE语句"><a href="#IF…ELSE语句" class="headerlink" title="IF…ELSE语句"></a>IF…ELSE语句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IF (SELECT avg(score) FROM sc WHERE cno = &apos;C001&apos;) &gt; 80</span><br><span class="line">	PRINT &apos;C001号课程的平均成绩还不错&apos;</span><br><span class="line">ELSE</span><br><span class="line">	PRINT &apos;C001号课的平均成绩一般&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">IF EXISTS(SELECT * FROM sc WHERE sno = &apos;1302001&apos;)</span><br><span class="line">	SELECT avg(score) as &apos;学号1302001的平均成绩&apos; FROM sc WHERE sno = &apos;1302001&apos;</span><br><span class="line">ELSE</span><br><span class="line">	IF EXISTS(SELECT * FROM student WHERE sno = &apos;1302001&apos;)</span><br><span class="line">		PRINT &apos;该学生没有选课&apos;</span><br><span class="line">	ELSE</span><br><span class="line">		PRINT &apos;没有该学生&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="CASE语句"><a href="#CASE语句" class="headerlink" title="CASE语句"></a>CASE语句</h3><blockquote>
+<p>若在WHEN中没有匹配到,则返回ELSE选项的值,若未设置ELSE选项,则返回NULL</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SELECT sno,sname,</span><br><span class="line">	CASE specialty</span><br><span class="line">		WHEN &apos;计算机&apos; THEN &apos;Computer&apos;</span><br><span class="line">		WHEN &apos;电子&apos; THEN &apos;Electronic&apos;</span><br><span class="line">		WHEN &apos;网络&apos; THEN &apos;Network&apos;</span><br><span class="line">		ELSE &apos;其他&apos;</span><br><span class="line">	END AS specialty</span><br><span class="line">FROM student</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT sno,cno,</span><br><span class="line">	CASE</span><br><span class="line">		WHEN score &gt;= 90 THEN &apos;A&apos;</span><br><span class="line">		WHEN score &gt;= 80 THEN &apos;B&apos;</span><br><span class="line">		WHEN score &gt;= 70 THEN &apos;C&apos;</span><br><span class="line">		WHEN score &gt;= 60 THEN &apos;D&apos;</span><br><span class="line">		ELSE &apos;不合格&apos;</span><br><span class="line">	END AS &apos;成绩&apos;</span><br><span class="line">FROM sc</span><br></pre></td></tr></table></figure>
+<h3 id="WHILE语句"><a href="#WHILE语句" class="headerlink" title="WHILE语句"></a>WHILE语句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DECLARE @sum int,@i int</span><br><span class="line">SET @sum = 0</span><br><span class="line">SET @i = 1</span><br><span class="line">WHILE @i &lt;= 100</span><br><span class="line">	BEGIN</span><br><span class="line">		SET @sum  =  @sum + @i</span><br><span class="line">		IF @sum &gt; 1000 BREAK</span><br><span class="line">		SET @i = @i + 1</span><br><span class="line">	END</span><br><span class="line">SELECT @sum AS &apos;i以内的累加和&apos;,@i AS i</span><br></pre></td></tr></table></figure>
+<h3 id="GOTO语句-附带CAST用法"><a href="#GOTO语句-附带CAST用法" class="headerlink" title="GOTO语句 (附带CAST用法)"></a>GOTO语句 (附带CAST用法)</h3><blockquote>
+<p>GOTO label:<br>其中label为语句标号,可以用户自定义</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DECLARE @sum int,@i int</span><br><span class="line">SET @sum = 0</span><br><span class="line">SET @i = 1</span><br><span class="line">label:</span><br><span class="line">	SET @sum = @sum + @i</span><br><span class="line">	SET @i = @i + 1</span><br><span class="line">IF @i &lt; = 100 GOTO label</span><br><span class="line">PRINT &apos;100以内的数求和为:&apos; + CAST(@sum AS char(20))</span><br><span class="line">//AS把@sum转换为char类型,若字符串的长度没有指定的长度,则其余的部分由空格填充</span><br><span class="line">CAST的作用是,删除多余的空格</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">DECLARE @avg float</span><br><span class="line">IF (SELECT count(*) FROM sc WHERE sno = &apos;1404001&apos;) = 0</span><br><span class="line">GOTO label</span><br><span class="line">BEGIN</span><br><span class="line">	SELECT @avg = avg(score) FROM sc WHERE sno = &apos;1404001&apos;</span><br><span class="line">	PRINT &apos;1402001号学生的平均成绩:&apos;+CAST(@avg AS char(20))</span><br><span class="line">	RETURN</span><br><span class="line">END</span><br><span class="line">label:print &apos;没有1402001号学生或者1402001好学生没有选课&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="RETURN"><a href="#RETURN" class="headerlink" title="RETURN"></a>RETURN</h3><blockquote>
+<p>使用RETURN语句可以从查询或过程中无条件退出,可在任何时候用于从过程,批处理或语句块中退出,而不执行位于RETURN之后的语句</p>
+</blockquote>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h3 id="标量值函数"><a href="#标量值函数" class="headerlink" title="标量值函数"></a>标量值函数</h3><blockquote>
+<p>标量函数返回一个确定类型的标量值,函数体语句定义在BEGIN…END语句内</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">CREATE FUNCTION average(@cn char(4)) RETURNS float</span><br><span class="line">AS</span><br><span class="line">	BEGIN</span><br><span class="line">		DECLARE @avg float</span><br><span class="line">		SELECT @avg = avg(score) FROM sc WHERE cno = @cn</span><br><span class="line">		RETURN @avg</span><br><span class="line">	END</span><br><span class="line">DECLARE @cn char(4)</span><br><span class="line">SET @cn = &apos;C001&apos;</span><br><span class="line">SELECT dbo.average(@cn) AS &apos;C001号课程的平均成绩&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="内嵌表值函数"><a href="#内嵌表值函数" class="headerlink" title="内嵌表值函数"></a>内嵌表值函数</h3><blockquote>
+<p>内嵌表值函数返回的是一个表,内嵌表值函数的功能相当于一个参数化的视图,无由BEGIN…END包括起来的函数体,<br>内嵌表值函数本质上是从数据库中筛选出的行组成的表,数据存在数据库中,可以通过内嵌表值函数修改数据库中的数据.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CREATE FUNCTION stu_func(@major varchar(20)) RETURNS table</span><br><span class="line">AS RETURN(</span><br><span class="line">		SELECT student.sno,sname,cno,score FROM student,sc</span><br><span class="line">		WHERE specialty = @major AND student.sno = sc.sno</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">DECLARE @major varchar(20)</span><br><span class="line">SET @major = &apos;计算机&apos;</span><br><span class="line">SELECT * FROM dbo.stu_func(@major)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//通过内嵌表值函数修改数据库中的数据</span><br><span class="line">UPDATE dbo.stu_func(&apos;计算机&apos;) SET sname = &apos;张明&apos; WHERE sno = &apos;1302001&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="多语句表值函数"><a href="#多语句表值函数" class="headerlink" title="多语句表值函数"></a>多语句表值函数</h3><blockquote>
+<p>多语句表值函数的返回值是一个表,并且有一个由BEGIN…END语句括起来的函数体<br>区别于内嵌表值函数:多语句表值函数新建一个表用来存储查询到的结果集,查询的字段数量和类型要和新建表的字段相符.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">CREATE FUNCTION stu_score(@sno char(7)) RETURNS @score table(</span><br><span class="line">		学号 char(7),</span><br><span class="line">		姓名 varchar(6),</span><br><span class="line">		课程名 char(10),</span><br><span class="line">		学分 int,</span><br><span class="line">		成绩 int</span><br><span class="line">)</span><br><span class="line">AS </span><br><span class="line">	BEGIN</span><br><span class="line">	INSERT INTO @score</span><br><span class="line">	SELECT s.sno,s.sname,c.cname,c.credit,sc.score</span><br><span class="line">	FROM student s INNER JOIN sc ON s.sno = sc.sno AND @sno = s.sno</span><br><span class="line">	INNER JOIN course c ON c.cno = sc.cno</span><br><span class="line">	</span><br><span class="line">    RETURN</span><br><span class="line">	END</span><br><span class="line">SELECT * FROM dbo.stu_score(&apos;1303005&apos;)</span><br></pre></td></tr></table></figure>
+<h1 id="游标"><a href="#游标" class="headerlink" title="游标"></a>游标</h1><p><a href="https://www.cnblogs.com/knowledgesea/p/3699851.html" target="_blank" rel="noopener">参考资料</a></p>
+<h2 id="SQL-92的游标语法规则"><a href="#SQL-92的游标语法规则" class="headerlink" title="SQL_92的游标语法规则"></a>SQL_92的游标语法规则</h2><blockquote>
+<p>DECLARE cursor_name[INSENSITIVE][SCROLL]CURSOR<br>FOR select_statment<br>[FOR{READ ONLY | UPDATE [OF column_name[,..n]]}]<br><strong>1.INSENSITIVE</strong><br>游标选出的数据会存放在tempdb数据库下的一个临时表中,游标的读取操作都只对临时表操作,游标与基础表中对数据的操作彼此不影响.<br><strong>2.SCROLL</strong><br>表明所有读取操作(FIRST,LAST,PRIOR,NEXT,RELATIVE,ABSOLUTE)都可用.若不使用SCORLL关键字,则默认只能进行NEXT操作<br><strong>3.READ ONLY</strong><br>表明游标内的数据不能修改,只读,默认可修改<br><strong>4.UPDATE</strong><br>指明可修改的字段</p>
+</blockquote>
+<h2 id="SQL-SERVER-提供的扩展游标声明语法"><a href="#SQL-SERVER-提供的扩展游标声明语法" class="headerlink" title="SQL SERVER 提供的扩展游标声明语法"></a>SQL SERVER 提供的扩展游标声明语法</h2><blockquote>
+<p>DECLARE cursor_name CURSOR<br>[LOCAL | GLOBAL]<br>[FORWARD_ONLY | SCROLL]<br>[STATIC | KEYSET | DYNAMIC | FAST_FORWARD]<br>[READ_ONLY | SCROLL_LOCKS | OPTIMISTIC]<br>[TYPE_WARNING]<br>FOR select_statment<br>[FOR{UPDATE [OF column_name[,..n]]}]<br>1.<strong>LOCAL</strong> 默认使用LOCAL<br>定义游标的作用域仅限在其所在的存储过程,触发器,或批处理中.<br><strong>2.GLOBAL</strong><br>游标的作用域是整个会话层,会话层指的是从用户连接到断开这段时间<br><strong>3.FORWARD_ONLY</strong><br>顺序操作,读取操作只能使用FETCH NEXT<br>若使用STATIC KEYSET DYNAMIC,则变成了SCORLL游标,否则默认使用FORWORD_ONLY<br><strong>4.STATIC</strong><br>与INSENSITIVE一样<br><strong>5.KEYSET</strong><br><strong>6.DYNAMIC</strong><br>指明游标中的数据会随着表中数据的变化而变化<br><strong>7.FAST_FORWARD</strong><br>顺序操作且只读</p>
+</blockquote>
+<blockquote>
+<p>1.游标名称不区分大小写<br>2.游标语法基本分为 读/写操作区分 和 操作顺序 两类</p>
+</blockquote>
+<h3 id="声明游标"><a href="#声明游标" class="headerlink" title="声明游标"></a>声明游标</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DECLARE s_cursor CURSOR</span><br><span class="line">FOR SELECT * FROM sc WHERE cno = &apos;C001&apos;</span><br><span class="line">FOR UPDATE OF score</span><br></pre></td></tr></table></figure>
+<h3 id="打开游标"><a href="#打开游标" class="headerlink" title="打开游标"></a>打开游标</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OPEN s_cursor</span><br></pre></td></tr></table></figure>
+<h3 id="读取游标"><a href="#读取游标" class="headerlink" title="读取游标"></a>读取游标</h3><blockquote>
+<p>1.NEXT<br>2.PRIOR<br>3.FIRST<br>4.LAST<br>5.ABSOLUTE +/- n 固定行 -n为倒数第n行<br>6.RELATIVE +/- n 相对当前行上移或下移</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FETCH NEXT FROM s_cursor</span><br></pre></td></tr></table></figure>
+<h3 id="关闭游标"><a href="#关闭游标" class="headerlink" title="关闭游标"></a>关闭游标</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CLOSE s_cursor</span><br></pre></td></tr></table></figure>
+<h3 id="释放游标"><a href="#释放游标" class="headerlink" title="释放游标"></a>释放游标</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DEALLOCATE s_cursor</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM sc WHERE cno = &apos;C001&apos;</span><br><span class="line">DECLARE ss_cursor CURSOR DYNAMIC FOR</span><br><span class="line">SELECT * FROM sc WHERE cno = &apos;C001&apos;</span><br><span class="line">FOR UPDATE OF score</span><br><span class="line">OPEN ss_cursor</span><br><span class="line">FETCH  RELATIVE 2 FROM ss_cursor</span><br><span class="line">UPDATE sc SET score = score*0.8 WHERE CURRENT OF ss_cursor</span><br><span class="line">CLOSE ss_cursor</span><br><span class="line">DEALLOCATE ss_cursor</span><br><span class="line">SELECT * FROM sc WHERE cno = &apos;C001&apos;</span><br></pre></td></tr></table></figure>
+<h1 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h1><h3 id="创建存储过程"><a href="#创建存储过程" class="headerlink" title="创建存储过程"></a>创建存储过程</h3><blockquote>
+<p>无参存储过程</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE PROCEDURE student_avg</span><br><span class="line">AS</span><br><span class="line">SELECT sno,avg(score) AS &apos;avgscore&apos; FROM sc</span><br><span class="line">GROUP BY sno</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>有参存储过程</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE PROCEDURE get_Student @sno char(10)</span><br><span class="line">AS</span><br><span class="line">SELECT s.sno,sname,specialty,cno,score FROM student s,sc</span><br><span class="line">WHERE s.sno = sc.sno AND sc.sno = @sno</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>多参存储过程</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE PROCEDURE updatescore @sno char(10),@cno char(4),@score int</span><br><span class="line">AS</span><br><span class="line">UPDATE sc SET score = @score </span><br><span class="line">WHERE sno = @sno AND @cno = cno</span><br><span class="line">GO</span><br><span class="line"></span><br><span class="line">EXECUTE updatescore &apos;1302001&apos;,&apos;X003&apos;,90</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>存储过程结合流程控制语句</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE PROCEDURE update_price @gno char(3),@s float</span><br><span class="line">AS</span><br><span class="line">IF(SELECT sum(number) FROM invent WHERE gno = @gno)&gt;@s</span><br><span class="line">	UPDATE goods SET price = price*0.9</span><br><span class="line">	WHERE gno = @gno</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>带默认参数的存储过程</p>
+<blockquote>
+<p>若不传递任何参数,则使用默认参数,此处设置默认参数为通配符%,即默认匹配所有学生的信息</p>
+</blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE PROCEDURE student_name @sname varchar(10) = &apos;%&apos;</span><br><span class="line">AS</span><br><span class="line">SELECT * FROM student WHERE sname LIKE @sname</span><br><span class="line">EXECUTE student_name</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>OUTPUT指定存储过程必须返回一个参数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE PROCEDURE avgprice @gn varchar(20),@avgp int OUTPUT</span><br><span class="line">AS</span><br><span class="line">	SELECT @avgp = avg(price) FROM goods WHERE gname = @gn</span><br><span class="line">    </span><br><span class="line">DECLARE @avgp int</span><br><span class="line">EXECUTE avgprice &apos;冰箱&apos;,@avgp OUTPUT</span><br><span class="line">PRINT &apos;冰箱的平均价格:&apos;+str(@avgp)</span><br></pre></td></tr></table></figure>
+<h3 id="查看存储过程"><a href="#查看存储过程" class="headerlink" title="查看存储过程"></a>查看存储过程</h3><blockquote>
+<p>sp_helptext 存储过程名  显示存储过程代码<br>sp_help 存储过程名      查看存储过程的名称,拥有者,类型,创建时间,存储过程中所使用的参数信息</p>
+</blockquote>
+<h3 id="修改存储过程"><a href="#修改存储过程" class="headerlink" title="修改存储过程"></a>修改存储过程</h3><blockquote>
+<p>和修改表类似 相当于重写一遍</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER RPOCEDURE 已存在的存储过程</span><br><span class="line">   	```新的声明语句</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">### 删除存储过程</span><br></pre></td></tr></table></figure>
+<p>DROP RPOCEDURE student_score</p>
+<h1 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h1><p><a href="https://www.cnblogs.com/jacketlin/p/7874009.html" target="_blank" rel="noopener">函数和存储过程的区别</a></p>
+<h2 id="DML触发器"><a href="#DML触发器" class="headerlink" title="DML触发器"></a>DML触发器</h2><blockquote>
+<p>DML触发器是当数据库服务器中发生数据库操作语言(DML)事件时会自动执行的存储过程</p>
+</blockquote>
+<h3 id="AFTER触发器"><a href="#AFTER触发器" class="headerlink" title="AFTER触发器"></a>AFTER触发器</h3><blockquote>
+<p>在记录已经改变完之后才会被激活执行,主要用于记录变更后的处理或检查,一旦发现错误,也可以用POLLBACK TRANSACTION语句来回滚本次的操作</p>
+</blockquote>
+<h3 id="INSTEAD-OF触发器"><a href="#INSTEAD-OF触发器" class="headerlink" title="INSTEAD OF触发器"></a>INSTEAD OF触发器</h3><blockquote>
+<p>不同于AFTER触发器,一般用来取代原本的操作,在记录变更之前发生的,并不去执行原来的SQL语句里的操作(INSERT,UPDATE,DELETE),而是去执行触发器本身所定义的操作</p>
+</blockquote>
+<h2 id="DML触发器的作用"><a href="#DML触发器的作用" class="headerlink" title="DML触发器的作用"></a>DML触发器的作用</h2><ol>
+<li>强制比CHECK约束更复杂的数据的完整性</li>
+<li>使用自定义的错误提示信息</li>
+<li>实现数据库中多张表的级联修改</li>
+<li>比较数据库修改前后数据的状态</li>
+<li>调用存储过程</li>
+<li>维护非规范化数据<h2 id="DDL触发器"><a href="#DDL触发器" class="headerlink" title="DDL触发器"></a>DDL触发器</h2><blockquote>
+<p>DDL触发器是响应CREATE,ALTER,DROP,GRANT,DENY,REVOKE和UPDATE STATISTICS等语句而激活的.</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="创建DML触发器"><a href="#创建DML触发器" class="headerlink" title="创建DML触发器"></a>创建DML触发器</h3><h4 id="DML触发器定义了两个特殊的表-一个是插入表-另一个是删除表-这两个表是建在数据库服务器的内存中的-是由系统管理的逻辑表-而不是真正存储在数据库中的物理表。"><a href="#DML触发器定义了两个特殊的表-一个是插入表-另一个是删除表-这两个表是建在数据库服务器的内存中的-是由系统管理的逻辑表-而不是真正存储在数据库中的物理表。" class="headerlink" title="DML触发器定义了两个特殊的表,一个是插入表,另一个是删除表,这两个表是建在数据库服务器的内存中的,是由系统管理的逻辑表,而不是真正存储在数据库中的物理表。"></a>DML触发器定义了两个特殊的表,一个是插入表,另一个是删除表,这两个表是建在数据库服务器的内存中的,是由系统管理的逻辑表,而不是真正存储在数据库中的物理表。</h4><h4 id="对于inserted和deleted表-用户只有读取数据的权限-没有修改数据的权限"><a href="#对于inserted和deleted表-用户只有读取数据的权限-没有修改数据的权限" class="headerlink" title="对于inserted和deleted表,用户只有读取数据的权限,没有修改数据的权限"></a>对于inserted和deleted表,用户只有读取数据的权限,没有修改数据的权限</h4><h4 id="inserted和deleted表只是存储着被操作数据操作前和操作后的状态-并非整个表的数据"><a href="#inserted和deleted表只是存储着被操作数据操作前和操作后的状态-并非整个表的数据" class="headerlink" title="inserted和deleted表只是存储着被操作数据操作前和操作后的状态,并非整个表的数据"></a>inserted和deleted表只是存储着被操作数据操作前和操作后的状态,并非整个表的数据</h4><blockquote>
+<p>对某个操作进行限制</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TRIGGER limited ON student</span><br><span class="line">FOR INSERT,UPDATE,DELETE</span><br><span class="line">AS</span><br><span class="line">	PRINT &apos;你没有足够的权限&apos;</span><br><span class="line">    	ROLLBACK</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>对某个字段的操作进行限制</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//相关修改和删除操作依此</span><br><span class="line">CREATE TRIGGER limited3 ON student</span><br><span class="line">FOR INSERT</span><br><span class="line">AS</span><br><span class="line">	IF (&apos;计算机&apos;IN (SELECT specialty FROM inserted WHERE sno NOT IN(SELECT sno FROM deleted)))</span><br><span class="line">	BEGIN</span><br><span class="line">		PRINT &apos;你没有权限修改计算机专业的学生&apos;</span><br><span class="line">		ROLLBACK</span><br><span class="line">	END</span><br><span class="line">	ELSE</span><br><span class="line">		PRINT &apos;插入数据成功&apos;</span><br><span class="line">INSERT student VALUES(&apos;1402003&apos;,&apos;光头王&apos;,&apos;男&apos;,&apos;15&apos;,&apos;2014-09-05 00:00:00.000&apos;,&apos;计算机&apos;,&apos;15级&apos;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">CREATE TRIGGER p_tr ON project</span><br><span class="line">FOR INSERT</span><br><span class="line">AS</span><br><span class="line">	IF NOT EXISTS(SELECT * FROM dept WHERE leader IN (SELECT Leader FROM inserted))</span><br><span class="line">	BEGIN</span><br><span class="line">		DECLARE @lead VARCHAR(10)</span><br><span class="line">		SET @lead = (SELECT * FROM inserted)</span><br><span class="line">		PRINT &apos;在dept表中不存在这样的leader:&apos; + @lead</span><br><span class="line">		ROLLBACK</span><br><span class="line">	END</span><br><span class="line">//上述查询运行报错</span><br><span class="line">消息 116,级别 16,状态 1,过程 p_tr,行 8 [批起始行 0]</span><br><span class="line">当没有用 EXISTS 引入子查询时,在选择列表中只能指定一个表达式。</span><br><span class="line">//单独运行以下含EXISTS语句不报错</span><br><span class="line">IF NOT EXISTS(SELECT * FROM dept WHERE leader IN (SELECT Leader FROM project))</span><br><span class="line">PRINT &apos;错误&apos;</span><br><span class="line">ELSE</span><br><span class="line">PRINT &apos;正确&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>显示被操作数据操作前后的状态</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE TRIGGER bef_aft ON student</span><br><span class="line">FOR UPDATE</span><br><span class="line">AS </span><br><span class="line">	PRINT &apos;操作前------------------------&apos;</span><br><span class="line">	SELECT * FROM deleted</span><br><span class="line">	PRINT &apos;操作后------------------------&apos;</span><br><span class="line">	SELECT * FROM inserted</span><br><span class="line">UPDATE student SET sage = 20 WHERE sname = &apos;刘梅&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="实现级联更新的UPDATE触发器"><a href="#实现级联更新的UPDATE触发器" class="headerlink" title="实现级联更新的UPDATE触发器"></a>实现级联更新的UPDATE触发器</h4><blockquote>
+<p>根据从inserted和delete表中去需要的值实现</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TRIGGER d_tr1 ON dept</span><br><span class="line">FOR UPDATE</span><br><span class="line">AS</span><br><span class="line">	UPDATE project SET leader = (SELECT leader FROM inserted)</span><br><span class="line">	WHERE leader = (SELECT leader FROM deleted)</span><br><span class="line"></span><br><span class="line">UPDATE dept SET leader = &apos;刘雪峰&apos; WHERE leader = &apos;张三&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>删除数据时显示删除数据的数量</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TRIGGER del_count ON student</span><br><span class="line">FOR DELETE</span><br><span class="line">AS</span><br><span class="line">	DECLARE @count varchar(50)</span><br><span class="line">	SET @count = STR(@@ROWCOUNT) + &apos;个学生被删除&apos;</span><br><span class="line">	SELECT @count</span><br><span class="line">RETURN</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TRIGGER d_tr ON dept</span><br><span class="line">FOR INSERT,UPDATE,DELETE</span><br><span class="line">AS</span><br><span class="line">	SELECT * FROM inserted</span><br><span class="line">	SELECT * FROM deleted</span><br><span class="line">UPDATE dept SET dname=&apos;大型工程师&apos;WHERE leader = &apos;王五&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>插入修改数据时,约束只能输入某个范围的数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">CREATE TRIGGER teacher_sala ON teacher_salary</span><br><span class="line">FOR INSERT,UPDATE</span><br><span class="line">AS </span><br><span class="line">	DECLARE @min int,@max int,@salary int,@prof varchar(10),@name varchar(10)</span><br><span class="line">	SELECT @min = minsalary,@max = maxsalary,@salary = i.salary,@prof = s.prof_title,</span><br><span class="line">	@name = t.tname</span><br><span class="line">	FROM inserted i,teacher t,salary_level s</span><br><span class="line">	WHERE t.tno = i.tno AND s.prof_title = t.prof_title</span><br><span class="line">	IF NOT(@salary BETWEEN @min AND @max)</span><br><span class="line">	BEGIN</span><br><span class="line">		PRINT @name+&apos;的职位是:&apos;+@prof+&apos;,工资应该在&apos;+@min+&apos;和&apos;+@max+&apos;之间&apos;</span><br><span class="line">		ROLLBACK</span><br><span class="line">	END</span><br><span class="line">	UPDATE teacher_salary SET salary=7500 WHERE tname=&apos;郑浩&apos;</span><br><span class="line">	UPDATE teacher_salary SET tname=&apos;王伟&apos; WHERE tno=1</span><br><span class="line">	UPDATE teacher_salary SET salary=6000 WHERE tname=&apos;王伟&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>通过调用日期函数getdate(),利用时间进行对操作数据的限制</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">CREATE TRIGGER teacher_sala3 ON teacher_salary</span><br><span class="line">FOR INSERT</span><br><span class="line">AS</span><br><span class="line">	DECLARE @d int</span><br><span class="line">	SET @d = day(GETDATE())</span><br><span class="line">	IF @d &gt; 10</span><br><span class="line">	BEGIN</span><br><span class="line">		PRINT &apos;只能在每月的10号以前发工资,今天是&apos;+str(@d)+&apos;号&apos;</span><br><span class="line">		ROLLBACK</span><br><span class="line">	END</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在触发器中调用存储过程</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE PROCEDURE P1</span><br><span class="line">AS</span><br><span class="line">	SELECT * FROM student</span><br><span class="line">GO</span><br><span class="line">CREATE TRIGGER tr1 ON student</span><br><span class="line">FOR INSERT,UPDATE,DELETE</span><br><span class="line">AS EXECUTE P1</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>用于登记修改人账号</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">CREATE TRIGGER tr_change</span><br><span class="line">ON course FOR UPDATE</span><br><span class="line">AS</span><br><span class="line">	IF UPDATE(classhour)</span><br><span class="line">	BEGIN</span><br><span class="line">		INSERT change_user</span><br><span class="line">		VALUES(getdate(),&apos;course.classhour&apos;,user_name())</span><br><span class="line">	END</span><br><span class="line">	ELSE IF UPDATE(credit)</span><br><span class="line">		BEGIN</span><br><span class="line">			INSERT change_user</span><br><span class="line">			VALUES(getdate(),&apos;course.credit&apos;,user_name())</span><br><span class="line">		END</span><br></pre></td></tr></table></figure>
+<h3 id="查看和修改触发器"><a href="#查看和修改触发器" class="headerlink" title="查看和修改触发器"></a>查看和修改触发器</h3><blockquote>
+<p>查看触发器基本信息(名称,类型,创建时间)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SP_HELP tr_change</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>查看触发器的定义信息(定义该触发器时的代码)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SP_HELPTEXT tr_change</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>查看某表上定义的所有触发器基本信息</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SP_HELPTRIGGER course</span><br></pre></td></tr></table></figure>
+<h3 id="修改触发器"><a href="#修改触发器" class="headerlink" title="修改触发器"></a>修改触发器</h3><blockquote>
+<p>和修改表结构类似</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ALTER TRIGGER 名称</span><br><span class="line">ON ...</span><br><span class="line">后面是新的创建修改器的代码</span><br></pre></td></tr></table></figure>
+<h3 id="禁用触发器"><a href="#禁用触发器" class="headerlink" title="禁用触发器"></a>禁用触发器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE student</span><br><span class="line">DISABLE TRIGGER ALL</span><br></pre></td></tr></table></figure>
+<h3 id="删除触发器"><a href="#删除触发器" class="headerlink" title="删除触发器"></a>删除触发器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP TRIGGER 触发器名称</span><br></pre></td></tr></table></figure>
+<h3 id="报错’CREATE-TRIGGER必须是批处理中仅有的语句’"><a href="#报错’CREATE-TRIGGER必须是批处理中仅有的语句’" class="headerlink" title="报错’CREATE TRIGGER必须是批处理中仅有的语句’"></a>报错’CREATE TRIGGER必须是批处理中仅有的语句’</h3><h3 id="原因-创建触发器不允许与其他程序一起执行"><a href="#原因-创建触发器不允许与其他程序一起执行" class="headerlink" title="原因:创建触发器不允许与其他程序一起执行"></a>原因:创建触发器不允许与其他程序一起执行</h3><h3 id="解决-在前面加GO"><a href="#解决-在前面加GO" class="headerlink" title="解决:在前面加GO"></a>解决:在前面加GO</h3><h1 id="数据库备份和还原"><a href="#数据库备份和还原" class="headerlink" title="数据库备份和还原"></a>数据库备份和还原</h1><h2 id="数据库备份"><a href="#数据库备份" class="headerlink" title="数据库备份"></a>数据库备份</h2><h3 id="完整备份"><a href="#完整备份" class="headerlink" title="完整备份"></a>完整备份</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BACKUP DATABASE student</span><br><span class="line">TO DISK = &apos;E:\SQL server\BACKUP\teaching.Bak&apos;</span><br><span class="line">	WITH FORMAT,</span><br><span class="line">	NAME = &apos;student的完整备份&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="差异备份"><a href="#差异备份" class="headerlink" title="差异备份"></a>差异备份</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BACKUP DATABASE	student</span><br><span class="line">TO DISK = &apos;E:\SQL server\BACKUP\teaching差异备份.Bak&apos;</span><br><span class="line">	WITH DIFFERENTIAL</span><br></pre></td></tr></table></figure>
+<h3 id="还原完整数据库备份"><a href="#还原完整数据库备份" class="headerlink" title="还原完整数据库备份"></a>还原完整数据库备份</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RESTORE DATABASE student</span><br><span class="line"> FROM DISK = &apos;E:\SQL server\BACKUP\teaching.Bak&apos;</span><br><span class="line"> WITH REPLACE,NORECOVERY</span><br></pre></td></tr></table></figure>
+<h3 id="还原差异数据库备份"><a href="#还原差异数据库备份" class="headerlink" title="还原差异数据库备份"></a>还原差异数据库备份</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RESTORE DATABASE student</span><br><span class="line"> FROM DISK = &apos;E:\SQL server\BACKUP\teaching.Bak&apos;</span><br><span class="line"> WITH RECOVERY</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://jinyeeeee.github.io/2019/11/10/sql/" data-id="ck9i6u3o4000lg8v04lwqc3a9"
+         class="article-share-link">分享</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/12/02/linux/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            linux
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/11/10/cell/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">干细胞</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/technology.js"></script>
+
+  </div>
+</body>
+</html>

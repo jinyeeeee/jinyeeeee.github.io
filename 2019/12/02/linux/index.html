@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    linux |
+    
+    yuchen</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/technology.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-linux" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      linux
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/12/02/linux/" class="article-date">
+  <time datetime="2019-12-02T05:13:34.000Z" itemprop="datePublished">2019-12-02</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <h1 id="常用SHELL命令"><a href="#常用SHELL命令" class="headerlink" title="常用SHELL命令"></a>常用SHELL命令</h1><h3 id="mkdir-创建文件夹"><a href="#mkdir-创建文件夹" class="headerlink" title="mkdir 创建文件夹"></a>mkdir 创建文件夹</h3><blockquote>
+<p>mkdir -p test/file<br>rmdir -p test/file<br>-p 一次性创建/删除多级目录</p>
+</blockquote>
+<h3 id="cd-改变工作目录"><a href="#cd-改变工作目录" class="headerlink" title="cd 改变工作目录"></a>cd 改变工作目录</h3><blockquote>
+<p>cd /home<br>~默认为/home路径</p>
+</blockquote>
+<h3 id="pwd-显示当前目录的绝对路径"><a href="#pwd-显示当前目录的绝对路径" class="headerlink" title="pwd 显示当前目录的绝对路径"></a>pwd 显示当前目录的绝对路径</h3><blockquote>
+<p>pwd</p>
+</blockquote>
+<h3 id="ls-显示目录的内容的命令"><a href="#ls-显示目录的内容的命令" class="headerlink" title="ls 显示目录的内容的命令"></a>ls 显示目录的内容的命令</h3><blockquote>
+<p>ls -al /etc<br>选项<br>-a 显示所有文件和子目录<br>-l 显示文件和子目录的详细信息<br>-d 如果参数是目录,则只显示目录的信息,不显示其所包含文件的信息<br>-t 按时间顺序显示<br>-R 递归显示各子目录中文件和子目录信息</p>
+</blockquote>
+<h3 id="cat-显示文件内容"><a href="#cat-显示文件内容" class="headerlink" title="cat 显示文件内容"></a>cat 显示文件内容</h3><blockquote>
+<p>cat &gt; f1  /// 此时按”Ctrl+D”可将f1文件保存在当前目录下<br>echo ‘abcde’ &gt; f1 //写点啥<br>cat f1  //查看文件内容</p>
+</blockquote>
+<h3 id="more-查看内容较多文件-可以分屏显示内容"><a href="#more-查看内容较多文件-可以分屏显示内容" class="headerlink" title="more 查看内容较多文件,可以分屏显示内容"></a>more 查看内容较多文件,可以分屏显示内容</h3><blockquote>
+<p>more /etc/passwd<br>Enter/space 翻页<br>b 向前翻<br>q 退出</p>
+</blockquote>
+<h3 id="less-同-more"><a href="#less-同-more" class="headerlink" title="less 同 more"></a>less 同 more</h3><blockquote>
+<p>区别:more命令可以查看二进制文件,less只能查看ASCII码文件</p>
+</blockquote>
+<h3 id="head-显示文件头几行内容"><a href="#head-显示文件头几行内容" class="headerlink" title="head 显示文件头几行内容"></a>head 显示文件头几行内容</h3><blockquote>
+<p>head -5 /etc/passwd</p>
+</blockquote>
+<h3 id="tail-同head"><a href="#tail-同head" class="headerlink" title="tail 同head"></a>tail 同head</h3><blockquote>
+<p>tail -5 /etc/passwd</p>
+</blockquote>
+<h3 id="grep-文件内容查询"><a href="#grep-文件内容查询" class="headerlink" title="grep 文件内容查询"></a>grep 文件内容查询</h3><blockquote>
+<p>grep ‘root’ /passwd<br>往往配合管道使用<br>head -50 /etc/passwd | grep data *</p>
+</blockquote>
+<h3 id="find-文件查找命令-自带递归"><a href="#find-文件查找命令-自带递归" class="headerlink" title="find 文件查找命令(自带递归)"></a>find 文件查找命令(自带递归)</h3><blockquote>
+<p>从指定的目录开始,递归搜索各个子目录<br>-name 查找文件名与所给字符串匹配的所有文件,字符串内可用通配符*,?,[]<br>-group 查找属于某个用户所属组的所有文件<br>-user 查找属于某个用户的所有文件<br>-type 根据文件的类型进行查找<br>-a 逻辑与 -o 逻辑或 !逻辑非</p>
+</blockquote>
+<blockquote>
+<p>find / -name ‘temp’ -o -name ‘install*’<br>find / -group root</p>
+</blockquote>
+<h3 id="wc-文件内容统计命令"><a href="#wc-文件内容统计命令" class="headerlink" title="wc 文件内容统计命令"></a>wc 文件内容统计命令</h3><blockquote>
+<p>-c 统计字节数<br>-l 统计行数<br>-w 统计字数<br>wc -clw /etc/fstab</p>
+</blockquote>
+<h3 id="cp-文件的复制-移动-和删除命令"><a href="#cp-文件的复制-移动-和删除命令" class="headerlink" title="cp 文件的复制,移动,和删除命令"></a>cp 文件的复制,移动,和删除命令</h3><blockquote>
+<p>-b 如果存在同名文件,覆盖前备份原来的文件 ~f2为备份文件<br>-f 强制覆盖同名文件<br>-r/-R 递归复制,同时复制其子目录和文件</p>
+</blockquote>
+<blockquote>
+<p>cp -r f1 f2<br>f1为源文件 f2为目标文件 linux中对两个目标操作时都按照源在左，目标在右的方式</p>
+</blockquote>
+<h3 id="mv-移动或重命名文件或目录"><a href="#mv-移动或重命名文件或目录" class="headerlink" title="mv 移动或重命名文件或目录"></a>mv 移动或重命名文件或目录</h3><blockquote>
+<p>-b 如果存在同名文件,覆盖前备份原来的文件<br>-f 强制覆盖同名文件<br>mv f1 test //将文件f1移动到test目录下<br>mv test mytest//将test重命名为mytest</p>
+</blockquote>
+<h3 id="rm-删除文件或目录"><a href="#rm-删除文件或目录" class="headerlink" title="rm 删除文件或目录"></a>rm 删除文件或目录</h3><blockquote>
+<p>-f 强制删除,不出现确认信息<br>-r/-R 递归删除目录</p>
+</blockquote>
+<blockquote>
+<p>rm -r mytest</p>
+</blockquote>
+<h3 id="man-查看手册"><a href="#man-查看手册" class="headerlink" title="man 查看手册"></a>man 查看手册</h3><blockquote>
+<p>man mkdir</p>
+</blockquote>
+<h3 id="clear-清屏"><a href="#clear-清屏" class="headerlink" title="clear 清屏"></a>clear 清屏</h3><h3 id="BASH自动补齐"><a href="#BASH自动补齐" class="headerlink" title="BASH自动补齐"></a>BASH自动补齐</h3><blockquote>
+<p>例如输入mk,连按<strong>两次tab键</strong>,屏幕上会显示所有以mk开头的命令<br>按一次tab键,可以自动补全。</p>
+</blockquote>
+<h3 id="history-历史命令记录"><a href="#history-历史命令记录" class="headerlink" title="history 历史命令记录"></a>history 历史命令记录</h3><blockquote>
+<p>history -n //参数可带可不带,查看前n行命令记录<br>!n//执行序号为n的命令</p>
+</blockquote>
+<h3 id="alias命令别名"><a href="#alias命令别名" class="headerlink" title="alias命令别名"></a>alias命令别名</h3><p>查看当前用户可使用的别名</p>
+<blockquote>
+<p>alias</p>
+</blockquote>
+<p>给某个命令设置别名</p>
+<blockquote>
+<p>alias llt=’ls -l test’</p>
+</blockquote>
+<h3 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h3><blockquote>
+<p>1.* 匹配任意个数的任意字符<br>2. ? 匹配单个任意字符<br>3. [acd]/[a-g] 匹配[]范围内的某个字符</p>
+</blockquote>
+<h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><blockquote>
+<p>ls -a &gt; info</p>
+</blockquote>
+<h4 id="重定向符号和cat命令结合使用"><a href="#重定向符号和cat命令结合使用" class="headerlink" title="重定向符号和cat命令结合使用"></a>重定向符号和cat命令结合使用</h4><p>创建一个文件,Ctrl+D结束输入</p>
+<blockquote>
+<p>cat &gt; file1 cat &gt; file2</p>
+</blockquote>
+<p>合并两个文件</p>
+<blockquote>
+<p>cat file1 file2 &gt; newfile</p>
+</blockquote>
+<p>向文件中追加信息</p>
+<blockquote>
+<p>cat &gt;&gt; newfile</p>
+</blockquote>
+<h4 id="错误信息重定向"><a href="#错误信息重定向" class="headerlink" title="错误信息重定向"></a>错误信息重定向</h4><blockquote>
+<p>ls /test 2&gt;error</p>
+</blockquote>
+<h3 id="管道"><a href="#管道" class="headerlink" title="管道 |"></a>管道 |</h3><p>把一条命令的结果传给下一条命令</p>
+<blockquote>
+<p>cat f1 | grep ‘file’ | wc -l</p>
+</blockquote>
+<h3 id="Vim"><a href="#Vim" class="headerlink" title="Vim"></a>Vim</h3><ol>
+<li>命令模式 仅浏览</li>
+<li>插入模式</li>
+<li>末行模式<br><img src="/2019/12/02/linux/linux%5C1218623-20170816140821740-1998117725%5B1%5D.png" alt="vim三种模式转换示意图"><h1 id="用户和组管理"><a href="#用户和组管理" class="headerlink" title="用户和组管理"></a>用户和组管理</h1><h3 id="etc-passwd-用户帐号文件"><a href="#etc-passwd-用户帐号文件" class="headerlink" title="/etc/passwd 用户帐号文件"></a>/etc/passwd 用户帐号文件</h3><h3 id="etc-shadow-用户影子文件"><a href="#etc-shadow-用户影子文件" class="headerlink" title="/etc/shadow 用户影子文件"></a>/etc/shadow 用户影子文件</h3><h3 id="etc-group-组帐号文件"><a href="#etc-group-组帐号文件" class="headerlink" title="/etc/group    组帐号文件"></a>/etc/group    组帐号文件</h3><h3 id="etc-gshadow-用户组影子文件"><a href="#etc-gshadow-用户组影子文件" class="headerlink" title="/etc/gshadow 用户组影子文件"></a>/etc/gshadow 用户组影子文件</h3>密码等信息保存在影子文件中<h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><h3 id="useradd-添加用户"><a href="#useradd-添加用户" class="headerlink" title="useradd 添加用户"></a>useradd 添加用户</h3><blockquote>
+<p>-G 给某用户添加分组<br>-u 指定用户ID<br>useradd user1<br>useradd -G root user1 增加用户user1顺便设置分组为root</p>
+</blockquote>
+<h3 id="passwd"><a href="#passwd" class="headerlink" title="passwd"></a>passwd</h3><blockquote>
+<p>-d 删除用户的口令,使用户无需口令就可以登陆系统<br>-l 暂时锁定指定用户<br>-u 解锁指定用户<br>-S 显示指定用户的状态</p>
+</blockquote>
+</li>
+</ol>
+<blockquote>
+<p>passwd user1</p>
+</blockquote>
+<h3 id="userdel-删除用户"><a href="#userdel-删除用户" class="headerlink" title="userdel 删除用户"></a>userdel 删除用户</h3><blockquote>
+<p>-r 删除用户的主目录及其中的所有内容,若不加此选项,则仅删除此用户账号<br>userdel -r user1</p>
+</blockquote>
+<p>查找属于某个用户的文件</p>
+<blockquote>
+<p>find / -uid user1<br>find / -user user1</p>
+</blockquote>
+<h3 id="usermod-修改用户信息"><a href="#usermod-修改用户信息" class="headerlink" title="usermod 修改用户信息"></a>usermod 修改用户信息</h3><p>修改用户名</p>
+<blockquote>
+<p>usermod -l user2 user1<br>usermod -g work -u 5500 student</p>
+</blockquote>
+<h2 id="组管理"><a href="#组管理" class="headerlink" title="组管理"></a>组管理</h2><h3 id="groupadd-创建用户组"><a href="#groupadd-创建用户组" class="headerlink" title="groupadd 创建用户组"></a>groupadd 创建用户组</h3><blockquote>
+<p>groupadd mygroup</p>
+</blockquote>
+<p>建组的同时指定组的GID为5600</p>
+<blockquote>
+<p>groupadd -g 5600 test</p>
+</blockquote>
+<h3 id="gpasswd"><a href="#gpasswd" class="headerlink" title="gpasswd"></a>gpasswd</h3><blockquote>
+<p>gpasswd mygroup</p>
+</blockquote>
+<h3 id="groupdel-删除用户组"><a href="#groupdel-删除用户组" class="headerlink" title="groupdel 删除用户组"></a>groupdel 删除用户组</h3><blockquote>
+<p>groupdel mygroup</p>
+</blockquote>
+<h3 id="groupmod-修改用户组信息"><a href="#groupmod-修改用户组信息" class="headerlink" title="groupmod 修改用户组信息"></a>groupmod 修改用户组信息</h3><p>修改用户组名</p>
+<blockquote>
+<p>groupmod -n mygroup1 mygroup<br>groupmod -g 566 -n mygroup1 mygroup</p>
+</blockquote>
+<h1 id="磁盘与文件系统管理"><a href="#磁盘与文件系统管理" class="headerlink" title="磁盘与文件系统管理/"></a>磁盘与文件系统管理/</h1><h2 id="磁盘的分类-根据连接的接口种类分类"><a href="#磁盘的分类-根据连接的接口种类分类" class="headerlink" title="磁盘的分类 (根据连接的接口种类分类)"></a>磁盘的分类 (根据连接的接口种类分类)</h2><ul>
+<li>IDE磁盘</li>
+<li>SCSI磁盘</li>
+<li>软盘</li>
+<li>移动磁盘<h3 id="IDE磁盘"><a href="#IDE磁盘" class="headerlink" title="IDE磁盘"></a>IDE磁盘</h3></li>
+<li>ATA接口的IDE磁盘<blockquote>
+<p>ATA接口的IDE磁盘设备识别名称为hd<br>linux会为每一个硬盘提供一个英文字母代号,作为每个不同的ATA IDE磁盘的识别名称,例如,第一个ATA IDE磁盘的设备文件是/dev/hda,第二个是/dev/hdb</p>
+</blockquote>
+</li>
+<li>SATA接口的IDE磁盘<blockquote>
+<p>设备文件识别名称是sd</p>
+</blockquote>
+<h3 id="SCSI磁盘"><a href="#SCSI磁盘" class="headerlink" title="SCSI磁盘"></a>SCSI磁盘</h3><blockquote>
+<p>SCSI磁盘是使用SCSI接口连接到计算机的磁盘,由SCSI控制卡上独立的处理器执行调用磁盘的动作,比起IDE是由主机板上的CPU处理的情况而言<br>一台计算机可以安装多个SCSI控制卡,每一个SCSI控制卡中可以安装数个SCSI磁盘<br>SCSI磁盘代号有两个字母 /dev/sda表示第一个SCSI磁盘,/dev/sdad表示第30个SCSI磁盘</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>磁盘名称如何分配</p>
+</blockquote>
+<ul>
+<li>启动系统时指定</li>
+<li>SCSI控制卡的顺序</li>
+<li>SCSI磁盘设置的序号<h3 id="软盘"><a href="#软盘" class="headerlink" title="软盘"></a>软盘</h3><blockquote>
+<p>设备文件识别名称为fd</p>
+</blockquote>
+<h3 id="移动磁盘"><a href="#移动磁盘" class="headerlink" title="移动磁盘"></a>移动磁盘</h3><blockquote>
+<p>使用设备文件/dev/sdX</p>
+</blockquote>
+<h2 id="磁盘的组成"><a href="#磁盘的组成" class="headerlink" title="磁盘的组成"></a>磁盘的组成</h2></li>
+</ul>
+<h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><h3 id="进程和程序的区别"><a href="#进程和程序的区别" class="headerlink" title="进程和程序的区别"></a>进程和程序的区别</h3><blockquote>
+<p><strong>进程</strong>:一个程序在其自身的虚拟地址空间的一次执行活动,是系统资源分配和调度的基本单位<br><strong>程序</strong>:存储在磁盘上包括可执行机器指令和数据的静态实体</p>
+</blockquote>
+<blockquote>
+<p>进程的类型</p>
+</blockquote>
+<ol>
+<li>交互进程:由一个shell启动的进程</li>
+<li>批处理进程</li>
+<li>守护进程：在后台运行而又没有终端或登录shell与之结合在一起的进程<blockquote>
+<p>启动进程 1.手工启动 2.调度启动<br>手工启动 1.前台启动 2.后台启动</p>
+</blockquote>
+<h3 id="前台启动"><a href="#前台启动" class="headerlink" title="前台启动"></a>前台启动</h3><blockquote>
+<p>当用户输入一个命令,就会启动一个前台进程<br>这里启动的前台进程相当于当前shell进程的子进程,由于子进程结束后才能继续父进程,此时用户不能进行其他操作。<br>cat f1 | grep ‘file’ | wc -l 这条命令由三条语句组成,所以启动了三个子进程</p>
+</blockquote>
+<h3 id="后台启动"><a href="#后台启动" class="headerlink" title="后台启动"></a>后台启动</h3><blockquote>
+<p>在命令的后面加上 &amp; 如下<br>ls -a &gt; text &amp;<br>此时启动了一个后台子shell进程,此时父进程不需要等待子进程结束就可以继续运行</p>
+</blockquote>
+<h4 id="后台进程的应用场景"><a href="#后台进程的应用场景" class="headerlink" title="后台进程的应用场景"></a>后台进程的应用场景</h4></li>
+<li>该程序运行期间不需要用户的干预</li>
+<li>该程序执行时间较长<h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><h3 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h3></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">1.创建文件夹/文件</span><br><span class="line">mkdir -p test/tmp</span><br><span class="line">cd test/tmp</span><br><span class="line">touch abc.txt</span><br><span class="line">3.复制文件</span><br><span class="line">cp 源文件 目标文件</span><br><span class="line">4.复制目录</span><br><span class="line">cp -r 源目录 目标目录</span><br><span class="line">5.修改文件名</span><br><span class="line">mv 源文件 目标文件</span><br><span class="line">7.rpm安装软件</span><br><span class="line">首先挂载光驱</span><br><span class="line">mkdir /mnt/cdrom</span><br><span class="line">mount /dev/sr0 /mnt/cdrom</span><br><span class="line">安装软件包</span><br><span class="line">linux中所有软件包都放在 光驱中,所以挂载光驱的目的就是为了获取软件包</span><br><span class="line">挂载光驱后/mnt/cdrom目录下出现一个Packages目录,就是光驱,里面有所有linux支持的软件包 ls -l 寻找要安装的软件包</span><br><span class="line">rpm -ivh /mnt/cdrom/Packages/软件包名</span><br><span class="line">//查询是否安装了某个软件</span><br><span class="line">rpm -q 软件名</span><br><span class="line">//卸载软件</span><br><span class="line">rpm -e vstfpd</span><br><span class="line">8.挂载光驱,并设置开机自启</span><br><span class="line">vim /etc/fstab</span><br><span class="line">配置信息</span><br><span class="line">/dev/cdrom   /mnt/cdrom   auto   exec  0 0</span><br><span class="line">9.vim /etc/yum.repos.d/local.repo </span><br><span class="line">添加配置信息</span><br><span class="line">[local]</span><br><span class="line">name=local</span><br><span class="line">baseurl=file:///mnt/cdrom</span><br><span class="line">enable=1</span><br><span class="line">gpgcheck=0</span><br><span class="line">10.查询软件版本信息并保存到某文件中</span><br><span class="line">rpm -q vsftpd &gt; test/tmp/abc.txt</span><br><span class="line">cat test/tmp/abc.txt</span><br><span class="line">还可以加管道,从海量配置信息中筛选出想要的信息</span><br><span class="line">rpm -q 软件名 | grep 关键字 &gt; 某文件路径</span><br><span class="line">11.useradd -u 600 abc</span><br><span class="line">passwd abc</span><br><span class="line">12.添加分组</span><br><span class="line">groupadd test</span><br><span class="line">usermod test root</span><br><span class="line">13.设置账户为不可登录</span><br><span class="line">usermod -s  /usr/sbin/nologin  username</span><br><span class="line">usermod -s /bin/false username</span><br><span class="line">14.彻底删除用户</span><br><span class="line">userdel -r username</span><br><span class="line">//然后在删除用户所属组</span><br><span class="line">groupdel groupname</span><br><span class="line">16.fdisk -l //查看分区情况</span><br><span class="line">fdisk /dev/sdc //为磁盘sdc分区</span><br><span class="line">n新建分区,p显示分区,t改变分区类型</span><br><span class="line">17.创建ext4文件系统,并挂载分区,设置为开机自动挂载</span><br><span class="line">mkfs -t ext4 /dev/sdc3</span><br><span class="line">vim /etc/fstab</span><br><span class="line">配置信息</span><br><span class="line">/dev/sdc3   /data   ext4   defaults 0 0</span><br><span class="line">18.mkswap /dev/sdc5</span><br><span class="line">swapon -s</span><br><span class="line">swapon /dev/sdc5</span><br><span class="line">修改/etc/fstab</span><br><span class="line">/dev/sdc5 swap swap defaults 0 0</span><br><span class="line">//会自动读取  /etc/fstab中的配置进行挂载</span><br><span class="line">mount -a</span><br><span class="line">19.</span><br><span class="line">chown yuchen test/tmp/abc //修改目录的用户所有者</span><br><span class="line">chgrp  yuchen test/tmp/abc //修改目录的所属组</span><br><span class="line">20.</span><br><span class="line">修改文件权限</span><br><span class="line">chmod 642 test/tmp/abc     // rwx 421</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://jinyeeeee.github.io/2019/12/02/linux/" data-id="ck9i6u3l0000fg8v0bxfg0l1y"
+         class="article-share-link">分享</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/12/04/spring/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            spring
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/11/10/sql/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">sql</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/technology.js"></script>
+
+  </div>
+</body>
+</html>

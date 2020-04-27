@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    JS/20200421/08-阻止表单提交 |
+    
+    yuchen</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/technology.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-JS/20200421/08-阻止表单提交" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JS/20200421/08-阻止表单提交
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/04/24/JS/20200421/08-%E9%98%BB%E6%AD%A2%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4/" class="article-date">
+  <time datetime="2020-04-24T08:11:38.077Z" itemprop="datePublished">2020-04-24</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<form class="form" action="server.html" method="post">
+			<input type="text" name="username"><span></span>
+			<input type="submit" value="提交">
+		</form>
+	</body>
+	<script>
+		document.getElementsByClassName("form")[0].onsubmit = function(){
+			 //获取username的值，
+			 var username =  document.getElementsByName("username")[0].value.trim();
+			 if(username==""){
+				 alert("用户名不能为空！");
+				 //阻止默认行为，事件内自动封装了event，不能跳转
+				 event.preventDefault();
+				 //阻止表单的提交
+				 //return false;
+			 }
+		}
+	</script>
+</html>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://jinyeeeee.github.io/2020/04/24/JS/20200421/08-%E9%98%BB%E6%AD%A2%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4/" data-id="ck9i6u50m001fg8v0dl335x7j"
+         class="article-share-link">分享</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2020/04/24/JS/20200421/09-%E5%B8%B8%E7%94%A8%E4%BA%8B%E4%BB%B6/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            JS/20200421/09-常用事件
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/04/24/JS/20200421/07-%E9%98%BB%E6%AD%A2%E4%BA%8B%E4%BB%B6%E7%9A%84%E4%BC%A0%E6%92%AD/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">JS/20200421/07-阻止事件的传播</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/technology.js"></script>
+
+  </div>
+</body>
+</html>
