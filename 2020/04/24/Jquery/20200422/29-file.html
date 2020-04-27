@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			label{
+				display: block;
+				width:200px;
+				height: 200px;
+				border:1px solid #f00;
+				text-align: center;
+				line-height: 200px;
+				font-size: 40px;
+				color:#f00;
+			}
+		</style>
+	</head>
+	<body>
+		<form>
+			<label for="img">+</label>
+			<input type="file" name="img" id="img" style="display: none;" 
+			onchange="selectImg()">
+		</form>
+	</body>
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script>
+		function selectImg(){
+			//获取上传的文件
+			//$(":file"):jquery对象，在h5中，文件上传多个，files：类似数组，索引取出
+			var file = $(":file")[0].files[0];
+			//创建文件读取流对象
+			var fr = new FileReader();
+			//用流对象文件，
+			fr.readAsDataURL(file);
+			//fr有load事件，当文件加载完毕就会触发该事件
+			fr.onload = function(){
+				//从当前事件中取出图片的url
+				var url = event.target.result;
+				//将图片设置到label中
+				//将+去掉
+				$("label").text("");
+				//将图片设置到label
+				$("label").css({
+					"background-image":"url("+url+")",
+					"background-size":"100% 100%"
+				})
+			}
+		}
+	</script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			div{
+				width:100px;
+				height: 100px;
+				background: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<button class="show">显示</button>
+		<button class="hide">隐藏</button>
+		<button class="toggle">toggle</button>
+	</body>
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script>
+		//显示
+		$(".show").click(function(){
+			$("div").show();
+		})
+		$(".hide").click(function(){
+			$("div").hide();
+		})
+		$(".toggle").click(function(){
+			$("div").toggle();
+		})
+	</script>
+</html>

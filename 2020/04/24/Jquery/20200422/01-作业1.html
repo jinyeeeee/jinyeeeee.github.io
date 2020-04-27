@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<form action="server.html" method="post" id="form">
+		<table>
+			<tr>
+				<td>username</td>
+				<td><input type="text" name="username" id="username" class="username"></td>
+			</tr>
+			<tr>
+				<td>password</td>
+				<td><input type="password" name="password" id="password" class="password"></td>
+			</tr>
+			<tr>
+				<td>confirmPassword</td>
+				<td><input type="password" name="confirmPassword" id="confirmPassword" class="confirmPassword"></td>
+			</tr>
+			<tr>
+				<td>AGE</td>
+				<td><input type="text" name="age" id="age" class="age"></td>
+			</tr>
+			<tr>
+				<td>email</td>
+				<td><input type="text" name="email" id="email" class="email"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value="register" id="register"></td>
+			</tr>
+			<tr>
+				<td colspan="2" class="info" id="info" style="color:red;"></td>
+			</tr>
+		</table>
+		</form>
+	</body>
+	<script>
+		//当我们点击提交按钮的时候，就会触发表单的提交事件
+		document.getElementById("form").onsubmit = function(){
+			//获取的输入的数据
+			//获取用户名
+			var username = document.getElementById("username").value.trim();
+			var password = document.getElementById("password").value.trim();
+			var confirmPassword = document.getElementById("confirmPassword").value.trim();
+			var age = document.getElementById("age").value.trim();
+			var email = document.getElementById("email").value.trim();
+			var flag = false;//不阻止表单提交
+			//检验是否符合规范
+			var username_reg = /^[a-zA-Z_]\w{4,49}$/;//第一个不能是数字，5-50
+			if(!username_reg.test(username)){//不符合标准
+				//document.getElementById("info").innerHTML = "<div>用户名不合法</div>";
+				//创建一个错误提示的元素
+			    var div = document.createElement("div");
+				div.innerText= "用户名不合法";
+				document.getElementById("info").appendChild(div);
+				flag = true;
+			}
+			//判断密码
+			var password_reg = /^\w{8,}$/;
+			if(!password_reg.test(password)){
+				//创建一个错误提示的元素
+				var div = document.createElement("div");
+				div.innerText= "密码不合法";
+				document.getElementById("info").appendChild(div);
+				flag = true;
+			}
+			if(!(password==confirmPassword && password!="")){
+				//创建一个错误提示的元素
+				var div = document.createElement("div");
+				div.innerText= "两次密码不一致";
+				document.getElementById("info").appendChild(div);
+				flag = true;
+			}
+			if(flag){
+				//阻止表单提交
+				return false;
+			}
+		}
+	</script>
+</html>

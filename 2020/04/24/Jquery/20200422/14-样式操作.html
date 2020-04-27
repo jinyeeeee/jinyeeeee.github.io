@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	<script src="js/jquery-1.9.1.min.js"></script>
+	</head>
+	<body>
+		<ul>
+			<li>北京</li>
+			<li>天津</li>
+		</ul>
+	</body>
+	<script>
+		var $li = $("<li>上海</li>");
+		//属性操作
+		//设置属性
+		$li.attr("id","sh");
+		//class操作
+		$li.addClass("sh");
+		//样式操作,一个属性名，代表获取，2个代表设置
+		// $li.css("color","red");
+		// $li.css("font-size","20px");
+		$li.css({
+			"color":"red",
+			"font-size":"20px",
+			"font-style":"italic",
+			// "width":"200px",
+			// "height":"40px",
+			"background":"#ff0"
+		})
+		//不给参数获取宽度，给参数就是设置
+		$li.width("100px");
+		$li.height("40px");
+		$("ul").append($li);
+		
+	</script>
+</html>

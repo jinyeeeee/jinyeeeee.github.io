@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+			<li class="bj">北京</li>
+			<li class="tj">天津</li>
+		</ul>
+	</body>
+	<script>
+		//获取ul
+		var ul = document.getElementsByTagName("ul")[0];
+		//创建一个<li></li>
+		var li = document.createElement("li");
+		//为li设置属性
+		li.setAttribute("class","sh");
+		//添加文本节点
+		//var text = document.createTextNode("上海");
+		//将文本内容添加到<li></li>
+		//li.appendChild(text);
+		//添加文本
+		li.innerHTML="<span style='color:red'>上海<span>";
+		//li.innerText="<span style='color:red'>上海<span>";
+		//将li添加到ul
+		//ul.appendChild(li);
+		//兄弟元素
+		ul.insertBefore(li,document.getElementsByClassName("tj")[0]);
+		//移除元素，父元素移除
+		//ul.removeChild(document.getElementsByClassName("tj")[0]);
+		//修改元素
+		//ul.replaceChild(li,document.getElementsByClassName("tj")[0]);
+	</script>
+</html>

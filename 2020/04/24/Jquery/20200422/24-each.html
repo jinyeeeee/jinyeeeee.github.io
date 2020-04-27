@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+			<li>第一项</li>
+			<li>第二项</li>
+			<li>第三项</li>
+		</ul>
+	</body>
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script>
+		$("li").each(function(index){
+			//相当于在写循环，index循环变量，每一次循环时的元素
+			console.log(index);
+			console.log($(this).text())
+		})
+	</script>
+</html>

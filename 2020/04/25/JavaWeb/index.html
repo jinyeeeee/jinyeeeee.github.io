@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    JavaWeb |
+    
+    yuchen</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/technology.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-JavaWeb" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaWeb
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/04/25/JavaWeb/" class="article-date">
+  <time datetime="2020-04-25T14:15:44.000Z" itemprop="datePublished">2020-04-25</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <h1 id="Intellij-IDEA安装"><a href="#Intellij-IDEA安装" class="headerlink" title="Intellij IDEA安装"></a>Intellij IDEA安装</h1><h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h2><pre><code>1.next to next</code></pre><h2 id="2-配置"><a href="#2-配置" class="headerlink" title="2.配置"></a>2.配置</h2><pre><code>1.不导入配置 ：Do not import settings
+2.选择界面颜色：Darcula 黑色  Light 白色
+3.选择插件。
+    1.java framework 
+        1.不选 Google App Engine GWT JBoss Seam
+    2.Build Tools
+        1.全留
+    3.Web Development
+        1.不选 Haml Less Sass CoffeeScript Flash/Flex
+    4.Version Controls
+        1.Git
+        2.GitHub</code></pre><h2 id="3-激活"><a href="#3-激活" class="headerlink" title="3.激活"></a>3.激活</h2><pre><code>1.http://idea.lanyus.com/ 
+2.www.baidu.com搜索相应版本的激活码</code></pre><h2 id="4-配置configure"><a href="#4-配置configure" class="headerlink" title="4.配置configure"></a>4.配置configure</h2><pre><code>1.settings
+    1.Appearance
+        1.Use custom font：字体，大小
+    2.Editor
+        1.default 白色  Darcula 黑色
+        2.font：字体，大小
+    3.Plugins
+        选择为安装的插件
+    4.Build,Execution,Deployment
+        1.Build Tools
+            1.maven
+                1.Maven home directory
+                2.User settings file</code></pre><h1 id="Tomcat安装"><a href="#Tomcat安装" class="headerlink" title="Tomcat安装"></a>Tomcat安装</h1><pre><code>1.解压
+2.配置tomcat的环境变量
+    1.新建：CATALINA_HOME
+    2.在path环境变量后追加;%CATALINA_HOME%\bin
+3.windows键+r 执行cmd 输入startup
+4.访问tomcat服务器
+5.设置tomcat账号
+    1.找到tomcat所在目录。
+        配置文件所在目录：D:\apache-tomcat-9.0.24\conf中tomcat-user.xml中配置
+         &lt;user username=&quot;admin&quot; password=&quot;admin&quot; roles=&quot;manager-gui&quot;/&gt;注意：要在注释以外，tomcat-users标签以里。
+6.修改tomcat默认端口号
+        配置文件所在目录：D:\apache-tomcat-9.0.24\conf中server.xml中配置
+         &lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;
+       connectionTimeout=&quot;20000&quot;
+       redirectPort=&quot;8443&quot; /&gt;
+7.在idea上配置tomcat和maven。</code></pre><h1 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h1><p>1.idea 和 eclipse创建的web项目结构不一致使用开发工具要统一。<br>在公司开发小组中，保证开发工具（ide，jdk，数据库，浏览器）一致。<br>2.web项目<br>a)结构<br>i.src   写类文件的地方。<br>ii.web  jsp(动态页面) html(静态页面) css(样式文件) js(js文件) image(静态资源)<br>1.WEB-INF<br>a)web.xml web项目的核心配置文件。<br>i.welcome-file-list 当我们直接访问项目名称时，项目会根据该标签的列表进行访问。如果列表中有多个时，按照顺序寻找找一个就访问该页面，后面的不再寻找。<br>  <welcome-file-list><br>        <welcome-file>hello.html</welcome-file><br>    </welcome-file-list></p>
+<p>3.项目如何发布<br>a)创建一个html页面。<br>b)配置tomcat<br>=<br>i.Application server 选项 web应用服务器<br>ii.默认访问浏览器<br>iii.url 起始访问量<a href="http://localhost:8080/webdemo_war_exploded/" target="_blank" rel="noopener">http://localhost:8080/webdemo_war_exploded/</a><br>1.localhost 本机<br>2.tomcat的默认端口号<br>3.webdemo_war_exploded 服务器上项目的名称</p>
+<p>iv.Deployment  + Aitfacts  把项目加载web服务器<br>1.Application context 你的项目布置到服务器上的项目名称。<br>启动成功</p>
+<p>4.Idea的tomcat重启。</p>
+<p>a）Update resource  更新配置文件<br>b）Update classes and resource  跟新类文件和配置文件<br>c）Redeploy 重新布置<br>d）Restart server重启服务器<br>5.servlet<br>a)它一个类<br>b)继承httpservlet（javax.servlet.http.HttpServlet）</p>
+<p>c)实现方法<br>i.Init 初始化<br>1.执行时间(当服务器启动后，第一次访问的时候，会条用init方法进行初始化)<br>a)如果我们想服务器启动时就想让调用init方法进行初始化呢？<br>        <load-on-startup>1</load-on-startup></p>
+<p>ii.Service方法（处理用户的请求）<br>1.Response(响应)<br>a)可以向浏览器打印数据<br>代码：<br>  System.out.println(“=================service=================”);<br>        PrintWriter out = response.getWriter();<br>        out.println(“</p><h1>hello word</h1>“);<br>b)输出中文<br>i.乱码解决方案<br>代码：<br>// 设置响应的内容类型<br>        response.setContentType(“text/html;charset=utf-8”);<br>        System.out.println(“=================service=================”);<br>        PrintWriter out = response.getWriter();<br>        out.println(“<h1>你好,世界</h1>“);<p></p>
+<p>iii.Destroy 销毁方法。（当服务器关闭或重启的时候启动）<br>代码：<br>package com.tjetc.servlet;</p>
+<p>import javax.servlet.ServletException;<br>import javax.servlet.http.HttpServlet;<br>import javax.servlet.http.HttpServletRequest;<br>import javax.servlet.http.HttpServletResponse;<br>import java.io.IOException;</p>
+<p>public class FirstServlet extends HttpServlet {<br>    //无参初始化方法<br>    @Override<br>    public void init() throws ServletException {<br>        System.out.println(“=================init=================”);<br>    }<br>    //service 方法<br>    @Override<br>    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {<br>        System.out.println(“=================service=================”);<br>    }<br>    //<br>    //销毁方法<br>    @Override<br>    public void destroy() {<br>        System.out.println(“=================destroy=================”);<br>    }<br>}<br>d)给servlet设置web访问地址。<br>i.Xml配置方式(web.xml)<br>    <servlet><br>        <!--注册servlet的名称--><br>        <servlet-name>first</servlet-name><br>        <!--servlet的类文件地址--><br>        <servlet-class>com.tjetc.servlet.FirstServlet</servlet-class><br>    </servlet><br>    <servlet-mapping><br>          <!--注释的快捷键  ctrl + /        --></servlet-mapping></p>
+<!-- 要给配置访问地址的servlet注册名称-->
+<pre><code>&lt;servlet-name&gt;first&lt;/servlet-name&gt;</code></pre><!--     访问地址 注意：要以斜杠开始-->
+<pre><code>    &lt;url-pattern&gt;/first.do&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;</code></pre><p>ii.注解<br>4. servlet的生命周期<br>    1，有参init方法<br>public void init(ServletConfig config) throws ServletException {<br>        this.config = config;<br>        this.init();<br>    }<br>1.如果有参和无参init方法同时存在我们调用有参init，然后再由有参init方法调用无参init方法。<br>2.service<br>        代码：<br>protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {<br>        String method = req.getMethod();<br>        long lastModified;<br>        if (method.equals(“GET”)) {<br>            lastModified = this.getLastModified(req);<br>            if (lastModified == -1L) {<br>                this.doGet(req, resp);<br>            } else {<br>                long ifModifiedSince;<br>                try {<br>                    ifModifiedSince = req.getDateHeader(“If-Modified-Since”);<br>                } catch (IllegalArgumentException var9) {<br>                    ifModifiedSince = -1L;<br>                }</p>
+<pre><code>            if (ifModifiedSince &lt; lastModified / 1000L * 1000L) {
+                this.maybeSetLastModified(resp, lastModified);
+                this.doGet(req, resp);
+            } else {
+                resp.setStatus(304);
+            }
+        }
+    } else if (method.equals(&quot;HEAD&quot;)) {
+        lastModified = this.getLastModified(req);
+        this.maybeSetLastModified(resp, lastModified);
+        this.doHead(req, resp);
+    } else if (method.equals(&quot;POST&quot;)) {
+        this.doPost(req, resp);
+    } else if (method.equals(&quot;PUT&quot;)) {
+        this.doPut(req, resp);
+    } else if (method.equals(&quot;DELETE&quot;)) {
+        this.doDelete(req, resp);
+    } else if (method.equals(&quot;OPTIONS&quot;)) {
+        this.doOptions(req, resp);
+    } else if (method.equals(&quot;TRACE&quot;)) {
+        this.doTrace(req, resp);
+    } else {
+        String errMsg = lStrings.getString(&quot;http.method_not_implemented&quot;);
+        Object[] errArgs = new Object[]{method};
+        errMsg = MessageFormat.format(errMsg, errArgs);
+        resp.sendError(501, errMsg);
+    }
+
+}</code></pre><p>2.service方法接到请求后，根据请求的方式调用doget，或者dopost方法。<br>3.destory是在服务器重启或停止的时候执行。</p>
+<p>生命周期的三条结论：<br>0.tomcat要调用无参构造方法创建servlet对象<br>1.如果有参和无参init方法同时存在我们调用有参init，然后再由有参init方法调用无参init方法。<br>2.service方法接到请求后，根据请求的方式调用doget，或者dopost方法。<br>3.destory是在服务器重启或停止的时候执行。</p>
+<p>最终代码：</p>
+<p>package com.tjetc.servlet;</p>
+<p>import javax.servlet.ServletConfig;<br>import javax.servlet.ServletException;<br>import javax.servlet.http.HttpServlet;<br>import javax.servlet.http.HttpServletRequest;<br>import javax.servlet.http.HttpServletResponse;<br>import java.io.IOException;<br>import java.io.PrintWriter;</p>
+<p>public class FirstServlet extends HttpServlet {<br>    public  FirstServlet(){<br>        System.out.println(“无参构造方法被调用”);<br>    }<br>    //无参初始化方法<br>    @Override<br>    public void init() throws ServletException {<br>        System.out.println(“=================无参init=================”);<br>    }</p>
+<pre><code>@Override
+public void init(ServletConfig config) throws ServletException {
+    System.out.println(&quot;=================有参init=================&quot;);
+    super.init(config);
+}
+
+//service 方法
+@Override
+protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    // 设置响应的内容类型
+    System.out.println(&quot;=================service=================&quot;);
+    super.service(request,response);
+}
+
+@Override
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    System.out.println(&quot;=================doget=================&quot;);
+
+}
+
+//
+//销毁方法
+@Override
+public void destroy() {
+    System.out.println(&quot;=================destroy=================&quot;);
+}</code></pre><p>}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://jinyeeeee.github.io/2020/04/25/JavaWeb/" data-id="ck9i2ijme00032ov0dndzaxrj"
+         class="article-share-link">分享</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/04/24/H5/20200423/js/jquery-1.9.1.min/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">H5/20200423/js/jquery-1.9.1.min</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/technology.js"></script>
+
+  </div>
+</body>
+</html>

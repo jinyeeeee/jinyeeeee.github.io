@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery-1.9.1.js"></script>
+		<script>
+			$(function(){
+				//通过js获取对象
+				var btn = document.getElementById("btn");
+				//转成jquery对象
+				var $btn = $(btn);
+				$btn.click(function(){
+					alert("-----");
+				})
+				console.log($btn);
+				//将jquery对象转为js对象，加下表
+				var btn2 = $btn[0];
+				var btn3 = $("#btn")[0];
+				console.log(btn3);
+				
+				//$("input:button")
+			})
+		</script>
+	</head>
+	<body>
+		<input type="button" value="按钮" id="btn">
+	</body>
+</html>

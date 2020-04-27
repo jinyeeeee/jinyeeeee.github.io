@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    JS/20200421/09-常用事件 |
+    
+    yuchen</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/technology.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-JS/20200421/09-常用事件" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JS/20200421/09-常用事件
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/04/24/JS/20200421/09-%E5%B8%B8%E7%94%A8%E4%BA%8B%E4%BB%B6/" class="article-date">
+  <time datetime="2020-04-24T08:11:38.084Z" itemprop="datePublished">2020-04-24</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" name="username" id="username">
+		<span style="display: none;">username获取焦点了</span>
+	</body>
+	<script>
+		//添加获取焦点的事件
+		document.getElementById("username").addEventListener("focusin",function(){
+			document.getElementsByTagName("span")[0].style.display="inline-block";
+		},false);
+		//添加失去焦点的事件
+		document.getElementById("username").addEventListener("focusout",function(){
+			var username = event.currentTarget.value;
+			alert(username);
+		},false);
+	</script>
+</html>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://jinyeeeee.github.io/2020/04/24/JS/20200421/09-%E5%B8%B8%E7%94%A8%E4%BA%8B%E4%BB%B6/" data-id="ck9i2ikff00122ov01w9h2rie"
+         class="article-share-link">分享</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2020/04/24/JS/20200421/10-%E9%BC%A0%E6%A0%87%E7%9A%84%E7%A7%BB%E5%85%A5%E7%A7%BB%E5%87%BA/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            JS/20200421/10-鼠标的移入移出
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/04/24/JS/20200421/08-%E9%98%BB%E6%AD%A2%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">JS/20200421/08-阻止表单提交</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/technology.js"></script>
+
+  </div>
+</body>
+</html>

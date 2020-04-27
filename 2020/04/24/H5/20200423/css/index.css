@@ -1,0 +1,23 @@
+.outer{
+	display: flex;
+}
+.outer .left{
+	width: 80px;
+}
+.outer .left select {
+	width: 100%;
+}
+.outer .btns {
+	width: 60px;
+	margin: 0px 5px;
+}
+.outer .btns button{
+	width:100%;
+	font-size: 10px;
+}
+.outer .right{
+	width: 80px;
+}
+.outer .right select {
+	width: 100%;
+}

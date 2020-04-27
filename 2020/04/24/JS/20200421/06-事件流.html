@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.div1{
+				width: 200px;
+				height: 200px;
+				background-color: yellow;
+			}
+			.div2{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div1">
+			<div class="div2"></div>			
+		</div>
+		<script>
+			//第三个采参数，代表事件，true捕获，从父到子，如果是false，冒泡，从子到父
+			//为body添加事件
+			document.body.addEventListener("click",function(){
+				   alert("您点击了body");
+			},true);
+			//为div1添加事件
+			document.getElementsByClassName("div1")[0].addEventListener("click",function(){
+				   alert("您点击了div1")
+			},true);
+			// document.getElementsByClassName("div2")[0].onclick = function(){
+			// 	alert("您点击了div2");
+			// }
+			
+			//通过dom2,可以考虑事件流的影响
+			document.getElementsByClassName("div2")[0].addEventListener("click",fun,true);
+			function fun(){
+				alert("您点击了div2");
+			}
+			//解除绑定
+			document.getElementsByClassName("div2")[0].removeEventListener("click",fun,true);
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery-1.9.1.min.js"></script>
+		<script>
+			$(function(){
+				//删除ul内部的天津，不是不通过父元素，自己删除自己
+				//$("li").detach(":contains('天津')");
+				//清空所有的子元素,本身存在
+				//$("ul").empty();
+				//删除它本身，包括子元素，内容，事件
+				//$("ul").remove();
+				//删除父元素，自身和兄弟是存在的
+				$("li").unwrap();
+			})
+		</script>
+	</head>
+	<body>
+		<ul>
+			<li>北京</li>
+			<li>天津</li>
+		</ul>
+	</body>
+</html>

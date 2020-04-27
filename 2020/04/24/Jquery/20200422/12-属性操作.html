@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery-1.9.1.min.js"></script>
+	</head>
+	<body>
+		<ul>
+			<li>北京</li>
+			<li>天津</li>
+		</ul>
+		<input type="text" value="zhangsan">
+	</body>
+	<script>
+		var $li = $("<li>上海</li>");
+		//属性操作
+		//设置属性
+		$li.attr("id","sh");
+		//获取属性
+		var id = $li.attr("id");
+		console.log(id)
+		//huoqu value属性
+		//var value = $(":text").attr("value");
+		//获取值  val("lisi"):设置value的值
+		var value = $(":text").val();//input的值，如果是其他元素，有可能取不到，attr
+		console.log(value);
+		//prop属性和attr一样
+	</script>
+</html>

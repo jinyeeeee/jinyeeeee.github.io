@@ -1,0 +1,17 @@
+table{
+	width: 300px;
+	margin: 0 auto;
+}
+table tr{
+	font-size: 14px;
+}
+table tr a{
+	color:mediumslateblue;
+	text-decoration: none;
+}
+table tr a:hover{
+	text-decoration: underline;
+}
+table tr .data{
+	color:#f00;
+}

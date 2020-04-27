@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			div{
+				width: 100px;
+				height: 100px;
+				background-color: #FF0000;
+			}
+		</style>
+		<script src="js/jquery-1.9.1.min.js"></script>
+		<script>
+			$(function(){  //hover :mouseover+mouseout
+				$("div").hover(function(){
+					$(event.target).css({
+						"background":"green",
+						"transition":"background 1s",
+						"cursor":"pointer"
+					})
+				},function(){
+					$(event.target).css({
+						"background":"red"
+						// "transition":"background 1s"
+					})
+				});
+			})
+			
+		</script>
+	</head>
+	<body>
+		<div></div>
+	</body>
+</html>

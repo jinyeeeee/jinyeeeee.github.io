@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!-- <video src="video/演员.mp4" controls="controls" autoplay="autoplay" width="300px" loop="loop">
+		</video> -->
+	    <video>
+			<source src="video/演员.mp4"></source>
+			<source src="video/演员.ogg"></source>
+			<source src="video/演员.webm"></source>
+			<!-- 插件播放 -->
+			您的浏览器不支持，请您更新版本或者下载插件，链接
+		</video>
+	</body>
+	<script>
+		//首先video
+	    var video = document.getElementsByTagName("video")[0];
+		//设置controls
+		video.controls = true;
+		//设置播放
+		//video.play();
+	</script>
+</html>

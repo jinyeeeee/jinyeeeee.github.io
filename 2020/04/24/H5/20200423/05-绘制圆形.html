@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#canvas{
+				border:1px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="400px" height="400px"></canvas>
+	</body>
+	<script>
+		var c = document.getElementById("canvas");
+		var context = c.getContext("2d");
+		//绘制
+		context.beginPath();
+		context.arc(200,200,100,0,Math.PI*2,true);
+		context.fillStyle = "#f00";
+		context.stroke();//外面的线
+		context.fill();//填充圆的内部
+	</script>
+</html>

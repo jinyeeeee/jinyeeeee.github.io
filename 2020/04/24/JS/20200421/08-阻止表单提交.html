@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<form class="form" action="server.html" method="post">
+			<input type="text" name="username"><span></span>
+			<input type="submit" value="提交">
+		</form>
+	</body>
+	<script>
+		document.getElementsByClassName("form")[0].onsubmit = function(){
+			 //获取username的值，
+			 var username =  document.getElementsByName("username")[0].value.trim();
+			 if(username==""){
+				 alert("用户名不能为空！");
+				 //阻止默认行为，事件内自动封装了event，不能跳转
+				 event.preventDefault();
+				 //阻止表单的提交
+				 //return false;
+			 }
+		}
+	</script>
+</html>

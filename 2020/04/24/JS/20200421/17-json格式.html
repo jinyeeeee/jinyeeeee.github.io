@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script>
+		//json对象
+		var p = {
+			"name":"zhangsan",
+			"age":18
+		};
+		console.log(p.name);
+		console.log(p.age);
+		//json数组
+		var p2 = {
+			"name":"lisi",
+			"age":20,
+			"citys":[
+				"北京","天津","昆明"
+			]
+		}
+		console.log(p2.citys[0]);//北京
+		var p3 = {
+			"name":"lisi",
+			"age":20,
+			"emploee":{
+				"id":10001,
+				"name":"程序员",
+				"salary":10000
+			}
+		}
+		console.log(p3.emploee.salary);
+		var p4 = {
+			"name":"lisi",
+			"age":20,
+			"citys":[
+				{
+					"name":"北京"
+				},
+				{
+					"name":"天津"
+				},
+				{
+					"name":"昆明"
+				}
+			]
+		}
+		console.log(p4.citys[1].name);
+	</script>
+</html>

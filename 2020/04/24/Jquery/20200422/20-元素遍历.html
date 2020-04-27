@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			button:hover{
+				cursor: pointer;
+			}
+		</style>
+		<script src="js/jquery-1.9.1.min.js"></script>
+		<script>
+			$(function(){
+				$("button").click(function(){
+					//弹出确认框
+					if(confirm("确认删除吗？")){
+						//删除一行，当前点击的按钮所在的那一行 ,event:js的dom对象
+						$(event.target).parent().parent().remove();
+					}
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<table border="1" cellspacing="0" width="300px" align="center">
+			<tr align="center">
+				<td>小明</td>
+				<td>89</td>
+				<td><button>删除</button></a></td>
+			</tr>
+			<tr align="center">
+				<td>小红</td>
+				<td>80</td>
+				<td><button>删除</button></td>
+			</tr>
+		</table>
+	</body>
+</html>

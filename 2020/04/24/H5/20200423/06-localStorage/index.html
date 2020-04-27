@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    H5/20200423/06-localStorage |
+    
+    yuchen</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/technology.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-H5/20200423/06-localStorage" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      H5/20200423/06-localStorage
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/04/24/H5/20200423/06-localStorage/" class="article-date">
+  <time datetime="2020-04-24T15:51:41.567Z" itemprop="datePublished">2020-04-24</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<form>
+			<input type="text" name="username" placeholder="用户名"><br>
+			<input type="password" name="password" placeholder="密吗"><br>
+			<input type="button" value="登录" id="login">
+		</form>
+	</body>
+	<script>
+		//模拟登录
+		//向localstorage存入值
+		var storage  = window.localStorage;
+		//存值,如果键相同，就是修改，一旦存入永远都有效
+		storage.setItem("username","jack");
+		storage.setItem("password","123");
+		//键相同，就是修改
+		storage.setItem("username","rose");
+		storage.setItem("password","456");
+		//移除内容
+		storage.removeItem("username");
+		storage.removeItem("password");
+		//用户信息
+		storage.setItem("jack","123");
+		console.log(storage);
+		//点击登录，获取用户名和密吗
+		var login = document.getElementById("login");
+		//为它添加点击事件
+		login.onclick = function(){
+			//获取用户名和密吗
+			var username = document.getElementsByName("username")[0].value.trim();
+			var password = document.getElementsByName("password")[0].value.trim();
+			//要与本地中的数据对比，如果能找到，就登录成功
+			//一个一个对比
+			for(var i = 0;i<storage.length;i++){
+				//判断键是否为用户名
+				if(storage.key(i)==username){
+					//判断值与密码是否相同
+					if(storage.getItem(username)==password){
+						alert("登录成功！")
+					}
+				}else{
+						alert("登录失败");
+				}
+			}
+		}
+	</script>
+</html>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://jinyeeeee.github.io/2020/04/24/H5/20200423/06-localStorage/" data-id="ck9i2ikil001q2ov04rsm9e1l"
+         class="article-share-link">分享</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2020/04/24/H5/20200423/07-%E6%A0%85%E6%A0%BC%E7%B3%BB%E7%BB%9F/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            H5/20200423/07-栅格系统
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/04/24/H5/20200423/05-%E7%BB%98%E5%88%B6%E5%9C%86%E5%BD%A2/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">H5/20200423/05-绘制圆形</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/technology.js"></script>
+
+  </div>
+</body>
+</html>

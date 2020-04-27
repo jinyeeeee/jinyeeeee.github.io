@@ -1,0 +1,36 @@
+<!DOCTYPE hml>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<form>
+			<input type="text" name="username" id="username"><br>
+			<input type="password" name="password" id="password"><br>
+			<select  name="citys">
+				<option>北京</option>
+				<option>天津</option>
+			</select>
+		</form>
+	</body>
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script>
+		//设置username获取焦点
+		$("#username").on("focusin",function(){
+		    console.log("username获取焦点了");
+		})
+		//与上面的方法等价
+		$("#password").focusout(function(){
+			console.log("password失去焦点了");
+		})
+		
+		// $("#username").change(function(){
+		// 	console.log(event.target.value);
+		// })
+		
+		$("select").change(function(){
+			console.log(event.target.value);
+		})
+	</script>
+</html>

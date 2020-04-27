@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery-1.9.1.min.js"></script>
+		<script>
+			$(function(){
+				//文本内容
+				var e1 = $("div:contains('dd')")[0];
+				console.log(e1);
+				//没有子元素的div
+				var e2 = $("div:empty")[0];
+				console.log(e2)
+				var e3 = $("div:has(p)")[0];
+				console.log(e3)
+				//获取作为父元素的div，有子元素的div
+				var $e4 = $("div:parent");
+				console.log($e4);
+				console.log($e4[0]);
+			})
+		</script>
+	</head>
+	<body>
+		<ul>
+			<li>第一项</li>
+			<li>第二项</li>
+			<li>第三项</li>
+		</ul>
+		<div>
+			<p>ddddd</p>
+		</div>
+		<div>
+			<span>dfsdfs</span>
+			<span>1111111</span>
+		</div>
+		<div></div>
+	</body>
+</html>

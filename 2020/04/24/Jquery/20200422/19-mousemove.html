@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			div{
+				width: 300px;
+				height: 150px;
+				border: 1px solid #000;
+			}
+		</style>
+		<script src="js/jquery-1.9.1.min.js"></script>
+		<script>
+			$(function(){
+				$("div").mousemove(function(){
+					//函数内自动封装了事件对象
+					var x = event.pageX;//获取当前事件距离文档左边界的位置
+					var y = event.pageY;//获取当前事件距离文档上边界的位置
+					$("span").text("x:"+x+",y:"+y);
+				});
+				$("div").mouseout(function(){
+					//移出，将span内容清空
+				 	$("span").text("");
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div>
+			
+		</div>
+		<span></span>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery-1.9.1.min.js"></script>
+		<script>
+			$(function(){
+				var hidden = $("input:hidden")[0];
+				console.log(hidden);
+				var $username = $("input:visible");
+				console.log($username);
+			})
+		</script>
+	</head>
+	<body>
+		<form>
+			
+			<input type="hidden" name="id" value="1000" class="id">
+			<input type="text" name="username" placeholder="username">
+			<input type="password">
+		</form>
+	</body>
+</html>

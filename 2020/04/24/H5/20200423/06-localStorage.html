@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<form>
+			<input type="text" name="username" placeholder="用户名"><br>
+			<input type="password" name="password" placeholder="密吗"><br />
+			<input type="button" value="登录" id="login">
+		</form>
+	</body>
+	<script>
+		//模拟登录
+		//向localstorage存入值
+		var storage  = window.localStorage;
+		//存值,如果键相同，就是修改，一旦存入永远都有效
+		storage.setItem("username","jack");
+		storage.setItem("password","123");
+		//键相同，就是修改
+		storage.setItem("username","rose");
+		storage.setItem("password","456");
+		//移除内容
+		storage.removeItem("username");
+		storage.removeItem("password");
+		//用户信息
+		storage.setItem("jack","123");
+		console.log(storage);
+		//点击登录，获取用户名和密吗
+		var login = document.getElementById("login");
+		//为它添加点击事件
+		login.onclick = function(){
+			//获取用户名和密吗
+			var username = document.getElementsByName("username")[0].value.trim();
+			var password = document.getElementsByName("password")[0].value.trim();
+			//要与本地中的数据对比，如果能找到，就登录成功
+			//一个一个对比
+			for(var i = 0;i<storage.length;i++){
+				//判断键是否为用户名
+				if(storage.key(i)==username){
+					//判断值与密码是否相同
+					if(storage.getItem(username)==password){
+						alert("登录成功！")
+					}
+				}else{
+						alert("登录失败");
+				}
+			}
+		}
+	</script>
+</html>

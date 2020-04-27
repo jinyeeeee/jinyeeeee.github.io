@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery-1.9.1.min.js"></script>
+		<script>
+			$(function(){
+				//兄弟选择器
+			    var $input  = $("p+input");
+				console.log($input);
+				//alert($input);
+				//获取name属性的字
+				var name = $input[0].getAttribute("name");
+				console.log(name);
+			})
+		</script>
+		
+	</head>
+	<body>
+		<p>ddfsdf</p>
+		<input type="text" name="username"><br>
+		<input type="password" name = "password" id="password"><br>
+		<input type="password" name="confirmPassword" id="confirmPassword" class="confirmPassword"><br>
+		<input type="text" name="age" id="age" class="age">
+	</body>
+</html>

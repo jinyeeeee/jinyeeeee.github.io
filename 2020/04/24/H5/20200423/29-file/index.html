@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    H5/20200423/29-file |
+    
+    yuchen</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/technology.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-H5/20200423/29-file" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      H5/20200423/29-file
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/04/24/H5/20200423/29-file/" class="article-date">
+  <time datetime="2020-04-24T15:51:41.786Z" itemprop="datePublished">2020-04-24</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			label{
+				display: block;
+				width:200px;
+				height: 200px;
+				border:1px solid #f00;
+				text-align: center;
+				line-height: 200px;
+				font-size: 40px;
+				color:#f00;
+			}
+		</style>
+	</head>
+	<body>
+		<form>
+			<label for="img">+</label>
+			<input type="file" name="img" id="img" style="display: none;" onchange="selectImg()">
+		</form>
+	</body>
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script>
+		function selectImg(){
+			//获取上传的文件
+			//$(":file"):jquery对象，在h5中，文件上传多个，files：类似数组，索引取出
+			var file = $(":file")[0].files[0];
+			//创建文件读取流对象
+			var fr = new FileReader();
+			//用流对象文件，
+			fr.readAsDataURL(file);
+			//fr有load事件，当文件加载完毕就会触发该事件
+			fr.onload = function(){
+				//从当前事件中取出图片的url
+				var url = event.target.result;
+				//将图片设置到label中
+				//将+去掉
+				$("label").text("");
+				//将图片设置到label
+				$("label").css({
+					"background-image":"url("+url+")",
+					"background-size":"100% 100%"
+				})
+			}
+		}
+	</script>
+</html>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://jinyeeeee.github.io/2020/04/24/H5/20200423/29-file/" data-id="ck9i2ikiy001w2ov0e429eq99"
+         class="article-share-link">分享</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2020/04/24/H5/20200423/css/08/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            H5/20200423/css/08
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/04/24/H5/20200423/28-%E6%96%B0%E7%9A%84type%E5%B1%9E%E6%80%A7/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">H5/20200423/28-新的type属性</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/technology.js"></script>
+
+  </div>
+</body>
+</html>

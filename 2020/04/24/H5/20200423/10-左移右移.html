@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css">
+	</head>
+	<body>
+		<div class="outer">
+			<div class="left">
+				<select size="4" multiple="multiple">
+					<option>java</option>
+					<option>.net</option>
+					<option>测试</option>
+					<option>运维</option>
+				</select>
+			</div>
+			<div class="btns">
+				<button class="toRight">&gt;&gt;</button>
+				<button class="toLeft">&lt;&lt;</button>
+				<button class="toRight">全部&gt;&gt;</button>
+				<button class="toLeft">全部&lt;&lt;</button>
+			</div>
+			<div class="right">
+				<select size="4" multiple="multiple">
+					<option>前端</option>
+					
+				</select>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script>
+		//为按钮添加点击事件
+		$("button:eq(0)").click(function(){
+			//获取左边被选中的option
+			$(".right select").append($(".outer .left select option:selected"));
+		})
+		$("button:eq(1)").click(function(){
+			$(".left select").append($(".right select option:selected"));
+		})
+		$("button:eq(2)").click(function(){
+			$(".right select").append($(".outer .left select option"));
+		})
+		$("button:eq(3)").click(function(){
+			$(".left select").append($(".right select option"));
+		})
+	</script>
+</html>

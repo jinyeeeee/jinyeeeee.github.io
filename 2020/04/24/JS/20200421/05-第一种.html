@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" value="按钮1" onclick="func1()"><br />
+		<input type="button" value="按钮2" id="btn2">
+	</body>
+	<script>
+		function func1(){
+			alert("您点击了按钮1。。。。。")
+		}
+		//为按钮2绑定
+		document.getElementById("btn2").onclick = function(){
+			alert("您点击了按钮2");
+		}
+	</script>
+</html>

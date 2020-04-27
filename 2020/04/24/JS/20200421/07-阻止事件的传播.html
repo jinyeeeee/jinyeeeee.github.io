@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.div1{
+				width: 200px;
+				height: 200px;
+				background-color: yellow;
+			}
+			.div2{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div1">
+			<div class="div2"></div>
+		</div>
+	</body>
+	<script>
+		//第三个采参数，代表事件，true捕获，从父到子，如果是false，冒泡，从子到父
+		//为body添加事件
+		//在每一个事件中，都 默认有一个对象，代表事件对象，可以直接使用
+		document.body.addEventListener("click", function(e) {
+			alert("您点击了body");
+			//代表事件对象
+			alert(e.bubbles);
+			e.stopPropagation();//阻止传播
+			e.stopImmediatePropagation();//强制阻止
+		}, true);
+		//为div1添加事件
+		document.getElementsByClassName("div1")[0].addEventListener("click", function() {
+			alert("您点击了div1")
+		}, true);
+		document.getElementsByClassName("div2")[0].addEventListener("click", function(e) {
+			alert("您点击了div2");
+		}, true);
+	</script>
+</html>

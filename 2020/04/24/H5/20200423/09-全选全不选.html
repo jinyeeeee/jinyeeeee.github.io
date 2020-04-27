@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	    <input type="checkbox" id="seleceAll" class="selectAll"><br>
+		<input type="checkbox" class="item"><br>
+		<input type="checkbox" class="item">
+	</body>
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script>
+		//为全选按钮添加点击事件
+		$(".selectAll").click(function(){
+			//将item的选中状态设置为全选的状态
+			$(".item").prop("checked",$(".selectAll").prop("checked"));
+		})
+		$(".item").click(function(){
+			//如果是不选中，全选也不选中
+			if(!event.target.checked){
+				$(".selectAll").prop("checked",false);
+			}
+			//如果所有item的数据量与所有选中的item的数量相同，就代表全选了
+			if($(".item").length==$(".item:checked").length){
+				$(".selectAll").prop("checked",true);
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" id="btn" value="打开百度"><br>
+		<input type="button" class="btn" value="通过location打开百度">
+	</body>
+	<script>
+		alert("现在出问题了！");
+		//返回true，false，确定：true
+		var res = confirm("确定要删除吗？");
+		console.log(res);
+		if(res){
+			//执行删除的操作
+		}		
+		document.getElementById("btn").addEventListener("click",function(){
+			open("http://www.baidu.com","_blank");
+		},false);
+		
+		document.getElementsByClassName("btn")[0].onclick = function(){
+			window.location.href = "http://www.baidu.com";
+		}
+	</script>
+</html>

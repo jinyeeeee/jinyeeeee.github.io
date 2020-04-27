@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    JS/20200421/17-json格式 |
+    
+    yuchen</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/technology.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-JS/20200421/17-json格式" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JS/20200421/17-json格式
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/04/24/JS/20200421/17-json%E6%A0%BC%E5%BC%8F/" class="article-date">
+  <time datetime="2020-04-24T08:11:38.307Z" itemprop="datePublished">2020-04-24</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script>
+		//json对象
+		var p = {
+			"name":"zhangsan",
+			"age":18
+		};
+		console.log(p.name);
+		console.log(p.age);
+		//json数组
+		var p2 = {
+			"name":"lisi",
+			"age":20,
+			"citys":[
+				"北京","天津","昆明"
+			]
+		}
+		console.log(p2.citys[0]);//北京
+		var p3 = {
+			"name":"lisi",
+			"age":20,
+			"emploee":{
+				"id":10001,
+				"name":"程序员",
+				"salary":10000
+			}
+		}
+		console.log(p3.emploee.salary);
+		var p4 = {
+			"name":"lisi",
+			"age":20,
+			"citys":[
+				{
+					"name":"北京"
+				},
+				{
+					"name":"天津"
+				},
+				{
+					"name":"昆明"
+				}
+			]
+		}
+		console.log(p4.citys[1].name);
+	</script>
+</html>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://jinyeeeee.github.io/2020/04/24/JS/20200421/17-json%E6%A0%BC%E5%BC%8F/" data-id="ck9i2ikhv001e2ov0bx4iasq1"
+         class="article-share-link">分享</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2020/04/24/JS/20200421/18-%E6%A8%A1%E6%8B%9F%E7%99%BB%E9%99%86/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            JS/20200421/18-模拟登陆
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/04/24/JS/20200421/16-ajax/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">JS/20200421/16-ajax</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/technology.js"></script>
+
+  </div>
+</body>
+</html>

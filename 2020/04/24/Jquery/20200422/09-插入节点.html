@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="js/jquery-1.9.1.min.js">
+			
+		</script>
+		<script>
+			$(function(){
+				//创建元素，一定要闭合
+				var $li = $("<li>上海</li>");
+				//通过父元素插入,最后
+				//$("ul").append($li);
+				//子元素添加到父元素
+				//$li.appendTo($("ul"))
+				//父元素将子元素添加到最前面
+				//$("ul").prepend($li);
+				//$li.prependTo($("ul"));
+				
+				//通过兄弟元素插入,插入兄弟的后面
+				//$("ul li:nth-child(2)").after($li);
+				//$li.insertAfter($("ul li:nth-child(2)"));
+				//插入兄弟的前面
+				//$("ul li:nth-child(2)").before($li);
+				$li.insertBefore($("ul li:nth-child(2)"));
+			})
+		</script>
+	<body>
+		<ul>
+			<li>北京</li>
+			<li>天津</li>
+		</ul>
+	</body>
+</html>
